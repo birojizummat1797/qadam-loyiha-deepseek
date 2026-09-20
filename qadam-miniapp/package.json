@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@tma.js/sdk": "^2.0.0",
-    "@tma.js/sdk-react": "^2.0.0",
     "axios": "^1.7.9",
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.469.0",
