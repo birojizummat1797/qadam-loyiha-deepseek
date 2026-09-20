@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { TmaProvider } from "@/components/TmaProvider";
+import Script from "next/script";
+// @ts-expect-error Next.js handles CSS side-effect imports at build time.
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,9 +23,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="uz">
-      <body>
-        <TmaProvider>{children}</TmaProvider>
-      </body>
+      <head>
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive"
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

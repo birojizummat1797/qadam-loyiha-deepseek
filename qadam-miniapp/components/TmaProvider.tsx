@@ -4,23 +4,19 @@ import { useEffect } from "react";
 
 export function TmaProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const initTMA = async () => {
-      try {
-        const sdk = await import("@tma.js/sdk");
-        if (sdk.init) sdk.init();
-        if (sdk.miniApp) {
-          sdk.miniApp.ready();
-          sdk.miniApp.expand();
-        }
-        if (sdk.themeParams && sdk.themeParams.bindCssVars) {
-          sdk.themeParams.bindCssVars();
-        }
-      } catch (e) {
-        // TMA ishlamasa - brauzer rejimida davom
-        console.log("TMA init skipped:", e);
-      }
-    };
-    initTMA();
+    const tg = (window as any).Telegram?.WebApp;
+    if (!tg) {
+      console.log("Telegram WebApp topilmadi (brauzer rejimi)");
+      return;
+    }
+    try {
+      tg.ready();
+      tg.expand();
+      if (tg.setHeaderColor) tg.setHeaderColor("#0a0a0f");
+      if (tg.setBackgroundColor) tg.setBackgroundColor("#0a0a0f");
+    } catch (e) {
+      console.log("TMA init xatosi:", e);
+    }
   }, []);
 
   return <>{children}</>;

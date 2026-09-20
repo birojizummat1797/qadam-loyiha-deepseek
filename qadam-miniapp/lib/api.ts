@@ -1,16 +1,14 @@
 import axios from "axios";
-import { initData } from "@tma.js/sdk";
 
-const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const BACKEND =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
 export const api = axios.create({ baseURL: BACKEND });
 
-function getInitData(): string {
-  try {
-    return initData.raw() || "";
-  } catch {
-    return "";
-  }
+export function getInitData(): string {
+  if (typeof window === "undefined") return "";
+  const tg = (window as any).Telegram?.WebApp;
+  return tg?.initData || "";
 }
 
 export async function fetchQuestions() {
@@ -45,7 +43,10 @@ export async function fetchReport(id: number) {
   return r.data;
 }
 
-export async function createPayment(stage1_result_id: number, provider: string) {
+export async function createPayment(
+  stage1_result_id: number,
+  provider: string
+) {
   const r = await api.post("/payments/create", {
     init_data: getInitData(),
     stage1_result_id,
@@ -69,8 +70,6 @@ export async function checkPaid(stage1_result_id: number) {
   });
   return r.data;
 }
-
-export { getInitData };
 
 export async function devUnlock(stage1_result_id: number) {
   const r = await api.post("/diagnostic/dev-unlock", {
