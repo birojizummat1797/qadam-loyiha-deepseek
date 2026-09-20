@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-// @ts-expect-error Next.js processes global CSS imports at build time.
+// @ts-expect-error CSS files are handled by Next.js at runtime.
 import "./globals.css";
 
 export const metadata: Metadata = {

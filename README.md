@@ -1,0 +1,1 @@
+# QADAM — v1.1 (TMA fix)
