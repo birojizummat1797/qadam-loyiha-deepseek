@@ -1,0 +1,377 @@
+{
+  "version": "v1.1",
+  "careers": {
+    "foundation_programming": {
+      "uz": "Foundation Programming",
+      "why": "Dasturlash asoslari - har qanday IT yonalishga kirish eshigi.",
+      "skill_gap": [
+        "Python yoki JavaScript",
+        "Algoritmik fikrlash",
+        "Git",
+        "Terminal",
+        "Kichik loyihalar"
+      ],
+      "roadmap": {
+        "first_steps": [
+          "Bepul kursni boshlash (CS50)",
+          "VS Code va Python ornatish",
+          "Birinchi Hello World"
+        ],
+        "phases": [
+          {
+            "period": "0-1 oy",
+            "goal": "Sintaksis",
+            "actions": [
+              "Ozgaruvchilar, shartlar",
+              "Funksiyalar",
+              "Kuniga 1 soat"
+            ]
+          },
+          {
+            "period": "1-3 oy",
+            "goal": "Algoritmik fikrlash",
+            "actions": [
+              "LeetCode Easy",
+              "Git",
+              "3-5 mini-loyiha"
+            ]
+          },
+          {
+            "period": "3-6 oy",
+            "goal": "Yonalish tanlash",
+            "actions": [
+              "Frontend/Backend",
+              "GitHub portfolio",
+              "Junior vakansiya"
+            ]
+          }
+        ],
+        "milestones": [
+          "10 masala",
+          "Birinchi loyiha",
+          "Birinchi suhbat"
+        ]
+      },
+      "projects": [
+        "Kalkulyator",
+        "Todo",
+        "Weather app"
+      ],
+      "resources": [
+        {
+          "name": "CS50",
+          "url": "https://cs50.harvard.edu/x/"
+        },
+        {
+          "name": "freeCodeCamp",
+          "url": "https://www.freecodecamp.org/"
+        }
+      ],
+      "risks": [
+        "Video bilan cheklanish",
+        "Tutorial hell",
+        "Yolgizlik"
+      ],
+      "market_context": {
+        "demand": "yuqori"
+      }
+    },
+    "frontend_development": {
+      "uz": "Frontend Development",
+      "why": "Frontend - foydalanuvchi koradigan qism.",
+      "skill_gap": [
+        "HTML CSS JS",
+        "React yoki Vue",
+        "Responsive",
+        "API",
+        "Git"
+      ],
+      "roadmap": {
+        "first_steps": [
+          "HTML+CSS 2 hafta",
+          "JS ES6+",
+          "Birinchi statik sayt"
+        ],
+        "phases": [
+          {
+            "period": "0-2 oy",
+            "goal": "Asoslar",
+            "actions": [
+              "HTML CSS",
+              "JavaScript DOM",
+              "3-5 sayt"
+            ]
+          },
+          {
+            "period": "2-4 oy",
+            "goal": "React",
+            "actions": [
+              "React hooks",
+              "Tailwind",
+              "API",
+              "2-3 SPA"
+            ]
+          },
+          {
+            "period": "4-6 oy",
+            "goal": "Portfolio",
+            "actions": [
+              "3-4 loyiha",
+              "Deploy",
+              "Junior ariza"
+            ]
+          }
+        ],
+        "milestones": [
+          "Birinchi sayt",
+          "Birinchi React",
+          "Birinchi offer"
+        ]
+      },
+      "projects": [
+        "Portfolio",
+        "Ob-havo app",
+        "Dashboard"
+      ],
+      "resources": [
+        {
+          "name": "MDN",
+          "url": "https://developer.mozilla.org/"
+        },
+        {
+          "name": "roadmap.sh/frontend",
+          "url": "https://roadmap.sh/frontend"
+        }
+      ],
+      "risks": [
+        "Framework erta",
+        "Portfolio yoq"
+      ],
+      "market_context": {
+        "demand": "yuqori"
+      }
+    },
+    "ui_ux_design": {
+      "uz": "UI/UX Design",
+      "why": "Ijodiy did va empatiya bu sohada asosiy qurol.",
+      "skill_gap": [
+        "Figma",
+        "Dizayn nazariyasi",
+        "User research",
+        "Wireframe",
+        "Portfolio"
+      ],
+      "roadmap": {
+        "first_steps": [
+          "Figma ornatish",
+          "Dribbble tahlil",
+          "Birinchi ekran"
+        ],
+        "phases": [
+          {
+            "period": "0-1 oy",
+            "goal": "Figma",
+            "actions": [
+              "Auto-layout",
+              "Rang tipografiya",
+              "5-10 mashq"
+            ]
+          },
+          {
+            "period": "1-3 oy",
+            "goal": "UX",
+            "actions": [
+              "User flow",
+              "Design systems",
+              "1-2 loyiha"
+            ]
+          },
+          {
+            "period": "3-6 oy",
+            "goal": "Portfolio",
+            "actions": [
+              "3-4 case study",
+              "Behance",
+              "Junior ariza"
+            ]
+          }
+        ],
+        "milestones": [
+          "Birinchi ekran",
+          "Birinchi case",
+          "Birinchi mijoz"
+        ]
+      },
+      "projects": [
+        "Bank redesign",
+        "E-commerce UX",
+        "Portfolio"
+      ],
+      "resources": [
+        {
+          "name": "Figma Learn",
+          "url": "https://help.figma.com/"
+        },
+        {
+          "name": "Refactoring UI",
+          "url": "https://www.refactoringui.com/"
+        }
+      ],
+      "risks": [
+        "Funksionallikni unutish",
+        "Case study yoq"
+      ],
+      "market_context": {
+        "demand": "orta-yuqori"
+      }
+    },
+    "smm_manager": {
+      "uz": "SMM Manager",
+      "why": "Ijod, muloqot va tahlil birlashmasi.",
+      "skill_gap": [
+        "Kontent strategiya",
+        "Algoritmlar",
+        "Canva",
+        "Copywriting",
+        "Analitika"
+      ],
+      "roadmap": {
+        "first_steps": [
+          "Shaxsiy sahifa kontent reja",
+          "Canva 5-10 post",
+          "Bepul kurslar"
+        ],
+        "phases": [
+          {
+            "period": "0-1 oy",
+            "goal": "Asoslar",
+            "actions": [
+              "Post story reel",
+              "Canva",
+              "Sahifa auditi"
+            ]
+          },
+          {
+            "period": "1-3 oy",
+            "goal": "Amaliyot",
+            "actions": [
+              "1 real mijoz",
+              "30 kun reja",
+              "Analitika"
+            ]
+          },
+          {
+            "period": "3-6 oy",
+            "goal": "Professional",
+            "actions": [
+              "3-5 mijoz",
+              "Tools",
+              "Case study"
+            ]
+          }
+        ],
+        "milestones": [
+          "30 kun reja",
+          "Birinchi mijoz",
+          "Birinchi viral"
+        ]
+      },
+      "projects": [
+        "Shaxsiy sahifa",
+        "Kichik biznes SMM",
+        "Kampaniya"
+      ],
+      "resources": [
+        {
+          "name": "Meta Blueprint",
+          "url": "https://www.facebook.com/business/learn"
+        },
+        {
+          "name": "Canva Design School",
+          "url": "https://www.canva.com/designschool/"
+        }
+      ],
+      "risks": [
+        "Natijasiz aktivlik",
+        "Trendlar kora-kora"
+      ],
+      "market_context": {
+        "demand": "yuqori"
+      }
+    },
+    "data_analytics": {
+      "uz": "Data Analytics",
+      "why": "Tahlil, detal va tizimli yondashuv qimmatli.",
+      "skill_gap": [
+        "Excel",
+        "SQL",
+        "Tableau/Power BI",
+        "Statistika",
+        "Python"
+      ],
+      "roadmap": {
+        "first_steps": [
+          "Excel chuqur",
+          "SQL kursi",
+          "Birinchi dataset"
+        ],
+        "phases": [
+          {
+            "period": "0-1 oy",
+            "goal": "Excel+SQL",
+            "actions": [
+              "Pivot VLOOKUP",
+              "SELECT JOIN",
+              "Kaggle dataset"
+            ]
+          },
+          {
+            "period": "1-3 oy",
+            "goal": "Vizualizatsiya",
+            "actions": [
+              "Tableau",
+              "Statistika",
+              "Dashboard"
+            ]
+          },
+          {
+            "period": "3-6 oy",
+            "goal": "Portfolio",
+            "actions": [
+              "3-4 loyiha",
+              "Python pandas",
+              "Junior ariza"
+            ]
+          }
+        ],
+        "milestones": [
+          "Birinchi SQL",
+          "Birinchi dashboard",
+          "Birinchi offer"
+        ]
+      },
+      "projects": [
+        "Savdo tahlil",
+        "Open data",
+        "Dashboard"
+      ],
+      "resources": [
+        {
+          "name": "Kaggle Learn",
+          "url": "https://www.kaggle.com/learn"
+        },
+        {
+          "name": "Mode SQL",
+          "url": "https://mode.com/sql-tutorial/"
+        }
+      ],
+      "risks": [
+        "Tool organib biznes tushunmaslik",
+        "Statistikasiz xulosa"
+      ],
+      "market_context": {
+        "demand": "yuqori"
+      }
+    }
+  }
+}

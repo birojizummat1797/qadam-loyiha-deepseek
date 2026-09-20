@@ -1,0 +1,436 @@
+{
+  "version": "v1.0",
+  "stage_1": {
+    "questions": [
+      {
+        "id": "s1_q1",
+        "type": "single_choice",
+        "text": "Hozir hayotingizning qaysi bosqichidasiz?",
+        "options": [
+          {
+            "v": "school",
+            "l": "Maktab bitiruvchisi"
+          },
+          {
+            "v": "student",
+            "l": "Talaba"
+          },
+          {
+            "v": "working_student",
+            "l": "Talaba va ishlayapman"
+          },
+          {
+            "v": "young_pro",
+            "l": "Yosh mutaxassis"
+          },
+          {
+            "v": "switcher",
+            "l": "Kasbni ozgartirmoqchiman"
+          },
+          {
+            "v": "dissatisfied",
+            "l": "Ishimdan qoniqmayman"
+          },
+          {
+            "v": "unemployed",
+            "l": "Ishsizman"
+          }
+        ]
+      },
+      {
+        "id": "s1_q2",
+        "type": "single_choice",
+        "text": "Sizni eng kop nima qiynaydi?",
+        "options": [
+          {
+            "v": "dont_know_career",
+            "l": "Qaysi kasb menga mosligini bilmayman"
+          },
+          {
+            "v": "wrong_path",
+            "l": "Tanlagan yolim mos emas"
+          },
+          {
+            "v": "low_income",
+            "l": "Daromadim yetarli emas"
+          },
+          {
+            "v": "no_direction",
+            "l": "Nimadan boshlashni bilmayman"
+          },
+          {
+            "v": "study_waste",
+            "l": "Oqishga kop pul sarfladim"
+          },
+          {
+            "v": "future_fear",
+            "l": "Kelajagim uchun qorquv"
+          }
+        ]
+      },
+      {
+        "id": "s1_q3",
+        "type": "single_choice",
+        "text": "Siz uchun eng muhim narsa?",
+        "options": [
+          {
+            "v": "income",
+            "l": "Yuqori daromad"
+          },
+          {
+            "v": "stability",
+            "l": "Barqarorlik"
+          },
+          {
+            "v": "growth",
+            "l": "Osish va rivojlanish"
+          },
+          {
+            "v": "freedom",
+            "l": "Erkinlik"
+          },
+          {
+            "v": "impact",
+            "l": "Jamiyatga foyda"
+          },
+          {
+            "v": "creation",
+            "l": "Ijod"
+          }
+        ]
+      },
+      {
+        "id": "s1_q4",
+        "type": "single_choice",
+        "text": "Qaysi ish sizni oziga tortadi?",
+        "options": [
+          {
+            "v": "tech",
+            "l": "Texnika va texnologiya"
+          },
+          {
+            "v": "creative",
+            "l": "Ijod, dizayn"
+          },
+          {
+            "v": "people",
+            "l": "Odamlar bilan muloqot"
+          },
+          {
+            "v": "analysis",
+            "l": "Tahlil, raqamlar"
+          },
+          {
+            "v": "business",
+            "l": "Biznes, savdo"
+          },
+          {
+            "v": "systems",
+            "l": "Tartib, tizim"
+          }
+        ]
+      },
+      {
+        "id": "s1_q5",
+        "type": "multi_select",
+        "max": 4,
+        "text": "Qaysi sohalar qiziqtiradi?",
+        "options": [
+          {
+            "v": "software",
+            "l": "Dasturlash"
+          },
+          {
+            "v": "data_ai",
+            "l": "Data va AI"
+          },
+          {
+            "v": "design",
+            "l": "Dizayn"
+          },
+          {
+            "v": "marketing",
+            "l": "Marketing"
+          },
+          {
+            "v": "media",
+            "l": "Media"
+          },
+          {
+            "v": "product",
+            "l": "Product"
+          },
+          {
+            "v": "business",
+            "l": "Biznes"
+          },
+          {
+            "v": "security",
+            "l": "Xavfsizlik"
+          },
+          {
+            "v": "unknown",
+            "l": "Hali aniq emas"
+          }
+        ]
+      },
+      {
+        "id": "s1_q6",
+        "type": "single_choice",
+        "text": "Kuniga qancha vaqt?",
+        "options": [
+          {
+            "v": "lt_1h",
+            "l": "1 soatdan kam"
+          },
+          {
+            "v": "1h",
+            "l": "1 soat"
+          },
+          {
+            "v": "2_3h",
+            "l": "2-3 soat"
+          },
+          {
+            "v": "4h_plus",
+            "l": "4+ soat"
+          },
+          {
+            "v": "full_time",
+            "l": "Toliq kun"
+          }
+        ]
+      },
+      {
+        "id": "s1_q7",
+        "type": "single_choice",
+        "text": "Qaysi qurilma?",
+        "options": [
+          {
+            "v": "laptop",
+            "l": "Noutbuk bor"
+          },
+          {
+            "v": "smartphone_only",
+            "l": "Faqat smartfon"
+          },
+          {
+            "v": "both",
+            "l": "Ikkalasi"
+          },
+          {
+            "v": "none",
+            "l": "Yoq"
+          }
+        ]
+      },
+      {
+        "id": "s1_q8",
+        "type": "single_choice",
+        "text": "Ingliz tilingiz?",
+        "options": [
+          {
+            "v": "none",
+            "l": "Bilmayman"
+          },
+          {
+            "v": "a2",
+            "l": "A1-A2"
+          },
+          {
+            "v": "b1",
+            "l": "B1"
+          },
+          {
+            "v": "b2",
+            "l": "B2"
+          },
+          {
+            "v": "c1",
+            "l": "C1+"
+          }
+        ]
+      }
+    ]
+  },
+  "stage_2": {
+    "dimensions": {
+      "goal": {
+        "questions": [
+          {
+            "id": "s2_q1",
+            "text": "Keyingi 3 yilda professional bolishni xohlayman.",
+            "maps_to": {
+              "signal": "persistence",
+              "weight": 1.0
+            }
+          },
+          {
+            "id": "s2_q2",
+            "text": "Soham uzoq muddatli istiqbolga ega bolishi muhim.",
+            "maps_to": {
+              "signal": "business_sense",
+              "weight": 1.0
+            }
+          }
+        ]
+      },
+      "interest": {
+        "questions": [
+          {
+            "id": "s2_q3",
+            "text": "Texnikani yigish menga zavq beradi.",
+            "maps_to": {
+              "signal": "technical_interest",
+              "weight": 1.5
+            }
+          },
+          {
+            "id": "s2_q4",
+            "text": "Tadqiqot va tahlil qiziqarli.",
+            "maps_to": {
+              "signal": "analytical",
+              "weight": 1.5
+            }
+          },
+          {
+            "id": "s2_q5",
+            "text": "Rasm chizish, dizayn mening ifodam.",
+            "maps_to": {
+              "signal": "creative_design",
+              "weight": 1.5
+            }
+          },
+          {
+            "id": "s2_q6",
+            "text": "Odamlarga yordam berish yoqadi.",
+            "maps_to": {
+              "signal": "user_empathy",
+              "weight": 1.5
+            }
+          },
+          {
+            "id": "s2_q7",
+            "text": "Loyihani boshqarish menga mos.",
+            "maps_to": {
+              "signal": "business_sense",
+              "weight": 1.5
+            }
+          }
+        ]
+      },
+      "aptitude": {
+        "questions": [
+          {
+            "id": "s2_q8",
+            "text": "Raqamlar va formulalar bilan erkin ishlayman.",
+            "maps_to": {
+              "signal": "math_logic",
+              "weight": 1.5
+            }
+          },
+          {
+            "id": "s2_q9",
+            "text": "Muammoni qismlarga bolib yechaman.",
+            "maps_to": {
+              "signal": "problem_solving",
+              "weight": 1.5
+            }
+          },
+          {
+            "id": "s2_q10",
+            "text": "Kop qismli tizimni tasavvur qila olaman.",
+            "maps_to": {
+              "signal": "system_design",
+              "weight": 1.5
+            }
+          }
+        ]
+      },
+      "skills": {
+        "questions": [
+          {
+            "id": "s2_q11",
+            "text": "Biror sohada amaliy konikmaga egaman.",
+            "maps_to": {
+              "signal": "persistence",
+              "weight": 1.0
+            }
+          },
+          {
+            "id": "s2_q12",
+            "text": "Mustaqil organishga odatlanganman.",
+            "maps_to": {
+              "signal": "persistence",
+              "weight": 1.0
+            }
+          }
+        ]
+      },
+      "values": {
+        "questions": [
+          {
+            "id": "s2_q13",
+            "text": "Ishim jamiyatga foyda keltirishi muhim.",
+            "maps_to": {
+              "signal": "user_empathy",
+              "weight": 1.0
+            }
+          },
+          {
+            "id": "s2_q14",
+            "text": "Erkin uslubni afzal koraman.",
+            "maps_to": {
+              "signal": "innovation",
+              "weight": 1.0
+            }
+          }
+        ]
+      },
+      "work_style": {
+        "questions": [
+          {
+            "id": "s2_q15",
+            "text": "Yakka ishlashni afzal koraman.",
+            "maps_to": {
+              "signal": "system_design",
+              "weight": 0.8
+            }
+          },
+          {
+            "id": "s2_q16",
+            "text": "Ozgaruvchan muhitda ishlashni yaxshi koraman.",
+            "maps_to": {
+              "signal": "innovation",
+              "weight": 1.0
+            }
+          }
+        ]
+      },
+      "constraints": {
+        "questions": [
+          {
+            "id": "s2_q17",
+            "text": "Moliyaviy cheklovim bor.",
+            "maps_to": {
+              "constraint": "finance",
+              "weight": 1.0
+            }
+          }
+        ]
+      },
+      "resilience": {
+        "questions": [
+          {
+            "id": "s2_q18",
+            "text": "Qiyinchilikka chidashga tayyorman.",
+            "maps_to": {
+              "signal": "persistence",
+              "weight": 1.5
+            }
+          }
+        ]
+      }
+    }
+  }
+}

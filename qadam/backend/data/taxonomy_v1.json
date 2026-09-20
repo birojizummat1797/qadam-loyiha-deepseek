@@ -1,0 +1,463 @@
+{
+  "version": "v1.0",
+  "clusters": {
+    "software": {
+      "uz": "Dasturlash",
+      "careers": {
+        "foundation_programming": {
+          "uz": "Foundation Programming",
+          "signals": {
+            "logical_thinking": 5,
+            "problem_solving": 5,
+            "persistence": 4,
+            "technical_interest": 4,
+            "system_design": 3,
+            "analytical": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "A2"
+          },
+          "learning_months": 4,
+          "pathway_type": "entry"
+        },
+        "frontend_development": {
+          "uz": "Frontend Development",
+          "signals": {
+            "logical_thinking": 4,
+            "visual_logic": 5,
+            "creative_design": 4,
+            "problem_solving": 4,
+            "persistence": 4,
+            "technical_interest": 4,
+            "attention_to_detail": 4,
+            "user_empathy": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 6,
+          "pathway_type": "role"
+        },
+        "backend_development": {
+          "uz": "Backend Development",
+          "signals": {
+            "logical_thinking": 5,
+            "system_design": 5,
+            "problem_solving": 5,
+            "analytical": 4,
+            "persistence": 4,
+            "technical_interest": 4,
+            "attention_to_detail": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 8,
+          "pathway_type": "role"
+        },
+        "mobile_development": {
+          "uz": "Mobile Development",
+          "signals": {
+            "logical_thinking": 4,
+            "problem_solving": 4,
+            "user_empathy": 4,
+            "creative_design": 3,
+            "visual_logic": 3,
+            "persistence": 4,
+            "technical_interest": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 7,
+          "pathway_type": "role"
+        }
+      }
+    },
+    "data_ai": {
+      "uz": "Data & AI",
+      "careers": {
+        "data_analytics": {
+          "uz": "Data Analytics",
+          "signals": {
+            "analytical": 5,
+            "math_logic": 4,
+            "attention_to_detail": 5,
+            "logical_thinking": 4,
+            "business_sense": 3,
+            "persistence": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 5,
+          "pathway_type": "role"
+        },
+        "data_science": {
+          "uz": "Data Science",
+          "signals": {
+            "math_logic": 5,
+            "analytical": 5,
+            "persistence": 4,
+            "logical_thinking": 4,
+            "innovation": 3,
+            "system_design": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B2"
+          },
+          "learning_months": 12,
+          "pathway_type": "advanced"
+        },
+        "ai_engineering": {
+          "uz": "AI Engineering",
+          "signals": {
+            "logical_thinking": 5,
+            "system_design": 5,
+            "innovation": 4,
+            "math_logic": 4,
+            "problem_solving": 5,
+            "persistence": 4,
+            "analytical": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B2"
+          },
+          "learning_months": 12,
+          "pathway_type": "advanced"
+        }
+      }
+    },
+    "infra_security": {
+      "uz": "Infra & Security",
+      "careers": {
+        "devops_cloud": {
+          "uz": "DevOps / Cloud",
+          "signals": {
+            "system_design": 5,
+            "analytical": 4,
+            "persistence": 4,
+            "technical_interest": 5,
+            "attention_to_detail": 4,
+            "logical_thinking": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B2"
+          },
+          "learning_months": 10,
+          "pathway_type": "role"
+        },
+        "cybersecurity": {
+          "uz": "Cybersecurity",
+          "signals": {
+            "analytical": 5,
+            "attention_to_detail": 5,
+            "persistence": 5,
+            "logical_thinking": 4,
+            "technical_interest": 4,
+            "system_design": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B2"
+          },
+          "learning_months": 10,
+          "pathway_type": "role"
+        },
+        "qa_automation": {
+          "uz": "QA / Test Automation",
+          "signals": {
+            "attention_to_detail": 5,
+            "logical_thinking": 4,
+            "persistence": 4,
+            "problem_solving": 4,
+            "technical_interest": 3,
+            "analytical": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 5,
+          "pathway_type": "entry"
+        }
+      }
+    },
+    "design_creative": {
+      "uz": "Dizayn",
+      "careers": {
+        "ui_ux_design": {
+          "uz": "UI/UX Design",
+          "signals": {
+            "creative_design": 5,
+            "user_empathy": 5,
+            "visual_logic": 5,
+            "attention_to_detail": 4,
+            "system_design": 3,
+            "problem_solving": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 6,
+          "pathway_type": "role"
+        },
+        "product_design": {
+          "uz": "Product Design",
+          "signals": {
+            "creative_design": 5,
+            "user_empathy": 5,
+            "system_design": 4,
+            "visual_logic": 4,
+            "analytical": 4,
+            "business_sense": 3,
+            "attention_to_detail": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 10,
+          "pathway_type": "advanced"
+        },
+        "graphic_design": {
+          "uz": "Graphic Design",
+          "signals": {
+            "creative_design": 5,
+            "visual_logic": 5,
+            "attention_to_detail": 4,
+            "persistence": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "A2"
+          },
+          "learning_months": 4,
+          "pathway_type": "entry"
+        },
+        "motion_design": {
+          "uz": "Motion Design",
+          "signals": {
+            "creative_design": 5,
+            "visual_logic": 5,
+            "persistence": 4,
+            "technical_interest": 3,
+            "attention_to_detail": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 6,
+          "pathway_type": "role"
+        }
+      }
+    },
+    "digital_marketing": {
+      "uz": "Marketing",
+      "careers": {
+        "smm_manager": {
+          "uz": "SMM Manager",
+          "signals": {
+            "creative_design": 4,
+            "user_empathy": 5,
+            "business_sense": 4,
+            "analytical": 3,
+            "persistence": 3
+          },
+          "prerequisites": {
+            "device": "smartphone_ok",
+            "english": "A2"
+          },
+          "learning_months": 3,
+          "pathway_type": "entry"
+        },
+        "performance_marketing": {
+          "uz": "Performance Marketing",
+          "signals": {
+            "analytical": 5,
+            "business_sense": 4,
+            "attention_to_detail": 4,
+            "math_logic": 3,
+            "persistence": 4,
+            "innovation": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 5,
+          "pathway_type": "role"
+        },
+        "seo": {
+          "uz": "SEO Specialist",
+          "signals": {
+            "analytical": 4,
+            "attention_to_detail": 5,
+            "persistence": 5,
+            "logical_thinking": 3,
+            "innovation": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 5,
+          "pathway_type": "role"
+        },
+        "content_marketing": {
+          "uz": "Content Marketing",
+          "signals": {
+            "creative_design": 4,
+            "user_empathy": 4,
+            "analytical": 3,
+            "persistence": 4,
+            "attention_to_detail": 4
+          },
+          "prerequisites": {
+            "device": "smartphone_ok"
+          },
+          "learning_months": 3,
+          "pathway_type": "entry"
+        }
+      }
+    },
+    "content_media": {
+      "uz": "Media",
+      "careers": {
+        "video_content": {
+          "uz": "Video Content",
+          "signals": {
+            "creative_design": 5,
+            "visual_logic": 5,
+            "persistence": 4,
+            "technical_interest": 3,
+            "attention_to_detail": 3
+          },
+          "prerequisites": {
+            "device": "smartphone_ok"
+          },
+          "learning_months": 4,
+          "pathway_type": "entry"
+        },
+        "brand_strategy": {
+          "uz": "Brand Strategy",
+          "signals": {
+            "creative_design": 5,
+            "business_sense": 4,
+            "user_empathy": 4,
+            "analytical": 3,
+            "innovation": 4,
+            "system_design": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 8,
+          "pathway_type": "advanced"
+        }
+      }
+    },
+    "product_project": {
+      "uz": "Product & Project",
+      "careers": {
+        "product_management": {
+          "uz": "Product Management",
+          "signals": {
+            "system_design": 5,
+            "business_sense": 5,
+            "analytical": 4,
+            "user_empathy": 4,
+            "innovation": 3,
+            "persistence": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B2"
+          },
+          "learning_months": 12,
+          "pathway_type": "advanced"
+        },
+        "project_management": {
+          "uz": "Project Management",
+          "signals": {
+            "system_design": 5,
+            "attention_to_detail": 4,
+            "persistence": 5,
+            "business_sense": 4,
+            "user_empathy": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 6,
+          "pathway_type": "role"
+        },
+        "business_analysis": {
+          "uz": "Business Analysis",
+          "signals": {
+            "analytical": 5,
+            "system_design": 4,
+            "attention_to_detail": 5,
+            "logical_thinking": 4,
+            "business_sense": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 6,
+          "pathway_type": "role"
+        }
+      }
+    },
+    "business_sales": {
+      "uz": "Business & Sales",
+      "careers": {
+        "it_b2b_sales": {
+          "uz": "IT / B2B Sales",
+          "signals": {
+            "business_sense": 5,
+            "user_empathy": 5,
+            "persistence": 5,
+            "innovation": 3,
+            "analytical": 3
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 4,
+          "pathway_type": "entry"
+        },
+        "customer_success": {
+          "uz": "Customer Success",
+          "signals": {
+            "user_empathy": 5,
+            "business_sense": 4,
+            "attention_to_detail": 4,
+            "system_design": 3,
+            "persistence": 4
+          },
+          "prerequisites": {
+            "device": "required",
+            "english": "B1"
+          },
+          "learning_months": 4,
+          "pathway_type": "entry"
+        }
+      }
+    }
+  }
+}

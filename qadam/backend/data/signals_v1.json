@@ -1,0 +1,44 @@
+{
+  "version": "v1.0",
+  "signals": {
+    "logical_thinking": {
+      "uz": "Mantiqiy fikrlash"
+    },
+    "problem_solving": {
+      "uz": "Muammo hal qilish"
+    },
+    "technical_interest": {
+      "uz": "Texnikaga qiziqish"
+    },
+    "creative_design": {
+      "uz": "Ijodiy dizayn"
+    },
+    "visual_logic": {
+      "uz": "Vizual mantiq"
+    },
+    "user_empathy": {
+      "uz": "Empatiya"
+    },
+    "system_design": {
+      "uz": "Tizimli fikrlash"
+    },
+    "analytical": {
+      "uz": "Tahliliy fikrlash"
+    },
+    "persistence": {
+      "uz": "Qatiyat"
+    },
+    "math_logic": {
+      "uz": "Matematik mantiq"
+    },
+    "attention_to_detail": {
+      "uz": "Detallarga etibor"
+    },
+    "business_sense": {
+      "uz": "Biznes hissi"
+    },
+    "innovation": {
+      "uz": "Innovatsiya"
+    }
+  }
+}
