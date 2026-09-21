@@ -52,129 +52,158 @@ body {
   color: transparent;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   PRINT / PDF — Ranglarni saqlash + A4 full width
-   ═══════════════════════════════════════════════════════════ */
+
 
 
 /* Print uchun to'liq kenglik */
 
 /* ═══════════════════════════════════════════════════════════
-   PRINT / PDF — QAT'IY ranglar + A4 full width
-   Chrome'dagi "Background graphics" muammosi CSS bilan hal qilingan
+   THEME PRESETS — body[data-theme]
    ═══════════════════════════════════════════════════════════ */
 
+/* DARK (default) */
+body[data-theme="dark"] {
+  background: #0a0a0f;
+  color: #f5f5f7;
+  --tg-bg: #0a0a0f;
+  --tg-text: #f5f5f7;
+  --tg-hint: #9a9aa8;
+  --tg-secondary-bg: #13131a;
+  --tg-link: #6366f1;
+  --tg-button: #6366f1;
+}
+
+/* LIGHT */
+body[data-theme="light"] {
+  background: #ffffff;
+  color: #0a0a0f;
+  --tg-bg: #ffffff;
+  --tg-text: #0a0a0f;
+  --tg-hint: #6b7280;
+  --tg-secondary-bg: #f9fafb;
+  --tg-link: #4f46e5;
+  --tg-button: #6366f1;
+}
+
+/* PASTEL */
+body[data-theme="pastel"] {
+  background: #fef6fb;
+  color: #1f2937;
+  --tg-bg: #fef6fb;
+  --tg-text: #1f2937;
+  --tg-hint: #9d174d;
+  --tg-secondary-bg: #fce7f3;
+  --tg-link: #db2777;
+  --tg-button: #db2777;
+}
+
+/* Light theme — gradient matnlar */
+body[data-theme="light"] .gradient-text {
+  background: none;
+  -webkit-text-fill-color: #4f46e5;
+  color: #4f46e5;
+}
+body[data-theme="pastel"] .gradient-text {
+  background: none;
+  -webkit-text-fill-color: #db2777;
+  color: #db2777;
+}
+
 /* ═══════════════════════════════════════════════════════════
-   PRINT — faqat layout fix (Ctrl+P fallback)
-   Asosiy PDF: html2pdf.js orqali
+   PRINT — A4 to'liq egallash + ranglar + accordion ochiq
    ═══════════════════════════════════════════════════════════ */
 @media print {
+  /* ─── 1. SAHIFA A4 ─── */
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+  }
+
+  /* ─── 2. RANGLARNI SAQLASH ─── */
   *, *::before, *::after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
+  }
+
+  /* ─── 3. ANIMATSIYA O'CHIRISH ─── */
+  *, *::before, *::after {
     animation: none !important;
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
 
-  @page {
-    size: A4;
-    margin: 8mm 10mm;
+  /* ─── 4. FON VA RANG (themega qarab) ─── */
+  html, body {
+    background: var(--tg-bg, #ffffff) !important;
+    color: var(--tg-text, #0a0a0f) !important;
+    font-size: 10pt;
+    line-height: 1.4;
   }
 
-  main, main.print-full {
+  /* ─── 5. FULL WIDTH ─── */
+  main, main.print-full, .print-full {
     max-width: 100% !important;
     width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
+  /* ─── 6. KARTALAR ─── */
+  .card, [class*="rounded-2xl"], [class*="rounded-xl"] {
+    background: var(--tg-secondary-bg, #f9fafb) !important;
+    border: 1px solid rgba(128, 128, 128, 0.2) !important;
+    padding: 8pt 10pt !important;
+    margin-bottom: 5pt !important;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  /* ─── 7. ACCORDION — HAMMASI OCHIQ ─── */
   [data-accordion-content],
   [data-calendar-body] {
     display: block !important;
     max-height: none !important;
+    height: auto !important;
     overflow: visible !important;
-    margin-top: 8pt !important;
+    opacity: 1 !important;
+    margin-top: 6pt !important;
   }
 
   [data-chevron] { display: none !important; }
 
-  button.no-print,
-  .no-print { display: none !important; }
-}
+  /* ─── 8. MATN O'LCHAMLARI ─── */
+  h1 { font-size: 18pt; margin: 0 0 3pt; }
+  h2 { font-size: 14pt; margin: 8pt 0 4pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 6pt 0 3pt; page-break-after: avoid; }
+  h4 { font-size: 10.5pt; margin: 4pt 0 2pt; page-break-after: avoid; }
+  p, li { font-size: 9.5pt; }
+  .text-sm { font-size: 9.5pt !important; }
+  .text-xs { font-size: 8pt !important; }
 
-/* ═══════════════════════════════════════════════════════════
-   PDF THEME OVERRIDES (html2pdf.js uchun)
-   ═══════════════════════════════════════════════════════════ */
+  /* ─── 9. RO'YXATLAR ─── */
+  ul, ol { margin: 3pt 0; padding-left: 12pt; }
+  li { margin: 1.5pt 0; break-inside: avoid; }
 
-/* DARK — default, o'zgartirmaydi */
-[data-pdf-theme="dark"] {
-  background: #0a0a0f !important;
-}
+  /* ─── 10. TUGMALAR — YASHIRISH ─── */
+  button, .btn-primary, .no-print {
+    display: none !important;
+  }
 
-/* LIGHT */
-[data-pdf-theme="light"] {
-  background: #ffffff !important;
-  color: #0a0a0f !important;
-}
-[data-pdf-theme="light"] .card,
-[data-pdf-theme="light"] [class*="rounded-2xl"] {
-  background: #f9fafb !important;
-  border-color: #e5e7eb !important;
-  color: #0a0a0f !important;
-}
-[data-pdf-theme="light"] * {
-  --tg-bg: #ffffff !important;
-  --tg-text: #0a0a0f !important;
-  --tg-hint: #6b7280 !important;
-  --tg-secondary-bg: #f3f4f6 !important;
-}
-[data-pdf-theme="light"] p,
-[data-pdf-theme="light"] span,
-[data-pdf-theme="light"] h1,
-[data-pdf-theme="light"] h2,
-[data-pdf-theme="light"] h3,
-[data-pdf-theme="light"] h4,
-[data-pdf-theme="light"] li {
-  color: #0a0a0f !important;
-}
-[data-pdf-theme="light"] .gradient-text {
-  background: none !important;
-  -webkit-text-fill-color: #4f46e5 !important;
-  color: #4f46e5 !important;
-}
+  /* ─── 11. LINKLAR ─── */
+  a { color: var(--tg-link, #4f46e5) !important; }
 
-/* PASTEL */
-[data-pdf-theme="pastel"] {
-  background: #fef6fb !important;
-  color: #1f2937 !important;
-}
-[data-pdf-theme="pastel"] .card,
-[data-pdf-theme="pastel"] [class*="rounded-2xl"] {
-  background: #fdf2f8 !important;
-  border-color: #fbcfe8 !important;
-  color: #1f2937 !important;
-}
-[data-pdf-theme="pastel"] * {
-  --tg-bg: #fef6fb !important;
-  --tg-text: #1f2937 !important;
-  --tg-hint: #9d174d !important;
-  --tg-secondary-bg: #fce7f3 !important;
-}
-[data-pdf-theme="pastel"] p,
-[data-pdf-theme="pastel"] span,
-[data-pdf-theme="pastel"] h1,
-[data-pdf-theme="pastel"] h2,
-[data-pdf-theme="pastel"] h3,
-[data-pdf-theme="pastel"] h4,
-[data-pdf-theme="pastel"] li {
-  color: #1f2937 !important;
-}
-[data-pdf-theme="pastel"] .gradient-text {
-  background: none !important;
-  -webkit-text-fill-color: #db2777 !important;
-  color: #db2777 !important;
+  /* ─── 12. SVG ─── */
+  svg { -webkit-print-color-adjust: exact !important; }
+
+  /* ─── 13. GRADIENT MATN ─── */
+  .gradient-text {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: var(--tg-link, #4f46e5) !important;
+    color: var(--tg-link, #4f46e5) !important;
+  }
 }
 

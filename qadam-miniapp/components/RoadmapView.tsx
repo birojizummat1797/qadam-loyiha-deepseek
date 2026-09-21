@@ -58,15 +58,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
   const [openStage, setOpenStage] = useState<number | null>(0);
   const [showCalendar, setShowCalendar] = useState(false);
 
-  // PDF/print — barcha accordion'larni ochish
-  useEffect(() => {
-    const beforePrint = () => {
-      setOpenStage(-1);
-      setShowCalendar(true);
-    };
-    window.addEventListener("beforeprint", beforePrint);
-    return () => window.removeEventListener("beforeprint", beforePrint);
-  }, []);
+  
 
   if (!roadmap || !roadmap.path || !Array.isArray(roadmap.path.stages)) {
     return (
