@@ -1,56 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+# -*- coding: utf-8 -*-
+"""QADAM v5 — Print CSS to'liq tuzatish (ranglar + kenglik + kontrast)."""
+from pathlib import Path
+import re
 
-:root {
-  --tg-bg: var(--tg-theme-bg-color, #0a0a0f);
-  --tg-text: var(--tg-theme-text-color, #f5f5f7);
-  --tg-hint: var(--tg-theme-hint-color, #9a9aa8);
-  --tg-link: var(--tg-theme-link-color, #6366f1);
-  --tg-button: var(--tg-theme-button-color, #6366f1);
-  --tg-button-text: var(--tg-theme-button-text-color, #ffffff);
-  --tg-secondary-bg: var(--tg-theme-secondary-bg-color, #13131a);
-}
+# ═══════════════════════════════════════════════════════════
+# 1. GLOBALS.CSS — Print uchun 3 ta kritik fix
+# ═══════════════════════════════════════════════════════════
+GLOBALS = Path("qadam-miniapp/app/globals.css")
+css = GLOBALS.read_text(encoding="utf-8")
 
-html,
-body {
-  background: var(--tg-bg);
-  color: var(--tg-text);
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
+# Eski print blokni olib tashlash
+css = re.sub(
+    r'/\* ═+\s*PRINT.*?\*/.*?@media print \{.*?\n\}',
+    '',
+    css,
+    flags=re.DOTALL,
+)
+css = re.sub(r'@media print \{.*?\n\}\s*$', '', css, flags=re.DOTALL)
 
-.btn-primary {
-  background: var(--tg-button);
-  color: var(--tg-button-text);
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 16px;
-  transition: opacity 0.15s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.card {
-  background: var(--tg-secondary-bg);
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+PRINT_CSS = '''
 
 /* ═══════════════════════════════════════════════════════════
    PRINT / PDF — Ranglarni saqlash + A4 full width
@@ -234,12 +202,43 @@ body {
   [class*="border-blue"] { border-color: #bfdbfe !important; }
 
   /* ─── 20. FON RANGLARI — och versiyalar ─── */
-  .bg-\[var\(--tg-secondary-bg\)\] { background: #f9fafb !important; }
-  .bg-\[var\(--tg-bg\)\] { background: #ffffff !important; }
+  .bg-\\[var\\(--tg-secondary-bg\\)\\] { background: #f9fafb !important; }
+  .bg-\\[var\\(--tg-bg\\)\\] { background: #ffffff !important; }
 
   /* Dark overlay'lar — olib tashlash */
   [class*="backdrop"] { backdrop-filter: none !important; }
 }
+'''
+
+css = css.rstrip() + PRINT_CSS + "\n"
+GLOBALS.write_text(css, encoding="utf-8")
+print("[OK] globals.css — 20 ta print fix")
+
+
+# ═══════════════════════════════════════════════════════════
+# 2. REPORT SAHIFA — Print wrapper qo'shish
+# ═══════════════════════════════════════════════════════════
+REPORT = Path("qadam-miniapp/app/report/[id]/page.tsx")
+rep = REPORT.read_text(encoding="utf-8")
+
+# main'ga className qo'shish
+old_main = '<main className="max-w-md mx-auto px-4 py-6">'
+new_main = '<main className="max-w-md lg:max-w-4xl mx-auto px-4 py-6 print-full">'
+if old_main in rep:
+    rep = rep.replace(old_main, new_main)
+    print("[OK] report/page.tsx — kengaytirilgan container")
+else:
+    print("[SKIP] report/page.tsx — main topilmadi")
+
+REPORT.write_text(rep, encoding="utf-8")
+
+
+# ═══════════════════════════════════════════════════════════
+# 3. CSS — print-full klassi
+# ═══════════════════════════════════════════════════════════
+css = GLOBALS.read_text(encoding="utf-8")
+
+PRINT_FULL = '''
 
 /* Print uchun to'liq kenglik */
 @media print {
@@ -250,4 +249,23 @@ body {
     margin: 0 !important;
   }
 }
+'''
 
+if ".print-full" not in css:
+    css = css.rstrip() + PRINT_FULL + "\n"
+    GLOBALS.write_text(css, encoding="utf-8")
+    print("[OK] globals.css — .print-full klassi")
+
+print()
+print("=" * 60)
+print("v5 — Print CSS tuzatildi!")
+print("=" * 60)
+print()
+print("Nima o'zgardi:")
+print("  1. Ranglar saqlanadi (print-color-adjust: exact)")
+print("  2. CSS variables print'da light mode'ga o'tadi")
+print("  3. A4 full width (max-w-md → 100%)")
+print("  4. Kontrast muammolari tuzatildi")
+print("  5. Accordion — hammasi PDF'da ochiq")
+print()
+print("Keyingi: git push")

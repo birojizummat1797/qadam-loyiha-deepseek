@@ -28,7 +28,7 @@ export default function ReportPage() {
   const careers = data.roadmap?.careers || [];
 
   return (
-    <main className="max-w-md mx-auto px-4 py-6">
+    <main className="max-w-md lg:max-w-4xl mx-auto px-4 py-6 print-full">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
