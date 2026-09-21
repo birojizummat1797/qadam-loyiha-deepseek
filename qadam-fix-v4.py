@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""QADAM v4 — RoadmapView.tsx ni toza qayta yozish (CSS accordions)."""
+from pathlib import Path
+
+RV = Path("qadam-miniapp/components/RoadmapView.tsx")
+
+ROADMAP_VIEW = r'''"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -557,3 +563,16 @@ function SubSection({ title, icon: Icon, color, children }: { title: string; ico
     </div>
   );
 }
+'''
+
+RV.write_text(ROADMAP_VIEW, encoding="utf-8")
+print("=" * 60)
+print("[OK] RoadmapView.tsx — toza qayta yozildi")
+print("=" * 60)
+print()
+print("Endi:")
+print("  • motion.div va AnimatePresence to'g'ri joylashtirildi")
+print("  • Accordion'lar CSS-based (beforeprint bilan)")
+print("  • Calendar PDF'da avtomatik ochiladi")
+print()
+print("Keyingi: git add + commit + push")
