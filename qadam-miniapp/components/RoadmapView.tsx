@@ -61,6 +61,16 @@ const SIGNAL_UZ: Record<string, string> = {
 };
 
 export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
+    // Defensive: eski v1 format yoki chala roadmap uchun
+  if (!roadmap || !roadmap.path || !Array.isArray(roadmap.path.stages)) {
+    return (
+      <div className="card">
+        <p className="text-sm text-[var(--tg-hint)]">
+          Bu eski hisobot. Yangi formatdagi natijani korish uchun yangi testni oting.
+        </p>
+      </div>
+    );
+  }
   const [openStage, setOpenStage] = useState<number | null>(0);
   const [showCalendar, setShowCalendar] = useState(false);
 
