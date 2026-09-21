@@ -1,63 +1,161 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+# -*- coding: utf-8 -*-
+"""QADAM v6 — PDF ranglar + backend roadmap-only (majburiy)."""
+import json
+from pathlib import Path
+import re
 
-:root {
-  --tg-bg: var(--tg-theme-bg-color, #0a0a0f);
-  --tg-text: var(--tg-theme-text-color, #f5f5f7);
-  --tg-hint: var(--tg-theme-hint-color, #9a9aa8);
-  --tg-link: var(--tg-theme-link-color, #6366f1);
-  --tg-button: var(--tg-theme-button-color, #6366f1);
-  --tg-button-text: var(--tg-theme-button-text-color, #ffffff);
-  --tg-secondary-bg: var(--tg-theme-secondary-bg-color, #13131a);
-}
+# ═══════════════════════════════════════════════════════════
+# 1. RANKING — FAQAT roadmap'li (majburiy, paramsiz)
+# ═══════════════════════════════════════════════════════════
+RANKING = Path("qadam/backend/engine/ranking.py")
+RANKING.write_text('''"""
+Ranking Engine v3 — FAQAT roadmap'da mavjud bo'lgan career'larni qaytaradi.
+Bu MAJBURIY — foydalanuvchi premium to'lab, "tayyorlanmoqda" ko'rmasligi uchun.
+"""
+import json
+from pathlib import Path
+from .fit import calculate_fit
+from .readiness import calculate_readiness
 
-html,
-body {
-  background: var(--tg-bg);
-  color: var(--tg-text);
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.btn-primary {
-  background: var(--tg-button);
-  color: var(--tg-button-text);
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 16px;
-  transition: opacity 0.15s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.card {
-  background: var(--tg-secondary-bg);
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   PRINT / PDF — Ranglarni saqlash + A4 full width
-   ═══════════════════════════════════════════════════════════ */
+DATA_DIR = Path(__file__).parent.parent / "data"
 
 
-/* Print uchun to'liq kenglik */
+def _load_all_roadmap_careers():
+    """Barcha roadmap KB fayllaridan career'larni birlashtirish."""
+    careers = set()
+
+    # v2 (asosiy)
+    for name in ["roadmap_kb_v2.json", "roadmap_kb_v2_part_a.json",
+                 "roadmap_kb_v2_part_b.json", "roadmap_kb_v1.json"]:
+        p = DATA_DIR / name
+        if not p.exists():
+            continue
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+            careers.update(data.get("careers", {}).keys())
+        except Exception:
+            pass
+
+    print(f"[ranking] KB careers yuklandi: {len(careers)} ta -> {sorted(careers)}")
+    return careers
+
+
+KB_CAREERS = _load_all_roadmap_careers()
+
+
+def rank_careers(signals, taxonomy, constraints, min_coverage=0.5, top_n=3):
+    """
+    FAQAT roadmap'da mavjud bo'lgan career'lardan Top-N.
+    Agar roadmap'li 3 tadan kam bo'lsa — mavjudlarini qaytaradi.
+    """
+    candidates = []
+    excluded = []
+
+    for cluster_key, cluster in taxonomy["clusters"].items():
+        for career_key, career in cluster["careers"].items():
+            # ⚠️ MAJBURIY FILTR — roadmap'siz career'lar HECH QACHON ko'rinmaydi
+            if career_key not in KB_CAREERS:
+                excluded.append({"career_id": career_key, "reason": "no_roadmap"})
+                continue
+
+            fit_result = calculate_fit(signals, career)
+            if fit_result["fit"] is None:
+                excluded.append({"career_id": career_key, "reason": "insufficient_data"})
+                continue
+            if fit_result["coverage"] < min_coverage:
+                excluded.append({
+                    "career_id": career_key, "reason": "low_coverage",
+                    "coverage": fit_result["coverage"], "fit": fit_result["fit"],
+                })
+                continue
+
+            readiness_result = calculate_readiness(
+                constraints, career.get("prerequisites", {})
+            )
+            composite = fit_result["fit"] * (
+                0.7 + 0.3 * (readiness_result["readiness"] / 100)
+            )
+
+            candidates.append({
+                "career_id": career_key,
+                "cluster": cluster_key,
+                "cluster_uz": cluster["uz"],
+                "career_uz": career["uz"],
+                "fit": fit_result["fit"],
+                "coverage": fit_result["coverage"],
+                "readiness": readiness_result["readiness"],
+                "barriers": readiness_result["barriers"],
+                "has_hard_barrier": readiness_result["has_hard_barrier"],
+                "missing_signals": fit_result["missing"],
+                "learning_months": career.get("learning_months"),
+                "pathway_type": career.get("pathway_type"),
+                "has_roadmap": True,
+                "composite_score": round(composite, 1),
+            })
+
+    candidates.sort(key=lambda x: -x["composite_score"])
+    top = candidates[:top_n]
+
+    if len(top) >= 2:
+        gap = top[0]["composite_score"] - top[1]["composite_score"]
+    else:
+        gap = 100
+    avg_coverage = sum(c["coverage"] for c in top) / len(top) if top else 0
+
+    if avg_coverage >= 0.75 and gap >= 5:
+        confidence = "high"
+    elif avg_coverage >= 0.55:
+        confidence = "medium"
+    else:
+        confidence = "low"
+
+    return {
+        "ranked": top,
+        "excluded_low_coverage": excluded,
+        "confidence": confidence,
+        "total_candidates": len(candidates),
+        "kb_careers_count": len(KB_CAREERS),
+    }
+''', encoding="utf-8")
+print("[OK] ranking.py — FAQAT roadmap'li career'lar (majburiy)")
+
+
+# ═══════════════════════════════════════════════════════════
+# 2. DIAGNOSTIC — top_n=3 MAJBURIY
+# ═══════════════════════════════════════════════════════════
+DIAG = Path("qadam/backend/api/diagnostic.py")
+diag = DIAG.read_text(encoding="utf-8")
+
+# Barcha rank_careers chaqiruvlarida top_n=3
+diag = re.sub(r'top_n\s*=\s*5', 'top_n=3', diag)
+diag = re.sub(r'top_n\s*=\s*4', 'top_n=3', diag)
+
+# Stage1 — min_coverage=0.3 (seed signallar uchun), top_n=5 → 3
+diag = diag.replace(
+    'min_coverage=0.3, top_n=5',
+    'min_coverage=0.3, top_n=3',
+)
+# Stage2 — min_coverage=0.5
+diag = diag.replace(
+    'min_coverage=0.5, top_n=5',
+    'min_coverage=0.5, top_n=3',
+)
+
+DIAG.write_text(diag, encoding="utf-8")
+print("[OK] diagnostic.py — top_n=3")
+
+
+# ═══════════════════════════════════════════════════════════
+# 3. GLOBALS.CSS — Print ranglar QAT'IY
+# ═══════════════════════════════════════════════════════════
+GLOBALS = Path("qadam-miniapp/app/globals.css")
+css = GLOBALS.read_text(encoding="utf-8")
+
+# Barcha eski @media print bloklarni olib tashlash
+css = re.sub(r'@media print \{.*?\n\}', '', css, flags=re.DOTALL)
+css = re.sub(r'/\* ═+\s*PRINT.*?\*/\s*@media print \{.*?\n\}', '', css, flags=re.DOTALL)
+
+PRINT_CSS = '''
 
 /* ═══════════════════════════════════════════════════════════
    PRINT / PDF — QAT'IY ranglar + A4 full width
@@ -171,7 +269,7 @@ body {
   [class*="text-blue"] { color: #2563eb !important; }
   [class*="text-cyan"] { color: #0891b2 !important; }
   [class*="text-slate"] { color: #475569 !important; }
-  [class*="text-\[var\(--tg-hint\)\]"] { color: #6b7280 !important; }
+  [class*="text-\\[var\\(--tg-hint\\)\\]"] { color: #6b7280 !important; }
 
   /* ─── GRADIENT MATN — BIR RANG ─── */
   .gradient-text {
@@ -258,7 +356,7 @@ body {
   h3 { font-size: 12pt; margin: 6pt 0 3pt; page-break-after: avoid; }
   h4 { font-size: 10.5pt; margin: 5pt 0 2pt; page-break-after: avoid; }
   p, li { font-size: 9.5pt; }
-  .text-xs, [class*="text-\[10px\]"] { font-size: 8pt !important; }
+  .text-xs, [class*="text-\\[10px\\]"] { font-size: 8pt !important; }
   .text-sm { font-size: 9.5pt !important; }
 
   /* ─── RO'YXATLAR ─── */
@@ -290,4 +388,27 @@ body {
     @bottom-right { content: ""; }
   }
 }
+'''
 
+css = css.rstrip() + PRINT_CSS + "\n"
+GLOBALS.write_text(css, encoding="utf-8")
+print("[OK] globals.css — print ranglar QAT'IY")
+
+
+# ═══════════════════════════════════════════════════════════
+# 4. TEKSHIRISH
+# ═══════════════════════════════════════════════════════════
+print()
+print("=" * 60)
+print("v6 — Tayyor!")
+print("=" * 60)
+print()
+print("1. ranking.py — MAJBURIY faqat roadmap'li career'lar")
+print("2. diagnostic.py — top_n=3")
+print("3. globals.css — PDF ranglar QAT'IY")
+print()
+print("⚠️ MUHIM: PDF saqlashda brauzer sozlamalari:")
+print("  Chrome print dialog → 'More settings' →")
+print("  ✅ 'Background graphics' BELGILANISHI SHART")
+print()
+print("Keyingi: git push + Render MANUAL deploy")
