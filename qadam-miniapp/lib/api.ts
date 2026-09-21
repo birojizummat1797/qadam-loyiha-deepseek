@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BACKEND =
-  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+  process.env.BACKEND_URL || "http://localhost:8000";
 
 export const api = axios.create({ baseURL: BACKEND });
 
