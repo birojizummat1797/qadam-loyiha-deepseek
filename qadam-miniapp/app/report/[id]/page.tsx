@@ -68,7 +68,7 @@ export default function ReportPage() {
       {/* Top-5 header */}
       <div className="flex items-center gap-2 my-5">
         <Trophy className="w-4 h-4 text-amber-400" />
-        <h2 className="font-semibold">Top-{careers.length} mos yonalish</h2>
+        <h2 className="font-semibold">Top-3 mos yonalish</h2>
       </div>
 
       {/* Careers */}

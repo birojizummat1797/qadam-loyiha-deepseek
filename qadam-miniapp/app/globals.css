@@ -51,3 +51,121 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   PRINT — Uzluksiz oqim (Hormozi uslubi)
+   Sahifa bo'linmalari kontent uzilmasin, bo'sh joy minimal
+   ═══════════════════════════════════════════════════════════ */
+@media print {
+  /* Barcha animatsiya va transformatsiyalarni olib tashlash */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Framer Motion opacity 0 → 1 */
+  * {
+    opacity: 1 !important;
+  }
+
+  /* Fon va matn */
+  html, body {
+    background: white !important;
+    color: black !important;
+    font-size: 10pt;
+  }
+
+  /* Sahifa chekkalari */
+  @page {
+    size: A4;
+    margin: 10mm 8mm;
+  }
+
+  /* Kartalar — ramka bilan, lekin uzluksiz */
+  .card, [class*="rounded-2xl"], [class*="rounded-xl"] {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    padding: 8pt !important;
+    margin-bottom: 6pt !important;
+
+    /* Muhim: bo'linmalarni uzmaslik uchun auto */
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  /* Sarlavhalar */
+  h1 { font-size: 20pt; margin: 0 0 6pt; }
+  h2 { font-size: 16pt; margin: 12pt 0 6pt; page-break-after: avoid; }
+  h3 { font-size: 13pt; margin: 8pt 0 4pt; page-break-after: avoid; }
+  h4 { font-size: 11pt; margin: 6pt 0 3pt; page-break-after: avoid; }
+
+  /* Ro'yxatlar */
+  ul, ol { margin: 4pt 0; padding-left: 16pt; }
+  li { margin: 2pt 0; }
+
+  /* Gradient matn — oddiy qora */
+  .gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+
+  /* MUHIM: Accordion ichidagi kontent HAR DOIM ochiq */
+  [data-accordion-content] {
+    display: block !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Chevron ikonkalarni olib tashlash */
+  [data-chevron] {
+    display: none !important;
+  }
+
+  /* Calendar — PDF'da avtomatik ochiq */
+  [data-calendar-body] {
+    display: block !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Progress bar animatsiyalari */
+  [style*="width"] {
+    width: var(--final-width, 100%) !important;
+  }
+
+  /* Rangli badge va pill'lar */
+  [class*="bg-indigo"], [class*="bg-purple"], [class*="bg-emerald"],
+  [class*="bg-amber"], [class*="bg-blue"], [class*="bg-rose"] {
+    background: #f3f4f6 !important;
+    color: black !important;
+    border: 1px solid #ddd !important;
+  }
+
+  /* Tugmalar — ko'rinmasin */
+  button, .btn-primary {
+    display: none !important;
+  }
+
+  /* Linklar */
+  a { color: black !important; text-decoration: underline; }
+
+  /* SVG ikonkalar — qora */
+  svg { color: black !important; }
+
+  /* Grid va flex */
+  .grid { display: grid !important; }
+  .flex { display: flex !important; }
+
+  /* Sahifa bo'linmalari — minimal */
+  .no-break { break-inside: avoid; }
+
+  /* Emoji va ikonkalar */
+  [class*="text-"] { color: black !important; }
+}

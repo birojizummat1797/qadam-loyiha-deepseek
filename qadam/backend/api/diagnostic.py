@@ -124,7 +124,7 @@ async def stage1(payload: Stage1Payload):
 
     ranking = rank_careers(
         signals=seed_signals, taxonomy=taxonomy,
-        constraints=constraints, min_coverage=0.3, top_n=5,
+        constraints=constraints, min_coverage=0.3, top_n=3,
     )
     top_2 = ranking["ranked"][:2]
     locked_count = max(0, len(ranking["ranked"]) - 2)
@@ -186,7 +186,7 @@ async def stage2(payload: Stage2Payload):
 
     ranking = rank_careers(
         signals=signals, taxonomy=taxonomy,
-        constraints=constraints, min_coverage=0.5, top_n=5,
+        constraints=constraints, min_coverage=0.5, top_n=3,
     )
     if not ranking["ranked"]:
         raise HTTPException(422, "Yetarli ma'lumot yo'q")

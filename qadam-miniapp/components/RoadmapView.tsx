@@ -56,7 +56,7 @@ const STAGE_COLORS = [
 
 export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
   const [openStage, setOpenStage] = useState<number | null>(0);
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);  // CSS-based
 
   if (!roadmap || !roadmap.path || !Array.isArray(roadmap.path.stages)) {
     return (
@@ -197,7 +197,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                     >
                       <div className="flex items-center gap-2 mb-1">
                         <div className={`w-6 h-6 rounded-lg bg-gradient-to-br ${color.from} ${color.to} flex items-center justify-center shrink-0`}>
-                          {isOpen ? <ChevronDown className="w-3.5 h-3.5 text-white" /> : <ChevronRight className="w-3.5 h-3.5 text-white" />}
+                          {isOpen ? <ChevronDown data-chevron className="w-3.5 h-3.5 text-white" /> : <ChevronRight data-chevron className="w-3.5 h-3.5 text-white" />}
                         </div>
                         <span className={`text-[9px] px-2 py-0.5 rounded-full bg-white/10 ${color.text} uppercase tracking-wider font-medium`}>
                           Stage {s.n}
@@ -214,15 +214,12 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                       </div>
                     </motion.button>
 
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
+                    <div
+                      data-accordion-content
+                      className={`overflow-hidden transition-all duration-300 ${
+                        isOpen ? "max-h-[10000px]" : "max-h-0"
+                      }`}
+                    >
                           <div className="mt-2 p-3 bg-[var(--tg-bg)] rounded-xl space-y-3 text-xs">
                             {/* Role */}
                             <div className="grid grid-cols-2 gap-2">
@@ -318,8 +315,6 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                             )}
                           </div>
                         </motion.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 </div>
               );
@@ -443,17 +438,15 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                 <h3 className="font-semibold">30 kunlik kalendar</h3>
               </div>
             </div>
-            {showCalendar ? <ChevronDown className="w-4 h-4 text-[var(--tg-hint)]" /> : <ChevronRight className="w-4 h-4 text-[var(--tg-hint)]" />}
+            {showCalendar ? <ChevronDown data-chevron className="w-4 h-4 text-[var(--tg-hint)]" /> : <ChevronRight data-chevron className="w-4 h-4 text-[var(--tg-hint)]" />}
           </button>
 
-          <AnimatePresence>
-            {showCalendar && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden"
-              >
+          <div
+              data-calendar-body
+              className={`overflow-hidden transition-all duration-300 ${
+                showCalendar ? "max-h-[10000px]" : "max-h-0"
+              }`}
+            >
                 <div className="mt-4 space-y-3">
                   {roadmap.calendar_30d.map((w, i) => (
                     <div key={i} className="p-3 rounded-xl bg-[var(--tg-bg)]">
@@ -471,9 +464,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                     </div>
                   ))}
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            </div>
         </div>
       )}
 
