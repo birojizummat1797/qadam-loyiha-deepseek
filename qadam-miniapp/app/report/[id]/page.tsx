@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Sparkles, AlertCircle, Trophy } from "lucide-react";
 import { fetchReport } from "@/lib/api";
 import { RoadmapView } from "@/components/RoadmapView";
+import { PdfDownloader } from "@/components/PdfDownloader";
 
 export default function ReportPage() {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +29,7 @@ export default function ReportPage() {
   const careers = data.roadmap?.careers || [];
 
   return (
-    <main className="max-w-md lg:max-w-4xl mx-auto px-4 py-6 print-full">
+    <main id="report-root" className="max-w-md lg:max-w-4xl mx-auto px-4 py-6 print-full">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
@@ -164,9 +165,9 @@ export default function ReportPage() {
       )}
 
       {/* PDF */}
-      <button className="btn-primary mt-6" onClick={() => window.print()}>
-        PDF sifatida saqlash
-      </button>
+      <div className="mt-6">
+        <PdfDownloader reportId={Number(id)} />
+      </div>
 
       <p className="text-[10px] text-[var(--tg-hint)] text-center mt-4">
         Hisobot versiyasi: v{data.versions?.roadmap_kb ?? "2.0"}

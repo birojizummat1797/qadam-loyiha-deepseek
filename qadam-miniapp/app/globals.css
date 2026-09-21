@@ -63,58 +63,20 @@ body {
    PRINT / PDF — QAT'IY ranglar + A4 full width
    Chrome'dagi "Background graphics" muammosi CSS bilan hal qilingan
    ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   PRINT — faqat layout fix (Ctrl+P fallback)
+   Asosiy PDF: html2pdf.js orqali
+   ═══════════════════════════════════════════════════════════ */
 @media print {
-
-  /* ─── ROOT DARAJASIDA MAJBURIY ─── */
-  html {
-    background: #ffffff !important;
-    color: #0a0a0f !important;
-  }
-
-  /* ─── CSS O'ZGARUVCHILARNI QAT'IY OVERRIDE ─── */
-  :root, * {
-    --tg-bg: #ffffff !important;
-    --tg-text: #0a0a0f !important;
-    --tg-hint: #6b7280 !important;
-    --tg-link: #4f46e5 !important;
-    --tg-button: #6366f1 !important;
-    --tg-button-text: #ffffff !important;
-    --tg-secondary-bg: #f3f4f6 !important;
-  }
-
-  /* ─── RANGNI SAQLASH (BRAUZERGA MAJBURAN) ─── */
-  html, body, * {
+  *, *::before, *::after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
-  }
-
-  /* ─── ANIMATSIYALARNI O'CHIRISH ─── */
-  *, *::before, *::after {
     animation: none !important;
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  /* ─── UMUMIY FON VA MATN ─── */
-  body, main {
-    background: #ffffff !important;
-    color: #0a0a0f !important;
-    font-size: 10pt;
-    line-height: 1.45;
-  }
-
-  /* ─── A4 FULL WIDTH ─── */
-  main, main.print-full, .print-full {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
 
   @page {
@@ -122,172 +84,97 @@ body {
     margin: 8mm 10mm;
   }
 
-  /* ─── KARTALAR — OCH FON, QORA MATN ─── */
-  .card,
-  [class*="rounded-2xl"],
-  [class*="rounded-xl"] {
-    background: #f9fafb !important;
-    color: #0a0a0f !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 8pt 10pt !important;
-    margin-bottom: 6pt !important;
-    break-inside: auto;
-    page-break-inside: auto;
+  main, main.print-full {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  /* ─── GRADIENT KARTALAR (och fon) ─── */
-  [class*="from-indigo-500/20"],
-  [class*="from-indigo-500/15"] {
-    background: #eef2ff !important;
-    border-color: #c7d2fe !important;
-  }
-  [class*="from-amber-500/15"],
-  [class*="from-amber-500/20"] {
-    background: #fffbeb !important;
-    border-color: #fde68a !important;
-  }
-  [class*="from-emerald-500/20"],
-  [class*="from-emerald-500/15"] {
-    background: #ecfdf5 !important;
-    border-color: #a7f3d0 !important;
-  }
-  [class*="from-slate-500/10"],
-  [class*="from-slate-500/15"] {
-    background: #f8fafc !important;
-    border-color: #cbd5e1 !important;
-  }
-
-  /* ─── UMUMIY MATN — QORA ─── */
-  p, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i {
-    color: #0a0a0f !important;
-  }
-
-  /* ─── LEKIN RANGLI ELEMENTLAR — O'Z RANGI ─── */
-  [class*="text-emerald"] { color: #059669 !important; }
-  [class*="text-red-"] { color: #dc2626 !important; }
-  [class*="text-amber"] { color: #d97706 !important; }
-  [class*="text-indigo"] { color: #4f46e5 !important; }
-  [class*="text-purple"] { color: #7c3aed !important; }
-  [class*="text-blue"] { color: #2563eb !important; }
-  [class*="text-cyan"] { color: #0891b2 !important; }
-  [class*="text-slate"] { color: #475569 !important; }
-  [class*="text-\[var\(--tg-hint\)\]"] { color: #6b7280 !important; }
-
-  /* ─── GRADIENT MATN — BIR RANG ─── */
-  .gradient-text {
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: #4f46e5 !important;
-    color: #4f46e5 !important;
-    font-weight: 700;
-  }
-
-  /* ─── BADGE va PILL — RANGLI ─── */
-  [class*="bg-indigo-500/20"],
-  [class*="bg-indigo-500/30"] { background: #e0e7ff !important; color: #3730a3 !important; }
-  [class*="bg-purple-500/20"],
-  [class*="bg-purple-500/30"] { background: #f3e8ff !important; color: #6b21a8 !important; }
-  [class*="bg-emerald-500/20"],
-  [class*="bg-emerald-500/30"],
-  [class*="bg-emerald-500/40"] { background: #d1fae5 !important; color: #065f46 !important; }
-  [class*="bg-amber-500/20"],
-  [class*="bg-amber-500/30"] { background: #fef3c7 !important; color: #92400e !important; }
-  [class*="bg-blue-500/20"] { background: #dbeafe !important; color: #1e40af !important; }
-  [class*="bg-red-400/20"] { background: #fee2e2 !important; color: #991b1b !important; }
-  [class*="bg-slate-500/15"],
-  [class*="bg-slate-500/20"] { background: #f1f5f9 !important; color: #334155 !important; }
-
-  /* ─── PROGRESS BAR — RANGLI ─── */
-  [class*="bg-gradient-to-r"][class*="from-indigo-500"] {
-    background: linear-gradient(to right, #6366f1, #a855f7) !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-  [class*="bg-gradient-to-br"][class*="from-slate-500"] {
-    background: linear-gradient(to bottom right, #64748b, #334155) !important;
-  }
-  [class*="bg-gradient-to-br"][class*="from-blue-500"] {
-    background: linear-gradient(to bottom right, #3b82f6, #06b6d4) !important;
-  }
-  [class*="bg-gradient-to-br"][class*="from-purple-500"] {
-    background: linear-gradient(to bottom right, #a855f7, #d946ef) !important;
-  }
-  [class*="bg-gradient-to-br"][class*="from-amber-500"] {
-    background: linear-gradient(to bottom right, #f59e0b, #f97316) !important;
-  }
-  [class*="bg-gradient-to-br"][class*="from-emerald-500"] {
-    background: linear-gradient(to bottom right, #10b981, #14b8a6) !important;
-  }
-
-  /* ─── SVG PROGRESS RING ─── */
-  svg {
-    -webkit-print-color-adjust: exact !important;
-  }
-  svg circle {
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  /* ─── ACCORDION — HAMMASI OCHIQ ─── */
   [data-accordion-content],
   [data-calendar-body] {
     display: block !important;
     max-height: none !important;
-    height: auto !important;
     overflow: visible !important;
-    opacity: 1 !important;
-    margin-top: 6pt !important;
+    margin-top: 8pt !important;
   }
 
   [data-chevron] { display: none !important; }
 
-  /* ─── CHEGARALAR ─── */
-  [class*="border-indigo-500"] { border-color: #c7d2fe !important; }
-  [class*="border-emerald-500"] { border-color: #a7f3d0 !important; }
-  [class*="border-amber-500"] { border-color: #fde68a !important; }
-  [class*="border-slate-500"] { border-color: #cbd5e1 !important; }
-  [class*="border-purple-500"] { border-color: #d8b4fe !important; }
+  button.no-print,
+  .no-print { display: none !important; }
+}
 
-  /* ─── TIMELINE ─── */
-  [class*="from-slate-500"][class*="via-blue-500"] {
-    background: linear-gradient(to bottom, #64748b, #3b82f6, #a855f7, #f59e0b, #10b981) !important;
-  }
+/* ═══════════════════════════════════════════════════════════
+   PDF THEME OVERRIDES (html2pdf.js uchun)
+   ═══════════════════════════════════════════════════════════ */
 
-  /* ─── MATN O'LCHAMLARI ─── */
-  h1 { font-size: 20pt; margin: 0 0 4pt; }
-  h2 { font-size: 15pt; margin: 10pt 0 5pt; page-break-after: avoid; }
-  h3 { font-size: 12pt; margin: 6pt 0 3pt; page-break-after: avoid; }
-  h4 { font-size: 10.5pt; margin: 5pt 0 2pt; page-break-after: avoid; }
-  p, li { font-size: 9.5pt; }
-  .text-xs, [class*="text-\[10px\]"] { font-size: 8pt !important; }
-  .text-sm { font-size: 9.5pt !important; }
+/* DARK — default, o'zgartirmaydi */
+[data-pdf-theme="dark"] {
+  background: #0a0a0f !important;
+}
 
-  /* ─── RO'YXATLAR ─── */
-  ul, ol { margin: 3pt 0; padding-left: 12pt; }
-  li { margin: 1.5pt 0; break-inside: avoid; }
+/* LIGHT */
+[data-pdf-theme="light"] {
+  background: #ffffff !important;
+  color: #0a0a0f !important;
+}
+[data-pdf-theme="light"] .card,
+[data-pdf-theme="light"] [class*="rounded-2xl"] {
+  background: #f9fafb !important;
+  border-color: #e5e7eb !important;
+  color: #0a0a0f !important;
+}
+[data-pdf-theme="light"] * {
+  --tg-bg: #ffffff !important;
+  --tg-text: #0a0a0f !important;
+  --tg-hint: #6b7280 !important;
+  --tg-secondary-bg: #f3f4f6 !important;
+}
+[data-pdf-theme="light"] p,
+[data-pdf-theme="light"] span,
+[data-pdf-theme="light"] h1,
+[data-pdf-theme="light"] h2,
+[data-pdf-theme="light"] h3,
+[data-pdf-theme="light"] h4,
+[data-pdf-theme="light"] li {
+  color: #0a0a0f !important;
+}
+[data-pdf-theme="light"] .gradient-text {
+  background: none !important;
+  -webkit-text-fill-color: #4f46e5 !important;
+  color: #4f46e5 !important;
+}
 
-  /* ─── TUGMALAR — YASHIRISH ─── */
-  button, .btn-primary {
-    display: none !important;
-  }
-
-  /* ─── LINKLAR ─── */
-  a {
-    color: #4f46e5 !important;
-    text-decoration: underline;
-    text-decoration-color: #c7d2fe;
-  }
-
-  /* ─── SAHIFA BO'LINMALARI ─── */
-  [class*="space-y"] > * {
-    break-inside: auto;
-  }
-
-  /* ─── SAHIFA URL VA SANA — YASHIRISH (Chrome) ─── */
-  @page {
-    @top-left { content: ""; }
-    @top-right { content: ""; }
-    @bottom-left { content: ""; }
-    @bottom-right { content: ""; }
-  }
+/* PASTEL */
+[data-pdf-theme="pastel"] {
+  background: #fef6fb !important;
+  color: #1f2937 !important;
+}
+[data-pdf-theme="pastel"] .card,
+[data-pdf-theme="pastel"] [class*="rounded-2xl"] {
+  background: #fdf2f8 !important;
+  border-color: #fbcfe8 !important;
+  color: #1f2937 !important;
+}
+[data-pdf-theme="pastel"] * {
+  --tg-bg: #fef6fb !important;
+  --tg-text: #1f2937 !important;
+  --tg-hint: #9d174d !important;
+  --tg-secondary-bg: #fce7f3 !important;
+}
+[data-pdf-theme="pastel"] p,
+[data-pdf-theme="pastel"] span,
+[data-pdf-theme="pastel"] h1,
+[data-pdf-theme="pastel"] h2,
+[data-pdf-theme="pastel"] h3,
+[data-pdf-theme="pastel"] h4,
+[data-pdf-theme="pastel"] li {
+  color: #1f2937 !important;
+}
+[data-pdf-theme="pastel"] .gradient-text {
+  background: none !important;
+  -webkit-text-fill-color: #db2777 !important;
+  color: #db2777 !important;
 }
 
