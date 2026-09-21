@@ -191,7 +191,7 @@ async def stage2(payload: Stage2Payload):
     if not ranking["ranked"]:
         raise HTTPException(422, "Yetarli ma'lumot yo'q")
 
-    report = build_full_report(ranking["ranked"], constraints, taxonomy)
+    report = build_full_report(ranking["ranked"], constraints, taxonomy, signals)
     ai_explanation = await personalize(signals, ranking["ranked"], ranking["confidence"])
 
     async with SessionLocal() as s:

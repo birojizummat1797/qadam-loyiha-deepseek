@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""QADAM Roadmap v2.0 — Part D: report/page.tsx yangilash."""
+from pathlib import Path
+
+FRONTEND = Path("qadam-miniapp/app/report/[id]/page.tsx")
+
+report_page = r'''"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -175,3 +181,11 @@ function Err({ msg }: { msg: string }) {
     </main>
   );
 }
+'''
+
+FRONTEND.write_text(report_page, encoding="utf-8")
+print("=" * 60)
+print("[OK] qadam-miniapp/app/report/[id]/page.tsx yangilandi")
+print("=" * 60)
+print()
+print("Keyingi qadam: git push")
