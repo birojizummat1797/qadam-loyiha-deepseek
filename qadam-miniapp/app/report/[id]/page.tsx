@@ -7,6 +7,7 @@ import { Sparkles, AlertCircle, Trophy } from "lucide-react";
 import { fetchReport } from "@/lib/api";
 import { RoadmapView } from "@/components/RoadmapView";
 import { PdfDownloader } from "@/components/PdfDownloader";
+import { CloseButton } from "@/components/CloseButton";
 
 export default function ReportPage() {
   const { id } = useParams<{ id: string }>();
@@ -168,6 +169,8 @@ export default function ReportPage() {
       <div className="mt-6">
         <PdfDownloader reportId={Number(id)} />
       </div>
+
+      <CloseButton />
 
       <p className="text-[10px] text-[var(--tg-hint)] text-center mt-4">
         Hisobot versiyasi: v{data.versions?.roadmap_kb ?? "2.0"}

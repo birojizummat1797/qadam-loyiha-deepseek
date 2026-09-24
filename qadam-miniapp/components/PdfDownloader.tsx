@@ -28,6 +28,9 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
     document.body.setAttribute("data-theme", t);
   };
 
+  // Auto-close timer ref
+  const autoCloseTimer = useRef<NodeJS.Timeout | null>(null);
+
   // Print (PDF) tugmasi
   const handleDownload = () => {
     // Barcha accordion'larni ochish
@@ -45,8 +48,36 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
     // Print
     setTimeout(() => {
       window.print();
+
+      // PDF saqlangandan keyin auto-close (10 sek kutish)
+      const tg = (window as any).Telegram?.WebApp;
+      if (tg?.close && tg?.initData && tg.initData.length > 10) {
+        // Toast ko'rsatish
+        const toast = document.createElement("div");
+        toast.textContent = "✓ PDF tayyor. 10 sekunddan keyin botga qaytasiz...";
+        toast.style.cssText = `
+          position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+          background: #10b981; color: white; padding: 12px 24px; border-radius: 12px;
+          font-size: 13px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          font-family: -apple-system, sans-serif; max-width: 90%; text-align: center;
+        `;
+        document.body.appendChild(toast);
+
+        // 10 sek o'tib yopiladi
+        autoCloseTimer.current = setTimeout(() => {
+          toast.remove();
+          tg.close();
+        }, 10000);
+      }
     }, 150);
   };
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      if (autoCloseTimer.current) clearTimeout(autoCloseTimer.current);
+    };
+  }, []);
 
   return (
     <>
