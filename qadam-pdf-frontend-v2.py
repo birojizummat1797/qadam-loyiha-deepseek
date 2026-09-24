@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""PdfDownloader — mobile+desktop WITH TypeScript types."""
+from pathlib import Path
+
+PDF_COMP = Path("qadam-miniapp/components/PdfDownloader.tsx")
+
+PDF_COMP.write_text(r'''"use client";
 
 import { useState, useEffect } from "react";
 import {
@@ -260,3 +266,11 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
     </>
   );
 }
+''', encoding="utf-8")
+
+print("[OK] PdfDownloader.tsx — TypeScript turlari qaytarildi")
+print()
+print("Endi push qiling:")
+print("  git add -A")
+print('  git commit -m "Fix: TypeScript types in PdfDownloader"')
+print("  git push")
