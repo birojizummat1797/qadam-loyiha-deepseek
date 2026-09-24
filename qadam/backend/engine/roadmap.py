@@ -90,7 +90,9 @@ def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
         "b_point": {
             **b_point,
             "salary_uzs": kb.get("salary_uzs", {}),
+            "salary_usd": kb.get("salary_usd", {}),
         },
+        "income_factors": KB_V2.get("income_factors", {}).get("factors", []),
 
         # ── Bonus bloklar ──
         "calendar_30d": kb.get("calendar_30d", []),

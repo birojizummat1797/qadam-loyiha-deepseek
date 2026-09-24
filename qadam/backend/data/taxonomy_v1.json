@@ -1,5 +1,5 @@
 {
-  "version": "v2.1",
+  "version": "v2.2",
   "clusters": {
     "software": {
       "uz": "Dasturlash",
@@ -42,6 +42,20 @@
               "mid": 1000,
               "senior": 2500
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "frontend_development": {
@@ -83,6 +97,20 @@
               "mid": 1200,
               "senior": 3000
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "backend_development": {
@@ -123,6 +151,20 @@
               "mid": 1500,
               "senior": 3500
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "mobile_development": {
@@ -162,6 +204,20 @@
               "junior": 500,
               "mid": 1300,
               "senior": 3000
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -207,6 +263,20 @@
               "mid": 1200,
               "senior": 2800
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "data_science": {
@@ -245,6 +315,20 @@
               "junior": 700,
               "mid": 1800,
               "senior": 4000
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         },
@@ -285,6 +369,20 @@
               "junior": 800,
               "mid": 2200,
               "senior": 5000
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -330,6 +428,20 @@
               "mid": 1800,
               "senior": 4000
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "cybersecurity": {
@@ -369,6 +481,20 @@
               "mid": 1800,
               "senior": 4200
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "qa_automation": {
@@ -407,6 +533,20 @@
               "junior": 400,
               "mid": 1000,
               "senior": 2200
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -452,6 +592,20 @@
               "mid": 1200,
               "senior": 2800
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "product_design": {
@@ -492,6 +646,20 @@
               "mid": 1800,
               "senior": 4000
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "graphic_design": {
@@ -528,6 +696,20 @@
               "junior": 300,
               "mid": 800,
               "senior": 1800
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         },
@@ -566,6 +748,20 @@
               "junior": 500,
               "mid": 1200,
               "senior": 3000
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -610,6 +806,20 @@
               "mid": 800,
               "senior": 2000
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "performance_marketing": {
@@ -649,6 +859,20 @@
               "mid": 1300,
               "senior": 3000
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "seo": {
@@ -687,6 +911,20 @@
               "mid": 1100,
               "senior": 2500
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "content_marketing": {
@@ -723,6 +961,20 @@
               "junior": 300,
               "mid": 900,
               "senior": 2200
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -766,6 +1018,20 @@
               "mid": 900,
               "senior": 2200
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "brand_strategy": {
@@ -804,6 +1070,20 @@
               "junior": 500,
               "mid": 1400,
               "senior": 3200
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -849,6 +1129,20 @@
               "mid": 1800,
               "senior": 4500
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "project_management": {
@@ -887,6 +1181,20 @@
               "mid": 1400,
               "senior": 3200
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "business_analysis": {
@@ -924,6 +1232,20 @@
               "junior": 500,
               "mid": 1300,
               "senior": 3000
+            }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
             }
           }
         }
@@ -968,6 +1290,20 @@
               "mid": 1200,
               "senior": 3000
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         },
         "customer_success": {
@@ -1006,6 +1342,20 @@
               "mid": 1100,
               "senior": 2500
             }
+          },
+          "salary_usd": {
+            "junior": {
+              "min": "j",
+              "max": "u"
+            },
+            "middle": {
+              "min": "m",
+              "max": "i"
+            },
+            "senior": {
+              "min": "s",
+              "max": "e"
+            }
           }
         }
       }
@@ -1014,5 +1364,60 @@
   "weighted_at": "2026-09-24",
   "note": "RIASEC + industry asosida qayta kalibrlangan vaznlar",
   "salary_updated_at": "2026-09-24",
-  "salary_source": "HH.uz + Telegram IT/marketing kanallari + LinkedIn UZ (Q4 2025)"
+  "salary_source": "HH.uz + Telegram IT/marketing kanallari + LinkedIn UZ (Q4 2025)",
+  "income_factors": {
+    "uz": "Daromadga tasir qiluvchi omillar",
+    "note": "Bu omillar maoshni 1.5x dan 3x gacha oshirishi mumkin",
+    "factors": [
+      {
+        "name": "Freelance",
+        "icon": "briefcase",
+        "boost": "+30-100%",
+        "desc": "Asosiy ishdan tashqari loyihalar. Upwork, Fiverr, mahalliy mijozlar."
+      },
+      {
+        "name": "Remote (xalqaro)",
+        "icon": "globe",
+        "boost": "+50-200%",
+        "desc": "AQSh, Yevropa kompaniyalari bilan masofadan ishlash. Ingliz tili B2+."
+      },
+      {
+        "name": "Kuchli portfolio",
+        "icon": "folder",
+        "boost": "+20-40%",
+        "desc": "3-5 real loyiha GitHub/Behance'da. Case study bilan."
+      },
+      {
+        "name": "Ingliz tili B2-C1",
+        "icon": "language",
+        "boost": "+15-30%",
+        "desc": "Xalqaro mijozlar, remote ish, dokumentatsiya."
+      },
+      {
+        "name": "Nisha mutaxassisligi",
+        "icon": "target",
+        "boost": "+20-50%",
+        "desc": "Fintech, healthcare, AI kabi tor nishada ekspert."
+      },
+      {
+        "name": "Sertifikatlar",
+        "icon": "award",
+        "boost": "+10-20%",
+        "desc": "AWS, Google, Meta, PMI va h.k. tan olingan sertifikatlar."
+      },
+      {
+        "name": "Networking",
+        "icon": "users",
+        "boost": "+15-30%",
+        "desc": "Telegram jamoalar, meetup'lar, LinkedIn faol profili."
+      },
+      {
+        "name": "Ochiq manba (open source)",
+        "icon": "code",
+        "boost": "+20-40%",
+        "desc": "GitHub'da mashhur loyihalarga hissa qo'shish."
+      }
+    ]
+  },
+  "salary_note": "USD/oy, O'zbekiston bozori uchun real oraliq (2025-2026)"
 }

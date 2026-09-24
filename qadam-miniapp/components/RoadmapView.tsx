@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IncomeSection } from "./IncomeSection";
 import {
   MapPin, Target, Calendar, ChevronDown, ChevronRight, Info,
   AlertCircle, Check, X, TrendingUp, Clock, BookOpen,
@@ -384,6 +385,12 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
           )}
         </div>
       </motion.div>
+
+      {/* ═══ INCOME ═══ */}
+      <IncomeSection
+        salary={roadmap.b_point?.salary_usd}
+        factors={(roadmap as any).income_factors}
+      />
 
       {/* ═══ FIRST 3 ACTIONS ═══ */}
       {roadmap.first_3_actions.length > 0 && (
