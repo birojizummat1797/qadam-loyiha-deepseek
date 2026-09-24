@@ -291,3 +291,82 @@ async def dev_unlock(payload: DevUnlockPayload):
         await s.commit()
 
     return {"ok": True, "stage1_result_id": payload.stage1_result_id, "paid": True}
+
+# ═══════════════════════════════════════════════════════════════════
+# REPORT COMPLETE — Foydalanuvchi PDF yuklab olgach xabar yuborish
+# ═══════════════════════════════════════════════════════════════════
+
+class ReportCompletePayload(BaseModel):
+    init_data: str
+
+
+@router.post("/report/{report_id}/complete")
+async def report_complete(report_id: int, payload: ReportCompletePayload):
+    """
+    User PDF yuklab olgach chaqiriladi.
+    Bot orqali tabrik xabari yuboriladi.
+    """
+    user = _auth(payload.init_data)
+
+    async with SessionLocal() as s:
+        r = await s.get(TestResult, report_id)
+        if not r or r.user_id != user["id"]:
+            raise HTTPException(404, "Report topilmadi")
+
+        # Top-1 career nomi
+        careers = (r.roadmap or {}).get("careers", [])
+        top_career = careers[0]["career"]["uz"] if careers else "sizga mos yonalish"
+
+    # Bot orqali xabar yuborish
+    try:
+        import os
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        first_name = user.get("first_name") or "dostim"
+
+        text = (
+            f"🎉 <b>Tabriklaymiz, {first_name}!</b>\n\n"
+            f"Siz QADAM diagnostikasidan muvaffaqiyatli otdingiz va "
+            f"o'zingizga mos yonalish bo'yicha shaxsiy roadmapni qolga kiritdingiz.\n\n"
+            f"📌 <b>Sizning asosiy yonalishingiz:</b> {top_career}\n\n"
+            f"Roadmapni 3 xil dizaynda yuklab olishingiz mumkin. "
+            f"Reja boyicha bugun birinchi qadamni boshlang!\n\n"
+            f"<b>Savollar bo'lsa</b> bemalol murojaat qiling — biz shu yerdamiz.\n\n"
+            f"<i>Sizning muvaffaqiyatingiz — bizning maqsadimiz.</i>\n"
+            f"— QADAM jamoasi"
+        )
+
+        webapp = os.getenv("WEBAPP_URL", "")
+
+        kb = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(
+                text="📊 Hisobotni qayta ochish",
+                web_app=WebAppInfo(url=f"{webapp}/report/{report_id}"),
+            )],
+            [InlineKeyboardButton(
+                text="🚀 Yangi diagnostika",
+                web_app=WebAppInfo(url=f"{webapp}/stage1"),
+            )],
+            [InlineKeyboardButton(
+                text="💬 Yordam",
+                url="https://t.me/qadam_support",
+            )],
+        ])
+
+        await bot.send_message(user["id"], text, reply_markup=kb)
+
+        # Bot sessionni yopish
+        await bot.session.close()
+
+    except Exception as e:
+        log.error(f"Bot xabar yuborishda xato: {e}")
+
+    return {"ok": True, "report_id": report_id}

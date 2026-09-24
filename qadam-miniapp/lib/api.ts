@@ -78,3 +78,11 @@ export async function devUnlock(stage1_result_id: number) {
   });
   return r.data;
 }
+
+
+export async function completeReport(report_id: number) {
+  const r = await api.post(`/diagnostic/report/${report_id}/complete`, {
+    init_data: getInitData(),
+  });
+  return r.data;
+}
