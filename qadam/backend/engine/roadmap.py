@@ -87,7 +87,10 @@ def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
             "total_weeks": sum(s["weeks"] for s in stages),
             "stages": stages,
         },
-        "b_point": b_point,
+        "b_point": {
+            **b_point,
+            "salary_uzs": kb.get("salary_uzs", {}),
+        },
 
         # ── Bonus bloklar ──
         "calendar_30d": kb.get("calendar_30d", []),

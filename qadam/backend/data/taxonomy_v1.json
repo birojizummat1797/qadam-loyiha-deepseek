@@ -1,5 +1,5 @@
 {
-  "version": "v1.0",
+  "version": "v2.1",
   "clusters": {
     "software": {
       "uz": "Dasturlash",
@@ -10,71 +10,160 @@
             "logical_thinking": 5,
             "problem_solving": 5,
             "persistence": 4,
-            "technical_interest": 4,
-            "system_design": 3,
-            "analytical": 3
+            "attention_to_detail": 4,
+            "technical_interest": 3,
+            "system_design": 2,
+            "analytical": 2
           },
           "prerequisites": {
             "device": "required",
             "english": "A2"
           },
           "learning_months": 4,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 8000
+            },
+            "mid": {
+              "min": 8000,
+              "median": 12000,
+              "max": 18000
+            },
+            "senior": {
+              "min": 18000,
+              "median": 28000,
+              "max": 45000
+            },
+            "remote_usd": {
+              "junior": 400,
+              "mid": 1000,
+              "senior": 2500
+            }
+          }
         },
         "frontend_development": {
           "uz": "Frontend Development",
           "signals": {
-            "logical_thinking": 4,
             "visual_logic": 5,
             "creative_design": 4,
-            "problem_solving": 4,
-            "persistence": 4,
-            "technical_interest": 4,
+            "logical_thinking": 4,
             "attention_to_detail": 4,
-            "user_empathy": 3
+            "problem_solving": 3,
+            "user_empathy": 3,
+            "technical_interest": 3,
+            "persistence": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 6,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 4000,
+              "median": 6000,
+              "max": 9000
+            },
+            "mid": {
+              "min": 9000,
+              "median": 14000,
+              "max": 22000
+            },
+            "senior": {
+              "min": 22000,
+              "median": 32000,
+              "max": 50000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1200,
+              "senior": 3000
+            }
+          }
         },
         "backend_development": {
           "uz": "Backend Development",
           "signals": {
-            "logical_thinking": 5,
             "system_design": 5,
+            "logical_thinking": 5,
             "problem_solving": 5,
             "analytical": 4,
-            "persistence": 4,
-            "technical_interest": 4,
-            "attention_to_detail": 4
+            "attention_to_detail": 4,
+            "persistence": 3,
+            "technical_interest": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 8,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 5000,
+              "median": 7000,
+              "max": 10000
+            },
+            "mid": {
+              "min": 10000,
+              "median": 16000,
+              "max": 25000
+            },
+            "senior": {
+              "min": 25000,
+              "median": 38000,
+              "max": 60000
+            },
+            "remote_usd": {
+              "junior": 600,
+              "mid": 1500,
+              "senior": 3500
+            }
+          }
         },
         "mobile_development": {
           "uz": "Mobile Development",
           "signals": {
+            "problem_solving": 5,
             "logical_thinking": 4,
-            "problem_solving": 4,
             "user_empathy": 4,
             "creative_design": 3,
             "visual_logic": 3,
-            "persistence": 4,
-            "technical_interest": 4
+            "persistence": 3,
+            "technical_interest": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 7,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 4000,
+              "median": 6000,
+              "max": 9000
+            },
+            "mid": {
+              "min": 9000,
+              "median": 14000,
+              "max": 22000
+            },
+            "senior": {
+              "min": 22000,
+              "median": 32000,
+              "max": 50000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1300,
+              "senior": 3000
+            }
+          }
         }
       }
     },
@@ -85,8 +174,8 @@
           "uz": "Data Analytics",
           "signals": {
             "analytical": 5,
-            "math_logic": 4,
             "attention_to_detail": 5,
+            "math_logic": 4,
             "logical_thinking": 4,
             "business_sense": 3,
             "persistence": 3
@@ -96,15 +185,37 @@
             "english": "B1"
           },
           "learning_months": 5,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 4000,
+              "median": 5500,
+              "max": 8000
+            },
+            "mid": {
+              "min": 8000,
+              "median": 13000,
+              "max": 20000
+            },
+            "senior": {
+              "min": 20000,
+              "median": 30000,
+              "max": 45000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1200,
+              "senior": 2800
+            }
+          }
         },
         "data_science": {
           "uz": "Data Science",
           "signals": {
             "math_logic": 5,
             "analytical": 5,
-            "persistence": 4,
             "logical_thinking": 4,
+            "persistence": 4,
             "innovation": 3,
             "system_design": 3
           },
@@ -113,25 +224,69 @@
             "english": "B2"
           },
           "learning_months": 12,
-          "pathway_type": "advanced"
+          "pathway_type": "advanced",
+          "salary_uzs": {
+            "junior": {
+              "min": 5000,
+              "median": 8000,
+              "max": 12000
+            },
+            "mid": {
+              "min": 12000,
+              "median": 18000,
+              "max": 28000
+            },
+            "senior": {
+              "min": 28000,
+              "median": 42000,
+              "max": 70000
+            },
+            "remote_usd": {
+              "junior": 700,
+              "mid": 1800,
+              "senior": 4000
+            }
+          }
         },
         "ai_engineering": {
           "uz": "AI Engineering",
           "signals": {
             "logical_thinking": 5,
             "system_design": 5,
-            "innovation": 4,
-            "math_logic": 4,
             "problem_solving": 5,
-            "persistence": 4,
-            "analytical": 4
+            "math_logic": 4,
+            "innovation": 4,
+            "analytical": 3,
+            "persistence": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B2"
           },
           "learning_months": 12,
-          "pathway_type": "advanced"
+          "pathway_type": "advanced",
+          "salary_uzs": {
+            "junior": {
+              "min": 6000,
+              "median": 9000,
+              "max": 13000
+            },
+            "mid": {
+              "min": 13000,
+              "median": 20000,
+              "max": 32000
+            },
+            "senior": {
+              "min": 32000,
+              "median": 50000,
+              "max": 80000
+            },
+            "remote_usd": {
+              "junior": 800,
+              "mid": 2200,
+              "senior": 5000
+            }
+          }
         }
       }
     },
@@ -142,18 +297,40 @@
           "uz": "DevOps / Cloud",
           "signals": {
             "system_design": 5,
-            "analytical": 4,
-            "persistence": 4,
             "technical_interest": 5,
+            "analytical": 4,
             "attention_to_detail": 4,
-            "logical_thinking": 4
+            "persistence": 4,
+            "logical_thinking": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B2"
           },
           "learning_months": 10,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 5000,
+              "median": 8000,
+              "max": 12000
+            },
+            "mid": {
+              "min": 12000,
+              "median": 18000,
+              "max": 28000
+            },
+            "senior": {
+              "min": 28000,
+              "median": 42000,
+              "max": 65000
+            },
+            "remote_usd": {
+              "junior": 700,
+              "mid": 1800,
+              "senior": 4000
+            }
+          }
         },
         "cybersecurity": {
           "uz": "Cybersecurity",
@@ -162,32 +339,76 @@
             "attention_to_detail": 5,
             "persistence": 5,
             "logical_thinking": 4,
-            "technical_interest": 4,
-            "system_design": 4
+            "system_design": 4,
+            "technical_interest": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B2"
           },
           "learning_months": 10,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 5000,
+              "median": 7500,
+              "max": 11000
+            },
+            "mid": {
+              "min": 11000,
+              "median": 17000,
+              "max": 26000
+            },
+            "senior": {
+              "min": 26000,
+              "median": 40000,
+              "max": 65000
+            },
+            "remote_usd": {
+              "junior": 700,
+              "mid": 1800,
+              "senior": 4200
+            }
+          }
         },
         "qa_automation": {
           "uz": "QA / Test Automation",
           "signals": {
             "attention_to_detail": 5,
-            "logical_thinking": 4,
             "persistence": 4,
+            "logical_thinking": 4,
             "problem_solving": 4,
-            "technical_interest": 3,
-            "analytical": 4
+            "analytical": 4,
+            "technical_interest": 2
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 5,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 7000
+            },
+            "mid": {
+              "min": 7000,
+              "median": 11000,
+              "max": 16000
+            },
+            "senior": {
+              "min": 16000,
+              "median": 24000,
+              "max": 35000
+            },
+            "remote_usd": {
+              "junior": 400,
+              "mid": 1000,
+              "senior": 2200
+            }
+          }
         }
       }
     },
@@ -197,8 +418,8 @@
         "ui_ux_design": {
           "uz": "UI/UX Design",
           "signals": {
-            "creative_design": 5,
             "user_empathy": 5,
+            "creative_design": 5,
             "visual_logic": 5,
             "attention_to_detail": 4,
             "system_design": 3,
@@ -209,7 +430,29 @@
             "english": "B1"
           },
           "learning_months": 6,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 8000
+            },
+            "mid": {
+              "min": 8000,
+              "median": 13000,
+              "max": 20000
+            },
+            "senior": {
+              "min": 20000,
+              "median": 30000,
+              "max": 45000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1200,
+              "senior": 2800
+            }
+          }
         },
         "product_design": {
           "uz": "Product Design",
@@ -217,17 +460,39 @@
             "creative_design": 5,
             "user_empathy": 5,
             "system_design": 4,
-            "visual_logic": 4,
             "analytical": 4,
+            "visual_logic": 4,
             "business_sense": 3,
-            "attention_to_detail": 4
+            "attention_to_detail": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 10,
-          "pathway_type": "advanced"
+          "pathway_type": "advanced",
+          "salary_uzs": {
+            "junior": {
+              "min": 5000,
+              "median": 8000,
+              "max": 12000
+            },
+            "mid": {
+              "min": 12000,
+              "median": 18000,
+              "max": 28000
+            },
+            "senior": {
+              "min": 28000,
+              "median": 40000,
+              "max": 60000
+            },
+            "remote_usd": {
+              "junior": 700,
+              "mid": 1800,
+              "senior": 4000
+            }
+          }
         },
         "graphic_design": {
           "uz": "Graphic Design",
@@ -242,7 +507,29 @@
             "english": "A2"
           },
           "learning_months": 4,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 2000,
+              "median": 3500,
+              "max": 5500
+            },
+            "mid": {
+              "min": 5500,
+              "median": 9000,
+              "max": 14000
+            },
+            "senior": {
+              "min": 14000,
+              "median": 20000,
+              "max": 32000
+            },
+            "remote_usd": {
+              "junior": 300,
+              "mid": 800,
+              "senior": 1800
+            }
+          }
         },
         "motion_design": {
           "uz": "Motion Design",
@@ -250,15 +537,37 @@
             "creative_design": 5,
             "visual_logic": 5,
             "persistence": 4,
-            "technical_interest": 3,
-            "attention_to_detail": 4
+            "attention_to_detail": 4,
+            "technical_interest": 2
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 6,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 8000
+            },
+            "mid": {
+              "min": 8000,
+              "median": 13000,
+              "max": 20000
+            },
+            "senior": {
+              "min": 20000,
+              "median": 30000,
+              "max": 48000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1200,
+              "senior": 3000
+            }
+          }
         }
       }
     },
@@ -268,8 +577,8 @@
         "smm_manager": {
           "uz": "SMM Manager",
           "signals": {
-            "creative_design": 4,
             "user_empathy": 5,
+            "creative_design": 4,
             "business_sense": 4,
             "analytical": 3,
             "persistence": 3
@@ -279,16 +588,38 @@
             "english": "A2"
           },
           "learning_months": 3,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 2000,
+              "median": 3500,
+              "max": 5500
+            },
+            "mid": {
+              "min": 5500,
+              "median": 9000,
+              "max": 15000
+            },
+            "senior": {
+              "min": 15000,
+              "median": 22000,
+              "max": 35000
+            },
+            "remote_usd": {
+              "junior": 300,
+              "mid": 800,
+              "senior": 2000
+            }
+          }
         },
         "performance_marketing": {
           "uz": "Performance Marketing",
           "signals": {
             "analytical": 5,
-            "business_sense": 4,
+            "business_sense": 5,
             "attention_to_detail": 4,
             "math_logic": 3,
-            "persistence": 4,
+            "persistence": 3,
             "innovation": 3
           },
           "prerequisites": {
@@ -296,38 +627,104 @@
             "english": "B1"
           },
           "learning_months": 5,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 8000
+            },
+            "mid": {
+              "min": 8000,
+              "median": 14000,
+              "max": 22000
+            },
+            "senior": {
+              "min": 22000,
+              "median": 32000,
+              "max": 50000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1300,
+              "senior": 3000
+            }
+          }
         },
         "seo": {
           "uz": "SEO Specialist",
           "signals": {
-            "analytical": 4,
             "attention_to_detail": 5,
             "persistence": 5,
+            "analytical": 4,
             "logical_thinking": 3,
-            "innovation": 3
+            "innovation": 2
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 5,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 7500
+            },
+            "mid": {
+              "min": 7500,
+              "median": 12000,
+              "max": 18000
+            },
+            "senior": {
+              "min": 18000,
+              "median": 28000,
+              "max": 40000
+            },
+            "remote_usd": {
+              "junior": 400,
+              "mid": 1100,
+              "senior": 2500
+            }
+          }
         },
         "content_marketing": {
           "uz": "Content Marketing",
           "signals": {
             "creative_design": 4,
             "user_empathy": 4,
-            "analytical": 3,
             "persistence": 4,
-            "attention_to_detail": 4
+            "attention_to_detail": 4,
+            "analytical": 3
           },
           "prerequisites": {
             "device": "smartphone_ok"
           },
           "learning_months": 3,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 2000,
+              "median": 4000,
+              "max": 6000
+            },
+            "mid": {
+              "min": 6000,
+              "median": 10000,
+              "max": 16000
+            },
+            "senior": {
+              "min": 16000,
+              "median": 24000,
+              "max": 38000
+            },
+            "remote_usd": {
+              "junior": 300,
+              "mid": 900,
+              "senior": 2200
+            }
+          }
         }
       }
     },
@@ -340,23 +737,45 @@
             "creative_design": 5,
             "visual_logic": 5,
             "persistence": 4,
-            "technical_interest": 3,
-            "attention_to_detail": 3
+            "attention_to_detail": 3,
+            "technical_interest": 2
           },
           "prerequisites": {
             "device": "smartphone_ok"
           },
           "learning_months": 4,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 2000,
+              "median": 4000,
+              "max": 6500
+            },
+            "mid": {
+              "min": 6500,
+              "median": 11000,
+              "max": 18000
+            },
+            "senior": {
+              "min": 18000,
+              "median": 26000,
+              "max": 42000
+            },
+            "remote_usd": {
+              "junior": 300,
+              "mid": 900,
+              "senior": 2200
+            }
+          }
         },
         "brand_strategy": {
           "uz": "Brand Strategy",
           "signals": {
             "creative_design": 5,
             "business_sense": 4,
+            "innovation": 4,
             "user_empathy": 4,
             "analytical": 3,
-            "innovation": 4,
             "system_design": 3
           },
           "prerequisites": {
@@ -364,7 +783,29 @@
             "english": "B1"
           },
           "learning_months": 8,
-          "pathway_type": "advanced"
+          "pathway_type": "advanced",
+          "salary_uzs": {
+            "junior": {
+              "min": 4000,
+              "median": 6500,
+              "max": 10000
+            },
+            "mid": {
+              "min": 10000,
+              "median": 16000,
+              "max": 25000
+            },
+            "senior": {
+              "min": 25000,
+              "median": 38000,
+              "max": 60000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1400,
+              "senior": 3200
+            }
+          }
         }
       }
     },
@@ -379,21 +820,43 @@
             "analytical": 4,
             "user_empathy": 4,
             "innovation": 3,
-            "persistence": 4
+            "persistence": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B2"
           },
           "learning_months": 12,
-          "pathway_type": "advanced"
+          "pathway_type": "advanced",
+          "salary_uzs": {
+            "junior": {
+              "min": 5000,
+              "median": 8000,
+              "max": 12000
+            },
+            "mid": {
+              "min": 12000,
+              "median": 20000,
+              "max": 30000
+            },
+            "senior": {
+              "min": 30000,
+              "median": 45000,
+              "max": 70000
+            },
+            "remote_usd": {
+              "junior": 700,
+              "mid": 1800,
+              "senior": 4500
+            }
+          }
         },
         "project_management": {
           "uz": "Project Management",
           "signals": {
             "system_design": 5,
-            "attention_to_detail": 4,
             "persistence": 5,
+            "attention_to_detail": 4,
             "business_sense": 4,
             "user_empathy": 3
           },
@@ -402,14 +865,36 @@
             "english": "B1"
           },
           "learning_months": 6,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 4000,
+              "median": 6500,
+              "max": 10000
+            },
+            "mid": {
+              "min": 10000,
+              "median": 16000,
+              "max": 24000
+            },
+            "senior": {
+              "min": 24000,
+              "median": 35000,
+              "max": 55000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1400,
+              "senior": 3200
+            }
+          }
         },
         "business_analysis": {
           "uz": "Business Analysis",
           "signals": {
             "analytical": 5,
-            "system_design": 4,
             "attention_to_detail": 5,
+            "system_design": 4,
             "logical_thinking": 4,
             "business_sense": 4
           },
@@ -418,7 +903,29 @@
             "english": "B1"
           },
           "learning_months": 6,
-          "pathway_type": "role"
+          "pathway_type": "role",
+          "salary_uzs": {
+            "junior": {
+              "min": 4000,
+              "median": 6000,
+              "max": 9000
+            },
+            "mid": {
+              "min": 9000,
+              "median": 15000,
+              "max": 23000
+            },
+            "senior": {
+              "min": 23000,
+              "median": 34000,
+              "max": 50000
+            },
+            "remote_usd": {
+              "junior": 500,
+              "mid": 1300,
+              "senior": 3000
+            }
+          }
         }
       }
     },
@@ -431,15 +938,37 @@
             "business_sense": 5,
             "user_empathy": 5,
             "persistence": 5,
-            "innovation": 3,
-            "analytical": 3
+            "analytical": 3,
+            "innovation": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 4,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 8000
+            },
+            "mid": {
+              "min": 8000,
+              "median": 15000,
+              "max": 25000
+            },
+            "senior": {
+              "min": 25000,
+              "median": 40000,
+              "max": 70000
+            },
+            "remote_usd": {
+              "junior": 400,
+              "mid": 1200,
+              "senior": 3000
+            }
+          }
         },
         "customer_success": {
           "uz": "Customer Success",
@@ -447,17 +976,43 @@
             "user_empathy": 5,
             "business_sense": 4,
             "attention_to_detail": 4,
-            "system_design": 3,
-            "persistence": 4
+            "persistence": 4,
+            "system_design": 3
           },
           "prerequisites": {
             "device": "required",
             "english": "B1"
           },
           "learning_months": 4,
-          "pathway_type": "entry"
+          "pathway_type": "entry",
+          "salary_uzs": {
+            "junior": {
+              "min": 3000,
+              "median": 5000,
+              "max": 7500
+            },
+            "mid": {
+              "min": 7500,
+              "median": 12000,
+              "max": 18000
+            },
+            "senior": {
+              "min": 18000,
+              "median": 26000,
+              "max": 40000
+            },
+            "remote_usd": {
+              "junior": 400,
+              "mid": 1100,
+              "senior": 2500
+            }
+          }
         }
       }
     }
-  }
+  },
+  "weighted_at": "2026-09-24",
+  "note": "RIASEC + industry asosida qayta kalibrlangan vaznlar",
+  "salary_updated_at": "2026-09-24",
+  "salary_source": "HH.uz + Telegram IT/marketing kanallari + LinkedIn UZ (Q4 2025)"
 }

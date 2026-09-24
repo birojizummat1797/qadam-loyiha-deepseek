@@ -88,3 +88,17 @@ export type FullReport = {
   versions: Record<string, string>;
   created_at: string;
 };
+
+
+export type SalaryRange = {
+  min: number;
+  median: number;
+  max: number;
+};
+
+export type SalaryData = {
+  junior: SalaryRange;
+  mid: SalaryRange;
+  senior: SalaryRange;
+  remote_usd: { junior: number; mid: number; senior: number };
+};
