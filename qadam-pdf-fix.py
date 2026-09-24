@@ -1,4 +1,36 @@
-"""PDF Report generator — xhtml2pdf (pure Python, no system deps)."""
+# -*- coding: utf-8 -*-
+"""QADAM — PDF fix: WeasyPrint -> xhtml2pdf (Docker kerak emas)."""
+from pathlib import Path
+
+# ═══════════════════════════════════════════════════════════
+# 1. requirements.txt — WeasyPrint o'chirish, xhtml2pdf qo'shish
+# ═══════════════════════════════════════════════════════════
+REQ = Path("qadam/requirements.txt")
+req = REQ.read_text(encoding="utf-8")
+
+# WeasyPrint va jinja2 qatorlarini olib tashlash
+lines = []
+for line in req.split("\n"):
+    if "weasyprint" in line.lower() or "jinja2" in line.lower():
+        continue
+    lines.append(line)
+
+req = "\n".join(lines).rstrip()
+
+# xhtml2pdf qo'shish
+if "xhtml2pdf" not in req:
+    req += "\nxhtml2pdf==0.2.16\n"
+
+REQ.write_text(req + "\n", encoding="utf-8")
+print("[OK] requirements.txt — WeasyPrint -> xhtml2pdf")
+
+
+# ═══════════════════════════════════════════════════════════
+# 2. backend/pdf_report.py — xhtml2pdf versiyasiga o'tkazish
+# ═══════════════════════════════════════════════════════════
+PDF_GEN = Path("qadam/backend/pdf_report.py")
+
+PDF_GEN.write_text(r'''"""PDF Report generator — xhtml2pdf (pure Python, no system deps)."""
 from datetime import datetime
 from io import BytesIO
 from xhtml2pdf import pisa
@@ -304,3 +336,34 @@ def generate_pdf(report, theme="light"):
     output = BytesIO()
     pisa.CreatePDF(html, dest=output, encoding="utf-8")
     return output.getvalue()
+''', encoding="utf-8")
+print("[OK] backend/pdf_report.py — xhtml2pdf versiyasi")
+
+
+# ═══════════════════════════════════════════════════════════
+# 3. diagnostic.py — import yangilash (weasyprint emas)
+# ═══════════════════════════════════════════════════════════
+DIAG = Path("qadam/backend/api/diagnostic.py")
+diag = DIAG.read_text(encoding="utf-8")
+# Bu faylda o'zgartirish kerak emas — import dinamik: `from backend.pdf_report import generate_pdf`
+# Faqat generate_pdf nomi bir xil
+print("[OK] diagnostic.py — o'zgartirish kerak emas (dinamik import)")
+
+print()
+print("=" * 60)
+print("PDF fix — tayyor!")
+print("=" * 60)
+print()
+print("MUHIM: Render Build Command'ni ESKI holatga qaytaring!")
+print()
+print("Yangi Build Command:")
+print("  pip install --upgrade pip && pip install -r requirements.txt")
+print()
+print("(apt-get qismi KERAK EMAS — o'chirib tashlang!)")
+print()
+print("Keyingi qadam:")
+print("  1. git add -A")
+print('  2. git commit -m "PDF: WeasyPrint -> xhtml2pdf (no Docker)"')
+print("  3. git push")
+print("  4. Render Build Command yangilash (apt-get olib tashlash)")
+print("  5. Manual Deploy")
