@@ -8,6 +8,7 @@ import { fetchReport } from "@/lib/api";
 import { RoadmapView } from "@/components/RoadmapView";
 import { PdfDownloader } from "@/components/PdfDownloader";
 import { CloseButton } from "@/components/CloseButton";
+import { FeedbackModal } from "@/components/FeedbackModal";
 
 export default function ReportPage() {
   const { id } = useParams<{ id: string }>();
@@ -169,6 +170,8 @@ export default function ReportPage() {
       <div className="mt-6">
         <PdfDownloader reportId={Number(id)} />
       </div>
+
+      <FeedbackModal reportId={Number(id)} />
 
       <CloseButton />
 

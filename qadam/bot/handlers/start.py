@@ -146,3 +146,24 @@ async def cb_privacy(q: CallbackQuery):
         "Uchinchi shaxslarga ruxsatingizsiz uzatilmaydi. "
         "Ma’lumotlaringiz shifrlangan holda saqlanadi."
     )
+
+
+@router.message(Command("admin"))
+async def cmd_admin(m: Message):
+    """Admin panel uchun."""
+    import os
+    admin_ids = set(
+        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()
+    )
+    if m.from_user.id not in admin_ids:
+        await m.answer("Ruxsat yoq")
+        return
+
+    url = f"{WEBAPP_URL}/admin"
+    kb = InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(
+            text="Admin Panel",
+            web_app=WebAppInfo(url=url),
+        )
+    ]])
+    await m.answer("Admin panel:", reply_markup=kb)
