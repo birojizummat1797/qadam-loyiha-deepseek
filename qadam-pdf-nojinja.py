@@ -1,4 +1,10 @@
-"""PDF Report generator - xhtml2pdf, jinja2 yo'q."""
+# -*- coding: utf-8 -*-
+"""PDF generator — jinja2 YO'Q, plain Python."""
+from pathlib import Path
+
+PDF_GEN = Path("qadam/backend/pdf_report.py")
+
+PDF_GEN.write_text(r'''"""PDF Report generator - xhtml2pdf, jinja2 yo'q."""
 from datetime import datetime
 from io import BytesIO
 from xhtml2pdf import pisa
@@ -238,3 +244,10 @@ def generate_pdf(report, theme="light"):
     output = BytesIO()
     pisa.CreatePDF(html, dest=output, encoding="utf-8")
     return output.getvalue()
+''', encoding="utf-8")
+print("[OK] backend/pdf_report.py — jinja2'siz versiya")
+print()
+print("Endi push qiling:")
+print("  git add -A")
+print('  git commit -m "PDF: remove jinja2 dependency"')
+print("  git push")
