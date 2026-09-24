@@ -27,9 +27,23 @@ type Roadmap = {
   };
   path: { total_weeks: number; stages: Stage[] };
   b_point: {
-    junior_salary_uzs?: string; remote_salary_usd?: string;
-    outcomes?: string[]; next_step?: string;
+    junior_salary_uzs?: string;
+    remote_salary_usd?: string;
+    salary_uzs?: Record<string, any>;
+    salary_usd?: {
+      junior: { min: number; max: number };
+      middle: { min: number; max: number };
+      senior: { min: number; max: number };
+    };
+    outcomes?: string[];
+    next_step?: string;
   };
+  income_factors?: {
+    name: string;
+    icon: string;
+    boost: string;
+    desc: string;
+  }[];
   calendar_30d: { w: number; theme: string; days: string[] }[];
   first_3_actions: string[];
   mentor_path: string[];
