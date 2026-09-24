@@ -12,6 +12,7 @@ from sqlalchemy import select
 from backend.db import init_db, SessionLocal, engine
 from backend.api.diagnostic import router as diagnostic_router
 from backend.api.payments import router as payments_router
+from backend.api.admin import router as admin_router
 from backend.logger import setup_logging, log
 
 setup_logging()
@@ -47,6 +48,7 @@ app.add_middleware(
 
 app.include_router(diagnostic_router)
 app.include_router(payments_router)
+app.include_router(admin_router)
 
 
 @app.get("/")

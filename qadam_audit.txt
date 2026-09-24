@@ -1,0 +1,119 @@
+
+============================================================
+  1. LOYIHA TUZILMASI
+============================================================
+  [OK] Backend papka
+  [OK] Bot papka
+  [OK] Frontend papka
+  [OK] Data papka
+
+============================================================
+  2. BACKEND MODULLARI
+============================================================
+  [OK] main.py
+  [OK] db.py
+  [OK] models.py
+  [OK] auth.py
+  [OK] logger.py
+  [OK] data_loader.py
+  [OK] pdf_report.py
+  [OK] api/diagnostic.py
+  [OK] api/payments.py
+  [OK] engine/signals.py
+  [OK] engine/fit.py
+  [OK] engine/readiness.py
+  [OK] engine/ranking.py
+  [OK] engine/roadmap.py
+  [OK] ai/personalizer.py
+  [OK] security/rate_limit.py
+
+============================================================
+  3. DATA FAYLLAR
+============================================================
+  [OK] taxonomy_v1.json — 12,869 bayt
+  [OK] questions_v1.json — 10,327 bayt
+  [OK] signals_v1.json — 858 bayt
+  [OK] roadmap_kb_v2.json — 56,204 bayt
+  [OK] roadmap_kb_v1.json — 8,949 bayt
+  [OK] Taxonomy jami career'lar — 25 ta
+  [OK] Roadmap'li career'lar — 5 ta
+      • foundation_programming
+      • frontend_development
+      • data_analytics
+      • ui_ux_design
+      • smm_manager
+
+============================================================
+  4. FRONTEND SAHIFALAR
+============================================================
+  [OK] app/layout.tsx
+  [OK] app/page.tsx
+  [OK] app/globals.css
+  [OK] app/stage1/page.tsx
+  [OK] app/stage2/page.tsx
+  [OK] app/teaser/page.tsx
+  [OK] app/report/[id]/page.tsx
+  [OK] components/RoadmapView.tsx
+  [OK] components/PdfDownloader.tsx
+  [OK] components/CloseButton.tsx
+  [OK] components/TmaProvider.tsx
+  [OK] lib/api.ts
+  [OK] lib/store.ts
+  [OK] lib/types.ts
+
+============================================================
+  5. BOT HANDLERLAR
+============================================================
+  [OK] main.py
+  [OK] handlers/start.py
+  [OK] handlers/payment.py
+  [OK] handlers/report.py
+
+============================================================
+  6. RAQAMLAR — hozirgi holat
+============================================================
+  Signals: 13 ta
+  Stage 1 savollar: 8 ta
+  Stage 2 savollar: 18 ta
+  Prerequisites bor career'lar: 25
+  Signals bor career'lar: 25
+
+============================================================
+  7. RAQAMLAR — muammolar (asoslash kerak)
+============================================================
+  [!!] Maosh raqamlari — HH.uz'dan tekshirilmagan
+  [!!] Fit % — signal vaznlari kalibrlanmagan
+  [!!] Readiness % — prerequisites real emas
+  [!!] O'rganish muddati — real feedbacksiz
+  [!!] 'Ishga tayyorlanish' mezonlari — umumiy
+  [!!] Calendar — real o'quv rejasiz
+  [!!] Resurslar — sifat auditisiz
+
+============================================================
+  8. KEYINGI QADAMLAR
+============================================================
+
+BOSQICH 1: AUDIT (bugun)
+  1.1. Backend/monitoring integratsiyasi (Sentry?)
+  1.2. Xatolar ro'yxati va prioritet
+  1.3. UX audit (mobil + desktop)
+
+BOSQICH 2: RAQAMLAR ASOSLARI (3-5 kun)
+  2.1. Maosh ma'lumotlari — HH.uz scraping
+  2.2. Fit % — signal vaznlar kalibrlash
+  2.3. Readiness — real prerequisites
+  2.4. Muddatlar — real feedback
+  2.5. Calendar — real o'quv reja
+
+BOSQICH 3: TEST REJIM (2-3 kun)
+  3.1. Admin panel (statistika)
+  3.2. Feedback tizimi (har report'dan keyin)
+  3.3. Analytics (eventlar)
+  3.4. Onboarding (yangi user uchun)
+  3.5. Rate limiting
+
+BOSQICH 4: KATTA AUDITORIYA (2-3 kun)
+  4.1. Landing page (qadam.io domeni)
+  4.2. Telegram kanali
+  4.3. Marketing materiallar
+  4.4. Referral tizim

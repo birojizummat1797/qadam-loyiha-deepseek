@@ -210,3 +210,17 @@ class Event(Base):
     created_at: Mapped["DateTime"] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
+
+
+class Feedback(Base):
+    """Foydalanuvchi fikri (har report'dan keyin)."""
+    __tablename__ = "feedbacks"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, index=True)
+    report_id: Mapped[int] = mapped_column(Integer, index=True)
+    rating: Mapped[int] = mapped_column(Integer)  # 1-5
+    comment: Mapped[str | None] = mapped_column(String(1000), nullable=True)
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
