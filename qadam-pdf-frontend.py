@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""PdfDownloader mobile+desktop adaptive."""
+from pathlib import Path
+
+PDF_COMP = Path("qadam-miniapp/components/PdfDownloader.tsx")
+
+PDF_COMP.write_text(r'''"use client";
 
 import { useState, useEffect } from "react";
 import { Download, X, Moon, Sun, Flower2, Palette, CheckCircle2, PartyPopper, Send, Smartphone, Printer } from "lucide-react";
@@ -166,3 +172,5 @@ export function PdfDownloader({ reportId }) {
     </>
   );
 }
+''', encoding="utf-8")
+print("[OK] PdfDownloader.tsx — mobile + desktop")
