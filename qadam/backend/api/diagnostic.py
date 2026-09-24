@@ -334,14 +334,14 @@ async def report_complete(report_id: int, payload: ReportCompletePayload):
 
         text = (
             f"🎉 <b>Tabriklaymiz, {first_name}!</b>\n\n"
-            f"Siz QADAM diagnostikasidan muvaffaqiyatli otdingiz va "
+            f"Siz Qadam.io diagnostikasidan muvaffaqiyatli otdingiz va "
             f"o'zingizga mos yonalish bo'yicha shaxsiy roadmapni qolga kiritdingiz.\n\n"
             f"📌 <b>Sizning asosiy yonalishingiz:</b> {top_career}\n\n"
             f"Roadmapni 3 xil dizaynda yuklab olishingiz mumkin. "
             f"Reja boyicha bugun birinchi qadamni boshlang!\n\n"
             f"<b>Savollar bo'lsa</b> bemalol murojaat qiling — biz shu yerdamiz.\n\n"
             f"<i>Sizning muvaffaqiyatingiz — bizning maqsadimiz.</i>\n"
-            f"— QADAM jamoasi"
+            f"— Qadam.io jamoasi"
         )
 
         webapp = os.getenv("WEBAPP_URL", "")
@@ -429,13 +429,13 @@ async def report_pdf(report_id: int, payload: PdfRequestPayload):
 
         caption = (
             f"🎉 <b>Tabriklaymiz, {first_name}!</b>\n\n"
-            f"QADAM diagnostikasi natijangiz va shaxsiy roadmap tayyor.\n\n"
+            f"Qadam.io diagnostikasi natijangiz va shaxsiy roadmap tayyor.\n\n"
             f"📌 <b>Asosiy yonalish:</b> {top_career}\n"
             f"📄 <b>Fayl:</b> QADAM-report-{report_id}.pdf\n\n"
             f"Reja boyicha bugun birinchi qadamni boshlang!\n"
-            f"Savollar bolsa — @qadam_support\n\n"
+            f"Savollar bolsa — @ulugbek_aliboyev\n\n"
             f"<i>Sizning muvaffaqiyatingiz — bizning maqsadimiz.</i>\n"
-            f"— QADAM jamoasi"
+            f"— Qadam.io jamoasi"
         )
 
         file = BufferedInputFile(pdf_bytes, filename=f"QADAM-report-{report_id}.pdf")

@@ -211,7 +211,7 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
                   <div className="text-xs">
                     <p className="font-semibold mb-1">Nima qildingiz:</p>
                     <p className="text-[var(--tg-hint)]">
-                      QADAM diagnostikasidan otdingiz va shaxsiy roadmapni oldingiz.
+                      Qadam.io diagnostikasidan otdingiz va shaxsiy roadmapni oldingiz.
                     </p>
                   </div>
                 </div>

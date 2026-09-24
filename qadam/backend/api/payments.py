@@ -86,7 +86,7 @@ async def create_payment(payload: CreatePaymentPayload):
         "payment_id": payment_id,
         "provider": "stars",
         "stars_amount": PRICE_STARS,
-        "title": "QADAM Premium tahlil",
+        "title": "Qadam.io Premium tahlil",
         "description": "18 savol + Fit + Readiness + Roadmap + PDF",
     }
 
@@ -121,7 +121,7 @@ async def stars_invoice(payload: CreatePaymentPayload):
     bot = _get_bot()
     try:
         invoice_link = await bot.create_invoice_link(
-            title="QADAM Premium tahlil",
+            title="Qadam.io Premium tahlil",
             description="18 savol + Fit + Readiness + Roadmap + PDF",
             payload=f"qadam_premium_{payment_id}",
             provider_token="",

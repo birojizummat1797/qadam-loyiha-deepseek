@@ -25,7 +25,7 @@ class AIExplanation(BaseModel):
     next_step_emphasis: str = Field(min_length=20, max_length=300)
 
 
-SYSTEM_PROMPT = """Sen QADAM loyihasining kasb yo'naltiruvchi maslahatchisisan.
+SYSTEM_PROMPT = """Sen Qadam.io loyihasining kasb yo'naltiruvchi maslahatchisisan.
 Senga deterministic tizim tomonidan hisoblangan natijalar beriladi.
 Sening vazifang — FAQAT izoh yozish va shaxsiylashtirish.
 
@@ -94,7 +94,7 @@ async def personalize(profile: dict, ranked: list, confidence: str) -> dict:
     headers = {
         "Authorization": f"Bearer {OPENROUTER_KEY}",
         "HTTP-Referer": APP_URL,
-        "X-Title": "QADAM",
+        "X-Title": "Qadam.io",
         "Content-Type": "application/json",
     }
 

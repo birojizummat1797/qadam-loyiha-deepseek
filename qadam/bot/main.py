@@ -79,7 +79,7 @@ def run_webhook():
     setup_application(app, dp, bot=bot)
 
     async def health(request):
-        return web.json_response({"ok": True, "service": "qadam-bot"})
+        return web.json_response({"ok": True, "service": "qadam-io-bot"})
 
     app.router.add_get("/health", health)
     web.run_app(app, host="0.0.0.0", port=PORT)

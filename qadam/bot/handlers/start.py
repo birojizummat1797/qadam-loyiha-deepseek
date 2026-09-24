@@ -28,7 +28,7 @@ WELCOME_TEXT = (
 )
 
 PREMIUM_INTRO_TEXT = (
-    "Sizni <b>QADAM Premium Personal Diagnostic</b>’da ko‘rib turganimizdan "
+    "Sizni <b>Qadam.io Premium Personal Diagnostic</b>’da ko‘rib turganimizdan "
     "xursandmiz!\n\n"
     "Bu diagnostikada savollar shunchaki test uchun emas. Javoblaringiz "
     "asosida sizga mos bo‘lishi mumkin bo‘lgan kasbiy yo‘nalishlar, mavjud "
@@ -40,10 +40,10 @@ PREMIUM_INTRO_TEXT = (
 )
 
 HELP_TEXT = (
-    "<b>QADAM yordam</b>\n\n"
+    "<b>Qadam.io yordam</b>\n\n"
     "/start — boshidan boshlash\n"
     "/help — yordam\n\n"
-    "Savollar bo‘lsa: @qadam_support"
+    "Savollar bo‘lsa: @ulugbek_aliboyev"
 )
 
 
@@ -59,7 +59,7 @@ def main_menu_kb() -> InlineKeyboardMarkup:
             callback_data="diag:premium",
         )],
         [InlineKeyboardButton(
-            text="ℹ️ QADAM qanday ishlaydi?",
+            text="ℹ️ Qadam.io qanday ishlaydi?",
             callback_data="info:how",
         )],
         [InlineKeyboardButton(
@@ -128,7 +128,7 @@ async def cb_back(q: CallbackQuery):
 async def cb_how(q: CallbackQuery):
     await q.answer()
     await q.message.answer(
-        "<b>QADAM qanday ishlaydi?</b>\n\n"
+        "<b>Qadam.io qanday ishlaydi?</b>\n\n"
         "1. Siz savollarga javob berasiz.\n"
         "2. Tizim javoblaringizni signallarga aylantiradi.\n"
         "3. Signallar 25+ kasbiy yo‘nalish bilan taqqoslanadi.\n"

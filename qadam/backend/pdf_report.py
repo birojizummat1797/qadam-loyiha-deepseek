@@ -206,7 +206,7 @@ def generate_pdf(report, theme="light"):
     parts.append('<!DOCTYPE html><html><head><meta charset="UTF-8">')
     parts.append(f"<style>{STYLE}</style></head><body>")
     parts.append("<h1>Sizning natijangiz</h1>")
-    parts.append(f'<p class="muted">{date_str} • QADAM diagnostikasi</p>')
+    parts.append(f'<p class="muted">{date_str} • Qadam.io diagnostikasi</p>')
 
     if ai.get("summary"):
         parts.append('<div class="card card-indigo"><h3>Umumiy xulosa</h3>')
@@ -229,7 +229,7 @@ def generate_pdf(report, theme="light"):
         parts.append(f'<p>{_esc(ai["next_step_emphasis"])}</p></div>')
 
     parts.append('<p class="muted" style="text-align:center;margin-top:20pt">')
-    parts.append("QADAM — Halol tahlil, manipulyatsiyasiz<br>")
+    parts.append("Qadam.io — Halol tahlil, manipulyatsiyasiz<br>")
     parts.append("@kelajakkailkqadam_bot</p>")
     parts.append("</body></html>")
 

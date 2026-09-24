@@ -51,7 +51,7 @@ app.include_router(payments_router)
 
 @app.get("/")
 async def root():
-    return {"service": "QADAM", "status": "ok"}
+    return {"service": "Qadam.io", "status": "ok"}
 
 
 @app.get("/health")
@@ -65,7 +65,7 @@ async def health():
         pass
     return {
         "ok": db_ok,
-        "service": "qadam-backend",
+        "service": "qadam-io-backend",
         "db": db_ok,
         "ts": datetime.now(timezone.utc).isoformat(),
     }
