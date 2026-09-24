@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""QADAM — PdfDownloader.tsx toza qayta yozish (useRef fix)."""
+from pathlib import Path
+
+PDF_COMP = Path("qadam-miniapp/components/PdfDownloader.tsx")
+
+PDF_COMP.write_text(r'''"use client";
 
 import { useState, useEffect, useRef } from "react";
 import { Download, X, Moon, Sun, Flower2, Palette } from "lucide-react";
@@ -167,3 +173,11 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
     </>
   );
 }
+''', encoding="utf-8")
+
+print("[OK] components/PdfDownloader.tsx — toza qayta yozildi (useRef fix)")
+print()
+print("Endi push qiling:")
+print("  git add -A")
+print('  git commit -m "Fix: useRef import in PdfDownloader"')
+print("  git push")
