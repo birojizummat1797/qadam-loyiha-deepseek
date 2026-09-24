@@ -1,4 +1,9 @@
-"""
+# -*- coding: utf-8 -*-
+"""QADAM Bot fix — Mini App tugmalari."""
+from pathlib import Path
+
+START_PATH = Path("qadam/bot/handlers/start.py")
+START_PATH.write_text(r'''"""
 FTT § 4-5: Welcome flow + Premium intro.
 Tugmalar Mini App'ni ochadi.
 """
@@ -146,3 +151,7 @@ async def cb_privacy(q: CallbackQuery):
         "Uchinchi shaxslarga ruxsatingizsiz uzatilmaydi. "
         "Ma’lumotlaringiz shifrlangan holda saqlanadi."
     )
+''', encoding="utf-8")
+print("[OK] bot/handlers/start.py — Mini App tugmalari qo'shildi")
+print()
+print("Endi tugmalar Mini App'ni ochadi, 'Tez orada' yo'q")
