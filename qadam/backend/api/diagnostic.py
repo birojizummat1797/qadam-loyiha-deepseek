@@ -370,3 +370,79 @@ async def report_complete(report_id: int, payload: ReportCompletePayload):
         log.error(f"Bot xabar yuborishda xato: {e}")
 
     return {"ok": True, "report_id": report_id}
+
+# ═══════════════════════════════════════════════════════════════════
+# PDF — Server-side PDF + bot orqali fayl yuborish
+# ═══════════════════════════════════════════════════════════════════
+
+
+class PdfRequestPayload(BaseModel):
+    init_data: str
+    theme: str = "light"
+
+
+@router.post("/report/{report_id}/pdf")
+async def report_pdf(report_id: int, payload: PdfRequestPayload):
+    """PDF yaratadi va bot orqali foydalanuvchiga yuboradi."""
+    user = _auth(payload.init_data)
+
+    async with SessionLocal() as s:
+        r = await s.get(TestResult, report_id)
+        if not r or r.user_id != user["id"]:
+            raise HTTPException(404, "Report topilmadi")
+
+        report_data = {
+            "id": r.id,
+            "profile": r.profile,
+            "roadmap": r.roadmap,
+            "ai": r.ai_explanation,
+            "created_at": r.created_at.isoformat() if r.created_at else "",
+        }
+
+    # PDF yaratish
+    try:
+        from backend.pdf_report import generate_pdf
+        pdf_bytes = generate_pdf(report_data, theme=payload.theme)
+    except Exception as e:
+        log.error(f"PDF xatoligi: {e}")
+        raise HTTPException(500, f"PDF xatolik: {str(e)[:100]}")
+
+    # Bot orqali yuborish
+    sent = False
+    try:
+        import os
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import BufferedInputFile
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        first_name = user.get("first_name") or "dostim"
+        top_career = "sizga mos yonalish"
+        careers = (r.roadmap or {}).get("careers", [])
+        if careers:
+            top_career = careers[0]["career"]["uz"]
+
+        caption = (
+            f"🎉 <b>Tabriklaymiz, {first_name}!</b>\n\n"
+            f"QADAM diagnostikasi natijangiz va shaxsiy roadmap tayyor.\n\n"
+            f"📌 <b>Asosiy yonalish:</b> {top_career}\n"
+            f"📄 <b>Fayl:</b> QADAM-report-{report_id}.pdf\n\n"
+            f"Reja boyicha bugun birinchi qadamni boshlang!\n"
+            f"Savollar bolsa — @qadam_support\n\n"
+            f"<i>Sizning muvaffaqiyatingiz — bizning maqsadimiz.</i>\n"
+            f"— QADAM jamoasi"
+        )
+
+        file = BufferedInputFile(pdf_bytes, filename=f"QADAM-report-{report_id}.pdf")
+        await bot.send_document(user["id"], document=file, caption=caption)
+        await bot.session.close()
+        sent = True
+    except Exception as e:
+        log.error(f"Bot PDF yuborishda xato: {e}")
+
+    return {"ok": True, "report_id": report_id, "sent_to_telegram": sent}

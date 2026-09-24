@@ -86,3 +86,12 @@ export async function completeReport(report_id: number) {
   });
   return r.data;
 }
+
+
+export async function requestPdf(report_id: number, theme: string = "light") {
+  const r = await api.post(`/diagnostic/report/${report_id}/pdf`, {
+    init_data: getInitData(),
+    theme,
+  });
+  return r.data;
+}
