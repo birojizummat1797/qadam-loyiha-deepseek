@@ -118,3 +118,65 @@ class PaymentEvent(Base):
     processed_at: Mapped["DateTime"] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
+
+
+# ═══════════════════════════════════════════════════════════
+# DISCOVERY — Free bosqich (12-13 savol)
+# ═══════════════════════════════════════════════════════════
+class DiscoverySession(Base):
+    """Free Discovery session."""
+    __tablename__ = "discovery_sessions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, index=True)
+    status: Mapped[str] = mapped_column(String(16), default="active")
+    # active | completed | abandoned
+    current_q_index: Mapped[int] = mapped_column(Integer, default=0)
+    answers_count: Mapped[int] = mapped_column(Integer, default=0)
+    question_version: Mapped[str] = mapped_column(String(16), default="v1.0")
+    signal_version: Mapped[str] = mapped_column(String(16), default="v1.0")
+    started_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    completed_at: Mapped["DateTime | None"] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    meta: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+
+
+class DiscoveryAnswer(Base):
+    """Har savol javobi."""
+    __tablename__ = "discovery_answers"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    session_id: Mapped[int] = mapped_column(Integer, index=True)
+    question_id: Mapped[str] = mapped_column(String(64), index=True)
+    answer_id: Mapped[str] = mapped_column(String(64))
+    answer_value: Mapped[int] = mapped_column(Integer)  # 1-5 likert yoki binary
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+    __table_args__ = (
+        UniqueConstraint("session_id", "question_id", name="uq_session_question"),
+    )
+
+
+class DiscoverySignal(Base):
+    """Discovery sessiyasidan olingan signallar (evidence state)."""
+    __tablename__ = "discovery_signals"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    session_id: Mapped[int] = mapped_column(Integer, index=True)
+    signal_key: Mapped[str] = mapped_column(String(64), index=True)
+    value: Mapped[float | None] = mapped_column(Float, nullable=True)  # [0, 10] | None
+    trust: Mapped[float] = mapped_column(Float, default=0.0)
+    evidence_state: Mapped[str] = mapped_column(String(24), default="unmeasured")
+    coverage: Mapped[int] = mapped_column(Integer, default=0)
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+    __table_args__ = (
+        UniqueConstraint("session_id", "signal_key", name="uq_session_signal_disc"),
+    )

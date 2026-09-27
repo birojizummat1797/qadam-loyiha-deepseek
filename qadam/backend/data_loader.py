@@ -33,3 +33,7 @@ def get_versions():
         "roadmap_kb": "v1.1",
         "ai_prompt": "v1.0",
     }
+
+
+def load_discovery_questions():
+    return _load("discovery_questions_v1.json")
