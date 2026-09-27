@@ -1,271 +1,297 @@
 # -*- coding: utf-8 -*-
-"""QADAM v5 — Print CSS to'liq tuzatish (ranglar + kenglik + kontrast)."""
+"""Fix v5 — admin tasdiqlash: callback + TEXT COMMANDS (fallback)."""
 from pathlib import Path
 import re
 
-# ═══════════════════════════════════════════════════════════
-# 1. GLOBALS.CSS — Print uchun 3 ta kritik fix
-# ═══════════════════════════════════════════════════════════
-GLOBALS = Path("qadam-miniapp/app/globals.css")
-css = GLOBALS.read_text(encoding="utf-8")
+BOT = Path("qadam/bot")
 
-# Eski print blokni olib tashlash
-css = re.sub(
-    r'/\* ═+\s*PRINT.*?\*/.*?@media print \{.*?\n\}',
+# ═══════════════════════════════════════════════════════════
+# 1. bot/main.py — payment_router aniq ulash + log
+# ═══════════════════════════════════════════════════════════
+MAIN = BOT / "main.py"
+m = MAIN.read_text(encoding="utf-8")
+
+# payment_router import bo'lishini ta'minlash
+if "from bot.handlers.payment import" not in m:
+    m = m.replace(
+        "from bot.handlers import start as start_handlers",
+        "from bot.handlers import start as start_handlers\n"
+        "from bot.handlers.payment import router as payment_router",
+    )
+
+# include_router ni tekshirish
+if "payment_router" not in m.split("dp.include_router")[0] or "dp.include_router(payment_router)" not in m:
+    # include qatorini qo'shish
+    if "dp.include_router(start_handlers.router)" in m:
+        m = m.replace(
+            "dp.include_router(start_handlers.router)",
+            "dp.include_router(start_handlers.router)\n"
+            "dp.include_router(payment_router)",
+        )
+
+# Log qo'shish — on_startup'da
+if "_log.info(\"payment_router ulandi\")" not in m:
+    m = m.replace(
+        "dp.include_router(payment_router)",
+        'dp.include_router(payment_router)\nlog.info("payment_router ulandi")',
+        1,
+    )
+
+MAIN.write_text(m, encoding="utf-8")
+print("[OK] bot/main.py — payment_router ulandi")
+
+# ═══════════════════════════════════════════════════════════
+# 2. payment.py — TEXT commands (/approve, /reject) qo'shish
+# ═══════════════════════════════════════════════════════════
+PAY = BOT / "handlers/payment.py"
+p = PAY.read_text(encoding="utf-8")
+
+# Eski text-command handler'larni olib tashlash (agar bor bo'lsa)
+p = re.sub(
+    r'# ═+\s*TEXT COMMANDS.*$',
     '',
-    css,
+    p,
     flags=re.DOTALL,
 )
-css = re.sub(r'@media print \{.*?\n\}\s*$', '', css, flags=re.DOTALL)
 
-PRINT_CSS = '''
+# Command import tekshirish
+if "from aiogram.filters import Command" not in p:
+    p = p.replace(
+        "from aiogram import Router, F",
+        "from aiogram import Router, F\nfrom aiogram.filters import Command",
+    )
 
-/* ═══════════════════════════════════════════════════════════
-   PRINT / PDF — Ranglarni saqlash + A4 full width
-   ═══════════════════════════════════════════════════════════ */
-@media print {
-  /* ─── 1. RANGLARNI SAQLASH ─── */
-  *, *::before, *::after {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
+# File boshiga is_admin funksiyasi (agar yo'q bo'lsa)
+if "def _is_admin" not in p:
+    p = p.replace(
+        "router = Router()",
+        '''router = Router()
 
-  /* ─── 2. CSS VARIABLES — Light mode'ga o'tkazish ─── */
-  :root {
-    --tg-bg: #ffffff !important;
-    --tg-text: #0a0a0f !important;
-    --tg-hint: #6b7280 !important;
-    --tg-link: #4f46e5 !important;
-    --tg-button: #6366f1 !important;
-    --tg-button-text: #ffffff !important;
-    --tg-secondary-bg: #f9fafb !important;
-  }
 
-  /* ─── 3. A4 FULL WIDTH ─── */
-  html, body {
-    background: #ffffff !important;
-    color: #0a0a0f !important;
-    font-size: 10.5pt;
-    line-height: 1.5;
-  }
+def _is_admin(uid: int) -> bool:
+    import os as _os
+    ids = set(int(x.strip()) for x in _os.getenv("ADMIN_IDS", "").split(",") if x.strip())
+    return uid in ids
+''',
+        1,
+    )
 
-  @page {
-    size: A4;
-    margin: 10mm 12mm;
-  }
+TEXT_COMMANDS = '''
 
-  /* Container — full width */
-  main {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
+# ═══════════════════════════════════════════════════════════════════
+# TEXT COMMANDS — fallback (agar tugmalar ishlamasa)
+# ═══════════════════════════════════════════════════════════════════
 
-  /* ─── 4. ANIMATSIYALAR — statik ─── */
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
+from aiogram.types import Message as _Message
 
-  /* ─── 5. KARTALAR — ranglarni saqlash ─── */
-  .card,
-  [class*="rounded-2xl"],
-  [class*="rounded-xl"] {
-    background: #f9fafb !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 10pt 12pt !important;
-    margin-bottom: 6pt !important;
-    /* Uzluksiz oqim — bo'linmalarni buzmaslik */
-    break-inside: auto;
-    page-break-inside: auto;
-  }
 
-  /* Gradient kartalar — och rang bilan */
-  [class*="from-indigo"] { background: #eef2ff !important; }
-  [class*="from-amber"] { background: #fffbeb !important; }
-  [class*="from-emerald"] { background: #ecfdf5 !important; }
-  [class*="from-slate"] { background: #f8fafc !important; }
+async def _approve_impl(payment_id: int) -> dict:
+    """Tasdiqlash logikasi."""
+    from backend.db import SessionLocal
+    from backend.models import Payment
+    from backend.services.entitlement_service import grant_entitlement
 
-  /* ─── 6. GRADIENT MATN ─── */
-  .gradient-text {
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: #6366f1 !important;
-    color: #6366f1 !important;
-    font-weight: 700;
-  }
+    user_id = None
+    async with SessionLocal() as s:
+        pay = await s.get(Payment, payment_id)
+        if not pay:
+            return {"ok": False, "error": f"Payment #{payment_id} topilmadi"}
+        pay.status = "paid"
+        await s.commit()
+        user_id = pay.user_id
 
-  /* ─── 7. ACCORDION — HAMMASI OCHIQ ─── */
-  [data-accordion-content],
-  [data-calendar-body] {
-    display: block !important;
-    max-height: none !important;
-    height: auto !important;
-    overflow: visible !important;
-    opacity: 1 !important;
-    margin-top: 8pt !important;
-  }
+    await grant_entitlement(
+        user_id=user_id,
+        entitlement_key="premium_career_intelligence",
+        source="manual_card",
+        payment_reference=str(payment_id),
+    )
+    return {"ok": True, "user_id": user_id}
 
-  /* Chevron — yashirish */
-  [data-chevron] { display: none !important; }
 
-  /* ─── 8. PROGRESS BAR ─── */
-  [style*="width"] {
-    /* Bar ranglari saqlanadi */
-    -webkit-print-color-adjust: exact !important;
-  }
+async def _reject_impl(payment_id: int) -> dict:
+    from backend.db import SessionLocal
+    from backend.models import Payment
 
-  /* ─── 9. SVG PROGRESS RING ─── */
-  svg {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
+    user_id = None
+    async with SessionLocal() as s:
+        pay = await s.get(Payment, payment_id)
+        if not pay:
+            return {"ok": False, "error": f"Payment #{payment_id} topilmadi"}
+        pay.status = "rejected"
+        await s.commit()
+        user_id = pay.user_id
 
-  /* ─── 10. TUGMALAR — YASHIRISH ─── */
-  button.btn-primary,
-  button[onclick*="print"] {
-    display: none !important;
-  }
+    return {"ok": True, "user_id": user_id}
 
-  /* ─── 11. SARLAVHALAR — birga ─── */
-  h1 { font-size: 22pt; margin: 0 0 4pt; }
-  h2 { font-size: 16pt; margin: 12pt 0 6pt; page-break-after: avoid; }
-  h3 { font-size: 13pt; margin: 8pt 0 4pt; page-break-after: avoid; }
-  h4 { font-size: 11pt; margin: 6pt 0 3pt; page-break-after: avoid; }
 
-  /* ─── 12. RO'YXATLAR ─── */
-  ul, ol { margin: 4pt 0; padding-left: 14pt; }
-  li { margin: 2pt 0; }
+@router.message(Command("approve"))
+async def cmd_approve(m: _Message):
+    """Admin: /approve <payment_id> — to'lovni tasdiqlash."""
+    if not _is_admin(m.from_user.id):
+        await m.answer("Ruxsat yo'q")
+        return
 
-  /* ─── 13. LINKLAR ─── */
-  a {
-    color: #4f46e5 !important;
-    text-decoration: underline;
-    text-decoration-color: #a5b4fc;
-  }
+    parts = (m.text or "").split()
+    if len(parts) < 2:
+        await m.answer("Format: /approve <payment_id>\\nMisol: /approve 5")
+        return
 
-  /* ─── 14. SVG IKONKALAR ─── */
-  svg { color: inherit; }
+    try:
+        pid = int(parts[1])
+    except ValueError:
+        await m.answer("payment_id raqam bo'lishi kerak")
+        return
 
-  /* ─── 15. TIMELINE ─── */
-  [class*="absolute"][class*="left-"] {
-    /* Timeline node — ko'rinsin */
-    -webkit-print-color-adjust: exact !important;
-  }
+    result = await _approve_impl(pid)
+    if not result["ok"]:
+        await m.answer(f"❌ {result['error']}")
+        return
 
-  /* ─── 16. RANGLI BADGE va PILL ─── */
-  [class*="bg-indigo"] { background: #e0e7ff !important; color: #3730a3 !important; }
-  [class*="bg-purple"] { background: #f3e8ff !important; color: #6b21a8 !important; }
-  [class*="bg-emerald"] { background: #d1fae5 !important; color: #065f46 !important; }
-  [class*="bg-amber"] { background: #fef3c7 !important; color: #92400e !important; }
-  [class*="bg-blue"] { background: #dbeafe !important; color: #1e40af !important; }
-  [class*="bg-red"] { background: #fee2e2 !important; color: #991b1b !important; }
-  [class*="bg-slate"] { background: #f1f5f9 !important; color: #334155 !important; }
+    await m.answer(f"✅ Payment #{pid} tasdiqlandi (user: {result['user_id']})")
 
-  /* ─── 17. MATN RANGLARI ─── */
-  [class*="text-emerald"] { color: #059669 !important; }
-  [class*="text-red"] { color: #dc2626 !important; }
-  [class*="text-amber"] { color: #d97706 !important; }
-  [class*="text-indigo"] { color: #4f46e5 !important; }
-  [class*="text-purple"] { color: #9333ea !important; }
-  [class*="text-blue"] { color: #2563eb !important; }
-  [class*="text-cyan"] { color: #0891b2 !important; }
+    # Userga xabar
+    try:
+        from aiogram.types import (
+            InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo,
+        )
+        import os as _os
+        webapp = _os.getenv("WEBAPP_URL", "")
+        kb = InlineKeyboardMarkup(inline_keyboard=[[
+            InlineKeyboardButton(
+                text="🎯 Chuqur tahlilni boshlash",
+                web_app=WebAppInfo(url=f"{webapp}/deep-diagnostic"),
+            )
+        ]])
+        await m.bot.send_message(
+            result["user_id"],
+            "✅ <b>To'lovingiz tasdiqlandi!</b>\\n\\n"
+            "Chuqur tahlilni boshlashingiz mumkin.",
+            reply_markup=kb,
+        )
+    except Exception as e:
+        import logging
+        logging.error(f"User xabar xato: {e}")
 
-  /* ─── 18. SAHIFA BO'LINMALARI ─── */
-  section, .card {
-    break-inside: auto;
-  }
 
-  /* Har bir career — yangi sahifada boshlanishi (kerak bo'lsa) */
-  .career-section {
-    break-before: auto;
-  }
+@router.message(Command("reject"))
+async def cmd_reject(m: _Message):
+    """Admin: /reject <payment_id> — to'lovni rad etish."""
+    if not _is_admin(m.from_user.id):
+        await m.answer("Ruxsat yo'q")
+        return
 
-  /* Ro'yxat elementlari uzilmasin */
-  li { break-inside: avoid; }
+    parts = (m.text or "").split()
+    if len(parts) < 2:
+        await m.answer("Format: /reject <payment_id>")
+        return
 
-  /* ─── 19. RANGLI BORDER'LAR ─── */
-  [class*="border-indigo"] { border-color: #c7d2fe !important; }
-  [class*="border-emerald"] { border-color: #a7f3d0 !important; }
-  [class*="border-amber"] { border-color: #fde68a !important; }
-  [class*="border-slate"] { border-color: #cbd5e1 !important; }
-  [class*="border-purple"] { border-color: #d8b4fe !important; }
-  [class*="border-blue"] { border-color: #bfdbfe !important; }
+    try:
+        pid = int(parts[1])
+    except ValueError:
+        await m.answer("payment_id raqam bo'lishi kerak")
+        return
 
-  /* ─── 20. FON RANGLARI — och versiyalar ─── */
-  .bg-\\[var\\(--tg-secondary-bg\\)\\] { background: #f9fafb !important; }
-  .bg-\\[var\\(--tg-bg\\)\\] { background: #ffffff !important; }
+    result = await _reject_impl(pid)
+    if not result["ok"]:
+        await m.answer(f"❌ {result['error']}")
+        return
 
-  /* Dark overlay'lar — olib tashlash */
-  [class*="backdrop"] { backdrop-filter: none !important; }
-}
+    await m.answer(f"❌ Payment #{pid} rad etildi")
+
+    try:
+        await m.bot.send_message(
+            result["user_id"],
+            "❌ <b>To'lov tasdiqlanmadi</b>\\n\\n"
+            "Skrinshot aniq emas yoki to'lov topilmadi.",
+        )
+    except Exception:
+        pass
+
+
+@router.message(Command("pending"))
+async def cmd_pending(m: _Message):
+    """Admin: /pending — kutilayotgan to'lovlar."""
+    if not _is_admin(m.from_user.id):
+        await m.answer("Ruxsat yo'q")
+        return
+
+    from backend.db import SessionLocal
+    from backend.models import Payment
+    from sqlalchemy import select, desc
+
+    async with SessionLocal() as s:
+        rows = (await s.execute(
+            select(Payment)
+            .where(Payment.status == "pending")
+            .order_by(desc(Payment.created_at))
+            .limit(10)
+        )).scalars().all()
+
+    if not rows:
+        await m.answer("Kutilayotgan to'lovlar yo'q")
+        return
+
+    text = "<b>Kutilayotgan to'lovlar:</b>\\n\\n"
+    for r in rows:
+        text += (
+            f"🎫 #{r.id} — user <code>{r.user_id}</code>\\n"
+            f"💰 {r.amount_uzs:,} so'm\\n"
+            f"✅ /approve {r.id}\\n"
+            f"❌ /reject {r.id}\\n\\n"
+        )
+    await m.answer(text)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# CATCH-ALL callback logger (debug uchun)
+# ═══════════════════════════════════════════════════════════════════
+
+@router.callback_query()
+async def cb_catch_all(callback):
+    """Har qanday callback — log qilish (hech qaysi handler tutmasa)."""
+    import logging
+    logging.getLogger("qadam.bot.payment").warning(
+        f"UNHANDLED callback: data={callback.data!r} from={callback.from_user.id}"
+    )
+    try:
+        await callback.answer(f"Handler topilmadi: {callback.data}", show_alert=True)
+    except Exception:
+        pass
 '''
 
-css = css.rstrip() + PRINT_CSS + "\n"
-GLOBALS.write_text(css, encoding="utf-8")
-print("[OK] globals.css — 20 ta print fix")
-
+PAY.write_text(p.rstrip() + TEXT_COMMANDS, encoding="utf-8")
+print("[OK] bot/handlers/payment.py — /approve, /reject, /pending + catch-all")
 
 # ═══════════════════════════════════════════════════════════
-# 2. REPORT SAHIFA — Print wrapper qo'shish
+# 3. Bot commands ro'yxatiga qo'shish
 # ═══════════════════════════════════════════════════════════
-REPORT = Path("qadam-miniapp/app/report/[id]/page.tsx")
-rep = REPORT.read_text(encoding="utf-8")
+m = MAIN.read_text(encoding="utf-8")
 
-# main'ga className qo'shish
-old_main = '<main className="max-w-md mx-auto px-4 py-6">'
-new_main = '<main className="max-w-md lg:max-w-4xl mx-auto px-4 py-6 print-full">'
-if old_main in rep:
-    rep = rep.replace(old_main, new_main)
-    print("[OK] report/page.tsx — kengaytirilgan container")
-else:
-    print("[SKIP] report/page.tsx — main topilmadi")
-
-REPORT.write_text(rep, encoding="utf-8")
-
-
-# ═══════════════════════════════════════════════════════════
-# 3. CSS — print-full klassi
-# ═══════════════════════════════════════════════════════════
-css = GLOBALS.read_text(encoding="utf-8")
-
-PRINT_FULL = '''
-
-/* Print uchun to'liq kenglik */
-@media print {
-  .print-full {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-}
-'''
-
-if ".print-full" not in css:
-    css = css.rstrip() + PRINT_FULL + "\n"
-    GLOBALS.write_text(css, encoding="utf-8")
-    print("[OK] globals.css — .print-full klassi")
+if 'BotCommand(command="approve"' not in m:
+    m = m.replace(
+        'BotCommand(command="help", description="Yordam"),',
+        'BotCommand(command="help", description="Yordam"),\n'
+        '            BotCommand(command="pending", description="Kutilayotgan to\'lovlar"),\n'
+        '            BotCommand(command="approve", description="To\'lovni tasdiqlash"),\n'
+        '            BotCommand(command="reject", description="To\'lovni rad etish"),',
+    )
+    MAIN.write_text(m, encoding="utf-8")
+    print("[OK] bot/main.py — commands ro'yxati")
 
 print()
 print("=" * 60)
-print("v5 — Print CSS tuzatildi!")
+print("Fix v5 — TAYYOR!")
 print("=" * 60)
 print()
-print("Nima o'zgardi:")
-print("  1. Ranglar saqlanadi (print-color-adjust: exact)")
-print("  2. CSS variables print'da light mode'ga o'tadi")
-print("  3. A4 full width (max-w-md → 100%)")
-print("  4. Kontrast muammolari tuzatildi")
-print("  5. Accordion — hammasi PDF'da ochiq")
+print("YANGI matn buyruqlar (agar tugmalar ishlamasa):")
+print("  /pending         — kutilayotgan to'lovlar ro'yxati")
+print("  /approve <id>    — to'lovni tasdiqlash")
+print("  /reject <id>     — to'lovni rad etish")
 print()
-print("Keyingi: git push")
+print("KEYINGI:")
+print("  git add -A")
+print('  git commit -m "Fix v5: text commands for admin approve/reject"')
+print("  git push")
+print("  Render Manual Deploy (bot, clear cache)")
+print("  Webhook qayta o'rnatish")

@@ -16,6 +16,7 @@ from aiogram.enums import ParseMode
 from aiogram.types import BotCommand
 
 from bot.handlers import start as start_handlers
+from bot.handlers.payment import router as payment_router
 
 load_dotenv()
 
@@ -33,12 +34,17 @@ PORT = int(os.getenv("PORT", 8080))
 bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher()
 dp.include_router(start_handlers.router)
+dp.include_router(payment_router)
+log.info("payment_router ulandi")
 
 
 async def _set_commands():
     await bot.set_my_commands([
         BotCommand(command="start", description="Boshlash"),
         BotCommand(command="help", description="Yordam"),
+            BotCommand(command="pending", description="Kutilayotgan to'lovlar"),
+            BotCommand(command="approve", description="To'lovni tasdiqlash"),
+            BotCommand(command="reject", description="To'lovni rad etish"),
     ])
 
 
