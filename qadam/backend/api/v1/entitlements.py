@@ -50,3 +50,38 @@ async def check_entitlement(
     from backend.services.entitlement_service import has_active_entitlement
     ok = await has_active_entitlement(user["id"], entitlement_key)
     return {"user_id": user["id"], "entitlement_key": entitlement_key, "active": ok}
+
+
+# ═══════════════════════════════════════════════════════════
+# DEV — Admin manual grant (bot callback ishlamasa)
+# ═══════════════════════════════════════════════════════════
+
+from pydantic import BaseModel as _BaseModel
+
+
+class DevGrantPayload(_BaseModel):
+    init_data: str
+    user_id: int
+    entitlement_key: str = "premium_career_intelligence"
+
+
+@router.post("/dev-grant")
+async def dev_grant(payload: DevGrantPayload):
+    """Admin-only: foydalanuvchiga to'g'ridan-to'g'ri entitlement berish."""
+    admin = verify_init_data(payload.init_data)
+    if not admin:
+        raise HTTPException(401, "Invalid initData")
+
+    import os as _os
+    admin_ids = set(int(x.strip()) for x in _os.getenv("ADMIN_IDS", "").split(",") if x.strip())
+    if admin["id"] not in admin_ids:
+        raise HTTPException(403, "Ruxsat yo'q")
+
+    from backend.services.entitlement_service import grant_entitlement
+    ent = await grant_entitlement(
+        user_id=payload.user_id,
+        entitlement_key=payload.entitlement_key,
+        source="admin_manual",
+        meta={"granted_by": admin["id"]},
+    )
+    return {"ok": True, "entitlement_id": ent.id, "user_id": payload.user_id}

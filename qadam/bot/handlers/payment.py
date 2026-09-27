@@ -560,3 +560,166 @@ async def cb_reject(callback: CallbackQuery):
             pass
     except Exception as e:
         _logger.error(f"cb_reject xato: {e}")
+
+# ═══════════════════════════════════════════════════════════════════
+# MANUAL TO'LOV — admin callback (v4, robust)
+# ═══════════════════════════════════════════════════════════════════
+
+import os as _os
+import logging as _logging
+
+_log = _logging.getLogger("qadam.bot.payment")
+
+
+def _is_admin(uid: int) -> bool:
+    ids_str = _os.getenv("ADMIN_IDS", "")
+    _log.info(f"_is_admin check: uid={uid} ADMIN_IDS={ids_str!r}")
+    ids = set(int(x.strip()) for x in ids_str.split(",") if x.strip())
+    return uid in ids
+
+
+@router.callback_query(F.data.startswith("pay:approve:"))
+async def cb_approve(callback: CallbackQuery):
+    _log.info(f"cb_approve START: from={callback.from_user.id} data={callback.data}")
+
+    if not _is_admin(callback.from_user.id):
+        _log.warning(f"cb_approve: not admin {callback.from_user.id}")
+        await callback.answer("Ruxsat yo'q", show_alert=True)
+        return
+
+    await callback.answer("Tasdiqlanmoqda...")
+
+    try:
+        payment_id = int(callback.data.split(":")[2])
+    except Exception as e:
+        _log.error(f"cb_approve parse: {e}")
+        return
+
+    try:
+        from backend.db import SessionLocal
+        from backend.models import Payment
+        from backend.services.entitlement_service import grant_entitlement
+
+        user_id = None
+        stage1_id = None
+        async with SessionLocal() as s:
+            p = await s.get(Payment, payment_id)
+            if not p:
+                _log.error(f"Payment {payment_id} topilmadi")
+                try:
+                    await callback.message.edit_caption(
+                        caption=(callback.message.caption or "") + "\n\n⚠️ Payment topilmadi",
+                    )
+                except Exception:
+                    pass
+                return
+            p.status = "paid"
+            await s.commit()
+            user_id = p.user_id
+            stage1_id = p.stage1_result_id
+
+        _log.info(f"Payment {payment_id} paid, user={user_id}")
+
+        # Entitlement grant
+        try:
+            ent = await grant_entitlement(
+                user_id=user_id,
+                entitlement_key="premium_career_intelligence",
+                source="manual_card",
+                payment_reference=str(payment_id),
+                plan_code="pci_39000_uzs",
+                meta={"stage1_result_id": stage1_id},
+            )
+            _log.info(f"Entitlement granted: id={ent.id} user={user_id}")
+        except Exception as e:
+            _log.error(f"grant_entitlement xato: {e}")
+            try:
+                await callback.message.reply(f"⚠️ Entitlement xato: {str(e)[:150]}")
+            except Exception:
+                pass
+
+        # Userga xabar
+        if user_id:
+            try:
+                from aiogram.types import (
+                    InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo,
+                )
+                webapp = _os.getenv("WEBAPP_URL", "")
+                kb = InlineKeyboardMarkup(inline_keyboard=[[
+                    InlineKeyboardButton(
+                        text="🎯 Chuqur tahlilni boshlash",
+                        web_app=WebAppInfo(url=f"{webapp}/deep-diagnostic"),
+                    )
+                ]])
+                await callback.bot.send_message(
+                    user_id,
+                    "✅ <b>To'lovingiz tasdiqlandi!</b>\n\n"
+                    "Chuqur tahlilni boshlashingiz mumkin.",
+                    reply_markup=kb,
+                )
+                _log.info(f"User {user_id} ga xabar yuborildi")
+            except Exception as e:
+                _log.error(f"User xabar xato: {e}")
+
+        # Caption update
+        try:
+            new_caption = (callback.message.caption or "") + "\n\n✅ <b>TASDIQLANDI</b>"
+            await callback.message.edit_caption(caption=new_caption, reply_markup=None)
+        except Exception as e:
+            _log.error(f"caption update xato: {e}")
+
+    except Exception as e:
+        _log.error(f"cb_approve umumiy xato: {e}")
+        import traceback
+        _log.error(traceback.format_exc())
+        try:
+            await callback.message.reply(f"⚠️ Xato: {str(e)[:150]}")
+        except Exception:
+            pass
+
+
+@router.callback_query(F.data.startswith("pay:reject:"))
+async def cb_reject(callback: CallbackQuery):
+    _log.info(f"cb_reject: from={callback.from_user.id} data={callback.data}")
+
+    if not _is_admin(callback.from_user.id):
+        await callback.answer("Ruxsat yo'q", show_alert=True)
+        return
+
+    await callback.answer("Rad etilmoqda...")
+
+    try:
+        payment_id = int(callback.data.split(":")[2])
+    except Exception:
+        return
+
+    try:
+        from backend.db import SessionLocal
+        from backend.models import Payment
+
+        async with SessionLocal() as s:
+            p = await s.get(Payment, payment_id)
+            if p:
+                p.status = "rejected"
+                await s.commit()
+                user_id = p.user_id
+            else:
+                user_id = None
+
+        if user_id:
+            try:
+                await callback.bot.send_message(
+                    user_id,
+                    "❌ <b>To'lov tasdiqlanmadi</b>\n\n"
+                    "Skrinshot aniq emas yoki to'lov topilmadi. Qaytadan urinib ko'ring.",
+                )
+            except Exception:
+                pass
+
+        try:
+            new_caption = (callback.message.caption or "") + "\n\n❌ <b>RAD ETILDI</b>"
+            await callback.message.edit_caption(caption=new_caption, reply_markup=None)
+        except Exception:
+            pass
+    except Exception as e:
+        _log.error(f"cb_reject xato: {e}")

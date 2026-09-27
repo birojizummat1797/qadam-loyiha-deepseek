@@ -171,7 +171,23 @@ export default function PremiumPage() {
                   Admin tasdiqlagach sizga Telegram orqali xabar keladi.
                 </p>
                 <button
-                  onClick={() => router.push("/deep-diagnostic")}
+                  onClick={async () => {
+                    try {
+                      const r = await api.get("/api/v1/entitlements/check", {
+                        params: {
+                          init_data: getInitData(),
+                          entitlement_key: "premium_career_intelligence",
+                        },
+                      });
+                      if (r.data.active) {
+                        router.push("/deep-diagnostic");
+                      } else {
+                        alert("To'lov hali tasdiqlanmagan. Iltimos, admin tasdiqini kuting.");
+                      }
+                    } catch (err) {
+                      alert("Xatolik: " + err);
+                    }
+                  }}
                   className="btn btn-primary"
                 >
                   Chuqur tahlilni boshlash

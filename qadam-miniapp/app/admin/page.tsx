@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { getInitData } from "@/lib/api";
 import { motion } from "framer-motion";
 import {
   Users, TrendingUp, Star, MessageSquare, Trophy, BarChart3,
@@ -163,6 +165,9 @@ export default function AdminPage() {
         )}
       </div>
 
+      {/* DEV: Manual grant section */}
+      <ManualGrantSection />
+
       {/* Feedbacks */}
       <div className="rounded-2xl p-4 bg-[var(--tg-secondary-bg)] border border-[var(--tg-hint)]/15">
         <div className="flex items-center gap-2 mb-3">
@@ -244,5 +249,59 @@ function Err({ msg }: { msg: string }) {
         </div>
       </div>
     </main>
+  );
+}
+
+
+function ManualGrantSection() {
+  const [userId, setUserId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const grant = async () => {
+    if (!userId) return;
+    setLoading(true);
+    setMsg(null);
+    try {
+      const r = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/entitlements/dev-grant`,
+        {
+          init_data: getInitData(),
+          user_id: Number(userId),
+          entitlement_key: "premium_career_intelligence",
+        }
+      );
+      setMsg("✅ Entitlement berildi: #" + r.data.entitlement_id);
+    } catch (e: any) {
+      setMsg("❌ " + (e?.response?.data?.detail || e.message));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="rounded-2xl p-4 bg-amber-500/10 border border-amber-500/30 mb-5">
+      <h3 className="font-semibold text-sm mb-3">🔧 DEV: Premium qo'lda berish</h3>
+      <p className="text-[11px] text-[var(--tg-hint)] mb-3">
+        Telegram ID kiriting. Admin sifatida to'g'ridan-to'g'ri premium beradi.
+      </p>
+      <div className="flex gap-2">
+        <input
+          type="number"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+          placeholder="User ID"
+          className="flex-1 px-3 py-2 rounded-lg bg-[var(--tg-bg)] border border-[var(--tg-hint)]/20 text-sm"
+        />
+        <button
+          onClick={grant}
+          disabled={loading || !userId}
+          className="px-4 py-2 rounded-lg bg-amber-500 text-white font-medium text-sm disabled:opacity-50"
+        >
+          {loading ? "..." : "Berish"}
+        </button>
+      </div>
+      {msg && <p className="text-xs mt-2">{msg}</p>}
+    </div>
   );
 }
