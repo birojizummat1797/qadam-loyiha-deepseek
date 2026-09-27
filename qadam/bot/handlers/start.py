@@ -1,7 +1,4 @@
-"""
-FTT § 4-5: Welcome flow + Premium intro.
-Tugmalar Mini App'ni ochadi.
-"""
+"""FTT § 4-5: Welcome flow + Mini App buttons (v3)."""
 import os
 from html import escape
 from aiogram import Router, F
@@ -13,49 +10,44 @@ from aiogram.types import (
 )
 
 router = Router()
-
 WEBAPP_URL = os.getenv("WEBAPP_URL", "https://qadam-loyiha-deepseek-eight.vercel.app")
 
 WELCOME_TEXT = (
     "Assalomu alaykum, <b>{name}</b>!\n\n"
-    "Sizni <b>QADAM</b> loyihasida ko‘rib turganimizdan xursandmiz. "
-    "Sizga o‘zingizga mos bo‘lishi mumkin bo‘lgan kasb va yo‘nalishlarni "
-    "yaxshiroq tushunish, keyingi qadamlarni aniqlash va amaliy roadmap "
-    "olishda yordam beramiz.\n\n"
-    "Test davomida javoblaringiz asosida sizga mos savollar beriladi. "
-    "Shuning uchun javoblarni imkon qadar o‘zingizga yaqin va halol tanlang.\n\n"
-    "Boshlash uchun quyidagi variantlardan birini tanlang:"
+    "Men — <b>Qadam.io</b>, kasb va soha tanlashda yordamchi.\n\n"
+    "Sizga mos yo'nalishni dalillar asosida aniqlash va shaxsiy "
+    "yo'l xaritasi tuzishda yordam beraman.\n\n"
+    "<b>3 daqiqa</b> — 13 savol — <b>bepul</b>."
 )
 
 PREMIUM_INTRO_TEXT = (
-    "Sizni <b>Qadam.io Premium Personal Diagnostic</b>’da ko‘rib turganimizdan "
-    "xursandmiz!\n\n"
-    "Bu diagnostikada savollar shunchaki test uchun emas. Javoblaringiz "
-    "asosida sizga mos bo‘lishi mumkin bo‘lgan kasbiy yo‘nalishlar, mavjud "
-    "kuchli tomonlar, rivojlantirilishi kerak bo‘lgan ko‘nikmalar va keyingi "
-    "qadamlar aniqlanadi.\n\n"
-    "Shuning uchun javoblarni imkon qadar shoshmasdan va o‘zingizga eng "
-    "yaqin holat asosida bering. Bu natijaning foydaliligiga bevosita "
-    "ta’sir qiladi."
+    "<b>Chuqur tahlil</b>\n\n"
+    "Chuqur tahlil sizga:\n"
+    "• 18 qo'shimcha savol\n"
+    "• Top-5 mos yo'nalish\n"
+    "• Fit va Readiness (har biri uchun)\n"
+    "• Skill-gap tahlili\n"
+    "• 6-12 oylik shaxsiy yo'l xaritasi\n"
+    "• PDF hisobot\n\n"
+    "Narx: <b>39 000 so'm</b> yoki <b>150 Stars</b>"
 )
 
 HELP_TEXT = (
     "<b>Qadam.io yordam</b>\n\n"
     "/start — boshidan boshlash\n"
     "/help — yordam\n\n"
-    "Savollar bo‘lsa: @ulugbek_aliboyev"
+    "Savollar: @ulugbek_aliboyev"
 )
 
 
 def main_menu_kb() -> InlineKeyboardMarkup:
-    """Asosiy menyu — Mini App tugmalari."""
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(
             text="🎯 Bepul diagnostika",
-            web_app=WebAppInfo(url=f"{WEBAPP_URL}/stage1"),
+            web_app=WebAppInfo(url=f"{WEBAPP_URL}/discovery"),
         )],
         [InlineKeyboardButton(
-            text="💎 Premium diagnostika",
+            text="💎 Chuqur tahlil (premium)",
             callback_data="diag:premium",
         )],
         [InlineKeyboardButton(
@@ -70,20 +62,17 @@ def main_menu_kb() -> InlineKeyboardMarkup:
 
 
 def premium_intro_kb() -> InlineKeyboardMarkup:
-    """Premium intro — Mini App ochish."""
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(
-            text="🚀 Diagnostikani boshlash",
-            web_app=WebAppInfo(url=WEBAPP_URL),
+            text="🚀 Bepul diagnostikadan boshlash",
+            web_app=WebAppInfo(url=f"{WEBAPP_URL}/discovery"),
         )],
-        [InlineKeyboardButton(text="❓ Qanday ishlaydi?", callback_data="info:how")],
         [InlineKeyboardButton(text="⬅️ Orqaga", callback_data="nav:back")],
     ])
 
 
 def _safe_name(user) -> str:
-    name = user.first_name or "do‘stim"
-    return escape(name)
+    return escape(user.first_name or "do'stim")
 
 
 @router.message(CommandStart())
@@ -103,13 +92,9 @@ async def cmd_help(m: Message):
 async def cb_premium(q: CallbackQuery):
     await q.answer()
     try:
-        await q.message.edit_text(
-            PREMIUM_INTRO_TEXT, reply_markup=premium_intro_kb()
-        )
+        await q.message.edit_text(PREMIUM_INTRO_TEXT, reply_markup=premium_intro_kb())
     except Exception:
-        await q.message.answer(
-            PREMIUM_INTRO_TEXT, reply_markup=premium_intro_kb()
-        )
+        await q.message.answer(PREMIUM_INTRO_TEXT, reply_markup=premium_intro_kb())
 
 
 @router.callback_query(F.data == "nav:back")
@@ -129,10 +114,10 @@ async def cb_how(q: CallbackQuery):
     await q.answer()
     await q.message.answer(
         "<b>Qadam.io qanday ishlaydi?</b>\n\n"
-        "1. Siz savollarga javob berasiz.\n"
-        "2. Tizim javoblaringizni signallarga aylantiradi.\n"
-        "3. Signallar 25+ kasbiy yo‘nalish bilan taqqoslanadi.\n"
-        "4. Sizga eng mos 3 ta yo‘nalish va amaliy roadmap beriladi.\n\n"
+        "1. Siz 13 ta savolga javob berasiz (3 daqiqa).\n"
+        "2. Tizim javoblarni signallarga aylantiradi.\n"
+        "3. Signallar 25+ kasbiy yo'nalish bilan taqqoslanadi.\n"
+        "4. Sizga mos 3 ta yo'nalish va amaliy yo'l xaritasi beriladi.\n\n"
         "<i>Halol tahlil. Manipulyatsiyasiz.</i>"
     )
 
@@ -142,28 +127,22 @@ async def cb_privacy(q: CallbackQuery):
     await q.answer()
     await q.message.answer(
         "<b>Maxfiylik</b>\n\n"
-        "Sizning javoblaringiz faqat tahlil uchun ishlatiladi. "
-        "Uchinchi shaxslarga ruxsatingizsiz uzatilmaydi. "
-        "Ma’lumotlaringiz shifrlangan holda saqlanadi."
+        "Javoblaringiz faqat tahlil uchun ishlatiladi. "
+        "Uchinchi shaxslarga ruxsatsiz uzatilmaydi."
     )
 
 
 @router.message(Command("admin"))
 async def cmd_admin(m: Message):
-    """Admin panel uchun."""
-    import os
     admin_ids = set(
         int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()
     )
     if m.from_user.id not in admin_ids:
-        await m.answer("Ruxsat yoq")
+        await m.answer("Ruxsat yo'q")
         return
 
     url = f"{WEBAPP_URL}/admin"
     kb = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(
-            text="Admin Panel",
-            web_app=WebAppInfo(url=url),
-        )
+        InlineKeyboardButton(text="Admin Panel", web_app=WebAppInfo(url=url))
     ]])
     await m.answer("Admin panel:", reply_markup=kb)

@@ -426,3 +426,137 @@ async def cb_reject(callback: CallbackQuery):
 
     except Exception as e:
         _logger.error(f"cb_reject xato: {e}")
+
+# ═══════════════════════════════════════════════════════════════════
+# MANUAL TO'LOV — admin tasdiqlash (v3)
+# ═══════════════════════════════════════════════════════════════════
+
+import os as _os
+import logging as _log
+
+_logger = _log.getLogger("qadam.bot.payment")
+
+
+def _is_admin(uid: int) -> bool:
+    ids = set(int(x.strip()) for x in _os.getenv("ADMIN_IDS", "").split(",") if x.strip())
+    return uid in ids
+
+
+@router.callback_query(F.data.startswith("pay:approve:"))
+async def cb_approve(callback: CallbackQuery):
+    if not _is_admin(callback.from_user.id):
+        await callback.answer("Ruxsat yo'q", show_alert=True)
+        return
+
+    await callback.answer("Tasdiqlanmoqda...")
+
+    try:
+        payment_id = int(callback.data.split(":")[2])
+    except Exception:
+        return
+
+    try:
+        from backend.db import SessionLocal
+        from backend.models import Payment
+        from backend.services.entitlement_service import grant_entitlement
+
+        user_id = None
+        async with SessionLocal() as s:
+            p = await s.get(Payment, payment_id)
+            if not p:
+                await callback.message.edit_caption(
+                    caption=(callback.message.caption or "") + "\n\n⚠️ Payment topilmadi"
+                )
+                return
+            p.status = "paid"
+            await s.commit()
+            user_id = p.user_id
+
+        # Entitlement grant
+        await grant_entitlement(
+            user_id=user_id,
+            entitlement_key="premium_career_intelligence",
+            source="manual_card",
+            payment_reference=str(payment_id),
+        )
+        _logger.info(f"Payment {payment_id} paid, entitlement granted, user={user_id}")
+
+        # Userga xabar
+        if user_id:
+            try:
+                from aiogram.types import (
+                    InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo,
+                )
+                webapp = _os.getenv("WEBAPP_URL", "")
+                kb = InlineKeyboardMarkup(inline_keyboard=[[
+                    InlineKeyboardButton(
+                        text="🎯 Chuqur tahlilni boshlash",
+                        web_app=WebAppInfo(url=f"{webapp}/career-intelligence"),
+                    )
+                ]])
+                await callback.bot.send_message(
+                    user_id,
+                    "✅ <b>To'lovingiz tasdiqlandi!</b>\n\n"
+                    "Endi chuqur tahlilni boshlashingiz mumkin.",
+                    reply_markup=kb,
+                )
+            except Exception as e:
+                _logger.error(f"User xabar xato: {e}")
+
+        try:
+            new_caption = (callback.message.caption or "") + "\n\n✅ <b>TASDIQLANDI</b>"
+            await callback.message.edit_caption(caption=new_caption, reply_markup=None)
+        except Exception:
+            pass
+
+    except Exception as e:
+        _logger.error(f"cb_approve xato: {e}")
+        try:
+            await callback.message.reply(f"⚠️ Xato: {str(e)[:100]}")
+        except Exception:
+            pass
+
+
+@router.callback_query(F.data.startswith("pay:reject:"))
+async def cb_reject(callback: CallbackQuery):
+    if not _is_admin(callback.from_user.id):
+        await callback.answer("Ruxsat yo'q", show_alert=True)
+        return
+
+    await callback.answer("Rad etilmoqda...")
+
+    try:
+        payment_id = int(callback.data.split(":")[2])
+    except Exception:
+        return
+
+    try:
+        from backend.db import SessionLocal
+        from backend.models import Payment
+
+        async with SessionLocal() as s:
+            p = await s.get(Payment, payment_id)
+            if p:
+                p.status = "rejected"
+                await s.commit()
+                user_id = p.user_id
+            else:
+                user_id = None
+
+        if user_id:
+            try:
+                await callback.bot.send_message(
+                    user_id,
+                    "❌ <b>To'lov tasdiqlanmadi</b>\n\n"
+                    "Skrinshot aniq emas yoki to'lov topilmadi.",
+                )
+            except Exception:
+                pass
+
+        try:
+            new_caption = (callback.message.caption or "") + "\n\n❌ <b>RAD ETILDI</b>"
+            await callback.message.edit_caption(caption=new_caption, reply_markup=None)
+        except Exception:
+            pass
+    except Exception as e:
+        _logger.error(f"cb_reject xato: {e}")

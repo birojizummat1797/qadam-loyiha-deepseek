@@ -639,3 +639,106 @@ async def manual_status(payment_id: int, init_data: str = Query(...)):
             "status": p.status,
             "stage2_ready": stage2_ready,
         }
+
+# ═══════════════════════════════════════════════════════════════════
+# MANUAL TO'LOV v3 — discovery_session_id bilan
+# ═══════════════════════════════════════════════════════════════════
+
+CARD_NUMBER = os.getenv("CARD_NUMBER", "8600 0000 0000 0000")
+CARD_HOLDER = os.getenv("CARD_HOLDER", "Qadam.io")
+CARD_BANK = os.getenv("CARD_BANK", "Uzcard")
+ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0"))
+
+
+@router.get("/manual/card-info")
+async def get_card_info():
+    """Karta ma'lumotlari."""
+    return {
+        "card": {
+            "number": CARD_NUMBER,
+            "holder": CARD_HOLDER,
+            "bank": CARD_BANK,
+            "amount": PRICE_UZS,
+        }
+    }
+
+
+@router.post("/manual/upload-v2")
+async def manual_upload_v2(
+    init_data: str = Form(...),
+    discovery_session_id: int = Form(...),
+    screenshot: UploadFile = File(...),
+):
+    """
+    User screenshot yuklaydi (Discovery session'ga bog'langan).
+    """
+    user = verify_init_data(init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+
+    if screenshot.content_type not in ("image/jpeg", "image/png", "image/jpg", "image/webp"):
+        raise HTTPException(400, "Faqat rasm yuklang (JPG, PNG)")
+
+    content = await screenshot.read()
+    if len(content) > 5 * 1024 * 1024:
+        raise HTTPException(400, "Rasm 5 MB dan oshmasin")
+
+    # Payment yozuvi (discovery_session_id ni `stage1_result_id` ustunida saqlaymiz)
+    async with SessionLocal() as s:
+        p = Payment(
+            user_id=user["id"],
+            stage1_result_id=discovery_session_id,
+            provider="manual_v2",
+            amount_uzs=PRICE_UZS,
+            status="pending",
+        )
+        s.add(p)
+        await s.commit()
+        await s.refresh(p)
+        payment_id = p.id
+
+    # Adminga rasm + tugmalar
+    try:
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import (
+            BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton,
+        )
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        first_name = user.get("first_name") or "Nomalum"
+        username = user.get("username") or "-"
+        uid = user["id"]
+
+        caption = (
+            f"💳 <b>Yangi to'lov (v2)</b>\n\n"
+            f"👤 <b>User:</b> {first_name}\n"
+            f"🔗 <b>Username:</b> @{username}\n"
+            f"🆔 <b>ID:</b> <code>{uid}</code>\n"
+            f"💰 <b>Summa:</b> {PRICE_UZS:,} so'm\n"
+            f"🎫 <b>Payment ID:</b> {payment_id}\n"
+            f"📊 <b>Discovery session:</b> {discovery_session_id}\n\n"
+            f"Rasmni tekshirib tasdiqlang:"
+        )
+
+        kb = InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="✅ Tasdiqlash", callback_data=f"pay:approve:{payment_id}"),
+                InlineKeyboardButton(text="❌ Rad etish", callback_data=f"pay:reject:{payment_id}"),
+            ],
+        ])
+
+        photo = BufferedInputFile(content, filename="screenshot.jpg")
+        if ADMIN_CHAT_ID:
+            await bot.send_photo(ADMIN_CHAT_ID, photo=photo, caption=caption, reply_markup=kb)
+
+        await bot.session.close()
+    except Exception as e:
+        log.error(f"Admin xabar xato: {e}")
+
+    return {"ok": True, "payment_id": payment_id, "status": "pending"}
