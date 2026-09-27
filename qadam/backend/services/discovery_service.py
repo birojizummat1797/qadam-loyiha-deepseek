@@ -35,7 +35,7 @@ def compute_signals_from_discovery(answers: list, questions: list) -> dict:
     answers: [{"question_id": "DISC_Q02", "answer_id": "DISC_Q02_A01", "answer_value": 4}, ...]
     Returns: {signal_key: {value, trust, evidence_state, coverage}}
     """
-    from engine.signals import (
+    from backend.engine.signals import (
         SIGNAL_KEYS, LIKERT_TO_10, _classify_trust,
     )
 
@@ -93,7 +93,7 @@ def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> d
     Free Discovery natijasi — PRELIMINARY.
     Bu Premium Deep Diagnostic emas — yuzaki.
     """
-    from engine.ranking import rank_careers
+    from backend.engine.ranking import rank_careers
     # taxonomy tashqaridan beriladi (async)
 
     # Constraints (Q11, Q12, Q13)
@@ -172,7 +172,7 @@ def extract_evidence(answers: list, questions: list) -> list:
         {"signal_key", "question_id", "answer_id", "contribution", "evidence_type"}
     ]
     """
-    from engine.signals import LIKERT_TO_10
+    from backend.engine.signals import LIKERT_TO_10
 
     qmap = {q["id"]: q for q in questions}
     out = []
