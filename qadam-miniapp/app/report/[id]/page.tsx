@@ -9,6 +9,7 @@ import { RoadmapView } from "@/components/RoadmapView";
 import { PdfDownloader } from "@/components/PdfDownloader";
 import { CloseButton } from "@/components/CloseButton";
 import { FeedbackModal } from "@/components/FeedbackModal";
+import { SkeletonReport } from "@/components/Skeleton";
 
 export default function ReportPage() {
   const { id } = useParams<{ id: string }>();
@@ -184,9 +185,12 @@ export default function ReportPage() {
 
 function Loader() {
   return (
-    <main className="max-w-md mx-auto px-5 py-10 text-center">
-      <div className="w-10 h-10 border-4 border-[var(--tg-secondary-bg)] border-t-[var(--tg-button)] rounded-full animate-spin mx-auto" />
-      <p className="mt-4 text-sm text-[var(--tg-hint)]">Tahlil yuklanmoqda...</p>
+    <main className="max-w-md mx-auto px-5 py-6">
+      <div className="text-center mb-4">
+        <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-2 animate-pulse" />
+        <p className="text-xs text-[var(--tg-hint)]">AI tahlil qilmoqda...</p>
+      </div>
+      <SkeletonReport />
     </main>
   );
 }

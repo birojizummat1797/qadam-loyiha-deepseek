@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { fetchQuestions, submitStage1 } from "@/lib/api";
 import { useStore } from "@/lib/store";
+import { SkeletonQuestion } from "@/components/Skeleton";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Q = {
   id: string;
@@ -138,8 +140,8 @@ export default function Stage1Page() {
 
 function Loader() {
   return (
-    <main className="max-w-md mx-auto px-5 py-10 text-center">
-      <div className="w-10 h-10 border-4 border-[var(--tg-secondary-bg)] border-t-[var(--tg-button)] rounded-full animate-spin mx-auto" />
+    <main className="max-w-md mx-auto px-5 py-6">
+      <SkeletonQuestion />
     </main>
   );
 }
