@@ -180,3 +180,71 @@ class DiscoverySignal(Base):
     __table_args__ = (
         UniqueConstraint("session_id", "signal_key", name="uq_session_signal_disc"),
     )
+
+
+# ═══════════════════════════════════════════════════════════
+# SIGNAL EVIDENCE — har signal qaysi javobdan kelganini saqlash
+# ═══════════════════════════════════════════════════════════
+class SignalEvidence(Base):
+    """
+    Har bir signal uchun "dalil" yozuvi.
+    Qaysi question/answer'dan qancha contribution kelganini saqlaydi.
+    """
+    __tablename__ = "signal_evidence"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    session_id: Mapped[int] = mapped_column(Integer, index=True)
+    session_type: Mapped[str] = mapped_column(String(16))  # discovery | deep
+    signal_key: Mapped[str] = mapped_column(String(64), index=True)
+    question_id: Mapped[str] = mapped_column(String(64))
+    answer_id: Mapped[str] = mapped_column(String(64))
+    contribution: Mapped[float] = mapped_column(Float)
+    evidence_type: Mapped[str] = mapped_column(String(24))  # direct | indirect
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+
+# ═══════════════════════════════════════════════════════════
+# TAXONOMY — versioned, DB-driven
+# ═══════════════════════════════════════════════════════════
+class TaxonomyVersion(Base):
+    __tablename__ = "taxonomy_versions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    version: Mapped[str] = mapped_column(String(16), unique=True, index=True)
+    notes: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    published_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+
+class Career(Base):
+    """DB-driven career taxonomy."""
+    __tablename__ = "careers"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    taxonomy_version_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("taxonomy_versions.id"), index=True
+    )
+    slug: Mapped[str] = mapped_column(String(64), index=True)
+    title_uz: Mapped[str] = mapped_column(String(128))
+    cluster: Mapped[str] = mapped_column(String(64), index=True)
+    cluster_uz: Mapped[str] = mapped_column(String(128))
+    pathway_type: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    learning_months: Mapped[int | None] = mapped_column(Integer, nullable=True)
+
+    required_signals: Mapped[dict] = mapped_column(JSON)   # {signal: weight}
+    prerequisites: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    salary_usd: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    roadmap_template_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+    __table_args__ = (
+        UniqueConstraint("taxonomy_version_id", "slug", name="uq_tax_slug"),
+    )

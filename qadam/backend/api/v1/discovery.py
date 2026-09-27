@@ -6,13 +6,14 @@ from sqlalchemy import select, desc
 
 from backend.db import SessionLocal
 from backend.models_v2 import (
-    DiscoverySession, DiscoveryAnswer, DiscoverySignal,
+    DiscoverySession, DiscoveryAnswer, DiscoverySignal, SignalEvidence,
 )
 from backend.auth import verify_init_data
 from backend.data_loader import load_discovery_questions
 from backend.services.discovery_service import (
     get_next_question, compute_signals_from_discovery, build_preliminary_insight,
 )
+from backend.services.taxonomy_service import load_taxonomy_from_db
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["discovery-v1"])
 
@@ -180,8 +181,11 @@ async def complete_session(session_id: int, payload: StartSessionPayload):
     ]
     signals = compute_signals_from_discovery(answers_list, questions)
 
+    # DB taxonomy
+    taxonomy = await load_taxonomy_from_db()
+
     # Preliminary insight
-    insight = build_preliminary_insight(signals, answers_list)
+    insight = build_preliminary_insight(signals, answers_list, taxonomy)
 
     # Saqlash
     async with SessionLocal() as s:
@@ -201,6 +205,21 @@ async def complete_session(session_id: int, payload: StartSessionPayload):
                 coverage=v["coverage"],
             )
             s.add(sig)
+
+        # Evidence yozuvlarini saqlash
+        from backend.services.discovery_service import extract_evidence
+        evidences = extract_evidence(answers_list, questions)
+        for ev in evidences:
+            e = SignalEvidence(
+                session_id=session_id,
+                session_type="discovery",
+                signal_key=ev["signal_key"],
+                question_id=ev["question_id"],
+                answer_id=ev["answer_id"],
+                contribution=ev["contribution"],
+                evidence_type=ev["evidence_type"],
+            )
+            s.add(e)
 
         await s.commit()
 

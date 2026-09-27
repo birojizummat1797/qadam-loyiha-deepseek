@@ -16,6 +16,7 @@ from backend.api.admin import router as admin_router
 from backend.api.v1.profile import router as v1_profile_router
 from backend.api.v1.entitlements import router as v1_entitlements_router
 from backend.api.v1.discovery import router as v1_discovery_router
+from backend.api.v1.taxonomy import router as v1_taxonomy_router
 from backend.logger import setup_logging, log
 
 setup_logging()
@@ -55,6 +56,7 @@ app.include_router(admin_router)
 app.include_router(v1_profile_router)
 app.include_router(v1_entitlements_router)
 app.include_router(v1_discovery_router)
+app.include_router(v1_taxonomy_router)
 
 
 @app.get("/")

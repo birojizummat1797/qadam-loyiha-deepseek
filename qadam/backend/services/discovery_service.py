@@ -88,17 +88,16 @@ def compute_signals_from_discovery(answers: list, questions: list) -> dict:
     return out
 
 
-def build_preliminary_insight(signals: dict, answers: list) -> dict:
+def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> dict:
     """
     Free Discovery natijasi — PRELIMINARY.
     Bu Premium Deep Diagnostic emas — yuzaki.
     """
     from engine.ranking import rank_careers
-    from data_loader import load_taxonomy
+    # taxonomy tashqaridan beriladi (async)
 
     # Constraints (Q11, Q12, Q13)
     constraints = _extract_constraints(answers)
-    taxonomy = load_taxonomy()
 
     try:
         ranking = rank_careers(
@@ -162,3 +161,52 @@ def _extract_constraints(answers: list) -> dict:
         "device": device_map.get(qmap.get("DISC_Q12", {}).get("answer_id"), "laptop"),
         "english": english_map.get(qmap.get("DISC_Q13", {}).get("answer_id"), "b1"),
     }
+
+
+# ═══════════════════════════════════════════════════════════
+# EVIDENCE EXTRACTION — har signal uchun alohida yozuv
+# ═══════════════════════════════════════════════════════════
+def extract_evidence(answers: list, questions: list) -> list:
+    """
+    Returns: [
+        {"signal_key", "question_id", "answer_id", "contribution", "evidence_type"}
+    ]
+    """
+    from engine.signals import LIKERT_TO_10
+
+    qmap = {q["id"]: q for q in questions}
+    out = []
+
+    for a in answers:
+        q = qmap.get(a["question_id"])
+        if not q:
+            continue
+
+        # Likert
+        if q.get("type") == "likert":
+            v10 = LIKERT_TO_10.get(a["answer_value"], 5.0)
+            for sig, w in q.get("signals", {}).items():
+                out.append({
+                    "signal_key": sig,
+                    "question_id": a["question_id"],
+                    "answer_id": a.get("answer_id", ""),
+                    "contribution": round(v10 * w, 3),
+                    "evidence_type": "direct",
+                })
+            continue
+
+        # Choice
+        opt = next((o for o in q.get("options", []) if o["id"] == a["answer_id"]), None)
+        if not opt:
+            continue
+        v10 = LIKERT_TO_10.get(int(opt.get("value", 3)), 5.0)
+        for sig, w in opt.get("signals", {}).items():
+            out.append({
+                "signal_key": sig,
+                "question_id": a["question_id"],
+                "answer_id": a["answer_id"],
+                "contribution": round(v10 * w, 3),
+                "evidence_type": "direct" if w >= 0.8 else "indirect",
+            })
+
+    return out
