@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""Qadam.io — WOW animatsiyalar v2."""
+from pathlib import Path
+
+INTRO = Path("qadam-miniapp/app/page.tsx")
+
+INTRO.write_text(r'''"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -208,3 +214,72 @@ export default function Home() {
     </main>
   );
 }
+''', encoding="utf-8")
+print("[OK] app/page.tsx — WOW animatsiyalar")
+
+# ═══════════════════════════════════════════════════════════
+# CSS — globals.css ga glow effekt qo'shish
+# ═══════════════════════════════════════════════════════════
+GLOBALS = Path("qadam-miniapp/app/globals.css")
+css = GLOBALS.read_text(encoding="utf-8")
+
+if "pulse-glow" not in css:
+    css += '''
+
+/* ═══════════════════════════════════════════════════════════
+   WOW EFFECTS — glow, pulse, shine
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+'''
+    GLOBALS.write_text(css, encoding="utf-8")
+    print("[OK] globals.css — WOW effects")
+
+print()
+print("=" * 60)
+print("WOW v2 — TAYYOR!")
+print("=" * 60)
+print()
+print("Nima ozgardi:")
+print("  • Logo: spring bounce (sakrab chiqadi)")
+print("  • Brand: 0.5 → 1 scale, spring bounce")
+print("  • Kartalar: chapdan/o'ngdan 100px siljiydi")
+print("  • Iconlar: doimiy harakat (rotate, scale)")
+print("  • Premium badge: pulse")
+print("  • CTA: shine effect + arrow harakat")
+print("  • Blob'lar: kattaroq, ko'proq harakat")
+print()
+print("KEYINGI:")
+print("  git add -A")
+print('  git commit -m "WOW v2: dramatic animations"')
+print("  git push")
