@@ -140,17 +140,24 @@ export async function getAdminFeedbacks(limit: number = 50) {
 }
 
 
-export async function getPendingPayments() {
-  const r = await api.get("/payments/manual/pending", {
-    params: { init_data: getInitData() },
-  });
+
+
+export async function getCardInfo() {
+  const r = await api.get("/payments/manual/card-info");
   return r.data;
 }
 
-export async function approvePayment(payment_id: number) {
-  const r = await api.post("/payments/manual/approve", {
-    init_data: getInitData(),
-    payment_id,
+export async function uploadPaymentScreenshot(
+  stage1_result_id: number,
+  file: File
+) {
+  const formData = new FormData();
+  formData.append("init_data", getInitData());
+  formData.append("stage1_result_id", String(stage1_result_id));
+  formData.append("screenshot", file);
+
+  const r = await api.post("/payments/manual/upload", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
   return r.data;
 }

@@ -4,7 +4,7 @@ Master § 49: Payment confirmation must be verified server-side.
 """
 import os
 import hashlib
-from fastapi import APIRouter, HTTPException, Request, Query
+from fastapi import APIRouter, HTTPException, Request, Query, UploadFile, File, Form
 from pydantic import BaseModel
 from sqlalchemy import select
 
@@ -428,3 +428,188 @@ async def manual_pending(init_data: str = Query(...)):
             for p in items
         ]
     }
+
+
+# ═══════════════════════════════════════════════════════════════════
+# MANUAL TO'LOV v2 — screenshot Mini App ichida yuklanadi
+# ═══════════════════════════════════════════════════════════════════
+
+CARD_NUMBER = os.getenv("CARD_NUMBER", "8600 0000 0000 0000")
+CARD_HOLDER = os.getenv("CARD_HOLDER", "Qadam.io")
+CARD_BANK = os.getenv("CARD_BANK", "Uzcard")
+ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0"))
+
+
+@router.get("/manual/card-info")
+async def get_card_info():
+    """Karta ma'lumotlari (frontend uchun)."""
+    return {
+        "card": {
+            "number": CARD_NUMBER,
+            "holder": CARD_HOLDER,
+            "bank": CARD_BANK,
+            "amount": PRICE_UZS,
+        }
+    }
+
+
+@router.post("/manual/upload")
+async def manual_upload(
+    init_data: str = Form(...),
+    stage1_result_id: int = Form(...),
+    screenshot: UploadFile = File(...),
+):
+    """
+    User screenshot yuklaydi — Mini App ichida.
+    Backend: rasmni adminga bot orqali yuboradi + payment yozadi.
+    """
+    user = verify_init_data(init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+
+    # Rasm tekshiruvi
+    if screenshot.content_type not in ("image/jpeg", "image/png", "image/jpg", "image/webp"):
+        raise HTTPException(400, "Faqat rasm fayl yuklang (JPG, PNG)")
+
+    content = await screenshot.read()
+    if len(content) > 5 * 1024 * 1024:  # 5 MB
+        raise HTTPException(400, "Rasm hajmi 5 MB dan oshmasin")
+
+    async with SessionLocal() as s:
+        s1 = await s.get(TestResult, stage1_result_id)
+        if not s1 or s1.user_id != user["id"]:
+            raise HTTPException(404, "Stage 1 topilmadi")
+        if s1.paid:
+            raise HTTPException(409, "Allaqachon to'langan")
+
+        p = Payment(
+            user_id=user["id"],
+            stage1_result_id=stage1_result_id,
+            provider="manual",
+            amount_uzs=PRICE_UZS,
+            status="pending",
+        )
+        s.add(p)
+        await s.commit()
+        await s.refresh(p)
+        payment_id = p.id
+
+    # Adminga bot orqali rasm + tugmalar
+    try:
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import (
+            BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton,
+        )
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        first_name = user.get("first_name") or "Nomalum"
+        username = user.get("username") or "-"
+        user_id = user["id"]
+
+        caption = (
+            f"💳 <b>Yangi to'lov</b>\n\n"
+            f"👤 <b>User:</b> {first_name}\n"
+            f"🔗 <b>Username:</b> @{username}\n"
+            f"🆔 <b>ID:</b> <code>{user_id}</code>\n"
+            f"💰 <b>Summa:</b> {PRICE_UZS:,} so'm\n"
+            f"🎫 <b>Payment ID:</b> {payment_id}\n\n"
+            f"Rasmni tekshiring va tasdiqlang:"
+        )
+
+        kb = InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="✅ Tasdiqlash",
+                    callback_data=f"pay:approve:{payment_id}",
+                ),
+                InlineKeyboardButton(
+                    text="❌ Rad etish",
+                    callback_data=f"pay:reject:{payment_id}",
+                ),
+            ],
+        ])
+
+        photo = BufferedInputFile(content, filename="screenshot.jpg")
+        if ADMIN_CHAT_ID:
+            await bot.send_photo(
+                ADMIN_CHAT_ID,
+                photo=photo,
+                caption=caption,
+                reply_markup=kb,
+            )
+
+        await bot.session.close()
+    except Exception as e:
+        log.error(f"Adminga rasm yuborishda xato: {e}")
+
+    return {"ok": True, "payment_id": payment_id, "status": "pending"}
+
+
+class ApprovePayload(BaseModel):
+    init_data: str
+    payment_id: int
+
+
+@router.post("/manual/approve")
+async def manual_approve(payload: ApprovePayload):
+    """Admin to'lovni tasdiqlaydi."""
+    admin = verify_init_data(payload.init_data)
+    if not admin:
+        raise HTTPException(401, "Invalid initData")
+
+    ADMIN_IDS = set(
+        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()
+    )
+    if admin["id"] not in ADMIN_IDS:
+        raise HTTPException(403, "Ruxsat yoq")
+
+    async with SessionLocal() as s:
+        p = await s.get(Payment, payload.payment_id)
+        if not p:
+            raise HTTPException(404, "Payment topilmadi")
+
+        p.status = "paid"
+        s1 = await s.get(TestResult, p.stage1_result_id)
+        if s1:
+            s1.paid = True
+        await s.commit()
+        user_id = p.user_id
+
+    # Userga xabar
+    try:
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        webapp = os.getenv("WEBAPP_URL", "")
+        kb = InlineKeyboardMarkup(inline_keyboard=[[
+            InlineKeyboardButton(
+                text="🎯 Chuqur tahlilni boshlash",
+                web_app=WebAppInfo(url=f"{webapp}/stage2"),
+            )
+        ]])
+
+        await bot.send_message(
+            user_id,
+            "✅ <b>To'lovingiz tasdiqlandi!</b>\n\n"
+            "Endi 18 ta chuqur savolga javob bering va shaxsiy yo'l xaritangizni oling.",
+            reply_markup=kb,
+        )
+
+        await bot.session.close()
+    except Exception as e:
+        log.error(f"User xabar yuborishda xato: {e}")
+
+    return {"ok": True, "payment_id": payload.payment_id}
