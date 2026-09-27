@@ -198,6 +198,7 @@ body {
   background: var(--color-primary);
   color: #FFFFFF;
   width: 100%;
+  /* width inherited from parent container with max-width */
 }
 
 .btn-primary:hover:not(:disabled) {
