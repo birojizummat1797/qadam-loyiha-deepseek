@@ -624,10 +624,15 @@ async def manual_status(payment_id: int, init_data: str = Query(...)):
 
     async with SessionLocal() as s:
         p = await s.get(Payment, payment_id)
-        if not p or p.user_id != user["id"]:
+        if not p:
+            log.warning(f"status: payment {payment_id} topilmadi")
+            raise HTTPException(404, "Payment topilmadi")
+        if p.user_id != user["id"]:
+            log.warning(f"status: user mismatch {p.user_id} != {user['id']}")
             raise HTTPException(404, "Payment topilmadi")
 
         stage2_ready = p.status == "paid"
+        log.info(f"status poll: id={payment_id} status={p.status} ready={stage2_ready}")
 
         return {
             "payment_id": p.id,

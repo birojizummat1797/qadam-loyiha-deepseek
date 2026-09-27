@@ -24,7 +24,10 @@ export default function TeaserPage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [polling, setPolling] = useState(false);
-  const pollRef = useRef<NodeJS.Timeout | null>(null);
+  const [lastCheck, setLastCheck] = useState<string>('');
+  const [checkError, setCheckError] = useState<string>('');
+  const [checksCount, setChecksCount] = useState(0);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     getCardInfo()
@@ -86,29 +89,59 @@ export default function TeaserPage() {
     }
   };
 
-  // Polling — to'lov tasdiqlanganini tekshirish
+  // Polling — to'lov tasdiqlanganini tekshirish (1 sek)
   useEffect(() => {
     if (!polling || !paymentId) return;
 
+    let stopped = false;
+
     const check = async () => {
+      if (stopped) return;
       try {
         const r = await getPaymentStatus(paymentId);
+        console.log("[poll]", paymentId, r.status, r.stage2_ready);
+        setLastCheck(new Date().toLocaleTimeString("uz"));
+        setChecksCount((c) => c + 1);
+        setCheckError("");
+
         if (r.stage2_ready) {
+          stopped = true;
           setPolling(false);
+          if (pollRef.current) clearInterval(pollRef.current);
           router.push("/stage2");
         }
-      } catch (e) {
-        console.log("Status xato:", e);
+      } catch (e: any) {
+        const msg = e?.response?.data?.detail || e.message;
+        console.error("[poll] xato:", msg);
+        setCheckError(msg);
       }
     };
 
     check();
-    pollRef.current = setInterval(check, 3000);
+    pollRef.current = setInterval(check, 1000);
 
     return () => {
+      stopped = true;
       if (pollRef.current) clearInterval(pollRef.current);
     };
   }, [polling, paymentId, router]);
+
+  const manualCheck = async () => {
+    if (!paymentId) return;
+    try {
+      const r = await getPaymentStatus(paymentId);
+      console.log("[manual]", r);
+      if (r.stage2_ready) {
+        setPolling(false);
+        router.push("/stage2");
+      } else {
+        setLastCheck(new Date().toLocaleTimeString("uz"));
+        alert(`Holat: ${r.status}`);
+      }
+    } catch (e: any) {
+      alert("Xatolik: " + (e?.response?.data?.detail || e.message));
+    }
+  };
 
   return (
     <main className="min-h-screen flex justify-center">
@@ -260,11 +293,36 @@ export default function TeaserPage() {
                     : "Admin tekshirib, tasdiqlagach sizga avtomatik xabar keladi."}
                 </p>
                 {polling && (
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                    <span className="t-small text-primary">
-                      Kutilmoqda...
-                    </span>
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-center justify-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                      <span className="t-small text-primary">
+                        Kutilmoqda...
+                      </span>
+                    </div>
+                    <p className="t-caption text-subtle text-center">
+                      Tekshiruv: {checksCount} marta
+                      {lastCheck && ` · Oxirgi: ${lastCheck}`}
+                    </p>
+                    {checkError && (
+                      <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30">
+                        <p className="t-caption text-red-400 text-center">
+                          Xato: {checkError}
+                        </p>
+                      </div>
+                    )}
+                    <button
+                      onClick={manualCheck}
+                      className="w-full py-2 rounded-lg border border-[var(--color-border)] t-small text-muted"
+                    >
+                      Holatni yangilash
+                    </button>
+                    <button
+                      onClick={() => router.push("/stage2")}
+                      className="w-full py-2 rounded-lg t-caption text-subtle"
+                    >
+                      (Test uchun: Stage 2 ga otish)
+                    </button>
                   </div>
                 )}
                 <button
