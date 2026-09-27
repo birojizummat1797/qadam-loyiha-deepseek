@@ -20,6 +20,7 @@ def _load_roadmap_careers():
     for name in [
         "roadmap_kb_v3.json", "roadmap_kb_v2.json",
         "roadmap_kb_v2_part_a.json", "roadmap_kb_v2_part_b.json",
+        "roadmap_kb_v1.json",
     ]:
         p = DATA_DIR / name
         if not p.exists():

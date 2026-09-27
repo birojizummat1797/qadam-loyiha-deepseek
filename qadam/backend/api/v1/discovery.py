@@ -187,12 +187,19 @@ async def complete_session(session_id: int, payload: StartSessionPayload):
     # Preliminary insight
     insight = build_preliminary_insight(signals, answers_list, taxonomy)
 
+    # Constraints
+    from backend.services.discovery_service import _extract_constraints
+    constraints = _extract_constraints(answers_list)
+
     # Saqlash
     async with SessionLocal() as s:
         sess = await s.get(DiscoverySession, session_id)
         sess.status = "completed"
         sess.completed_at = datetime.now(timezone.utc)
-        sess.meta = {"confidence": insight.get("confidence")}
+        sess.meta = {
+            "confidence": insight.get("confidence"),
+            "constraints": constraints,
+        }
 
         # Signallarni saqlash
         for k, v in signals.items():
