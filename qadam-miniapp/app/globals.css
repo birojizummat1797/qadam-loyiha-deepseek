@@ -269,3 +269,107 @@ body {
 
   .no-print { display: none !important; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   OPTION BUTTONS — variant tanlash (professional)
+   ═══════════════════════════════════════════════════════════ */
+.option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option-btn:hover {
+  border-color: var(--color-border-strong);
+}
+
+.option-btn.selected {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+}
+
+.option-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--duration-fast) var(--ease);
+}
+
+.option-btn.selected .option-indicator {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CARD — minimal
+   ═══════════════════════════════════════════════════════════ */
+.card-clean {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRICE CARD
+   ═══════════════════════════════════════════════════════════ */
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.price-row + .price-row {
+  border-top: 1px solid var(--color-border);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BADGE — minimal
+   ═══════════════════════════════════════════════════════════ */
+.badge-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.badge-warning { background: var(--color-warning-soft); color: var(--color-warning); }
+.badge-success { background: var(--color-success-soft); color: var(--color-success); }
+.badge-primary { background: var(--color-primary-soft); color: var(--color-primary); }
+.badge-danger { background: var(--color-danger-soft); color: var(--color-danger); }
+
+/* ═══════════════════════════════════════════════════════════
+   DIVIDER
+   ═══════════════════════════════════════════════════════════ */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 16px 0;
+}

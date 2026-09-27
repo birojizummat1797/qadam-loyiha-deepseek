@@ -17,8 +17,8 @@ const THEMES: {
   color: string;
   bg: string;
 }[] = [
-  { id: "dark", label: "Tungi", desc: "Zamonaviy tungi dizayn", icon: Moon, color: "text-indigo-300", bg: "bg-slate-800" },
-  { id: "light", label: "Kunduzgi", desc: "Ananaviy oq dizayn", icon: Sun, color: "text-amber-500", bg: "bg-amber-50" },
+  { id: "dark", label: "Tungi", desc: "Zamonaviy tungi dizayn", icon: Moon, color: "text-slate-300", bg: "bg-slate-800" },
+  { id: "light", label: "Kunduzgi", desc: "An'anaviy oq dizayn", icon: Sun, color: "text-amber-400", bg: "bg-amber-50" },
   { id: "pastel", label: "Pastel", desc: "Yumshoq rangli dizayn", icon: Flower2, color: "text-pink-400", bg: "bg-pink-50" },
 ];
 
@@ -32,7 +32,6 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
   const [sentToTelegram, setSentToTelegram] = useState(false);
 
   useEffect(() => {
-    document.body.setAttribute("data-theme", "dark");
     const tg = (window as any).Telegram?.WebApp;
     if (tg?.initData && tg.initData.length > 10) setInTelegram(true);
     setIsMobile(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
@@ -93,18 +92,20 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
 
   return (
     <>
-      <div className="flex flex-col gap-2 no-print">
+      {/* Trigger buttons */}
+      <div className="space-y-2 no-print">
         <button
           onClick={() => setOpen(true)}
-          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-[var(--tg-hint)]/25 text-sm font-medium hover:border-[var(--tg-hint)]/40 transition"
+          className="btn btn-secondary"
         >
           <Palette className="w-4 h-4" />
-          Dizaynni o&apos;zgartirish
+          <span>Dizaynni o'zgartirish</span>
         </button>
+
         <button
           onClick={handleDownload}
           disabled={sending}
-          className="btn-primary flex items-center justify-center gap-2"
+          className="btn btn-primary"
         >
           {sending ? (
             "Yuklanmoqda..."
@@ -115,30 +116,32 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
               ) : (
                 <Printer className="w-4 h-4" />
               )}
-              PDF sifatida yuklab olish
+              <span>PDF sifatida yuklab olish</span>
             </>
           )}
         </button>
+
         {isMobile && inTelegram && (
-          <p className="text-[10px] text-[var(--tg-hint)] text-center">
+          <p className="t-caption text-subtle text-center pt-1">
             PDF fayl Telegram bot orqali yuboriladi
           </p>
         )}
       </div>
 
+      {/* Theme modal */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm no-print">
-          <div className="w-full max-w-sm rounded-2xl bg-[var(--tg-secondary-bg)] border border-[var(--tg-hint)]/20 overflow-hidden">
-            <div className="p-4 border-b border-[var(--tg-hint)]/15 flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 no-print">
+          <div className="w-full max-w-sm bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden">
+            <div className="p-5 border-b border-[var(--color-border)] flex items-center justify-between">
               <div>
-                <h3 className="font-semibold">Dizaynni tanlang</h3>
-                <p className="text-[10px] text-[var(--tg-hint)] mt-0.5">
-                  Tanlanganda sahifa darhol ozgaradi
+                <h3 className="t-heading">Dizaynni tanlang</h3>
+                <p className="t-caption text-subtle mt-1">
+                  Tanlanganda sahifa o'zgaradi
                 </p>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="w-8 h-8 rounded-full hover:bg-[var(--tg-bg)] flex items-center justify-center"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-muted hover:text-text"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -152,31 +155,33 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
                   <button
                     key={t.id}
                     onClick={() => applyTheme(t.id)}
-                    className={`w-full p-3 rounded-xl border-2 transition flex items-center gap-3 ${
-                      active ? "border-indigo-500 bg-indigo-500/10" : "border-[var(--tg-hint)]/20"
-                    }`}
+                    className={`option-btn ${active ? "selected" : ""}`}
                   >
-                    <div className={`w-11 h-11 rounded-lg ${t.bg} flex items-center justify-center shrink-0`}>
-                      <Icon className={`w-5 h-5 ${t.color}`} />
-                    </div>
-                    <div className="flex-1 text-left">
-                      <p className="font-semibold text-sm">{t.label}</p>
-                      <p className="text-[11px] text-[var(--tg-hint)]">{t.desc}</p>
-                    </div>
-                    {active && (
-                      <div className="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-white" />
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-lg ${t.bg} flex items-center justify-center shrink-0`}
+                      >
+                        <Icon className={`w-5 h-5 ${t.color}`} />
                       </div>
-                    )}
+                      <div className="text-left">
+                        <p className="t-heading">{t.label}</p>
+                        <p className="t-small text-muted">{t.desc}</p>
+                      </div>
+                    </div>
+                    <span className="option-indicator">
+                      {active && (
+                        <CheckCircle2 className="w-3 h-3 text-white" strokeWidth={3} />
+                      )}
+                    </span>
                   </button>
                 );
               })}
             </div>
 
-            <div className="p-4 border-t border-[var(--tg-hint)]/15">
+            <div className="p-4 pt-2">
               <button
                 onClick={() => setOpen(false)}
-                className="w-full py-3 rounded-xl bg-indigo-500 text-white font-medium text-sm"
+                className="btn btn-primary"
               >
                 Tayyor
               </button>
@@ -185,63 +190,61 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
         </div>
       )}
 
+      {/* Congrats modal */}
       {showCongrats && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm no-print">
-          <div className="w-full max-w-sm rounded-3xl bg-gradient-to-br from-[var(--tg-secondary-bg)] to-[var(--tg-bg)] border border-emerald-500/30 overflow-hidden">
-            <div className="p-6 text-center relative">
-              <div className="absolute top-2 left-4 text-2xl">🎉</div>
-              <div className="absolute top-4 right-6 text-xl">✨</div>
-
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/30">
-                <PartyPopper className="w-10 h-10 text-white" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 no-print">
+          <div className="w-full max-w-sm bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden">
+            <div className="p-8 text-center">
+              <div className="w-16 h-16 rounded-full bg-[var(--color-success-soft)] flex items-center justify-center mx-auto mb-5">
+                <PartyPopper className="w-7 h-7 text-success" />
               </div>
 
-              <h2 className="text-xl font-bold mb-2 gradient-text">Tabriklaymiz!</h2>
-              <p className="text-sm text-[var(--tg-hint)] mb-1">
+              <h2 className="t-title mb-2">Tabriklaymiz!</h2>
+              <p className="t-small text-muted">
                 {sentToTelegram
                   ? "PDF Telegram botingizga yuborildi"
                   : "PDF muvaffaqiyatli yuklab olindi"}
               </p>
             </div>
 
-            <div className="px-6 pb-4 space-y-3">
-              <div className="p-3 rounded-xl bg-[var(--tg-bg)]/60 border border-[var(--tg-hint)]/15">
-                <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <div className="text-xs">
-                    <p className="font-semibold mb-1">Nima qildingiz:</p>
-                    <p className="text-[var(--tg-hint)]">
-                      Qadam.io diagnostikasidan otdingiz va shaxsiy roadmapni oldingiz.
+            <div className="px-5 pb-5 space-y-3">
+              <div className="card-clean">
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
+                  <div>
+                    <p className="t-heading mb-1">Nima qildingiz</p>
+                    <p className="t-small text-muted">
+                      Diagnostikadan o'tdingiz va shaxsiy yo'l xaritangizni oldingiz.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-[var(--tg-bg)]/60 border border-amber-500/20">
-                <div className="flex items-start gap-2">
-                  <span className="text-amber-400 text-sm">⚡</span>
-                  <div className="text-xs">
-                    <p className="font-semibold mb-1">Keyingi qadam:</p>
-                    <p className="text-[var(--tg-hint)]">
-                      Roadmapdagi birinchi 3 qadamni bugun boshlang.
+              <div className="card-clean">
+                <div className="flex items-start gap-2.5">
+                  <span className="text-warning text-base leading-none mt-0.5">⚡</span>
+                  <div>
+                    <p className="t-heading mb-1">Keyingi qadam</p>
+                    <p className="t-small text-muted">
+                      Yo'l xaritangizdagi birinchi 3 qadamni bugun boshlang.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 pt-2 space-y-2">
+            <div className="p-4 pt-0 space-y-2">
               <button
                 onClick={handleBackToBot}
                 disabled={sending}
-                className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 disabled:opacity-60"
+                className="btn btn-primary"
               >
                 {sending ? (
                   "Yuklanmoqda..."
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    Botga qaytish
+                    <span>Botga qaytish</span>
                   </>
                 )}
               </button>
@@ -249,7 +252,7 @@ export function PdfDownloader({ reportId }: { reportId: number }) {
               <button
                 onClick={handleRedownload}
                 disabled={sending}
-                className="w-full py-3 rounded-2xl border border-[var(--tg-hint)]/25 text-sm font-medium flex items-center justify-center gap-2 disabled:opacity-50"
+                className="btn btn-ghost"
               >
                 Boshqa dizaynda yuklash
               </button>

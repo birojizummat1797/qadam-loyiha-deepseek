@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check } from "lucide-react";
 import { fetchQuestions, submitStage2 } from "@/lib/api";
 import { useStore } from "@/lib/store";
 import { SkeletonQuestion } from "@/components/Skeleton";
 
 const LIKERT = [
-  { v: 1, l: "Umuman yoq" },
+  { v: 1, l: "Umuman yo'q" },
   { v: 2, l: "Kam" },
-  { v: 3, l: "Ortacha" },
-  { v: 4, l: "Kop" },
-  { v: 5, l: "Toliq ha" },
+  { v: 3, l: "O'rtacha" },
+  { v: 4, l: "Ko'p" },
+  { v: 5, l: "To'liq ha" },
 ];
 
 export default function Stage2Page() {
@@ -46,8 +48,7 @@ export default function Stage2Page() {
   const q = questions[current];
   const currentVal = answers[q.id];
 
-  const setAnswer = (v: number) =>
-    setAnswers({ ...answers, [q.id]: v });
+  const setAnswer = (v: number) => setAnswers({ ...answers, [q.id]: v });
 
   const next = async () => {
     if (current < questions.length - 1) {
@@ -65,57 +66,106 @@ export default function Stage2Page() {
     }
   };
 
+  const back = () => {
+    if (current > 0) setCurrent(current - 1);
+  };
+
   const progress = ((current + 1) / questions.length) * 100;
 
   return (
-    <main className="max-w-md mx-auto px-5 py-6">
-      <div className="h-1 bg-[var(--tg-secondary-bg)] rounded-full overflow-hidden mb-6">
-        <div
-          className="h-full bg-[var(--tg-button)] transition-all"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
+    <main className="min-h-screen flex justify-center">
+      <div className="w-full max-w-md flex flex-col px-6 safe-top safe-bottom">
+        {/* ═══ TOP BAR ═══ */}
+        <div className="pt-6 pb-4">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={back}
+              disabled={current === 0}
+              className="text-muted t-small disabled:opacity-0 transition-opacity"
+            >
+              Orqaga
+            </button>
+            <span className="t-caption text-subtle">
+              {current + 1} / {questions.length}
+            </span>
+          </div>
 
-      <p className="text-xs text-[var(--tg-hint)] mb-2">
-        {current + 1} / {questions.length}
-      </p>
-      <h2 className="text-lg font-semibold mb-6">{q.text}</h2>
+          <div className="h-px bg-[var(--color-border)] relative overflow-hidden">
+            <motion.div
+              className="absolute top-0 left-0 h-full bg-primary"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            />
+          </div>
+        </div>
 
-      <div className="flex flex-col gap-2 mb-6">
-        {LIKERT.map((o) => (
-          <button
-            key={o.v}
-            onClick={() => setAnswer(o.v)}
-            className={`text-left p-4 rounded-xl border transition ${
-              currentVal === o.v
-                ? "bg-[var(--tg-button)] text-[var(--tg-button-text)] border-transparent"
-                : "border-[var(--tg-hint)]/30"
-            }`}
+        {/* ═══ QUESTION ═══ */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            className="flex-1 flex flex-col"
           >
-            {o.l}
-          </button>
-        ))}
-      </div>
+            <h2 className="t-title mb-8 mt-4">{q.text}</h2>
 
-      <button
-        className="btn-primary"
-        disabled={!currentVal || submitting}
-        onClick={next}
-      >
-        {submitting
-          ? "AI tahlil qilmoqda..."
-          : current === questions.length - 1
-          ? "Natijani korish"
-          : "Keyingisi"}
-      </button>
+            <div className="flex flex-col gap-2.5 mb-6">
+              {LIKERT.map((o, idx) => {
+                const selected = currentVal === o.v;
+                return (
+                  <motion.button
+                    key={o.v}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: idx * 0.03,
+                      duration: 0.2,
+                      ease: [0.4, 0, 0.2, 1],
+                    }}
+                    onClick={() => setAnswer(o.v)}
+                    className={`option-btn ${selected ? "selected" : ""}`}
+                  >
+                    <span>{o.l}</span>
+                    <span className="option-indicator">
+                      {selected && (
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      )}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* ═══ NEXT BUTTON ═══ */}
+        <div className="pb-6">
+          <button
+            onClick={next}
+            disabled={!currentVal || submitting}
+            className="btn btn-primary"
+          >
+            {submitting
+              ? "Tahlil qilmoqda..."
+              : current === questions.length - 1
+              ? "Natijani ko'rish"
+              : "Keyingisi"}
+          </button>
+        </div>
+      </div>
     </main>
   );
 }
 
 function Loader() {
   return (
-    <main className="max-w-md mx-auto px-5 py-6">
-      <SkeletonQuestion />
+    <main className="min-h-screen flex justify-center">
+      <div className="w-full max-w-md px-6 safe-top safe-bottom pt-6">
+        <SkeletonQuestion />
+      </div>
     </main>
   );
 }

@@ -179,6 +179,7 @@ export default function ReportPage() {
       <p className="text-[10px] text-[var(--tg-hint)] text-center mt-4">
         Hisobot versiyasi: v{data.versions?.roadmap_kb ?? "2.0"}
       </p>
+      </div>
     </main>
   );
 }
