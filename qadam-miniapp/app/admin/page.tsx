@@ -11,8 +11,6 @@ import {
   getAdminDaily,
   getAdminTopCareers,
   getAdminFeedbacks,
-  getPendingPayments,
-  approvePayment,
 } from "@/lib/api";
 
 export default function AdminPage() {
@@ -20,7 +18,6 @@ export default function AdminPage() {
   const [daily, setDaily] = useState<any[]>([]);
   const [topCareers, setTopCareers] = useState<any[]>([]);
   const [feedbacks, setFeedbacks] = useState<any[]>([]);
-  const [pending, setPending] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,18 +25,16 @@ export default function AdminPage() {
     setLoading(true);
     setError(null);
     try {
-      const [ov, dl, tc, fb, pd] = await Promise.all([
+      const [ov, dl, tc, fb] = await Promise.all([
         getAdminOverview(),
         getAdminDaily(30),
         getAdminTopCareers(15),
         getAdminFeedbacks(30),
-        getPendingPayments().catch(() => ({ payments: [] })),
       ]);
       setOverview(ov);
       setDaily(dl.days || []);
       setTopCareers(tc.careers || []);
       setFeedbacks(fb.feedbacks || []);
-      setPending(pd.payments || []);
     } catch (e: any) {
       setError(e?.response?.data?.detail || e.message);
     } finally {
@@ -167,46 +162,6 @@ export default function AdminPage() {
           </div>
         )}
       </div>
-
-      {/* ═══ PENDING PAYMENTS ═══ */}
-      {pending.length > 0 && (
-        <div className="rounded-2xl p-4 bg-amber-500/10 border border-amber-500/30 mb-5">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-amber-400 text-lg">💳</span>
-            <h3 className="font-semibold text-sm">
-              Kutilayotgan to'lovlar ({pending.length})
-            </h3>
-          </div>
-          <div className="space-y-2">
-            {pending.map((p) => (
-              <div
-                key={p.id}
-                className="flex items-center justify-between p-3 rounded-xl bg-[var(--tg-bg)]"
-              >
-                <div>
-                  <p className="text-xs font-medium">Payment #{p.id}</p>
-                  <p className="text-[10px] text-[var(--tg-hint)]">
-                    User: {p.user_id} · {p.amount_uzs.toLocaleString("uz")} so'm
-                  </p>
-                </div>
-                <button
-                  onClick={async () => {
-                    try {
-                      await approvePayment(p.id);
-                      load();
-                    } catch (e: any) {
-                      alert("Xatolik: " + (e?.response?.data?.detail || e.message));
-                    }
-                  }}
-                  className="text-xs px-3 py-1.5 rounded-lg bg-emerald-500 text-white font-medium"
-                >
-                  Tasdiqlash
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Feedbacks */}
       <div className="rounded-2xl p-4 bg-[var(--tg-secondary-bg)] border border-[var(--tg-hint)]/15">
