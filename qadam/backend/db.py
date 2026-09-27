@@ -32,5 +32,6 @@ async def init_db():
     """Jadvallarni yaratish."""
     # Modellarni import qilish (metadata to'lishi uchun)
     from backend import models  # noqa
+    from backend import models_v2  # noqa
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

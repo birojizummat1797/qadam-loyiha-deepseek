@@ -1,4 +1,20 @@
-LIKERT = {1: 0.0, 2: 0.25, 3: 0.5, 4: 0.75, 5: 1.0}
+"""
+Signal Engine — PM spec (PHASE G).
+
+Qoidalar:
+- Likert 1-5 → value [0, 10] shkalada
+- Trust Factor: measured=1.0, insufficient=0.6, conflicting=0.4
+- Unmeasured signallar hisobga OLINMAYDI (0 emas!)
+- Har bir signal uchun: value, trust, coverage (n ta answer), confidence
+"""
+
+LIKERT_TO_10 = {
+    1: 0.0,
+    2: 2.5,
+    3: 5.0,
+    4: 7.5,
+    5: 10.0,
+}
 
 SIGNAL_KEYS = [
     "logical_thinking", "problem_solving", "technical_interest",
@@ -6,6 +22,13 @@ SIGNAL_KEYS = [
     "system_design", "analytical", "persistence", "math_logic",
     "attention_to_detail", "business_sense", "innovation",
 ]
+
+# Trust Factor chegaralari
+TRUST_MEASURED = 1.0
+TRUST_INSUFFICIENT = 0.6
+TRUST_CONFLICTING = 0.4
+CONFLICT_STD_THRESHOLD = 3.0   # [0,10] shkalada std threshold
+MIN_MEASURED_ANSWERS = 3        # measured bo'lish uchun kamida
 
 
 def _collect_all_questions(questions):
@@ -17,37 +40,92 @@ def _collect_all_questions(questions):
     return out
 
 
+def _classify_trust(contributions):
+    """
+    Har bir answer'dan kelgan normalized qiymatlar ro'yxati.
+    - coverage: nechta javob keldi
+    - std: qanchalik ziddiyatli
+    """
+    n = len(contributions)
+    if n == 0:
+        return None, "unmeasured", 0
+    if n < MIN_MEASURED_ANSWERS:
+        return TRUST_INSUFFICIENT, "insufficient", n
+
+    # Std Dev hisoblash
+    mean = sum(contributions) / n
+    variance = sum((x - mean) ** 2 for x in contributions) / n
+    std = variance ** 0.5
+
+    if std > CONFLICT_STD_THRESHOLD:
+        return TRUST_CONFLICTING, "conflicting", n
+    return TRUST_MEASURED, "measured", n
+
+
 def signals_from_answers(answers, questions):
-    buckets = {k: {"sum": 0.0, "weight_sum": 0.0, "n": 0} for k in SIGNAL_KEYS}
+    """
+    Returns: {
+        signal_key: {
+            "value": float [0,10] | None,   # None = unmeasured
+            "trust": float,                  # 0.0 - 1.0
+            "evidence_state": str,           # measured|insufficient|conflicting|unmeasured
+            "coverage": int,                 # measured answers soni
+            "contributions": list[float],    # har answer'dan [0,10]
+        }
+    }
+    """
+    # Signal uchun xom qiymatlar
+    raw = {k: [] for k in SIGNAL_KEYS}
 
     for q in _collect_all_questions(questions):
         qid = q["id"]
         if qid not in answers:
             continue
-        raw = answers[qid]
-        if raw is None:
+        a = answers[qid]
+        if a is None:
             continue
+
         maps = q.get("maps_to", {}) or {}
         signal = maps.get("signal")
-        if not signal:
+        if not signal or signal not in raw:
             continue
+
         w = float(maps.get("weight", 1.0))
-        if isinstance(raw, (int, float)) and 1 <= int(raw) <= 5:
-            norm = LIKERT[int(raw)]
+
+        # Likert: 1-5 → [0, 10]
+        if isinstance(a, (int, float)) and 1 <= int(a) <= 5:
+            v = LIKERT_TO_10[int(a)]
         else:
-            norm = 0.5
-        buckets[signal]["sum"] += norm * w
-        buckets[signal]["weight_sum"] += w
-        buckets[signal]["n"] += 1
+            # Choice savol — neytral 5.0
+            v = 5.0
+
+        # Weighted contribution (weight bilan ko'paytirilgan)
+        raw[signal].append(v * w)
 
     out = {}
-    for k, b in buckets.items():
-        measured = b["n"] > 0
-        score = (b["sum"] / b["weight_sum"]) if (measured and b["weight_sum"] > 0) else None
+    for k in SIGNAL_KEYS:
+        contribs = raw[k]
+        trust, state, count = _classify_trust(contribs)
+
+        if state == "unmeasured" or not contribs:
+            out[k] = {
+                "value": None,
+                "trust": 0.0,
+                "evidence_state": "unmeasured",
+                "coverage": 0,
+                "contributions": [],
+            }
+            continue
+
+        # Weighted average → [0, 10] shkalada
+        avg = sum(contribs) / len(contribs)
+
         out[k] = {
-            "score": score,
-            "measured": measured,
-            "coverage": b["n"],
-            "confidence": min(1.0, b["n"] / 3.0),
+            "value": round(avg, 2),
+            "trust": trust,
+            "evidence_state": state,
+            "coverage": count,
+            "contributions": [round(c, 2) for c in contribs],
         }
+
     return out

@@ -1,7 +1,12 @@
 """
-Ranking Engine v3 — FAQAT roadmap'da mavjud bo'lgan career'larni qaytaradi.
-Bu MAJBURIY — foydalanuvchi premium to'lab, "tayyorlanmoqda" ko'rmasligi uchun.
+Ranking — PM spec (PHASE G).
+
+Qoidalar:
+- Coverage < 0.5 → tavsiya qilinmaydi
+- Top 3-5, lekin dalil yetmasa — kamroq
+- Confidence = Coverage × avg(T_s)
 """
+
 import json
 from pathlib import Path
 from .fit import calculate_fit
@@ -10,13 +15,12 @@ from .readiness import calculate_readiness
 DATA_DIR = Path(__file__).parent.parent / "data"
 
 
-def _load_all_roadmap_careers():
-    """Barcha roadmap KB fayllaridan career'larni birlashtirish."""
+def _load_roadmap_careers():
     careers = set()
-
-    # v2 (asosiy)
-    for name in ["roadmap_kb_v2.json", "roadmap_kb_v2_part_a.json",
-                 "roadmap_kb_v2_part_b.json", "roadmap_kb_v1.json"]:
+    for name in [
+        "roadmap_kb_v3.json", "roadmap_kb_v2.json",
+        "roadmap_kb_v2_part_a.json", "roadmap_kb_v2_part_b.json",
+    ]:
         p = DATA_DIR / name
         if not p.exists():
             continue
@@ -25,45 +29,45 @@ def _load_all_roadmap_careers():
             careers.update(data.get("careers", {}).keys())
         except Exception:
             pass
-
-    print(f"[ranking] KB careers yuklandi: {len(careers)} ta -> {sorted(careers)}")
     return careers
 
 
-KB_CAREERS = _load_all_roadmap_careers()
+KB_CAREERS = _load_roadmap_careers()
+
+MIN_COVERAGE = 0.5
+TOP_N = 5
 
 
-def rank_careers(signals, taxonomy, constraints, min_coverage=0.5, top_n=3):
-    """
-    FAQAT roadmap'da mavjud bo'lgan career'lardan Top-N.
-    Agar roadmap'li 3 tadan kam bo'lsa — mavjudlarini qaytaradi.
-    """
+def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
     candidates = []
     excluded = []
 
     for cluster_key, cluster in taxonomy["clusters"].items():
         for career_key, career in cluster["careers"].items():
-            # ⚠️ MAJBURIY FILTR — roadmap'siz career'lar HECH QACHON ko'rinmaydi
             if career_key not in KB_CAREERS:
                 excluded.append({"career_id": career_key, "reason": "no_roadmap"})
                 continue
 
             fit_result = calculate_fit(signals, career)
-            if fit_result["fit"] is None:
-                excluded.append({"career_id": career_key, "reason": "insufficient_data"})
+
+            if fit_result["status"] == "no_evidence":
+                excluded.append({"career_id": career_key, "reason": "no_evidence"})
                 continue
-            if fit_result["coverage"] < min_coverage:
+            if fit_result["status"] == "insufficient_coverage":
                 excluded.append({
-                    "career_id": career_key, "reason": "low_coverage",
-                    "coverage": fit_result["coverage"], "fit": fit_result["fit"],
+                    "career_id": career_key,
+                    "reason": "coverage_below_0.5",
+                    "coverage": fit_result["coverage"],
                 })
                 continue
 
             readiness_result = calculate_readiness(
                 constraints, career.get("prerequisites", {})
             )
+
+            # Composite score (Fit ustuvor, Readiness modifikator)
             composite = fit_result["fit"] * (
-                0.7 + 0.3 * (readiness_result["readiness"] / 100)
+                0.7 + 0.3 * (readiness_result["readiness"] / 100.0)
             )
 
             candidates.append({
@@ -73,35 +77,38 @@ def rank_careers(signals, taxonomy, constraints, min_coverage=0.5, top_n=3):
                 "career_uz": career["uz"],
                 "fit": fit_result["fit"],
                 "coverage": fit_result["coverage"],
+                "confidence": fit_result["confidence"],
+                "measured_signals": fit_result["measured_signals"],
+                "missing_signals": fit_result["missing_signals"],
                 "readiness": readiness_result["readiness"],
+                "p_computer": readiness_result["p_computer"],
+                "p_english": readiness_result["p_english"],
+                "p_time": readiness_result["p_time"],
                 "barriers": readiness_result["barriers"],
                 "has_hard_barrier": readiness_result["has_hard_barrier"],
-                "missing_signals": fit_result["missing"],
                 "learning_months": career.get("learning_months"),
                 "pathway_type": career.get("pathway_type"),
-                "has_roadmap": True,
-                "composite_score": round(composite, 1),
+                "composite_score": round(composite, 2),
             })
 
     candidates.sort(key=lambda x: -x["composite_score"])
     top = candidates[:top_n]
 
-    if len(top) >= 2:
-        gap = top[0]["composite_score"] - top[1]["composite_score"]
+    # Global confidence
+    if not top:
+        confidence = "none"
     else:
-        gap = 100
-    avg_coverage = sum(c["coverage"] for c in top) / len(top) if top else 0
-
-    if avg_coverage >= 0.75 and gap >= 5:
-        confidence = "high"
-    elif avg_coverage >= 0.55:
-        confidence = "medium"
-    else:
-        confidence = "low"
+        avg_cov = sum(c["coverage"] for c in top) / len(top)
+        if avg_cov >= 0.75:
+            confidence = "high"
+        elif avg_cov >= 0.55:
+            confidence = "medium"
+        else:
+            confidence = "low"
 
     return {
         "ranked": top,
-        "excluded_low_coverage": excluded,
+        "excluded": excluded,
         "confidence": confidence,
         "total_candidates": len(candidates),
         "kb_careers_count": len(KB_CAREERS),

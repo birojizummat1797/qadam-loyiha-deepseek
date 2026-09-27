@@ -1,0 +1,35 @@
+{
+  "version": "v1.0",
+  "products": [
+    {
+      "slug": "premium_career_intelligence",
+      "name_uz": "Premium Career Intelligence",
+      "product_type": "one_time",
+      "description_uz": "Chuqur diagnostika, Career Intelligence va shaxsiy yo'l xaritasi",
+      "plans": [
+        {
+          "plan_code": "pci_39000_uzs",
+          "price_uzs": 39000,
+          "price_stars": 150,
+          "billing_period": "one_time",
+          "is_active": true
+        }
+      ]
+    },
+    {
+      "slug": "ai_career_assistant",
+      "name_uz": "AI Career Assistant",
+      "product_type": "subscription",
+      "description_uz": "Doimiy AI yordamchi",
+      "plans": [
+        {
+          "plan_code": "aica_49000_uzs_monthly",
+          "price_uzs": 49000,
+          "price_stars": null,
+          "billing_period": "monthly",
+          "is_active": false
+        }
+      ]
+    }
+  ]
+}
