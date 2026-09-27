@@ -1,0 +1,70 @@
+{
+  "version": "v1.0",
+  "title": "Chuqur diagnostika",
+  "duration_minutes": 7,
+  "dimensions": {
+    "goal": {
+      "uz": "Maqsad",
+      "questions": [
+        {"id": "DD_Q01", "type": "likert", "text": "Keyingi 3 yilda aniq bir kasbda professional bo'lishni xohlayman.", "signals": {"persistence": 1.0}},
+        {"id": "DD_Q02", "type": "likert", "text": "Tanlagan soham uzoq muddatli istiqbolga ega bo'lishi men uchun muhim.", "signals": {"business_sense": 1.0}}
+      ]
+    },
+    "interest": {
+      "uz": "Qiziqish",
+      "questions": [
+        {"id": "DD_Q03", "type": "likert", "text": "Murakkab texnikani yig'ish yoki tizimni sozlash menga zavq beradi.", "signals": {"technical_interest": 1.5, "problem_solving": 0.5}},
+        {"id": "DD_Q04", "type": "likert", "text": "Ilmiy tadqiqot, tahlil qilish va naqsh topish menga qiziqarli.", "signals": {"analytical": 1.5, "math_logic": 0.5}}
+      ]
+    },
+    "aptitude": {
+      "uz": "Qobiliyat",
+      "questions": [
+        {"id": "DD_Q05", "type": "likert", "text": "Raqamlar va formulalar bilan ishlaganda o'zimni erkin his qilaman.", "signals": {"math_logic": 1.5, "analytical": 0.5}},
+        {"id": "DD_Q06", "type": "likert", "text": "Noma'lum muammoga duch kelganda, uni qismlarga bo'lib yechaman.", "signals": {"problem_solving": 1.5, "logical_thinking": 0.8}}
+      ]
+    },
+    "skills": {
+      "uz": "Ko'nikmalar",
+      "questions": [
+        {"id": "DD_Q07", "type": "likert", "text": "Ko'p qismli tizimni (masalan, sayt tuzilmasi) tasavvur qila olaman.", "signals": {"system_design": 1.5, "logical_thinking": 0.5}},
+        {"id": "DD_Q08", "type": "likert", "text": "Biror sohada amaliy ko'nikmaga egaman va uni yanada rivojlantirmoqchiman.", "signals": {"persistence": 1.0, "attention_to_detail": 0.5}}
+      ]
+    },
+    "values": {
+      "uz": "Qadriyatlar",
+      "questions": [
+        {"id": "DD_Q09", "type": "likert", "text": "Ishim jamiyatga real foyda keltirishi men uchun muhim.", "signals": {"user_empathy": 1.0, "business_sense": 0.3}},
+        {"id": "DD_Q10", "type": "likert", "text": "Men erkin, nostandart ish uslubini afzal ko'raman.", "signals": {"innovation": 1.2, "creative_design": 0.5}}
+      ]
+    },
+    "work_style": {
+      "uz": "Ish uslubi",
+      "questions": [
+        {"id": "DD_Q11", "type": "likert", "text": "Yakka, chuqur fokusda ishlash menga mos.", "signals": {"system_design": 0.8, "analytical": 0.6}},
+        {"id": "DD_Q12", "type": "likert", "text": "Tez o'zgaruvchan va yangi narsalarga to'la muhitda ishlashni yaxshi ko'raman.", "signals": {"innovation": 1.2, "persistence": 0.4}}
+      ]
+    },
+    "constraints": {
+      "uz": "Cheklovlar",
+      "questions": [
+        {"id": "DD_Q13", "type": "likert", "text": "Hozir o'rganish uchun jiddiy moliyaviy cheklovim bor.", "signals": {}, "constraint": "finance", "inverse": true},
+        {"id": "DD_Q14", "type": "likert", "text": "Yaqin 6 oy ichida ishimni almashtirishim shart.", "signals": {"persistence": 0.5}, "constraint": "urgency"}
+      ]
+    },
+    "resilience": {
+      "uz": "Qat'iyat / fidoyilik",
+      "questions": [
+        {"id": "DD_Q15", "type": "likert", "text": "Maqsadga erishish uchun qiyinchilikka chidashga tayyorman.", "signals": {"persistence": 1.5}},
+        {"id": "DD_Q16", "type": "likert", "text": "Uzoq muddatli mashaqqatli yo'lni bosib o'tishga tayyorman (masalan, 1-2 yil o'qish).", "signals": {"persistence": 1.5, "attention_to_detail": 0.3}}
+      ]
+    },
+    "career_preferences": {
+      "uz": "Kasbga moyillik",
+      "questions": [
+        {"id": "DD_Q17", "type": "likert", "text": "Rasm chizish, dizayn qilish yoki hikoya yozish — mening tabiiy ifodam.", "signals": {"creative_design": 1.5, "visual_logic": 0.8}},
+        {"id": "DD_Q18", "type": "likert", "text": "Odamlarga yordam berish, o'qitish, ular bilan ishlash menga yoqadi.", "signals": {"user_empathy": 1.5, "business_sense": 0.3}}
+      ]
+    }
+  }
+}

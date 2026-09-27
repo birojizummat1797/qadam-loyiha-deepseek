@@ -248,3 +248,60 @@ class Career(Base):
     __table_args__ = (
         UniqueConstraint("taxonomy_version_id", "slug", name="uq_tax_slug"),
     )
+
+
+# ═══════════════════════════════════════════════════════════
+# DEEP DIAGNOSTIC — Premium (18 savol)
+# ═══════════════════════════════════════════════════════════
+class DeepDiagnosticSession(Base):
+    __tablename__ = "deep_diagnostic_sessions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, index=True)
+    discovery_session_id: Mapped[int | None] = mapped_column(Integer, nullable=True, index=True)
+    status: Mapped[str] = mapped_column(String(16), default="active")
+    current_q_index: Mapped[int] = mapped_column(Integer, default=0)
+    answers_count: Mapped[int] = mapped_column(Integer, default=0)
+    question_version: Mapped[str] = mapped_column(String(16), default="v1.0")
+    started_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    completed_at: Mapped["DateTime | None"] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    meta: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+
+
+class DeepDiagnosticAnswer(Base):
+    __tablename__ = "deep_diagnostic_answers"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    session_id: Mapped[int] = mapped_column(Integer, index=True)
+    question_id: Mapped[str] = mapped_column(String(64), index=True)
+    answer_value: Mapped[int] = mapped_column(Integer)
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+    __table_args__ = (
+        UniqueConstraint("session_id", "question_id", name="uq_dd_session_question"),
+    )
+
+
+class DeepDiagnosticSignal(Base):
+    __tablename__ = "deep_diagnostic_signals"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    session_id: Mapped[int] = mapped_column(Integer, index=True)
+    signal_key: Mapped[str] = mapped_column(String(64), index=True)
+    value: Mapped[float | None] = mapped_column(Float, nullable=True)
+    trust: Mapped[float] = mapped_column(Float, default=0.0)
+    evidence_state: Mapped[str] = mapped_column(String(24), default="unmeasured")
+    coverage: Mapped[int] = mapped_column(Integer, default=0)
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+    __table_args__ = (
+        UniqueConstraint("session_id", "signal_key", name="uq_dd_session_signal"),
+    )

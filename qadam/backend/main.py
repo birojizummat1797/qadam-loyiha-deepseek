@@ -18,6 +18,7 @@ from backend.api.v1.entitlements import router as v1_entitlements_router
 from backend.api.v1.discovery import router as v1_discovery_router
 from backend.api.v1.taxonomy import router as v1_taxonomy_router
 from backend.api.v1.career_intelligence import router as v1_career_intel_router
+from backend.api.v1.deep_diagnostic import router as v1_dd_router
 from backend.logger import setup_logging, log
 
 setup_logging()
@@ -59,6 +60,7 @@ app.include_router(v1_entitlements_router)
 app.include_router(v1_discovery_router)
 app.include_router(v1_taxonomy_router)
 app.include_router(v1_career_intel_router)
+app.include_router(v1_dd_router)
 
 
 @app.get("/")

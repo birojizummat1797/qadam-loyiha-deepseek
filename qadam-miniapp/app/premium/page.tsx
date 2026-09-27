@@ -171,11 +171,17 @@ export default function PremiumPage() {
                   Admin tasdiqlagach sizga Telegram orqali xabar keladi.
                 </p>
                 <button
+                  onClick={() => router.push("/deep-diagnostic")}
+                  className="btn btn-primary"
+                >
+                  Chuqur tahlilni boshlash
+                </button>
+                <button
                   onClick={() => {
                     const tg = (window as any).Telegram?.WebApp;
                     if (tg?.close) tg.close();
                   }}
-                  className="btn btn-primary"
+                  className="btn btn-ghost mt-2"
                 >
                   Botga qaytish
                 </button>

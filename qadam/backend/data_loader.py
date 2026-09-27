@@ -37,3 +37,7 @@ def get_versions():
 
 def load_discovery_questions():
     return _load("discovery_questions_v1.json")
+
+
+def load_deep_diagnostic():
+    return _load("deep_diagnostic_questions_v1.json")
