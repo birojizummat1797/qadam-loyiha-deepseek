@@ -613,3 +613,24 @@ async def manual_approve(payload: ApprovePayload):
         log.error(f"User xabar yuborishda xato: {e}")
 
     return {"ok": True, "payment_id": payload.payment_id}
+
+
+@router.get("/manual/status/{payment_id}")
+async def manual_status(payment_id: int, init_data: str = Query(...)):
+    """Mini App poll qiladi — to'lov tasdiqlanganmi?"""
+    user = verify_init_data(init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+
+    async with SessionLocal() as s:
+        p = await s.get(Payment, payment_id)
+        if not p or p.user_id != user["id"]:
+            raise HTTPException(404, "Payment topilmadi")
+
+        stage2_ready = p.status == "paid"
+
+        return {
+            "payment_id": p.id,
+            "status": p.status,
+            "stage2_ready": stage2_ready,
+        }

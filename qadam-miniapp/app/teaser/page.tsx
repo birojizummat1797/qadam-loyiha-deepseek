@@ -7,7 +7,7 @@ import {
   Upload, Loader2, CheckCircle2, Image as ImageIcon,
 } from "lucide-react";
 import { useStore } from "@/lib/store";
-import { getCardInfo, uploadPaymentScreenshot } from "@/lib/api";
+import { getCardInfo, uploadPaymentScreenshot, getPaymentStatus } from "@/lib/api";
 
 export default function TeaserPage() {
   const router = useRouter();
@@ -22,6 +22,9 @@ export default function TeaserPage() {
   const [copied, setCopied] = useState(false);
   const [done, setDone] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const [paymentId, setPaymentId] = useState<number | null>(null);
+  const [polling, setPolling] = useState(false);
+  const pollRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     getCardInfo()
@@ -72,14 +75,40 @@ export default function TeaserPage() {
     if (!file || !stage1ResultId) return;
     setUploading(true);
     try {
-      await uploadPaymentScreenshot(stage1ResultId, file);
+      const res = await uploadPaymentScreenshot(stage1ResultId, file);
+      setPaymentId(res.payment_id);
       setDone(true);
+      setPolling(true);
     } catch (e: any) {
       alert("Xatolik: " + (e?.response?.data?.detail || e.message));
     } finally {
       setUploading(false);
     }
   };
+
+  // Polling — to'lov tasdiqlanganini tekshirish
+  useEffect(() => {
+    if (!polling || !paymentId) return;
+
+    const check = async () => {
+      try {
+        const r = await getPaymentStatus(paymentId);
+        if (r.stage2_ready) {
+          setPolling(false);
+          router.push("/stage2");
+        }
+      } catch (e) {
+        console.log("Status xato:", e);
+      }
+    };
+
+    check();
+    pollRef.current = setInterval(check, 3000);
+
+    return () => {
+      if (pollRef.current) clearInterval(pollRef.current);
+    };
+  }, [polling, paymentId, router]);
 
   return (
     <main className="min-h-screen flex justify-center">
@@ -222,11 +251,22 @@ export default function TeaserPage() {
                 <div className="w-16 h-16 rounded-full bg-[var(--color-success-soft)] flex items-center justify-center mx-auto mb-5">
                   <CheckCircle2 className="w-8 h-8 text-success" />
                 </div>
-                <h3 className="t-heading mb-2">Skrinshot yuborildi</h3>
+                <h3 className="t-heading mb-2">
+                  {polling ? "Tekshirilmoqda..." : "Skrinshot yuborildi"}
+                </h3>
                 <p className="t-small text-muted mb-6">
-                  Admin tekshirib, tasdiqlagach sizga avtomatik xabar keladi.
-                  Shundan song chuqur tahlil ochiladi.
+                  {polling
+                    ? "Admin tekshirmoqda. Tasdiqlanganda avtomatik Stage 2 ga otasiz."
+                    : "Admin tekshirib, tasdiqlagach sizga avtomatik xabar keladi."}
                 </p>
+                {polling && (
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                    <span className="t-small text-primary">
+                      Kutilmoqda...
+                    </span>
+                  </div>
+                )}
                 <button
                   onClick={() => {
                     setOpenPay(false);

@@ -161,3 +161,11 @@ export async function uploadPaymentScreenshot(
   });
   return r.data;
 }
+
+
+export async function getPaymentStatus(payment_id: number) {
+  const r = await api.get(`/payments/manual/status/${payment_id}`, {
+    params: { init_data: getInitData() },
+  });
+  return r.data;
+}
