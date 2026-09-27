@@ -1,4 +1,10 @@
-"use client";
+# -*- coding: utf-8 -*-
+"""Report page.tsx — toza qayta yozish."""
+from pathlib import Path
+
+REPORT = Path("qadam-miniapp/app/report/[id]/page.tsx")
+
+REPORT.write_text(r'''"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -181,3 +187,10 @@ function Err({ msg }: { msg: string }) {
     </main>
   );
 }
+''', encoding="utf-8")
+print("[OK] report/page.tsx — toza qayta yozildi")
+print()
+print("KEYINGI:")
+print("  git add -A")
+print('  git commit -m "Fix: report page structure"')
+print("  git push")
