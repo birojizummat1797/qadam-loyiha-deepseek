@@ -109,7 +109,11 @@ export default function CareerIntelligencePage() {
           </p>
           <div className="space-y-4">
             {ranked.map((c: any, i: number) => (
-              <div key={c.career_id} className="card-clean">
+              <div
+                key={c.career_id}
+                className="card-clean cursor-pointer hover:border-primary/40 transition"
+                onClick={() => router.push(`/roadmap/${c.career_id}`)}
+              >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1 min-w-0">
                     <p className="t-caption text-primary mb-1">#{i + 1}</p>

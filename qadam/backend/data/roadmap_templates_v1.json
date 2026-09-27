@@ -1,0 +1,462 @@
+{
+  "version": "v1.0",
+  "description": "Cluster-based roadmap templates (fallback)",
+  "templates": {
+    "software": {
+      "uz": "Dasturlash",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Sintaksis", "Mantiqiy fikrlash", "Git asoslari"],
+          "actions": [
+            "Kuniga 1-2 soat mashq",
+            "Birinchi Hello World yozish",
+            "GitHub akkaunt ochish",
+            "5-10 kichik masala yechish"
+          ],
+          "proof": "GitHub'da birinchi 3 ta repo",
+          "milestone": "Birinchi kod ishga tushdi"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Amaliyot",
+          "skills": ["Framework", "API", "Debugging"],
+          "actions": [
+            "Kurs tugatish",
+            "3-5 mini-loyiha",
+            "Kod review qilish",
+            "Texnik ingliz tili"
+          ],
+          "proof": "3 ta loyiha GitHub'da",
+          "milestone": "Birinchi real loyiha"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Chuqur framework", "Testlar", "Deployment"],
+          "actions": [
+            "Katta loyiha qurish",
+            "Open source hissa",
+            "Vercel/Netlify deploy",
+            "Portfolio sayti"
+          ],
+          "proof": "4-5 loyiha portfolio",
+          "milestone": "Portfolio tayyor"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ishga tayyorgarlik",
+          "skills": ["Algoritmlar", "System design", "Texnik suhbat"],
+          "actions": [
+            "LeetCode mashqi",
+            "Mock interview",
+            "10+ ariza yuborish",
+            "Networking"
+          ],
+          "proof": "Junior offer",
+          "milestone": "Ish topish"
+        }
+      ]
+    },
+    "data_ai": {
+      "uz": "Data & AI",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Excel", "SQL", "Statistika asoslari"],
+          "actions": [
+            "Excel pivot jadval",
+            "Birinchi SQL query",
+            "Kaggle akkaunt",
+            "5 ta dataset tahlil"
+          ],
+          "proof": "Birinchi SQL query",
+          "milestone": "Birinchi dataset"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Amaliyot",
+          "skills": ["Python", "Pandas", "Vizualizatsiya"],
+          "actions": [
+            "Python kursi",
+            "Pandas/numpy",
+            "Tableau yoki Power BI",
+            "3 ta loyiha"
+          ],
+          "proof": "3 ta dashboard",
+          "milestone": "Birinchi dashboard"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Machine Learning", "Feature engineering"],
+          "actions": [
+            "scikit-learn",
+            "ML loyihalari",
+            "Kaggle competition",
+            "Portfolio"
+          ],
+          "proof": "4-5 loyiha portfolio",
+          "milestone": "ML model tayyor"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ish",
+          "skills": ["MLOps", "Deployment", "Biznes tahlil"],
+          "actions": [
+            "Model deployment",
+            "Real biznes case study",
+            "10+ ariza",
+            "Networking"
+          ],
+          "proof": "Junior/mid offer",
+          "milestone": "Ish topish"
+        }
+      ]
+    },
+    "infra_security": {
+      "uz": "Infra & Security",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Linux", "Networking", "Terminal"],
+          "actions": [
+            "Linux o'rnatish",
+            "Bash buyruqlar",
+            "TCP/IP asoslari",
+            "10 ta komanda o'rganish"
+          ],
+          "proof": "Linux terminal",
+          "milestone": "Birinchi bash script"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Amaliyot",
+          "skills": ["Docker", "Cloud", "CI/CD"],
+          "actions": [
+            "Docker kursi",
+            "AWS/Azure asoslari",
+            "GitHub Actions",
+            "3 ta container loyiha"
+          ],
+          "proof": "Docker loyihasi",
+          "milestone": "Birinchi container"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Kubernetes", "Monitoring", "Security"],
+          "actions": [
+            "Kubernetes",
+            "Prometheus/Grafana",
+            "Real infra loyiha",
+            "Portfolio"
+          ],
+          "proof": "Portfolio 4 loyiha",
+          "milestone": "K8s cluster"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ish",
+          "skills": ["Terraform", "IaC", "Architecture"],
+          "actions": [
+            "Terraform",
+            "Ansible",
+            "10+ ariza",
+            "Sertifikatlar"
+          ],
+          "proof": "Offer",
+          "milestone": "Ish topish"
+        }
+      ]
+    },
+    "design_creative": {
+      "uz": "Dizayn",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Figma", "Rang nazariyasi", "Tipografiya"],
+          "actions": [
+            "Figma o'rnatish",
+            "5-10 UI mashqi",
+            "Dribbble/Behance kuzatish",
+            "Rang palitrasi"
+          ],
+          "proof": "Birinchi ekran dizayn",
+          "milestone": "Birinchi mockup"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "UX asoslari",
+          "skills": ["Wireframe", "Prototype", "User research"],
+          "actions": [
+            "UX asoslari kursi",
+            "Wireframe mashqi",
+            "User interview",
+            "2-3 loyiha"
+          ],
+          "proof": "2 case study",
+          "milestone": "Birinchi case"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Design system", "Handoff", "Real loyiha"],
+          "actions": [
+            "3-4 case study",
+            "Real mijoz",
+            "Design system",
+            "Portfolio sayt"
+          ],
+          "proof": "4 portfolio case",
+          "milestone": "Birinchi mijoz"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ish",
+          "skills": ["Product design", "Design challenges"],
+          "actions": [
+            "Design challenge mashqi",
+            "10+ ariza",
+            "Behance profil",
+            "Networking"
+          ],
+          "proof": "Offer",
+          "milestone": "Ish topish"
+        }
+      ]
+    },
+    "digital_marketing": {
+      "uz": "Marketing",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Kontent strategiya", "Canva", "Copywriting"],
+          "actions": [
+            "Canva o'rganish",
+            "10 post tayyorlash",
+            "2-3 raqib tahlil",
+            "AIDA formula"
+          ],
+          "proof": "10 post portfolio",
+          "milestone": "Birinchi kontent"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Platformalar",
+          "skills": ["Meta Ads", "Analytics", "Targeting"],
+          "actions": [
+            "Meta Blueprint",
+            "Kichik kampaniya",
+            "Analitika o'rnatish",
+            "A/B test"
+          ],
+          "proof": "1 real mijoz",
+          "milestone": "Birinchi mijoz"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Performance marketing", "SEO", "Content"],
+          "actions": [
+            "3-5 mijoz",
+            "Case study",
+            "Natijalar tahlili",
+            "Nisha tanlash"
+          ],
+          "proof": "3-5 case study",
+          "milestone": "Kuchli portfolio"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ish",
+          "skills": ["Growth marketing", "Strategy", "Leadership"],
+          "actions": [
+            "10+ ariza",
+            "Agentlik yoki freelance",
+            "Networking",
+            "Sertifikatlar"
+          ],
+          "proof": "Offer yoki 5+ mijoz",
+          "milestone": "Barqaror daromad"
+        }
+      ]
+    },
+    "content_media": {
+      "uz": "Media",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Videografiya", "CapCut", "Storytelling"],
+          "actions": [
+            "10 qisqa video",
+            "CapCut montaj",
+            "Script yozish",
+            "YouTube/TikTok kanal"
+          ],
+          "proof": "10 video",
+          "milestone": "Birinchi montaj"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Amaliyot",
+          "skills": ["Premiere", "Kamera", "Sound"],
+          "actions": [
+            "Kurs tugatish",
+            "Long-form video",
+            "Real mijoz",
+            "Motion graphics"
+          ],
+          "proof": "3-5 video portfolio",
+          "milestone": "Birinchi mijoz"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Color grading", "After Effects"],
+          "actions": [
+            "5-7 portfolio loyiha",
+            "Brand content",
+            "Reels seriyasi",
+            "Portfolio reel"
+          ],
+          "proof": "Kuchli portfolio",
+          "milestone": "Barqaror mijozlar"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ish",
+          "skills": ["Direction", "Team lead"],
+          "actions": [
+            "10+ ariza",
+            "Agentlik",
+            "Freelance",
+            "Shaxsiy brend"
+          ],
+          "proof": "Offer yoki agentlik",
+          "milestone": "Karyera"
+        }
+      ]
+    },
+    "product_project": {
+      "uz": "Product & Project",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Agile", "Scrum", "Product thinking"],
+          "actions": [
+            "Scrum Guide o'qish",
+            "Product kitoblar",
+            "3 ta mahsulot tahlil",
+            "Jira/Notion"
+          ],
+          "proof": "Birinchi case study",
+          "milestone": "Product case"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Amaliyot",
+          "skills": ["Discovery", "Metrics", "Roadmap"],
+          "actions": [
+            "User research",
+            "Product metrics",
+            "Roadmap tuzish",
+            "A/B test"
+          ],
+          "proof": "1 real loyiha",
+          "milestone": "Birinchi roadmap"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Portfolio",
+          "skills": ["Strategy", "Analytics", "Stakeholders"],
+          "actions": [
+            "Kichik startap PM",
+            "3-4 case study",
+            "SQL + analitika",
+            "Product case"
+          ],
+          "proof": "3-4 case study",
+          "milestone": "Portfolio tayyor"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Ish",
+          "skills": ["Leadership", "Strategy"],
+          "actions": [
+            "10+ ariza",
+            "Networking",
+            "PM portfolio",
+            "Sertifikat"
+          ],
+          "proof": "Offer",
+          "milestone": "PM lavozim"
+        }
+      ]
+    },
+    "business_sales": {
+      "uz": "Business & Sales",
+      "phases": [
+        {
+          "period": "0-30 kun",
+          "goal": "Asoslar",
+          "skills": ["Sales metodologiya", "CRM", "Communication"],
+          "actions": [
+            "SPIN Selling o'qish",
+            "CRM o'rganish",
+            "50 cold email",
+            "LinkedIn optimizatsiya"
+          ],
+          "proof": "Birinchi demo call",
+          "milestone": "Birinchi lead"
+        },
+        {
+          "period": "1-3 oy",
+          "goal": "Amaliyot",
+          "skills": ["Qualification", "Negotiation", "IT sales"],
+          "actions": [
+            "MEDDIC framework",
+            "Real mijozlar",
+            "Pitch mashqi",
+            "Bitim yopish"
+          ],
+          "proof": "Birinchi bitim",
+          "milestone": "Birinchi savdo"
+        },
+        {
+          "period": "3-6 oy",
+          "goal": "Katta bitimlar",
+          "skills": ["Enterprise sales", "Account management"],
+          "actions": [
+            "Enterprise mijozlar",
+            "Katta kontrakt",
+            "CRM workflow",
+            "Case studies"
+          ],
+          "proof": "3-5 bitim",
+          "milestone": "Barqaror savdo"
+        },
+        {
+          "period": "6-12 oy",
+          "goal": "Karyera",
+          "skills": ["Team lead", "Sales strategy"],
+          "actions": [
+            "Jamoa boshqarish",
+            "Sales strategy",
+            "Networking",
+            "Sertifikatlar"
+          ],
+          "proof": "Senior sales yoki lead",
+          "milestone": "Karyera o'sishi"
+        }
+      ]
+    }
+  }
+}
