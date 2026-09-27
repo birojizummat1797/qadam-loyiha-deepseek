@@ -1,4 +1,15 @@
-@tailwind base;
+# -*- coding: utf-8 -*-
+"""Qadam.io — Redesign v3: Design System + Welcome (minimal, premium)."""
+from pathlib import Path
+
+FRONTEND = Path("qadam-miniapp")
+
+# ═══════════════════════════════════════════════════════════
+# 1. globals.css — Design tokens
+# ═══════════════════════════════════════════════════════════
+GLOBALS = FRONTEND / "app/globals.css"
+
+GLOBALS.write_text(r'''@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -268,3 +279,221 @@ body {
 
   .no-print { display: none !important; }
 }
+''', encoding="utf-8")
+print("[OK] globals.css — Design tokens")
+
+# ═══════════════════════════════════════════════════════════
+# 2. tailwind.config.ts — tokens bilan extend
+# ═══════════════════════════════════════════════════════════
+TAILWIND = FRONTEND / "tailwind.config.ts"
+
+TAILWIND.write_text(r'''import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        bg: "var(--color-bg)",
+        surface: "var(--color-surface)",
+        "surface-2": "var(--color-surface-2)",
+        text: "var(--color-text)",
+        muted: "var(--color-text-muted)",
+        subtle: "var(--color-text-subtle)",
+        primary: "var(--color-primary)",
+        success: "var(--color-success)",
+        warning: "var(--color-warning)",
+        danger: "var(--color-danger)",
+      },
+      borderRadius: {
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+      },
+      fontFamily: {
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      transitionTimingFunction: {
+        DEFAULT: "cubic-bezier(0.4, 0, 0.2, 1)",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
+''', encoding="utf-8")
+print("[OK] tailwind.config.ts")
+
+# ═══════════════════════════════════════════════════════════
+# 3. layout.tsx — toza, minimal
+# ═══════════════════════════════════════════════════════════
+LAYOUT = FRONTEND / "app/layout.tsx"
+
+LAYOUT.write_text(r'''import type { Metadata, Viewport } from "next";
+import Script from "next/script";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Qadam.io — Kasb va soha tahlili",
+  description: "Professional yo'lingizni dalillar bilan aniqlang",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#0A0A0F",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="uz">
+      <head>
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive"
+        />
+      </head>
+      <body data-theme="dark">{children}</body>
+    </html>
+  );
+}
+''', encoding="utf-8")
+print("[OK] layout.tsx")
+
+# ═══════════════════════════════════════════════════════════
+# 4. TmaProvider — soddaroq
+# ═══════════════════════════════════════════════════════════
+TMA = FRONTEND / "components/TmaProvider.tsx"
+
+TMA.write_text(r'''"use client";
+
+import { useEffect } from "react";
+
+export function TmaProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    const tg = (window as any).Telegram?.WebApp;
+    if (!tg) return;
+
+    try {
+      tg.ready();
+      tg.expand();
+      if (tg.setHeaderColor) tg.setHeaderColor("#0A0A0F");
+      if (tg.setBackgroundColor) tg.setBackgroundColor("#0A0A0F");
+    } catch (e) {
+      console.log("TMA init:", e);
+    }
+  }, []);
+
+  return <>{children}</>;
+}
+''', encoding="utf-8")
+print("[OK] TmaProvider.tsx")
+
+# ═══════════════════════════════════════════════════════════
+# 5. app/page.tsx — Welcome (minimal, premium)
+# ═══════════════════════════════════════════════════════════
+PAGE = FRONTEND / "app/page.tsx"
+
+PAGE.write_text(r'''"use client";
+
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen flex flex-col px-6 safe-top safe-bottom">
+      {/* ═══ LOGO MARK ═══ */}
+      <div className="pt-8 pb-12 fade-in">
+        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+          <span className="text-white font-bold text-lg tracking-tight">Q</span>
+        </div>
+      </div>
+
+      {/* ═══ MAIN CONTENT ═══ */}
+      <div className="flex-1 flex flex-col">
+        {/* Headline */}
+        <h1 className="t-display mb-5 fade-in fade-in-1">
+          Professional yo'lingizni
+          <br />
+          taxmin bilan emas,
+          <br />
+          <span className="text-primary">dalillar bilan</span> aniqlang.
+        </h1>
+
+        {/* Subtext */}
+        <p className="t-body text-muted mb-10 max-w-[340px] fade-in fade-in-2">
+          Qadam.io profilingizni tahlil qiladi, sizga mos kasblarni aniqlaydi
+          va amaliy yo'l xaritasi tuzadi.
+        </p>
+
+        {/* Feature points — no cards, just list */}
+        <ul className="space-y-4 mb-10 fade-in fade-in-3">
+          {[
+            "8 savol — 3 daqiqa",
+            "Fit va Readiness tahlili",
+            "Shaxsiy 6 oylik yo'l xaritasi",
+          ].map((text, i) => (
+            <li
+              key={i}
+              className="flex items-center gap-3 text-[14px] text-muted"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+              <span>{text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* ═══ ACTIONS ═══ */}
+      <div className="space-y-3 pb-4 fade-in fade-in-4">
+        <Link href="/stage1" className="block">
+          <button className="btn btn-primary">
+            Boshlash
+            <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+          </button>
+        </Link>
+
+        <button className="btn btn-ghost">
+          Qadam.io qanday ishlaydi?
+        </button>
+      </div>
+
+      {/* ═══ TRUST LINE ═══ */}
+      <p className="text-center t-caption text-subtle pb-4 fade-in fade-in-5">
+        Halol tahlil · Manipulyatsiyasiz
+      </p>
+    </main>
+  );
+}
+''', encoding="utf-8")
+print("[OK] app/page.tsx — Welcome")
+
+print()
+print("=" * 60)
+print("Redesign v3 — Tayyor!")
+print("=" * 60)
+print()
+print("Yangi tamoyillar:")
+print("  • Minimal, professional, premium")
+print("  • Katta typography, whitespace")
+print("  • Bir ekran = bir action")
+print("  • Fade animatsiya (bounce/glow yo'q)")
+print("  • Dark default, light mode architecture")
+print("  • Design tokens CSS variables'da")
+print()
+print("KEYINGI:")
+print("  git add -A")
+print('  git commit -m "Redesign v3: design system + minimal welcome"')
+print("  git push")
+print("  Vercel redeploy (cache'siz)")

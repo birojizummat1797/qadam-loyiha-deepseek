@@ -1,210 +1,71 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Sparkles, Target, TrendingUp, ArrowRight, Zap, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="relative max-w-md mx-auto px-5 py-10 overflow-hidden min-h-screen">
-      {/* ═══ ANIMATED BACKGROUND ═══ */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        {/* Blob 1 — katta indigo */}
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.4, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-500/40 rounded-full blur-3xl"
-        />
-        {/* Blob 2 — purple */}
-        <motion.div
-          animate={{
-            x: [0, -60, 0],
-            y: [0, 40, 0],
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-40 -right-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"
-        />
-        {/* Blob 3 — amber pastroqda */}
-        <motion.div
-          animate={{
-            x: [0, -30, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-          className="absolute bottom-0 left-1/4 w-64 h-64 bg-amber-500/20 rounded-full blur-3xl"
-        />
+    <main className="min-h-screen flex flex-col px-6 safe-top safe-bottom">
+      {/* ═══ LOGO MARK ═══ */}
+      <div className="pt-8 pb-12 fade-in">
+        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+          <span className="text-white font-bold text-lg tracking-tight">Q</span>
+        </div>
       </div>
 
-      {/* ═══ LOGO — katta harakat ═══ */}
-      <motion.div
-        initial={{ scale: 0, rotate: -180, opacity: 0 }}
-        animate={{ scale: 1, rotate: 0, opacity: 1 }}
-        transition={{ duration: 0.9, type: "spring", bounce: 0.5 }}
-        className="text-center mb-6"
-      >
-        <motion.div
-          animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-2xl shadow-indigo-500/50"
-        >
-          <Zap className="w-10 h-10 text-white" />
-        </motion.div>
-      </motion.div>
+      {/* ═══ MAIN CONTENT ═══ */}
+      <div className="flex-1 flex flex-col">
+        {/* Headline */}
+        <h1 className="t-display mb-5 fade-in fade-in-1">
+          Professional yo'lingizni
+          <br />
+          taxmin bilan emas,
+          <br />
+          <span className="text-primary">dalillar bilan</span> aniqlang.
+        </h1>
 
-      {/* ═══ BRAND — sakrab chiqadi ═══ */}
-      <motion.h1
-        initial={{ opacity: 0, y: 40, scale: 0.5 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 0.4, duration: 0.7, type: "spring", bounce: 0.4 }}
-        className="text-5xl font-bold mb-3 text-center gradient-text"
-      >
-        Qadam.io
-      </motion.h1>
+        {/* Subtext */}
+        <p className="t-body text-muted mb-10 max-w-[340px] fade-in fade-in-2">
+          Qadam.io profilingizni tahlil qiladi, sizga mos kasblarni aniqlaydi
+          va amaliy yo'l xaritasi tuzadi.
+        </p>
 
-      {/* ═══ SUBTITLE ═══ */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.5 }}
-        className="text-[var(--tg-hint)] text-sm leading-relaxed text-center mb-8"
-      >
-        Sizga mos kasb va sohani topish uchun
-        <br />
-        AI diagnostic platformasi
-      </motion.p>
-
-      {/* ═══ FEATURE CARDS — chapdan/o'ngdan kiradi ═══ */}
-      <div className="space-y-3 mb-6">
-        {/* Card 1 — chapdan */}
-        <motion.div
-          initial={{ opacity: 0, x: -100, rotate: -5 }}
-          animate={{ opacity: 1, x: 0, rotate: 0 }}
-          transition={{ delay: 0.9, duration: 0.6, type: "spring", bounce: 0.3 }}
-          whileHover={{ scale: 1.03, y: -4 }}
-          className="card cursor-pointer"
-        >
-          <div className="flex items-start gap-3">
-            <motion.div
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center shrink-0"
+        {/* Feature points — no cards, just list */}
+        <ul className="space-y-4 mb-10 fade-in fade-in-3">
+          {[
+            "8 savol — 3 daqiqa",
+            "Fit va Readiness tahlili",
+            "Shaxsiy 6 oylik yo'l xaritasi",
+          ].map((text, i) => (
+            <li
+              key={i}
+              className="flex items-center gap-3 text-[14px] text-muted"
             >
-              <Sparkles className="w-6 h-6 text-indigo-400" />
-            </motion.div>
-            <div className="flex-1">
-              <h3 className="font-semibold mb-1">Tezkor tahlil</h3>
-              <p className="text-[11px] text-[var(--tg-hint)] mb-2">
-                8 savol &middot; 3 daqiqa &middot; Bepul
-              </p>
-              <p className="text-xs">
-                Kuchli 2 ta signalingizni va 2 ta mos yonalishni korasiz.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Card 2 — o'ngdan */}
-        <motion.div
-          initial={{ opacity: 0, x: 100, rotate: 5 }}
-          animate={{ opacity: 1, x: 0, rotate: 0 }}
-          transition={{ delay: 1.1, duration: 0.6, type: "spring", bounce: 0.3 }}
-          whileHover={{ scale: 1.03, y: -4 }}
-          className="card border border-amber-500/30 cursor-pointer relative overflow-hidden"
-        >
-          {/* Glow animation */}
-          <motion.div
-            animate={{ opacity: [0, 0.4, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/20 to-amber-500/0 pointer-events-none"
-          />
-          <div className="flex items-start gap-3 relative">
-            <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0"
-            >
-              <Target className="w-6 h-6 text-amber-400" />
-            </motion.div>
-            <div className="flex-1">
-              <h3 className="font-semibold mb-1 flex items-center gap-2">
-                Chuqur tahlil
-                <motion.span
-                  animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-[9px] px-2 py-0.5 rounded-full bg-amber-500/30 text-amber-300 font-medium"
-                >
-                  ⭐ Premium
-                </motion.span>
-              </h3>
-              <p className="text-[11px] text-[var(--tg-hint)] mb-2">
-                18 savol &middot; Fit + Readiness + Roadmap
-              </p>
-              <p className="text-xs">
-                Top-3 yonalish, skill-gap, 6-12 oy shaxsiy roadmap.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+              <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+              <span>{text}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* ═══ CTA — katta harakat ═══ */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.6, type: "spring", bounce: 0.5 }}
-      >
-        <Link
-          href="/stage1"
-          className="btn-primary block text-center flex items-center justify-center gap-2 relative overflow-hidden group"
-        >
-          <motion.span
-            animate={{ x: [0, 5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="relative z-10"
-          >
+      {/* ═══ ACTIONS ═══ */}
+      <div className="space-y-3 pb-4 fade-in fade-in-4">
+        <Link href="/stage1" className="block">
+          <button className="btn btn-primary">
             Boshlash
-          </motion.span>
-          <motion.div
-            animate={{ x: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="relative z-10"
-          >
-            <ArrowRight className="w-5 h-5" />
-          </motion.div>
-
-          {/* Shine effect */}
-          <motion.div
-            animate={{ x: ["-100%", "200%"] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
-          />
+            <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+          </button>
         </Link>
-      </motion.div>
 
-      {/* ═══ TRUST BADGE ═══ */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.8, duration: 0.5 }}
-        className="flex items-center justify-center gap-2 mt-6 text-[10px] text-[var(--tg-hint)]"
-      >
-        <motion.div
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-        </motion.div>
-        <span>Halol tahlil. Manipulyatsiyasiz.</span>
-        <TrendingUp className="w-3 h-3" />
-      </motion.div>
+        <button className="btn btn-ghost">
+          Qadam.io qanday ishlaydi?
+        </button>
+      </div>
+
+      {/* ═══ TRUST LINE ═══ */}
+      <p className="text-center t-caption text-subtle pb-4 fade-in fade-in-5">
+        Halol tahlil · Manipulyatsiyasiz
+      </p>
     </main>
   );
 }

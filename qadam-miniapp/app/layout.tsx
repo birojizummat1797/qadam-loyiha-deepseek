@@ -3,8 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Qadam.io - Kasb yonaltiruvchi tahlil",
-  description: "Sizga mos kasb va sohani toping",
+  title: "Qadam.io — Kasb va soha tahlili",
+  description: "Professional yo'lingizni dalillar bilan aniqlang",
 };
 
 export const viewport: Viewport = {
@@ -12,7 +12,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0a0a0f",
+  themeColor: "#0A0A0F",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body>{children}</body>
+      <body data-theme="dark">{children}</body>
     </html>
   );
 }
