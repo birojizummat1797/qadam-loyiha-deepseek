@@ -7,7 +7,7 @@ import {
   Upload, Loader2, CheckCircle2, Image as ImageIcon,
 } from "lucide-react";
 import { useStore } from "@/lib/store";
-import { getCardInfo, uploadPaymentScreenshot, getPaymentStatus } from "@/lib/api";
+import { getCardInfo, uploadPaymentScreenshot } from "@/lib/api";
 
 export default function TeaserPage() {
   const router = useRouter();
@@ -23,10 +23,7 @@ export default function TeaserPage() {
   const [done, setDone] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const [paymentId, setPaymentId] = useState<number | null>(null);
-  const [polling, setPolling] = useState(false);
-  const [lastCheck, setLastCheck] = useState<string>('');
-  const [checkError, setCheckError] = useState<string>('');
-  const [checksCount, setChecksCount] = useState(0);
+
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -81,7 +78,6 @@ export default function TeaserPage() {
       const res = await uploadPaymentScreenshot(stage1ResultId, file);
       setPaymentId(res.payment_id);
       setDone(true);
-      setPolling(true);
     } catch (e: any) {
       alert("Xatolik: " + (e?.response?.data?.detail || e.message));
     } finally {
@@ -89,59 +85,7 @@ export default function TeaserPage() {
     }
   };
 
-  // Polling — to'lov tasdiqlanganini tekshirish (1 sek)
-  useEffect(() => {
-    if (!polling || !paymentId) return;
 
-    let stopped = false;
-
-    const check = async () => {
-      if (stopped) return;
-      try {
-        const r = await getPaymentStatus(paymentId);
-        console.log("[poll]", paymentId, r.status, r.stage2_ready);
-        setLastCheck(new Date().toLocaleTimeString("uz"));
-        setChecksCount((c) => c + 1);
-        setCheckError("");
-
-        if (r.stage2_ready) {
-          stopped = true;
-          setPolling(false);
-          if (pollRef.current) clearInterval(pollRef.current);
-          router.push("/stage2");
-        }
-      } catch (e: any) {
-        const msg = e?.response?.data?.detail || e.message;
-        console.error("[poll] xato:", msg);
-        setCheckError(msg);
-      }
-    };
-
-    check();
-    pollRef.current = setInterval(check, 1000);
-
-    return () => {
-      stopped = true;
-      if (pollRef.current) clearInterval(pollRef.current);
-    };
-  }, [polling, paymentId, router]);
-
-  const manualCheck = async () => {
-    if (!paymentId) return;
-    try {
-      const r = await getPaymentStatus(paymentId);
-      console.log("[manual]", r);
-      if (r.stage2_ready) {
-        setPolling(false);
-        router.push("/stage2");
-      } else {
-        setLastCheck(new Date().toLocaleTimeString("uz"));
-        alert(`Holat: ${r.status}`);
-      }
-    } catch (e: any) {
-      alert("Xatolik: " + (e?.response?.data?.detail || e.message));
-    }
-  };
 
   return (
     <main className="min-h-screen flex justify-center">
@@ -284,47 +228,26 @@ export default function TeaserPage() {
                 <div className="w-16 h-16 rounded-full bg-[var(--color-success-soft)] flex items-center justify-center mx-auto mb-5">
                   <CheckCircle2 className="w-8 h-8 text-success" />
                 </div>
-                <h3 className="t-heading mb-2">
-                  {polling ? "Tekshirilmoqda..." : "Skrinshot yuborildi"}
-                </h3>
+                <h3 className="t-heading mb-2">Skrinshot yuborildi</h3>
                 <p className="t-small text-muted mb-6">
-                  {polling
-                    ? "Admin tekshirmoqda. Tasdiqlanganda avtomatik Stage 2 ga otasiz."
-                    : "Admin tekshirib, tasdiqlagach sizga avtomatik xabar keladi."}
+                  Admin tekshiradi va <b className="text-text">5-10 daqiqa</b> ichida
+                  sizga Telegram bot orqali xabar yuboriladi.
+                  Xabardagi tugma orqali chuqur tahlilga o'tasiz.
                 </p>
-                {polling && (
-                  <div className="space-y-3 mb-4">
-                    <div className="flex items-center justify-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                      <span className="t-small text-primary">
-                        Kutilmoqda...
-                      </span>
-                    </div>
-                    <p className="t-caption text-subtle text-center">
-                      Tekshiruv: {checksCount} marta
-                      {lastCheck && ` · Oxirgi: ${lastCheck}`}
-                    </p>
-                    {checkError && (
-                      <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30">
-                        <p className="t-caption text-red-400 text-center">
-                          Xato: {checkError}
-                        </p>
-                      </div>
-                    )}
-                    <button
-                      onClick={manualCheck}
-                      className="w-full py-2 rounded-lg border border-[var(--color-border)] t-small text-muted"
-                    >
-                      Holatni yangilash
-                    </button>
-                    <button
-                      onClick={() => router.push("/stage2")}
-                      className="w-full py-2 rounded-lg t-caption text-subtle"
-                    >
-                      (Test uchun: Stage 2 ga otish)
-                    </button>
-                  </div>
-                )}
+
+                <a
+                  href={`https://t.me/${(window as any).Telegram?.WebApp?.initDataUnsafe?.user?.username ? "kelajakkailkqadam_bot" : "kelajakkailkqadam_bot"}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary block text-center"
+                  onClick={() => {
+                    setTimeout(() => {
+                      (window as any).Telegram?.WebApp?.close?.();
+                    }, 300);
+                  }}
+                >
+                  Botga qaytish
+                </a>
                 <button
                   onClick={() => {
                     setOpenPay(false);
@@ -332,7 +255,7 @@ export default function TeaserPage() {
                     setPreview(null);
                     setDone(false);
                   }}
-                  className="btn btn-primary"
+                  className="btn btn-ghost mt-2"
                 >
                   Yopish
                 </button>
