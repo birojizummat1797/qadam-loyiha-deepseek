@@ -138,3 +138,19 @@ export async function getAdminFeedbacks(limit: number = 50) {
   });
   return r.data;
 }
+
+
+export async function getPendingPayments() {
+  const r = await api.get("/payments/manual/pending", {
+    params: { init_data: getInitData() },
+  });
+  return r.data;
+}
+
+export async function approvePayment(payment_id: number) {
+  const r = await api.post("/payments/manual/approve", {
+    init_data: getInitData(),
+    payment_id,
+  });
+  return r.data;
+}

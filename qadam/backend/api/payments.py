@@ -221,3 +221,210 @@ async def check_paid(stage1_result_id: int, init_data: str = Query(...)):
         if not s1 or s1.user_id != user["id"]:
             raise HTTPException(404, "Topilmadi")
         return {"paid": s1.paid}
+
+# ═══════════════════════════════════════════════════════════════════
+# MANUAL TO'LOV — karta orqali, admin tasdiqlaydi
+# ═══════════════════════════════════════════════════════════════════
+
+CARD_NUMBER = os.getenv("CARD_NUMBER", "8600 0000 0000 0000")
+CARD_HOLDER = os.getenv("CARD_HOLDER", "Qadam.io")
+CARD_BANK = os.getenv("CARD_BANK", "Uzcard")
+ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0"))
+
+
+class ManualRequestPayload(BaseModel):
+    init_data: str
+    stage1_result_id: int
+
+
+@router.post("/manual/request")
+async def manual_request(payload: ManualRequestPayload):
+    """User karta orqali to'lov qilmoqchi — adminga xabar yuborish."""
+    user = verify_init_data(payload.init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+
+    async with SessionLocal() as s:
+        s1 = await s.get(TestResult, payload.stage1_result_id)
+        if not s1 or s1.user_id != user["id"]:
+            raise HTTPException(404, "Stage 1 topilmadi")
+        if s1.paid:
+            raise HTTPException(409, "Allaqachon to'langan")
+
+        # Manual payment yozuvi
+        p = Payment(
+            user_id=user["id"],
+            stage1_result_id=payload.stage1_result_id,
+            provider="manual",
+            amount_uzs=PRICE_UZS,
+            status="pending",
+        )
+        s.add(p)
+        await s.commit()
+        await s.refresh(p)
+        payment_id = p.id
+
+    # Adminga bot orqali xabar
+    try:
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        first_name = user.get("first_name") or "Nomalum"
+        username = user.get("username") or "-"
+        user_id = user["id"]
+
+        text = (
+            f"💳 <b>Yangi to'lov so'rovi</b>\n\n"
+            f"👤 <b>User:</b> {first_name}\n"
+            f"🔗 <b>Username:</b> @{username}\n"
+            f"🆔 <b>ID:</b> <code>{user_id}</code>\n"
+            f"📊 <b>Stage 1 ID:</b> {payload.stage1_result_id}\n"
+            f"💰 <b>Summa:</b> {PRICE_UZS:,} so'm\n"
+            f"🎫 <b>Payment ID:</b> {payment_id}\n\n"
+            f"<i>Skrinshotni kutish kerak.</i>"
+        )
+
+        kb = InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="✅ Tasdiqlash",
+                    callback_data=f"pay:approve:{payment_id}",
+                ),
+                InlineKeyboardButton(
+                    text="❌ Rad etish",
+                    callback_data=f"pay:reject:{payment_id}",
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="👤 Userga yozish",
+                    url=f"tg://user?id={user_id}",
+                ),
+            ],
+        ])
+
+        if ADMIN_CHAT_ID:
+            await bot.send_message(ADMIN_CHAT_ID, text, reply_markup=kb)
+
+        await bot.session.close()
+    except Exception as e:
+        log.error(f"Admin xabar yuborishda xato: {e}")
+
+    return {
+        "payment_id": payment_id,
+        "status": "pending",
+        "card": {
+            "number": CARD_NUMBER,
+            "holder": CARD_HOLDER,
+            "bank": CARD_BANK,
+            "amount": PRICE_UZS,
+        },
+        "admin_username": "@ulugbek_aliboyev",
+    }
+
+
+class ApprovePayload(BaseModel):
+    init_data: str
+    payment_id: int
+
+
+@router.post("/manual/approve")
+async def manual_approve(payload: ApprovePayload):
+    """Admin to'lovni tasdiqlaydi."""
+    admin = verify_init_data(payload.init_data)
+    if not admin:
+        raise HTTPException(401, "Invalid initData")
+
+    ADMIN_IDS = set(
+        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()
+    )
+    if admin["id"] not in ADMIN_IDS:
+        raise HTTPException(403, "Ruxsat yoq")
+
+    async with SessionLocal() as s:
+        p = await s.get(Payment, payload.payment_id)
+        if not p:
+            raise HTTPException(404, "Payment topilmadi")
+
+        p.status = "paid"
+        s1 = await s.get(TestResult, p.stage1_result_id)
+        if s1:
+            s1.paid = True
+        await s.commit()
+
+        user_id = p.user_id
+
+    # Userga xabar yuborish
+    try:
+        from aiogram import Bot
+        from aiogram.client.default import DefaultBotProperties
+        from aiogram.enums import ParseMode
+        from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+
+        bot = Bot(
+            os.getenv("BOT_TOKEN", ""),
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+
+        webapp = os.getenv("WEBAPP_URL", "")
+        kb = InlineKeyboardMarkup(inline_keyboard=[[
+            InlineKeyboardButton(
+                text="🎯 Chuqur tahlilni boshlash",
+                web_app=WebAppInfo(url=f"{webapp}/stage2"),
+            )
+        ]])
+
+        await bot.send_message(
+            user_id,
+            "✅ <b>To'lovingiz tasdiqlandi!</b>\n\n"
+            "Endi 18 ta chuqur savolga javob bering va shaxsiy yo'l xaritangizni oling.",
+            reply_markup=kb,
+        )
+
+        await bot.session.close()
+    except Exception as e:
+        log.error(f"User xabar yuborishda xato: {e}")
+
+    return {"ok": True, "payment_id": payload.payment_id}
+
+
+@router.get("/manual/pending")
+async def manual_pending(init_data: str = Query(...)):
+    """Admin uchun: kutilayotgan to'lovlar."""
+    admin = verify_init_data(init_data)
+    if not admin:
+        raise HTTPException(401, "Invalid initData")
+
+    ADMIN_IDS = set(
+        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()
+    )
+    if admin["id"] not in ADMIN_IDS:
+        raise HTTPException(403, "Ruxsat yoq")
+
+    async with SessionLocal() as s:
+        rows = await s.execute(
+            select(Payment)
+            .where(Payment.status == "pending", Payment.provider == "manual")
+            .order_by(Payment.created_at.desc())
+        )
+        items = rows.scalars().all()
+
+    return {
+        "payments": [
+            {
+                "id": p.id,
+                "user_id": p.user_id,
+                "stage1_result_id": p.stage1_result_id,
+                "amount_uzs": p.amount_uzs,
+                "created_at": p.created_at.isoformat() if p.created_at else "",
+            }
+            for p in items
+        ]
+    }
