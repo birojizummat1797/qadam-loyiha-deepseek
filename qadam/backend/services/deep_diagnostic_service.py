@@ -65,7 +65,7 @@ def extract_evidence(answers: list, questions: list) -> list:
     qmap = {q["id"]: q for q in questions}
     out = []
     for a in answers:
-        q = qmap.get(a["id"]) or qmap.get(a["question_id"])
+        q = qmap.get(a.get("question_id") or a.get("id", ""))
         if not q:
             continue
         v10 = LIKERT_TO_10.get(int(a["answer_value"]), 5.0)
