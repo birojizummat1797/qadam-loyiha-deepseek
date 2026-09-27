@@ -51,7 +51,7 @@ export default function Home() {
 
         {/* ═══ ACTIONS ═══ */}
         <div className="space-y-2 pb-6 fade-in fade-in-4">
-          <Link href="/stage1" className="block">
+          <Link href="/discovery" className="block">
             <button className="btn btn-primary">
               <span>Boshlash</span>
               <ArrowRight className="w-4 h-4" strokeWidth={2.5} />

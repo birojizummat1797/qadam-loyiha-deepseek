@@ -169,3 +169,79 @@ export async function getPaymentStatus(payment_id: number) {
   });
   return r.data;
 }
+
+
+// ═══════════════════════════════════════════════════════════
+// DISCOVERY v1 — Free bosqich
+// ═══════════════════════════════════════════════════════════
+
+export async function startDiscovery() {
+  const r = await api.post("/api/v1/discovery", {
+    init_data: getInitData(),
+  });
+  return r.data;
+}
+
+export async function getDiscoverySession(session_id: number) {
+  const r = await api.get(`/api/v1/discovery/${session_id}`, {
+    params: { init_data: getInitData() },
+  });
+  return r.data;
+}
+
+export async function submitDiscoveryAnswer(
+  session_id: number,
+  question_id: string,
+  answer_id: string,
+  answer_value: number
+) {
+  const r = await api.post(`/api/v1/discovery/${session_id}/answers`, {
+    init_data: getInitData(),
+    question_id,
+    answer_id,
+    answer_value,
+  });
+  return r.data;
+}
+
+export async function completeDiscovery(session_id: number) {
+  const r = await api.post(`/api/v1/discovery/${session_id}/complete`, {
+    init_data: getInitData(),
+  });
+  return r.data;
+}
+
+// ═══════════════════════════════════════════════════════════
+// PROFILE v1
+// ═══════════════════════════════════════════════════════════
+
+export async function saveProfile(data: {
+  age?: number;
+  location?: string;
+  current_status?: string;
+  education?: string;
+}) {
+  const r = await api.post("/api/v1/profile", {
+    init_data: getInitData(),
+    ...data,
+  });
+  return r.data;
+}
+
+// ═══════════════════════════════════════════════════════════
+// ENTITLEMENTS v1
+// ═══════════════════════════════════════════════════════════
+
+export async function getMyEntitlements() {
+  const r = await api.get("/api/v1/entitlements/me", {
+    params: { init_data: getInitData() },
+  });
+  return r.data;
+}
+
+export async function checkEntitlement(key: string) {
+  const r = await api.get("/api/v1/entitlements/check", {
+    params: { init_data: getInitData(), entitlement_key: key },
+  });
+  return r.data;
+}
