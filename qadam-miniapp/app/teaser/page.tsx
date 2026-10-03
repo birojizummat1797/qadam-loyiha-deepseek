@@ -1,5 +1,6 @@
 "use client";
 
+import { EvidenceBadge } from "@/components/EvidenceLevel";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -107,9 +108,6 @@ export default function TeaserPage() {
                 <span className="t-body capitalize">
                   {s.key.replace(/_/g, " ")}
                 </span>
-                <span className="t-heading text-primary tabular-nums">
-                  {Math.round(s.score * 100)}%
-                </span>
               </div>
             ))}
           </div>
@@ -117,7 +115,7 @@ export default function TeaserPage() {
 
         {/* CAREERS */}
         <div className="mb-6 fade-in fade-in-2">
-          <p className="t-caption text-subtle mb-3">Mos yo'nalishlar</p>
+          <p className="t-caption text-subtle mb-3">Signallaringizga yaqinroq</p>
           <div className="space-y-3">
             {teaser.top_2_careers?.map((c: any) => (
               <div
@@ -128,9 +126,7 @@ export default function TeaserPage() {
                   <p className="t-heading">{c.career_uz}</p>
                   <p className="t-small text-muted">{c.cluster_uz}</p>
                 </div>
-                <span className="t-heading text-primary tabular-nums">
-                  {Math.round(c.fit)}%
-                </span>
+                <EvidenceBadge level={c.evidence_level} coverage={c.coverage} />
               </div>
             ))}
           </div>
@@ -152,8 +148,8 @@ export default function TeaserPage() {
 
           <ul className="space-y-2.5 mb-5">
             {[
-              "Top-5 mos yo'nalish",
-              "Fit + Readiness har biri uchun",
+              "Signallaringizga yaqin 5 ta yo'nalish",
+              "Har biri uchun dalil darajasi va to'siqlar",
               "To'siqlar va yechimlar",
               "6-12 oy shaxsiy yo'l xaritasi",
               "Birinchi 3 qadam",

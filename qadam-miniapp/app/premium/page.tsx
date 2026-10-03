@@ -84,7 +84,7 @@ export default function PremiumPage() {
             Shaxsiy kasb<br />yo&apos;l xaritasi
           </h1>
           <p className="t-small text-muted">
-            Fit + Readiness, skill-gap, 6-12 oylik reja va PDF hisobot.
+            Dalil darajasi, to'siqlar, skill-gap, 6-12 oylik reja va PDF hisobot.
           </p>
         </div>
 
@@ -93,8 +93,8 @@ export default function PremiumPage() {
           <ul className="space-y-2.5">
             {[
               "18 savol chuqur diagnostika",
-              "Top-5 mos yo'nalish",
-              "Fit + Readiness tahlili",
+              "Signallaringizga yaqin 5 ta yo'nalish",
+              "Dalil darajasi va to'siqlar tahlili",
               "To'siqlar va yechimlar",
               "6-12 oy shaxsiy yo'l xaritasi",
               "Birinchi 3 qadam",

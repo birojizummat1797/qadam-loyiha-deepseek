@@ -92,3 +92,24 @@ def test_bot_texts_make_no_fit_claims():
     text = BOT_START.read_text(encoding="utf-8")
     for pattern in (r"Fit va Readiness", r"Top-5 mos", r"Sizga mos", r"eng mos"):
         assert not re.search(pattern, text), pattern
+
+
+MINIAPP = Path(__file__).parent.parent.parent / "qadam-miniapp"
+
+
+def test_miniapp_shows_no_score_numbers():
+    """Mini App must not render fit/readiness/signal numbers (admin screens excluded)."""
+    files = [
+        p for d in ("app", "components") for p in (MINIAPP / d).rglob("*.tsx")
+        if "admin" not in p.parts
+    ]
+    assert files
+    patterns = [
+        r"Math\.round\([^)]*\b(fit|readiness|score|value)\b",
+        r">\s*(Fit|Readiness)\s*<",
+        r"Top-\{?[^}]*\}? mos|eng mos|Sizga mos|Fit \+ Readiness|Fit va Readiness",
+    ]
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        for pattern in patterns:
+            assert not re.search(pattern, text), f"{f.relative_to(MINIAPP)}: {pattern}"

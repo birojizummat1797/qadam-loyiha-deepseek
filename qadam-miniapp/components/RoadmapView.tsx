@@ -87,7 +87,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
               Bu yonalish uchun batafsil tahlil
             </h4>
             <p className="text-xs text-[var(--tg-hint)] leading-relaxed">
-              Sizga eng mos yonalishlar uchun toliq roadmap tayyorlangan.
+              Signallaringizga yaqin yo'nalishlar uchun to'liq roadmap tayyorlangan.
               Bu yonalish boyicha malumot tez orada qoshiladi.
             </p>
           </div>
@@ -106,7 +106,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
       >
         <div className="flex items-center gap-2 mb-2">
           <Star className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-sm">Nega bu sizga mos</h3>
+          <h3 className="font-semibold text-sm">Nega bu yo&apos;nalish ko&apos;rsatildi</h3>
         </div>
         <p className="text-sm leading-relaxed">{roadmap.why_this_path}</p>
       </motion.div>
@@ -129,16 +129,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
             <div className="space-y-2">
               {roadmap.a_point.signal_summary.top_5.map((s, i) => (
                 <div key={s.key} className="flex items-center gap-2">
-                  <span className="text-xs w-24 capitalize">{SIGNAL_UZ[s.key] ?? s.key}</span>
-                  <div className="flex-1 h-2 bg-[var(--tg-hint)]/10 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
-                      style={{ width: `${s.score * 100}%` }}
-                    />
-                  </div>
-                  <span className="text-xs w-10 text-right font-medium">
-                    {Math.round(s.score * 100)}%
-                  </span>
+                  <span className="text-xs capitalize">{SIGNAL_UZ[s.key] ?? s.key}</span>
                 </div>
               ))}
             </div>
