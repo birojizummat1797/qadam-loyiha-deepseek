@@ -148,6 +148,7 @@ async def compare_careers(
     taxonomy = await load_taxonomy_from_db()
     from backend.engine.fit import calculate_fit
     from backend.engine.readiness import calculate_readiness
+    from backend.engine.levels import context_status, evidence_level
 
     async with SessionLocal() as s:
         signal_rows = (await s.execute(
@@ -174,6 +175,8 @@ async def compare_careers(
                     "confidence": fit["confidence"],
                     "readiness": readiness["readiness"],
                     "barriers_count": len(readiness["barriers"]),
+                    "evidence_level": evidence_level(fit["coverage"]),
+                    "context_status": context_status(readiness),
                 })
                 break
 

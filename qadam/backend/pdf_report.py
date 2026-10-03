@@ -1,4 +1,5 @@
 """PDF Report generator - xhtml2pdf, jinja2 yo'q."""
+from backend.engine.levels import EVIDENCE_LABELS_UZ, evidence_level
 from datetime import datetime
 from io import BytesIO
 from xhtml2pdf import pisa
@@ -71,7 +72,8 @@ def _build_career_html(c):
     html.append("<table width=\"100%\"><tr>")
     html.append(f'<td><h3 style="margin:0"><span class="badge badge-indigo">#{_esc(c.get("_idx", ""))}</span> {_esc(career.get("uz", ""))}</h3>')
     html.append(f'<p class="muted" style="margin:2pt 0 0 0">{_esc(career.get("cluster_uz", ""))}</p></td>')
-    html.append(f'<td align="right" valign="top"><span class="fit-big">{_esc(c.get("fit", 0))}%</span><br><span class="muted" style="font-size:8pt">FIT</span><br><span class="muted">Ready: {_esc(c.get("readiness", 0))}%</span></td>')
+    level = EVIDENCE_LABELS_UZ.get(evidence_level(c.get("coverage")), "")
+    html.append(f'<td align="right" valign="top"><span class="muted">{_esc(level)}</span></td>')
     html.append("</tr></table></div>")
 
     # Placeholder bo'lsa — o'tkazib yuborish
@@ -80,9 +82,9 @@ def _build_career_html(c):
 
     html.append(f'<div class="section-title">{_esc(career.get("uz", ""))} — Roadmap</div>')
 
-    # Nega mos
+    # Nega ko'rsatildi
     if roadmap.get("why_this_path"):
-        html.append('<div class="card"><h4>Nega bu sizga mos</h4>')
+        html.append('<div class="card"><h4>Nega bu yo\'nalish ko\'rsatildi</h4>')
         html.append(f'<p>{_esc(roadmap["why_this_path"])}</p></div>')
 
     # A NUQTA
@@ -94,8 +96,7 @@ def _build_career_html(c):
             html.append('<p class="muted">Kuchli signallaringiz:</p><ul>')
             for s in sig["top_5"]:
                 name = SIGNAL_UZ.get(s["key"], s["key"])
-                pct = round(s["score"] * 100)
-                html.append(f'<li><b>{_esc(name)}</b> — {pct}%</li>')
+                html.append(f'<li><b>{_esc(name)}</b></li>')
             html.append("</ul>")
         if a_point.get("constraints"):
             html.append("<h4>To'siqlar va yechim</h4><ul>")
@@ -212,7 +213,7 @@ def generate_pdf(report, theme="light"):
         parts.append('<div class="card card-indigo"><h3>Umumiy xulosa</h3>')
         parts.append(f'<p>{_esc(ai["summary"])}</p></div>')
 
-    parts.append(f'<h2>Top-{len(careers)} mos yonalish</h2>')
+    parts.append('<h2>Signallaringizga yaqinroq yo\'nalishlar</h2>')
 
     for idx, c in enumerate(careers, 1):
         c["_idx"] = idx

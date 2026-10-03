@@ -106,7 +106,7 @@ def _from_template(slug: str, career: dict, template: dict, ranked: dict) -> dic
     return {
         "career_id": slug,
         "career_uz": career.get("title_uz") or career.get("uz", ""),
-        "why": f"Bu yo'nalish sizning signallaringizga mos keladi.",
+        "why": "Bu yo'nalish uchun muhim signallar javoblaringizda ko'rindi.",
         "source": "template",
         "phases": phases,
         "next_3_actions": first_3,

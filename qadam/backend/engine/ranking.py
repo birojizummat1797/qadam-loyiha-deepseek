@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 from .fit import calculate_fit
 from .readiness import calculate_readiness
+from .levels import context_status, evidence_level
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 
@@ -91,6 +92,9 @@ def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
                 "learning_months": career.get("learning_months"),
                 "pathway_type": career.get("pathway_type"),
                 "composite_score": round(composite, 2),
+                # User-facing (no percentages): see engine/levels.py
+                "evidence_level": evidence_level(fit_result["coverage"]),
+                "context_status": context_status(readiness_result),
             })
 
     candidates.sort(key=lambda x: -x["composite_score"])

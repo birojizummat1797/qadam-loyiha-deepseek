@@ -15,7 +15,7 @@ WEBAPP_URL = os.getenv("WEBAPP_URL", "https://qadam-loyiha-deepseek-eight.vercel
 WELCOME_TEXT = (
     "Assalomu alaykum, <b>{name}</b>!\n\n"
     "Men — <b>Qadam.io</b>, kasb va soha tanlashda yordamchi.\n\n"
-    "Sizga mos yo'nalishni dalillar asosida aniqlash va shaxsiy "
+    "Signallaringizga yaqin yo'nalishlarni dalillar asosida ko'rish va shaxsiy "
     "yo'l xaritasi tuzishda yordam beraman.\n\n"
     "<b>3 daqiqa</b> — 13 savol — <b>bepul</b>."
 )
@@ -24,8 +24,8 @@ PREMIUM_INTRO_TEXT = (
     "<b>Chuqur tahlil</b>\n\n"
     "Chuqur tahlil sizga:\n"
     "• 18 qo'shimcha savol\n"
-    "• Top-5 mos yo'nalish\n"
-    "• Fit va Readiness (har biri uchun)\n"
+    "• Signallaringizga yaqin 5 ta yo'nalish\n"
+    "• Har biri uchun dalil darajasi va to'siqlar\n"
     "• Skill-gap tahlili\n"
     "• 6-12 oylik shaxsiy yo'l xaritasi\n"
     "• PDF hisobot\n\n"
@@ -116,8 +116,8 @@ async def cb_how(q: CallbackQuery):
         "<b>Qadam.io qanday ishlaydi?</b>\n\n"
         "1. Siz 13 ta savolga javob berasiz (3 daqiqa).\n"
         "2. Tizim javoblarni signallarga aylantiradi.\n"
-        "3. Signallar 25+ kasbiy yo'nalish bilan taqqoslanadi.\n"
-        "4. Sizga mos 3 ta yo'nalish va amaliy yo'l xaritasi beriladi.\n\n"
+        "3. Signallar 25 ta kasbiy yo'nalish talablari bilan taqqoslanadi.\n"
+        "4. Signallaringizga yaqin yo'nalishlar va amaliy yo'l xaritasi ko'rsatiladi. Qarorni siz qilasiz.\n\n"
         "<i>Halol tahlil. Manipulyatsiyasiz.</i>"
     )
 

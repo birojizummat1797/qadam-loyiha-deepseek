@@ -211,6 +211,8 @@ def build_full_report(ranked, constraints, taxonomy, signals=None):
             "fit": item["fit"],
             "readiness": item["readiness"],
             "coverage": item["coverage"],
+            "evidence_level": item.get("evidence_level"),
+            "context_status": item.get("context_status"),
             "barriers": item["barriers"],
             "has_hard_barrier": item["has_hard_barrier"],
             "roadmap": rm,

@@ -85,6 +85,7 @@ async def get_roadmap(
         # Top-25'da yo'q — qo'lda hisoblash
         from backend.engine.fit import calculate_fit
         from backend.engine.readiness import calculate_readiness
+        from backend.engine.levels import context_status, evidence_level
         fit = calculate_fit(signals, career_data)
         readiness = calculate_readiness(base, career_data.get("prerequisites", {}))
         ranked_item = {
@@ -95,6 +96,8 @@ async def get_roadmap(
             "readiness": readiness["readiness"],
             "barriers": readiness["barriers"],
             "has_hard_barrier": readiness["has_hard_barrier"],
+            "evidence_level": evidence_level(fit["coverage"]),
+            "context_status": context_status(readiness),
         }
 
     # Roadmap
@@ -108,5 +111,7 @@ async def get_roadmap(
         "confidence": ranked_item.get("confidence"),
         "readiness": ranked_item.get("readiness"),
         "has_hard_barrier": ranked_item.get("has_hard_barrier"),
+        "evidence_level": ranked_item.get("evidence_level"),
+        "context_status": ranked_item.get("context_status"),
         "roadmap": roadmap,
     }

@@ -315,7 +315,7 @@ async def report_complete(report_id: int, payload: ReportCompletePayload):
 
         # Top-1 career nomi
         careers = (r.roadmap or {}).get("careers", [])
-        top_career = careers[0]["career"]["uz"] if careers else "sizga mos yonalish"
+        top_career = careers[0]["career"]["uz"] if careers else "tanlangan yo'nalish"
 
     # Bot orqali xabar yuborish
     try:
@@ -422,7 +422,7 @@ async def report_pdf(report_id: int, payload: PdfRequestPayload):
         )
 
         first_name = user.get("first_name") or "dostim"
-        top_career = "sizga mos yonalish"
+        top_career = "tanlangan yo'nalish"
         careers = (r.roadmap or {}).get("careers", [])
         if careers:
             top_career = careers[0]["career"]["uz"]
