@@ -11,6 +11,7 @@ from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
 from backend.engine.ranking import rank_careers
 from backend.engine.roadmap_engine import build_roadmap
+from backend.services.context_service import discovery_constraints
 
 router = APIRouter(prefix="/api/v1/roadmap", tags=["roadmap-v1"])
 
@@ -57,9 +58,8 @@ async def get_roadmap(
             )).scalars().all()
 
     signals = {**_signals_from_rows(disc_rows), **_signals_from_rows(signal_rows)}
-    constraints = (sess.meta or {}).get("constraints") or {}
-    base = {"time": "2_3h", "device": "laptop", "english": "b1"}
-    base.update(constraints)
+    # Haqiqiy sharoit discovery javoblaridan (deep meta'da faqat moliya/shoshilinchlik bor)
+    base = await discovery_constraints(sess.discovery_session_id)
 
     taxonomy = await load_taxonomy_from_db()
 

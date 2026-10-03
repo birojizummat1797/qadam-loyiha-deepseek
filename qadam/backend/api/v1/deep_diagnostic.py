@@ -199,8 +199,9 @@ async def complete(session_id: int, payload: StartPayload):
     # Constraints
     dd_constraints = dd_extract_cons(dd_answers_list, questions)
 
-    # Discovery constraints (agar mavjud)
-    base_constraints = {"time": "2_3h", "device": "laptop", "english": "b1"}
+    # Discovery'dagi haqiqiy sharoit (default yo'q; noma'lum bo'lsa readiness = None)
+    from backend.services.context_service import discovery_constraints
+    base_constraints = await discovery_constraints(sess.discovery_session_id)
 
     # Ranking
     taxonomy = await load_taxonomy_from_db()

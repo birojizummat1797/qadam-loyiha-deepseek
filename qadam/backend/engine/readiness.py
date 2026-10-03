@@ -56,6 +56,20 @@ def _p_time(constraints, prerequisites):
 
 
 def calculate_readiness(constraints, prerequisites):
+    """Readiness faqat foydalanuvchining haqiqiy sharoitidan. Sharoit noma'lum → None."""
+    if not isinstance(constraints, dict) or not all(
+        constraints.get(k) for k in ("time", "device", "english")
+    ):
+        return {
+            "readiness": None,
+            "p_computer": None,
+            "p_english": None,
+            "p_time": None,
+            "barriers": [],
+            "has_hard_barrier": False,
+            "status": "unknown_context",
+        }
+
     p_c = _p_computer(constraints, prerequisites)
     p_e = _p_english(constraints, prerequisites)
     p_t = _p_time(constraints, prerequisites)
@@ -91,4 +105,5 @@ def calculate_readiness(constraints, prerequisites):
         "p_time": round(p_t, 3),
         "barriers": barriers,
         "has_hard_barrier": any(b["level"] == "hard" for b in barriers),
+        "status": "ok",
     }

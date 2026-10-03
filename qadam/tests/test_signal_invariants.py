@@ -120,3 +120,49 @@ def test_fit_and_readiness_are_independent():
     assert ready["readiness"] == 100.0
     assert blocked["readiness"] < ready["readiness"]
     assert blocked["has_hard_barrier"] is True
+
+
+# ── P0-5/6: readiness only from the user's real context ─────────────────────
+
+from backend.engine.ranking import rank_careers
+from backend.services.discovery_service import extract_known_constraints
+
+
+def test_constraints_have_no_invented_defaults():
+    assert extract_known_constraints([]) == {}
+    partial = extract_known_constraints([{"question_id": "DISC_Q12", "answer_id": "DISC_Q12_A04"}])
+    assert partial == {"device": "none"}
+
+
+def test_readiness_is_unknown_without_context():
+    career = CAREERS[0]
+    for ctx in (None, {}, {"device": "laptop"}):
+        r = calculate_readiness(ctx, career["prerequisites"])
+        assert r["readiness"] is None
+        assert r["status"] == "unknown_context"
+        assert r["barriers"] == []
+
+
+def test_ranking_with_unknown_context_uses_fit_only():
+    rng = random.Random(3)
+    signals = compute_signals_from_discovery(discovery_answers(rng, likert=5), DISCOVERY)
+    taxonomy = load_taxonomy()
+    ranked = rank_careers(signals, taxonomy, None, top_n=25)["ranked"]
+    assert ranked
+    for item in ranked:
+        assert item["readiness"] is None
+        assert item["composite_score"] == round(item["fit"], 2)
+
+
+def test_real_context_changes_readiness_not_fit():
+    rng = random.Random(4)
+    answers = discovery_answers(rng, likert=4)
+    signals = compute_signals_from_discovery(answers, DISCOVERY)
+    taxonomy = load_taxonomy()
+    good = {"time": "full_time", "device": "laptop", "english": "c1"}
+    poor = {"time": "lt_1h", "device": "none", "english": "none"}
+    a = {r["career_id"]: r for r in rank_careers(signals, taxonomy, good, top_n=25)["ranked"]}
+    b = {r["career_id"]: r for r in rank_careers(signals, taxonomy, poor, top_n=25)["ranked"]}
+    for slug in set(a) & set(b):
+        assert a[slug]["fit"] == b[slug]["fit"]
+        assert a[slug]["readiness"] >= b[slug]["readiness"]

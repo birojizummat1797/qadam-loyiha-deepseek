@@ -66,10 +66,11 @@ def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
                 constraints, career.get("prerequisites", {})
             )
 
-            # Composite score (Fit ustuvor, Readiness modifikator)
-            composite = fit_result["fit"] * (
-                0.7 + 0.3 * (readiness_result["readiness"] / 100.0)
-            )
+            # Composite score (Fit ustuvor, Readiness modifikator).
+            # Sharoit noma'lum bo'lsa, modifikator qo'llanmaydi (taxmin qilinmaydi).
+            readiness_value = readiness_result["readiness"]
+            modifier = 1.0 if readiness_value is None else 0.7 + 0.3 * (readiness_value / 100.0)
+            composite = fit_result["fit"] * modifier
 
             candidates.append({
                 "career_id": career_key,

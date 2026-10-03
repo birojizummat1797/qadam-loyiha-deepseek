@@ -121,30 +121,38 @@ def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> d
     }
 
 
-def _extract_constraints(answers: list) -> dict:
-    """Q11, Q12, Q13 dan constraints."""
-    qmap = {a["question_id"]: a for a in answers}
-
-    time_map = {
+CONSTRAINT_ANSWER_MAPS = {
+    "time": ("DISC_Q11", {
         "DISC_Q11_A01": "lt_1h", "DISC_Q11_A02": "1h",
         "DISC_Q11_A03": "2_3h", "DISC_Q11_A04": "4h_plus",
         "DISC_Q11_A05": "full_time",
-    }
-    device_map = {
+    }),
+    "device": ("DISC_Q12", {
         "DISC_Q12_A01": "laptop", "DISC_Q12_A02": "smartphone_only",
         "DISC_Q12_A03": "both", "DISC_Q12_A04": "none",
-    }
-    english_map = {
+    }),
+    "english": ("DISC_Q13", {
         "DISC_Q13_A01": "none", "DISC_Q13_A02": "a2",
         "DISC_Q13_A03": "b1", "DISC_Q13_A04": "b2",
         "DISC_Q13_A05": "c1",
-    }
+    }),
+}
 
-    return {
-        "time": time_map.get(qmap.get("DISC_Q11", {}).get("answer_id"), "2_3h"),
-        "device": device_map.get(qmap.get("DISC_Q12", {}).get("answer_id"), "laptop"),
-        "english": english_map.get(qmap.get("DISC_Q13", {}).get("answer_id"), "b1"),
-    }
+
+def extract_known_constraints(answers: list) -> dict:
+    """Q11, Q12, Q13 dan constraints — faqat foydalanuvchi javob berganlari, default yo'q."""
+    qmap = {a["question_id"]: a for a in answers}
+    out = {}
+    for key, (qid, mapping) in CONSTRAINT_ANSWER_MAPS.items():
+        value = mapping.get((qmap.get(qid) or {}).get("answer_id"))
+        if value:
+            out[key] = value
+    return out
+
+
+def _extract_constraints(answers: list) -> dict:
+    """Eski nom (moslik uchun). Endi default qiymat qo'ymaydi."""
+    return extract_known_constraints(answers)
 
 
 # ═══════════════════════════════════════════════════════════

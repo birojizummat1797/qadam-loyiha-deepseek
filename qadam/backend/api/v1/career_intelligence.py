@@ -9,6 +9,7 @@ from backend.auth import verify_init_data
 from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
 from backend.engine.ranking import rank_careers
+from backend.services.context_service import discovery_constraints
 
 router = APIRouter(prefix="/api/v1/career-intelligence", tags=["career-intelligence-v1"])
 
@@ -72,10 +73,8 @@ async def get_career_intelligence(
     # DB taxonomy
     taxonomy = await load_taxonomy_from_db()
 
-    # Constraints sessiya meta'sidan
-    constraints = (sess.meta or {}).get("constraints") or {
-        "time": "2_3h", "device": "laptop", "english": "b1",
-    }
+    # Foydalanuvchining haqiqiy sharoiti (default yo'q; noma'lum bo'lsa readiness = None)
+    constraints = await discovery_constraints(discovery_session_id)
 
     # Ranking
     ranking = rank_careers(
@@ -157,6 +156,7 @@ async def compare_careers(
             )
         )).scalars().all()
     signals = _signals_from_db(signal_rows)
+    constraints = await discovery_constraints(discovery_session_id)
 
     out = []
     for slug in slug_list:
@@ -164,10 +164,7 @@ async def compare_careers(
             if slug in cluster["careers"]:
                 c = cluster["careers"][slug]
                 fit = calculate_fit(signals, c)
-                readiness = calculate_readiness(
-                    {"device": "laptop", "english": "b1", "time": "2_3h"},
-                    c.get("prerequisites", {}),
-                )
+                readiness = calculate_readiness(constraints, c.get("prerequisites", {}))
                 out.append({
                     "slug": slug,
                     "title_uz": c["uz"],
