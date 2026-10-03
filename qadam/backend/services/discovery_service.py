@@ -36,7 +36,7 @@ def compute_signals_from_discovery(answers: list, questions: list) -> dict:
     Returns: {signal_key: {value, trust, evidence_state, coverage}}
     """
     from backend.engine.signals import (
-        SIGNAL_KEYS, LIKERT_TO_10, _classify_trust,
+        SIGNAL_KEYS, LIKERT_TO_10, aggregate_signal,
     )
 
     qmap = {q["id"]: q for q in questions}
@@ -52,7 +52,7 @@ def compute_signals_from_discovery(answers: list, questions: list) -> dict:
             v10 = LIKERT_TO_10.get(a["answer_value"], 5.0)
             for sig, w in q.get("signals", {}).items():
                 if sig in raw:
-                    raw[sig].append(v10 * w)
+                    raw[sig].append((v10, w))
             continue
 
         # Choice savol
@@ -67,25 +67,9 @@ def compute_signals_from_discovery(answers: list, questions: list) -> dict:
         v10 = LIKERT_TO_10.get(int(cv), 5.0)
         for sig, w in opt.get("signals", {}).items():
             if sig in raw:
-                raw[sig].append(v10 * w)
+                raw[sig].append((v10, w))
 
-    out = {}
-    for k in SIGNAL_KEYS:
-        contribs = raw[k]
-        trust, state, count = _classify_trust(contribs)
-        if state == "unmeasured" or not contribs:
-            out[k] = {
-                "value": None, "trust": 0.0,
-                "evidence_state": "unmeasured", "coverage": 0,
-            }
-        else:
-            out[k] = {
-                "value": round(sum(contribs) / len(contribs), 2),
-                "trust": trust,
-                "evidence_state": state,
-                "coverage": count,
-            }
-    return out
+    return {k: aggregate_signal(raw[k]) for k in SIGNAL_KEYS}
 
 
 def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> dict:

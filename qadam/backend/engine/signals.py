@@ -62,6 +62,30 @@ def _classify_trust(contributions):
     return TRUST_MEASURED, "measured", n
 
 
+def clamp_value(value):
+    """Signal qiymati har doim [0, 10] ichida (invariant)."""
+    return max(0.0, min(10.0, float(value)))
+
+
+def aggregate_signal(pairs):
+    """
+    pairs: [(value_0_10, weight), ...] — bitta signal uchun har bir javob.
+
+    Vaznli o'rtacha: value = Σ(v·w) / Σw  → doim [0, 10].
+    (Oldin o'rtacha(v·w) edi: w > 1 da 10 dan oshardi, w < 1 da eng yuqori
+    javob ham past qiymat berardi.)
+    Trust javobning o'z qiymatlari bo'yicha baholanadi.
+    """
+    pairs = [(clamp_value(v), float(w)) for v, w in pairs if float(w) > 0]
+    values = [v for v, _ in pairs]
+    trust, state, count = _classify_trust(values)
+    if state == "unmeasured":
+        return {"value": None, "trust": 0.0, "evidence_state": "unmeasured", "coverage": 0}
+    total_w = sum(w for _, w in pairs)
+    value = clamp_value(sum(v * w for v, w in pairs) / total_w)
+    return {"value": round(value, 2), "trust": trust, "evidence_state": state, "coverage": count}
+
+
 def signals_from_answers(answers, questions):
     """
     Returns: {
@@ -99,33 +123,13 @@ def signals_from_answers(answers, questions):
             # Choice savol — neytral 5.0
             v = 5.0
 
-        # Weighted contribution (weight bilan ko'paytirilgan)
-        raw[signal].append(v * w)
+        raw[signal].append((v, w))
 
     out = {}
     for k in SIGNAL_KEYS:
-        contribs = raw[k]
-        trust, state, count = _classify_trust(contribs)
-
-        if state == "unmeasured" or not contribs:
-            out[k] = {
-                "value": None,
-                "trust": 0.0,
-                "evidence_state": "unmeasured",
-                "coverage": 0,
-                "contributions": [],
-            }
-            continue
-
-        # Weighted average → [0, 10] shkalada
-        avg = sum(contribs) / len(contribs)
-
-        out[k] = {
-            "value": round(avg, 2),
-            "trust": trust,
-            "evidence_state": state,
-            "coverage": count,
-            "contributions": [round(c, 2) for c in contribs],
-        }
+        pairs = raw[k]
+        agg = aggregate_signal(pairs)
+        agg["contributions"] = [round(v, 2) for v, _ in pairs] if agg["value"] is not None else []
+        out[k] = agg
 
     return out

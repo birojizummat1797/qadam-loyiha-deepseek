@@ -38,7 +38,7 @@ def test_dd_signals_computation():
     ]
     signals = compute_signals(answers, flat)
     ti = signals["technical_interest"]
-    assert ti["value"] == 15.0  # 10 * 1.5
+    assert ti["value"] == 10.0  # vaznli o'rtacha, [0, 10] dan oshmaydi
     assert ti["evidence_state"] == "insufficient"
 
 

@@ -28,7 +28,7 @@ def get_next_question(session_state: dict, questions: list):
 
 def compute_signals(answers: list, questions: list) -> dict:
     """Likert 1-5 → [0,10] shkalada, trust factor bilan."""
-    from backend.engine.signals import SIGNAL_KEYS, LIKERT_TO_10, _classify_trust
+    from backend.engine.signals import SIGNAL_KEYS, LIKERT_TO_10, aggregate_signal
 
     qmap = {q["id"]: q for q in questions}
     raw = {k: [] for k in SIGNAL_KEYS}
@@ -40,22 +40,9 @@ def compute_signals(answers: list, questions: list) -> dict:
         v = LIKERT_TO_10.get(int(a["answer_value"]), 5.0)
         for sig, w in (q.get("signals") or {}).items():
             if sig in raw:
-                raw[sig].append(v * w)
+                raw[sig].append((v, w))
 
-    out = {}
-    for k in SIGNAL_KEYS:
-        contribs = raw[k]
-        trust, state, count = _classify_trust(contribs)
-        if state == "unmeasured" or not contribs:
-            out[k] = {"value": None, "trust": 0.0, "evidence_state": "unmeasured", "coverage": 0}
-        else:
-            out[k] = {
-                "value": round(sum(contribs) / len(contribs), 2),
-                "trust": trust,
-                "evidence_state": state,
-                "coverage": count,
-            }
-    return out
+    return {k: aggregate_signal(raw[k]) for k in SIGNAL_KEYS}
 
 
 def extract_evidence(answers: list, questions: list) -> list:
