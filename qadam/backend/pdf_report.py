@@ -6,21 +6,14 @@ from io import BytesIO
 from xhtml2pdf import pisa
 
 
-SIGNAL_UZ = {
-    "logical_thinking": "Mantiq",
-    "problem_solving": "Muammo hal",
-    "technical_interest": "Texnika",
-    "creative_design": "Ijodiy dizayn",
-    "visual_logic": "Vizual mantiq",
-    "user_empathy": "Empatiya",
-    "system_design": "Tizim",
-    "analytical": "Tahlil",
-    "persistence": "Qatiyat",
-    "math_logic": "Matematika",
-    "attention_to_detail": "Detal",
-    "business_sense": "Biznes",
-    "innovation": "Innovatsiya",
-}
+def _signal_labels():
+    """Signal labels from the single backend source (signals_v1.json)."""
+    from backend.data_loader import load_signals
+
+    return {k: v["uz"] for k, v in load_signals()["signals"].items()}
+
+
+SIGNAL_UZ = _signal_labels()
 
 
 STYLE = """

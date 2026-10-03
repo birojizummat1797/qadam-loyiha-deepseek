@@ -1,6 +1,7 @@
 "use client";
 
 import { EvidenceBadge } from "@/components/EvidenceLevel";
+import { signalLabel } from "@/lib/signals";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -105,9 +106,7 @@ export default function TeaserPage() {
           <div className="space-y-2">
             {teaser.top_2_signals?.map((s: any) => (
               <div key={s.key} className="flex items-center justify-between py-2">
-                <span className="t-body capitalize">
-                  {s.key.replace(/_/g, " ")}
-                </span>
+                <span className="t-body">{signalLabel(s.key)}</span>
               </div>
             ))}
           </div>

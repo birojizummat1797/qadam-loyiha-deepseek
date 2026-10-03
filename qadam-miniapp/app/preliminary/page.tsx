@@ -1,26 +1,12 @@
 "use client";
 
+import { signalLabel } from "@/lib/signals";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Lock, Check, Sparkles, TrendingUp, Info } from "lucide-react";
 import { EvidenceBadge } from "@/components/EvidenceLevel";
 
-const SIGNAL_UZ: Record<string, string> = {
-  logical_thinking: "Mantiqiy fikrlash",
-  problem_solving: "Muammo hal qilish",
-  technical_interest: "Texnikaga qiziqish",
-  creative_design: "Ijodiy dizayn",
-  visual_logic: "Vizual mantiq",
-  user_empathy: "Empatiya",
-  system_design: "Tizimli fikrlash",
-  analytical: "Tahliliy fikrlash",
-  persistence: "Qat'iyat",
-  math_logic: "Matematik mantiq",
-  attention_to_detail: "Detallarga e'tibor",
-  business_sense: "Biznes hissi",
-  innovation: "Innovatsiya",
-};
 
 export default function PreliminaryPage() {
   const router = useRouter();
@@ -89,7 +75,7 @@ export default function PreliminaryPage() {
               {signals.slice(0, 5).map((s: any, i: number) => (
                 <div key={s.key} className="flex items-center gap-3">
                   <span className="t-small flex-1 truncate">
-                    {SIGNAL_UZ[s.key] ?? s.key}
+                    {signalLabel(s.key)}
                   </span>
                 </div>
               ))}
@@ -139,7 +125,7 @@ export default function PreliminaryPage() {
             <div className="flex flex-wrap gap-1.5">
               {devAreas.map((k: string) => (
                 <span key={k} className="badge-soft badge-warning">
-                  {SIGNAL_UZ[k] ?? k}
+                  {signalLabel(k)}
                 </span>
               ))}
             </div>

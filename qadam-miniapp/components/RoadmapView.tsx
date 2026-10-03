@@ -1,5 +1,6 @@
 "use client";
 
+import { signalLabel } from "@/lib/signals";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -37,14 +38,6 @@ type Roadmap = {
   is_placeholder?: boolean;
 };
 
-const SIGNAL_UZ: Record<string, string> = {
-  logical_thinking: "Mantiq", problem_solving: "Muammo hal",
-  technical_interest: "Texnika", creative_design: "Ijodiy dizayn",
-  visual_logic: "Vizual mantiq", user_empathy: "Empatiya",
-  system_design: "Tizim", analytical: "Tahlil", persistence: "Qatiyat",
-  math_logic: "Matematika", attention_to_detail: "Detal",
-  business_sense: "Biznes", innovation: "Innovatsiya",
-};
 
 const STAGE_COLORS = [
   { from: "from-slate-500", to: "to-slate-700", bg: "bg-slate-500/15", text: "text-slate-300", accent: "border-slate-500/40" },
@@ -114,7 +107,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
             <div className="space-y-2">
               {roadmap.a_point.signal_summary.top_5.map((s, i) => (
                 <div key={s.key} className="flex items-center gap-2">
-                  <span className="text-xs capitalize">{SIGNAL_UZ[s.key] ?? s.key}</span>
+                  <span className="text-xs capitalize">{signalLabel(s.key)}</span>
                 </div>
               ))}
             </div>

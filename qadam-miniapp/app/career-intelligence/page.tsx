@@ -1,26 +1,12 @@
 "use client";
 
+import { signalLabel } from "@/lib/signals";
 import { ContextNote, EvidenceBadge } from "@/components/EvidenceLevel";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Sparkles, AlertCircle } from "lucide-react";
 
-const SIGNAL_UZ: Record<string, string> = {
-  logical_thinking: "Mantiqiy fikrlash",
-  problem_solving: "Muammo hal qilish",
-  technical_interest: "Texnikaga qiziqish",
-  creative_design: "Ijodiy dizayn",
-  visual_logic: "Vizual mantiq",
-  user_empathy: "Empatiya",
-  system_design: "Tizimli fikrlash",
-  analytical: "Tahliliy fikrlash",
-  persistence: "Qat'iyat",
-  math_logic: "Matematik mantiq",
-  attention_to_detail: "Detallarga e'tibor",
-  business_sense: "Biznes hissi",
-  innovation: "Innovatsiya",
-};
 
 export default function CareerIntelligencePage() {
   const router = useRouter();
@@ -79,7 +65,7 @@ export default function CareerIntelligencePage() {
               {measuredSignals.map(([key, v]: any, i: number) => (
                 <div key={key} className="flex items-center gap-3">
                   <span className="t-small flex-1 truncate">
-                    {SIGNAL_UZ[key] ?? key}
+                    {signalLabel(key)}
                   </span>
                 </div>
               ))}
