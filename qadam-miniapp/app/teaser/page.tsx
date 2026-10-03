@@ -147,7 +147,7 @@ export default function TeaserPage() {
 
           <ul className="space-y-2.5 mb-5">
             {[
-              "Signallaringizga yaqin 5 ta yo'nalish",
+              "Signallaringizga yaqin yo'nalishlar (yo'l xaritasi tayyorlari)",
               "Har biri uchun dalil darajasi va to'siqlar",
               "To'siqlar va yechimlar",
               "6-12 oy shaxsiy yo'l xaritasi",

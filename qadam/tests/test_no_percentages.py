@@ -158,3 +158,18 @@ def test_money_inside_editorial_lists_is_removed():
     stage = {"constraints": [["Narx qancha?", "Mahalliy bozor: 3-6 mln"], ["Reject", "Davom eting"]],
              "outcomes": ["Junior lavozim", "$300-600/oy remote"]}
     assert strip_unsupported(stage) == {"constraints": [["Reject", "Davom eting"]], "outcomes": ["Junior lavozim"]}
+
+
+# ── PM gate: catalog ≠ recommendation ───────────────────────────────────────
+
+def test_no_promise_to_rank_all_catalog_careers():
+    """Ranking covers only careers with a roadmap KB; texts must not promise 25 or a fixed top-5."""
+    texts = [BOT_START.read_text(encoding="utf-8")] + [
+        p.read_text(encoding="utf-8")
+        for d in ("app", "components") for p in (MINIAPP / d).rglob("*.tsx") if "admin" not in p.parts
+    ]
+    for text in texts:
+        assert not re.search(r"25\+? ta kasb|25\+? kasbiy|5 ta yo'nalish|Top-5", text)
+    for page in ("preliminary", "career-intelligence"):
+        src = (MINIAPP / "app" / page / "page.tsx").read_text(encoding="utf-8")
+        assert "yo&apos;l xaritasi tayyor bo&apos;lgan yo&apos;nalishlar ko&apos;rib chiqiladi" in src, page

@@ -130,6 +130,10 @@ export default function CareerIntelligencePage() {
               </div>
             ))}
           </div>
+          <p className="t-caption text-subtle mt-3">
+              Hozircha natijada faqat yo&apos;l xaritasi tayyor bo&apos;lgan yo&apos;nalishlar ko&apos;rib chiqiladi.
+              Qadam katalogidagi boshqa yo&apos;nalishlar bu ro&apos;yxatga keyinroq qo&apos;shiladi.
+            </p>
         </motion.div>
 
         {ranked.length === 0 && (

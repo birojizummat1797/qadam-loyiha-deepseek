@@ -93,7 +93,7 @@ export default function PremiumPage() {
           <ul className="space-y-2.5">
             {[
               "18 savol chuqur diagnostika",
-              "Signallaringizga yaqin 5 ta yo'nalish",
+              "Signallaringizga yaqin yo'nalishlar (yo'l xaritasi tayyorlari)",
               "Dalil darajasi va to'siqlar tahlili",
               "To'siqlar va yechimlar",
               "6-12 oy shaxsiy yo'l xaritasi",

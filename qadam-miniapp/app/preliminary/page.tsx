@@ -107,6 +107,10 @@ export default function PreliminaryPage() {
                 </div>
               ))}
             </div>
+            <p className="t-caption text-subtle mt-3">
+              Hozircha natijada faqat yo&apos;l xaritasi tayyor bo&apos;lgan yo&apos;nalishlar ko&apos;rib chiqiladi.
+              Qadam katalogidagi boshqa yo&apos;nalishlar bu ro&apos;yxatga keyinroq qo&apos;shiladi.
+            </p>
           </motion.div>
         )}
 
@@ -159,7 +163,7 @@ export default function PreliminaryPage() {
           <ul className="space-y-2 mb-4">
             {[
               "18 savol chuqur diagnostika",
-              "Signallaringizga yaqin 5 ta yo'nalish",
+              "Signallaringizga yaqin yo'nalishlar (yo'l xaritasi tayyorlari)",
               "Har biri uchun dalil darajasi va to'siqlar",
               "Skill-gap va to'siqlar",
               "6-12 oy shaxsiy yo'l xaritasi",
