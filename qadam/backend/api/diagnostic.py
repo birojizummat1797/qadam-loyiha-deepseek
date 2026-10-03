@@ -15,6 +15,7 @@ from backend.data_loader import (
 from backend.engine.signals import signals_from_answers
 from backend.engine.ranking import rank_careers
 from backend.engine.roadmap import build_full_report
+from backend.engine.public_output import strip_unsupported
 from backend.ai.personalizer import personalize
 from backend.security.rate_limit import check as rl_check
 from backend.logger import log
@@ -231,7 +232,7 @@ async def get_report(report_id: int, init_data: str = Query(...)):
             raise HTTPException(404, "Report topilmadi")
         return {
             "id": r.id, "stage": r.stage,
-            "profile": r.profile, "roadmap": r.roadmap,
+            "profile": r.profile, "roadmap": strip_unsupported(r.roadmap),
             "ai": r.ai_explanation, "versions": r.versions,
             "created_at": r.created_at,
         }

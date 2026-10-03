@@ -10,6 +10,7 @@ from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
 from backend.engine.ranking import rank_careers
 from backend.services.context_service import discovery_constraints
+from backend.engine.public_output import strip_unsupported
 
 router = APIRouter(prefix="/api/v1/career-intelligence", tags=["career-intelligence-v1"])
 
@@ -125,7 +126,7 @@ async def get_career_detail(
     if not found:
         raise HTTPException(404, "Career topilmadi")
 
-    return found
+    return strip_unsupported(found)
 
 
 @router.get("/compare")

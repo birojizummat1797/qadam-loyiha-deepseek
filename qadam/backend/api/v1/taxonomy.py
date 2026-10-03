@@ -4,6 +4,7 @@ from backend.services.taxonomy_service import (
     load_taxonomy_from_db, get_active_taxonomy_version,
     seed_taxonomy_from_json,
 )
+from backend.engine.public_output import strip_unsupported
 
 router = APIRouter(prefix="/api/v1/taxonomy", tags=["taxonomy-v1"])
 
@@ -15,7 +16,7 @@ async def get_taxonomy():
     v = await get_active_taxonomy_version()
     return {
         "version": v.version if v else data.get("version"),
-        "clusters": data.get("clusters", {}),
+        "clusters": strip_unsupported(data.get("clusters", {})),
     }
 
 

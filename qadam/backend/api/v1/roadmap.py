@@ -11,6 +11,7 @@ from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
 from backend.engine.ranking import rank_careers
 from backend.engine.roadmap_engine import build_roadmap
+from backend.engine.public_output import strip_unsupported
 from backend.services.context_service import discovery_constraints
 
 router = APIRouter(prefix="/api/v1/roadmap", tags=["roadmap-v1"])
@@ -113,5 +114,5 @@ async def get_roadmap(
         "has_hard_barrier": ranked_item.get("has_hard_barrier"),
         "evidence_level": ranked_item.get("evidence_level"),
         "context_status": ranked_item.get("context_status"),
-        "roadmap": roadmap,
+        "roadmap": strip_unsupported(roadmap),
     }

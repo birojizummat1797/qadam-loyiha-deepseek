@@ -242,32 +242,6 @@ export default function RoadmapPage() {
           </motion.div>
         )}
 
-        {/* Salary (B nuqta) */}
-        {rm.b_point?.salary_usd && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="card-clean mb-6"
-          >
-            <p className="t-caption text-subtle mb-3">Daromad salohiyati (oyiga)</p>
-            <div className="space-y-2">
-              {["junior", "middle", "senior"].map((lvl) => {
-                const s = rm.b_point.salary_usd[lvl];
-                if (!s) return null;
-                return (
-                  <div key={lvl} className="flex items-center justify-between">
-                    <span className="t-small capitalize text-muted">{lvl}</span>
-                    <span className="t-heading tabular-nums">
-                      ${s.min} — ${s.max}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-
         <p className="t-caption text-subtle text-center pt-4">
           Halol tahlil · Manipulyatsiyasiz
         </p>

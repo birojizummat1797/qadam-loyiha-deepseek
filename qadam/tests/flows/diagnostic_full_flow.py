@@ -24,6 +24,7 @@ from backend.engine.roadmap import build_full_report  # noqa: E402
 from backend.pdf_report import _build_career_html, generate_pdf  # noqa: E402
 from backend.services.deep_diagnostic_service import flatten_questions  # noqa: E402
 from backend.services.entitlement_service import grant_entitlement  # noqa: E402
+from backend.api.v1 import taxonomy as tax_api  # noqa: E402
 from bot.handlers import start as start_handlers  # noqa: E402
 
 USER = 2001
@@ -115,6 +116,11 @@ async def main():
     check(rm["evidence_level"] in {"enough", "partial", "insufficient"}, f"roadmap evidence: {rm}")
     if rm["fit"] is not None:
         check(0 <= rm["fit"] <= 100, f"roadmap fit {rm['fit']}")
+    check("salary" not in json.dumps(rm), "roadmap response carries salary")
+
+    # 5b) Public taxonomy endpoint carries no salary.
+    public = await tax_api.get_taxonomy()
+    check("salary" not in json.dumps(public), "public taxonomy carries salary")
 
     # 6) PDF generator on the same ranking: real PDF bytes, no score percentages.
     taxonomy = await ci_api.load_taxonomy_from_db()

@@ -111,7 +111,8 @@ def _from_template(slug: str, career: dict, template: dict, ranked: dict) -> dic
         "phases": phases,
         "next_3_actions": first_3,
         "resources": [],
-        "b_point": career.get("salary_usd") and {"salary_usd": career["salary_usd"]} or {},
+        # Maosh — data passport yo'q, ko'rsatilmaydi (PM Q3).
+        "b_point": {},
         "milestones": [p.get("milestone", "") for p in phases if p.get("milestone")],
         "barrier_resolutions": _barrier_resolutions(ranked.get("barriers", [])),
         "first_step_reasoning": _first_step_reasoning(ranked, phases),

@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IncomeSection } from "./IncomeSection";
 import {
   MapPin, Target, Calendar, ChevronDown, ChevronRight, Info,
   AlertCircle, Check, X, TrendingUp, Clock, BookOpen,
-  Zap, DollarSign, GraduationCap, Users, Rocket, Star,
+  Zap, GraduationCap, Users, Star,
 } from "lucide-react";
 
 type Constraint = { problem?: string; type?: string; level?: string; solution: string };
@@ -27,23 +26,9 @@ type Roadmap = {
   };
   path: { total_weeks: number; stages: Stage[] };
   b_point: {
-    junior_salary_uzs?: string;
-    remote_salary_usd?: string;
-    salary_uzs?: Record<string, any>;
-    salary_usd?: {
-      junior: { min: number; max: number };
-      middle: { min: number; max: number };
-      senior: { min: number; max: number };
-    };
     outcomes?: string[];
     next_step?: string;
   };
-  income_factors?: {
-    name: string;
-    icon: string;
-    boost: string;
-    desc: string;
-  }[];
   calendar_30d: { w: number; theme: string; days: string[] }[];
   first_3_actions: string[];
   mentor_path: string[];
@@ -350,27 +335,6 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            {roadmap.b_point.junior_salary_uzs && (
-              <div className="p-3 rounded-xl bg-[var(--tg-bg)]/60 backdrop-blur-sm">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <DollarSign className="w-3 h-3 text-emerald-400" />
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--tg-hint)]">Junior UZ</p>
-                </div>
-                <p className="text-xl font-bold">{roadmap.b_point.junior_salary_uzs}</p>
-              </div>
-            )}
-            {roadmap.b_point.remote_salary_usd && (
-              <div className="p-3 rounded-xl bg-[var(--tg-bg)]/60 backdrop-blur-sm">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Rocket className="w-3 h-3 text-cyan-400" />
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--tg-hint)]">Remote</p>
-                </div>
-                <p className="text-xl font-bold">{roadmap.b_point.remote_salary_usd}</p>
-              </div>
-            )}
-          </div>
-
           {roadmap.b_point.outcomes && (
             <ul className="space-y-1.5">
               {roadmap.b_point.outcomes.map((o, i) => (
@@ -390,12 +354,6 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
           )}
         </div>
       </motion.div>
-
-      {/* ═══ INCOME ═══ */}
-      <IncomeSection
-        salary={roadmap.b_point?.salary_usd}
-        factors={(roadmap as any).income_factors}
-      />
 
       {/* ═══ FIRST 3 ACTIONS ═══ */}
       {roadmap.first_3_actions.length > 0 && (

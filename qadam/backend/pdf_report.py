@@ -1,5 +1,6 @@
 """PDF Report generator - xhtml2pdf, jinja2 yo'q."""
 from backend.engine.levels import EVIDENCE_LABELS_UZ, evidence_level
+from backend.engine.public_output import strip_unsupported
 from datetime import datetime
 from io import BytesIO
 from xhtml2pdf import pisa
@@ -148,12 +149,6 @@ def _build_career_html(c):
     b_point = roadmap.get("b_point", {})
     if b_point:
         html.append('<div class="card card-emerald"><h4>B NUQTA — Erishishingiz mumkin</h4>')
-        html.append('<table width="100%"><tr>')
-        if b_point.get("junior_salary_uzs"):
-            html.append(f'<td width="50%"><p class="muted" style="margin:0">Junior UZ</p><p style="font-size:13pt;font-weight:bold;color:#059669;margin:2pt 0">{_esc(b_point["junior_salary_uzs"])}</p></td>')
-        if b_point.get("remote_salary_usd"):
-            html.append(f'<td width="50%"><p class="muted" style="margin:0">Remote</p><p style="font-size:13pt;font-weight:bold;color:#0891b2;margin:2pt 0">{_esc(b_point["remote_salary_usd"])}</p></td>')
-        html.append("</tr></table>")
         if b_point.get("outcomes"):
             html.append("<ul>")
             for o in b_point["outcomes"]:
@@ -199,6 +194,8 @@ def _build_career_html(c):
 
 def generate_pdf(report, theme="light"):
     """Report dict -> PDF bytes."""
+    # Eski saqlangan hisobotlarda maosh bo'lishi mumkin — PDF'ga tushmaydi.
+    report = strip_unsupported(report)
     date_str = datetime.utcnow().strftime("%d.%m.%Y")
     ai = report.get("ai") or {}
     careers = (report.get("roadmap") or {}).get("careers", [])

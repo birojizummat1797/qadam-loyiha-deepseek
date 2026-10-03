@@ -2,6 +2,7 @@
 Roadmap Engine v2.0 — ACQ uslubida.
 A nuqta → Yo'l (5 stage) → B nuqta + Calendar + First 3 Actions.
 """
+from backend.engine.public_output import strip_unsupported
 import json
 from pathlib import Path
 
@@ -49,8 +50,8 @@ def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
         "signal_summary": _signal_summary(signals) if signals else {},
     }
 
-    # ── B NUQTA ──
-    b_point = kb.get("b_point", {})
+    # ── B NUQTA ── (maosh — data passport yo'q, ko'rsatilmaydi)
+    b_point = strip_unsupported(kb.get("b_point", {}))
 
     # ── YO'L — 5 stage ──
     stages = []
@@ -87,12 +88,7 @@ def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
             "total_weeks": sum(s["weeks"] for s in stages),
             "stages": stages,
         },
-        "b_point": {
-            **b_point,
-            "salary_uzs": kb.get("salary_uzs", {}),
-            "salary_usd": kb.get("salary_usd", {}),
-        },
-        "income_factors": KB_V2.get("income_factors", {}).get("factors", []),
+        "b_point": b_point,
 
         # ── Bonus bloklar ──
         "calendar_30d": kb.get("calendar_30d", []),

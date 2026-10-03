@@ -113,3 +113,42 @@ def test_miniapp_shows_no_score_numbers():
         text = f.read_text(encoding="utf-8")
         for pattern in patterns:
             assert not re.search(pattern, text), f"{f.relative_to(MINIAPP)}: {pattern}"
+
+
+# ── PM Q3: no unsupported salary in user-facing output ──────────────────────
+
+from backend.engine.public_output import UNSUPPORTED_KEYS, strip_unsupported
+
+SALARY_RE = re.compile(r"salary|maosh|so'm/oy|\$\d|income_factors|junior_salary|remote_salary", re.IGNORECASE)
+
+
+def test_strip_unsupported_is_deep():
+    data = {"b_point": {"junior_salary_uzs": "3-6 mln", "outcomes": ["x"]},
+            "careers": [{"salary_usd": {"junior": 1}, "uz": "SMM"}], "income_factors": [1]}
+    assert strip_unsupported(data) == {"b_point": {"outcomes": ["x"]}, "careers": [{"uz": "SMM"}]}
+
+
+def test_report_and_pdf_carry_no_salary():
+    from backend.engine.roadmap import build_full_report
+    from backend.pdf_report import _build_career_html
+
+    report = build_full_report(ranked(CTX), CTX, load_taxonomy())
+    assert not (UNSUPPORTED_KEYS & set(json_keys(report)))
+    for idx, c in enumerate(report["careers"], 1):
+        assert not SALARY_RE.search(_build_career_html({**c, "_idx": idx}))
+
+
+def test_miniapp_shows_no_salary():
+    for f in (p for d in ("app", "components") for p in (MINIAPP / d).rglob("*.tsx") if "admin" not in p.parts):
+        text = f.read_text(encoding="utf-8")
+        assert not re.search(r"salary|IncomeSection|Daromad salohiyati", text), f.relative_to(MINIAPP)
+
+
+def json_keys(obj):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield k
+            yield from json_keys(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from json_keys(v)
