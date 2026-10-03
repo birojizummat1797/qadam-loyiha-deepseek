@@ -24,15 +24,15 @@ def build_roadmap(career_id, readiness_result, user_constraints, signals=None):
     # v2 dan izlash
     kb2 = KB_V2["careers"].get(career_id)
     if kb2:
-        return _build_v2(career_id, kb2, readiness_result, user_constraints, signals)
-
-    # v1 fallback
-    kb1 = KB_V1["careers"].get(career_id)
-    if kb1:
-        return _build_v1_fallback(career_id, kb1, readiness_result)
-
-    # Hech narsa yo'q — placeholder
-    return _placeholder(career_id, readiness_result)
+        rm = _build_v2(career_id, kb2, readiness_result, user_constraints, signals)
+    elif KB_V1["careers"].get(career_id):
+        # v1 fallback
+        rm = _build_v1_fallback(career_id, KB_V1["careers"][career_id], readiness_result)
+    else:
+        # Hech narsa yo'q — placeholder
+        rm = _placeholder(career_id, readiness_result)
+    # Foydalanuvchiga: maosh va dalilsiz da'volarsiz (kb_claims_audit_v1.json).
+    return strip_unsupported(rm)
 
 
 def _build_v2(career_id, kb, readiness_result, user_constraints, signals):

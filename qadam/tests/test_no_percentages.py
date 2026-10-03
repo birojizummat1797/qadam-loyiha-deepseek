@@ -173,3 +173,71 @@ def test_no_promise_to_rank_all_catalog_careers():
     for page in ("preliminary", "career-intelligence"):
         src = (MINIAPP / "app" / page / "page.tsx").read_text(encoding="utf-8")
         assert "yo&apos;l xaritasi tayyor bo&apos;lgan yo&apos;nalishlar ko&apos;rib chiqiladi" in src, page
+
+
+# ── PM gate: evidence-less factual claims from the roadmap KB ───────────────
+
+from backend.engine.public_output import CLAIMS_AUDIT
+
+
+def _kb_strings():
+    import json as _json
+    data = Path(__file__).parent.parent / "backend" / "data"
+    for name in CLAIMS_AUDIT["scope"]:
+        stack = [_json.loads((data / name).read_text(encoding="utf-8"))]
+        while stack:
+            o = stack.pop()
+            if isinstance(o, dict):
+                stack.extend(o.values())
+            elif isinstance(o, list):
+                stack.extend(o)
+            elif isinstance(o, str):
+                yield o
+
+
+def test_audit_entries_exist_in_the_kb():
+    texts = set(_kb_strings())
+    for claim in CLAIMS_AUDIT["claims"]:
+        assert claim["text"] in texts, claim["text"]
+
+
+def test_no_statistic_ratio_or_percent_claim_left_unaudited():
+    audited = {c["text"] for c in CLAIMS_AUDIT["claims"]}
+    risky = re.compile(r"\d+\s*%|→\s*\d|\d[\d\s-]*(mln|so'm)|\$\d|→ 1 |\d.*— normal")
+    for text in set(_kb_strings()):
+        if risky.search(text) and "salary" not in text:
+            assert text in audited or text.startswith("$") or "mln so'm" in text, text
+
+
+def test_user_facing_roadmaps_carry_no_audited_claims():
+    from backend.engine.roadmap import build_full_report
+    from backend.engine.roadmap_engine import build_roadmap as build_v1
+    import json as _json
+
+    report = build_full_report(ranked(CTX), CTX, load_taxonomy())
+    blobs = [_json.dumps(report, ensure_ascii=False)]
+    tax = load_taxonomy()
+    for cluster_key, cluster in tax["clusters"].items():
+        for slug, career in cluster["careers"].items():
+            blobs.append(_json.dumps(strip_unsupported(build_v1(slug, {**career, "cluster": cluster_key}, {})), ensure_ascii=False))
+    text = "\n".join(blobs)
+    for claim in CLAIMS_AUDIT["claims"]:
+        assert claim["text"] not in text, claim["text"]
+
+
+def test_filtering_never_drops_a_whole_career_or_stage():
+    """Regression: an earlier recursive money check removed a whole career (SMM Manager)
+    from the PDF because one nested line quoted money. Only that line may go."""
+    from backend.engine.roadmap import build_full_report
+
+    items = ranked(CTX)
+    report = build_full_report(items, CTX, load_taxonomy())
+    assert [c["career"]["id"] for c in report["careers"]] == [i["career_id"] for i in items]
+    stripped = strip_unsupported(report)
+    assert [c["career"]["id"] for c in stripped["careers"]] == [i["career_id"] for i in items]
+    for before, after in zip(report["careers"], stripped["careers"]):
+        stages = (before["roadmap"].get("path") or {}).get("stages", [])
+        assert len(stages) == len((after["roadmap"].get("path") or {}).get("stages", []))
+    smm = {"stages": [{"name": "JOB READY", "constraints": [{"problem": "Narx qancha?", "solution": "Mahalliy bozor: 3-6 mln"},
+                                                             {"problem": "Reject", "solution": "Davom eting"}]}]}
+    assert strip_unsupported(smm) == {"stages": [{"name": "JOB READY", "constraints": [{"problem": "Reject", "solution": "Davom eting"}]}]}

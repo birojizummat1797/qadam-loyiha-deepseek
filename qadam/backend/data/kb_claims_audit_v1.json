@@ -1,0 +1,24 @@
+{
+  "version": "v1",
+  "reviewed_at": "2026-10-03",
+  "scope": ["roadmap_kb_v2.json", "roadmap_kb_v1.json", "roadmap_templates_v1.json"],
+  "evidence_fields_found": [],
+  "note": "No KB entry carries source, date, geography, population/sample or methodology. Factual claims (statistics, market numbers, outcome or timing promises) are therefore not shown to users: 'suppress' removes the item, 'rewrite' keeps the guidance without the unsupported number. Plan targets and time budgets ('30 daqiqa', '3-5 ta loyiha') are Qadam's own recommendations, not factual claims, and stay. Salary is removed separately (engine/public_output.py). Full table: claude-qadamio docs/reviews/2026-10-03-kb-claims-audit.md.",
+  "claims": [
+    {"text": "MVP tushunchasi — 20% funksiya, 80% qiymat", "category": "statistic", "action": "suppress"},
+    {"text": "10 ta ariza → 1 offer — normal", "category": "statistic", "action": "suppress"},
+    {"text": "10 ariza → 1 offer", "category": "statistic", "action": "suppress"},
+    {"text": "10 murojaat → 1 mijoz", "category": "statistic", "action": "suppress"},
+    {"text": "Rejectlar — 90% normal", "category": "statistic", "action": "suppress"},
+    {"text": "Rejectlar — 90%", "category": "statistic", "action": "suppress"},
+    {"text": "Mahalliy bozor: 3-6 mln", "category": "market", "action": "suppress"},
+    {"text": "Har kuni 30 daqiqa kod yozish — 7 kunda o'tadi", "category": "outcome", "action": "rewrite", "replacement": "Har kuni 30 daqiqa kod yozish"},
+    {"text": "2-haftada 'qiyin' hissi — bu normal", "category": "experience", "action": "rewrite", "replacement": "Boshida 'qiyin' hissi bo'lishi mumkin"},
+    {"text": "Bir masalani 2 soat yechish — normal", "category": "experience", "action": "rewrite", "replacement": "Bir masalaga uzoq vaqt ketishi mumkin"},
+    {"text": "Async/Promise — 4-hafta qiyin", "category": "experience", "action": "rewrite", "replacement": "Async/Promise mavzusi qiyin bo'lishi mumkin"},
+    {"text": "Middle Frontend (React/Vue chuqur) → 1-2 yil", "category": "outcome", "action": "rewrite", "replacement": "Middle Frontend (React/Vue chuqur)"},
+    {"text": "Data Science yoki Analytics Engineer → 1-2 yil", "category": "outcome", "action": "rewrite", "replacement": "Data Science yoki Analytics Engineer"},
+    {"text": "Product Designer → 1-2 yil", "category": "outcome", "action": "rewrite", "replacement": "Product Designer"},
+    {"text": "Freelance mijozlar (3-5 ta)", "category": "outcome", "action": "rewrite", "replacement": "Freelance mijozlar"}
+  ]
+}
