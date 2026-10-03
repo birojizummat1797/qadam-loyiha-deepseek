@@ -25,6 +25,8 @@ from backend.pdf_report import _build_career_html, generate_pdf  # noqa: E402
 from backend.services.deep_diagnostic_service import flatten_questions  # noqa: E402
 from backend.services.entitlement_service import grant_entitlement  # noqa: E402
 from backend.api.v1 import taxonomy as tax_api  # noqa: E402
+from backend.api import diagnostic as v0_api  # noqa: E402
+from fastapi import HTTPException  # noqa: E402
 from bot.handlers import start as start_handlers  # noqa: E402
 
 USER = 2001
@@ -132,6 +134,25 @@ async def main():
         check("FIT" not in html and "Ready:" not in html, "PDF still shows FIT/Ready")
     pdf = generate_pdf({"id": 1, "profile": {}, "roadmap": report, "ai": None, "created_at": ""})
     check(pdf[:4] == b"%PDF", "generate_pdf did not return a PDF")
+
+    # 7) The v1 flow's own PDF endpoint (what the Mini App button calls). No bot token
+    #    in tests, so delivery is reported as not sent — but the PDF is built.
+    sent = await dd_api.pdf(dd["session_id"], dd_api.StartPayload(init_data=INIT))
+    check(sent["ok"] and sent["size_bytes"] > 5000, f"v1 PDF endpoint: {sent}")
+    check(sent["sent_to_telegram"] is False, "no bot token in tests, nothing must be sent")
+
+    # 8) Retired v0 endpoints answer 410 Gone (dev-unlock could mark a stage paid).
+    v0_api.verify_init_data = fake_verify
+    for call in (
+        lambda: v0_api.stage1(v0_api.Stage1Payload(init_data=INIT, answers={})),
+        lambda: v0_api.stage2(v0_api.Stage2Payload(init_data=INIT, answers={}, stage1_result_id=1)),
+        lambda: v0_api.dev_unlock(v0_api.DevUnlockPayload(init_data=INIT, stage1_result_id=1)),
+    ):
+        try:
+            await call()
+            check(False, "v0 endpoint still active")
+        except HTTPException as e:
+            check(e.status_code == 410, f"v0 endpoint returned {e.status_code}")
 
     print("FULL FLOW OK", json.dumps({
         "careers": [c["career_id"] for c in ci["ranked"]],

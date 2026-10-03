@@ -1,5 +1,6 @@
 "use client";
 
+import { DeepPdfButton } from "@/components/DeepPdfButton";
 import { signalLabel } from "@/lib/signals";
 import { ContextNote, EvidenceBadge } from "@/components/EvidenceLevel";
 import { useEffect, useState } from "react";
@@ -47,8 +48,7 @@ export default function CareerIntelligencePage() {
           <p className="t-caption text-primary mb-2">Chuqur tahlil</p>
           <h1 className="t-display mb-3">Sizning natijangiz</h1>
           <p className="t-small text-muted">
-            {ranked.length} ta yo&apos;nalish tahlil qilindi. Ishonch:{" "}
-            <span className="text-primary font-medium">{data.confidence}</span>
+            Natija tayyor. Bu tavsiya, hukm emas — qarorni siz qilasiz.
           </p>
         </motion.div>
 
@@ -135,6 +135,12 @@ export default function CareerIntelligencePage() {
               Qadam katalogidagi boshqa yo&apos;nalishlar bu ro&apos;yxatga keyinroq qo&apos;shiladi.
             </p>
         </motion.div>
+
+        {ranked.length > 0 && data.session_id && (
+          <div className="mb-6">
+            <DeepPdfButton sessionId={Number(data.session_id)} />
+          </div>
+        )}
 
         {ranked.length === 0 && (
           <motion.div
