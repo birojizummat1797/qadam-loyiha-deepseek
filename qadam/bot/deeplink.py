@@ -37,6 +37,7 @@ WEB_SOURCES = {
     "fc": "final_cta",
     "ft": "footer",
     "ar": "article",
+    "pq": "problem_question",  # homepage "Tanish savollar" cards
 }
 
 

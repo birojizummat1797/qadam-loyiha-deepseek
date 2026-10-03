@@ -28,6 +28,7 @@ def run(coro):
 @pytest.mark.parametrize("raw, source, career", [
     ("w1-hr", "hr", None),
     ("w1-ft", "ft", None),
+    ("w1-pq", "pq", None),
     ("w1-cd-frontend_development", "cd", "frontend_development"),
     ("w1-ct-data_analytics", "ct", "data_analytics"),
 ])
