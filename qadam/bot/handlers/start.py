@@ -2,11 +2,15 @@
 import os
 from html import escape
 from aiogram import Router, F
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import CommandStart, Command, CommandObject
 from aiogram.types import (
     Message, CallbackQuery,
     InlineKeyboardMarkup, InlineKeyboardButton,
     WebAppInfo,
+)
+
+from bot.deeplink import (
+    StartAttribution, discovery_url, log_bot_start, resolve_attribution,
 )
 
 router = Router()
@@ -40,11 +44,11 @@ HELP_TEXT = (
 )
 
 
-def main_menu_kb() -> InlineKeyboardMarkup:
+def main_menu_kb(attribution: StartAttribution | None = None) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(
             text="🎯 Bepul diagnostika",
-            web_app=WebAppInfo(url=f"{WEBAPP_URL}/discovery"),
+            web_app=WebAppInfo(url=discovery_url(WEBAPP_URL, attribution)),
         )],
         [InlineKeyboardButton(
             text="💎 Chuqur tahlil (premium)",
@@ -76,10 +80,14 @@ def _safe_name(user) -> str:
 
 
 @router.message(CommandStart())
-async def cmd_start(m: Message):
+async def cmd_start(m: Message, command: CommandObject | None = None):
+    # Website deep link (t.me/<bot>?start=w1-...). Invalid or missing → old flow.
+    attribution = await resolve_attribution(command.args if command else None)
+    if attribution:
+        await log_bot_start(m.from_user.id, attribution)
     await m.answer(
         WELCOME_TEXT.format(name=_safe_name(m.from_user)),
-        reply_markup=main_menu_kb(),
+        reply_markup=main_menu_kb(attribution),
     )
 
 
