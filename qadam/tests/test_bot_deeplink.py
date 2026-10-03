@@ -242,3 +242,47 @@ def test_welcome_is_sent_even_if_logging_fails(monkeypatch):
     run(start_handlers.cmd_start(m, SimpleNamespace(args="w1-hr")))
     m.answer.assert_awaited_once()
     assert _webapp_url(m.answer.await_args.kwargs["reply_markup"]) == f"{WEBAPP}/discovery?src=hr"
+
+
+# ─── spec v2: visitor state ──────────────────────────────────
+
+@pytest.mark.parametrize("raw, source, state, career", [
+    ("w2-hr-bs", "hr", "start", None),
+    ("w2-hr-al", "hr", "switch", None),
+    ("w2-hr-os", "hr", "grow", None),
+    ("w2-cd-al-data_analytics", "cd", "switch", "data_analytics"),
+])
+def test_v2_payloads(raw, source, state, career):
+    a = parse_start_payload(raw, known_careers=KNOWN)
+    assert a == StartAttribution(source=source, state=state, career=career, version=2)
+
+
+def test_v2_unknown_state_falls_back_to_source_only():
+    assert parse_start_payload("w2-hr-zz") == StartAttribution(source="hr", state=None, version=2)
+
+
+@pytest.mark.parametrize("raw", [
+    "w2-hr", "w2-hr-b", "w2-hr-BS", "w2-HR-bs", "w2-hr-bs-", "w2-hr-bs-Data",
+    "w3-hr-bs", "w2-zz-bs", "w2-hr-bs-" + "x" * 41, "w2-hr-bs;drop",
+])
+def test_v2_invalid_shapes_are_ignored(raw):
+    assert parse_start_payload(raw, known_careers=KNOWN) is None
+
+
+def test_v2_event_payload_and_webapp_hint():
+    a = StartAttribution(source="hr", state="grow", version=2)
+    assert a.event_payload() == {"channel": "web", "v": 2, "src": "hr", "placement": "hero", "state": "grow"}
+    assert discovery_url(WEBAPP, a) == f"{WEBAPP}/discovery?src=hr&state=grow"
+
+
+def test_v1_links_still_work_unchanged():
+    a = parse_start_payload("w1-hr")
+    assert a == StartAttribution(source="hr", version=1)
+    assert "state" not in a.event_payload()
+
+
+def test_handler_logs_v2_state(handler_env):
+    m = _message()
+    run(start_handlers.cmd_start(m, SimpleNamespace(args="w2-hr-bs")))
+    handler_env.assert_awaited_once_with(777, StartAttribution(source="hr", state="start", version=2))
+    assert _webapp_url(m.answer.await_args.kwargs["reply_markup"]) == f"{WEBAPP}/discovery?src=hr&state=start"
