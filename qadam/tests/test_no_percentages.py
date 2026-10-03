@@ -152,3 +152,9 @@ def json_keys(obj):
     elif isinstance(obj, list):
         for v in obj:
             yield from json_keys(v)
+
+
+def test_money_inside_editorial_lists_is_removed():
+    stage = {"constraints": [["Narx qancha?", "Mahalliy bozor: 3-6 mln"], ["Reject", "Davom eting"]],
+             "outcomes": ["Junior lavozim", "$300-600/oy remote"]}
+    assert strip_unsupported(stage) == {"constraints": [["Reject", "Davom eting"]], "outcomes": ["Junior lavozim"]}

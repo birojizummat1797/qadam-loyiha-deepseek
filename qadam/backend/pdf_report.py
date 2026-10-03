@@ -192,11 +192,17 @@ def _build_career_html(c):
     return "\n".join(html)
 
 
-def generate_pdf(report, theme="light"):
-    """Report dict -> PDF bytes."""
+EVIDENCE_NOTE = (
+    "Dalil darajasi javoblaringiz kasb talablarining qanchasini qamraganini bildiradi. "
+    "Bu tavsiya, hukm emas — qarorni siz qilasiz."
+)
+
+
+def build_report_html(report, date_str=None):
+    """Report dict -> HTML (PDF manbasi). Snapshot testlari shu funksiyani tekshiradi."""
     # Eski saqlangan hisobotlarda maosh bo'lishi mumkin — PDF'ga tushmaydi.
     report = strip_unsupported(report)
-    date_str = datetime.utcnow().strftime("%d.%m.%Y")
+    date_str = date_str or datetime.utcnow().strftime("%d.%m.%Y")
     ai = report.get("ai") or {}
     careers = (report.get("roadmap") or {}).get("careers", [])
 
@@ -211,6 +217,7 @@ def generate_pdf(report, theme="light"):
         parts.append(f'<p>{_esc(ai["summary"])}</p></div>')
 
     parts.append('<h2>Signallaringizga yaqinroq yo\'nalishlar</h2>')
+    parts.append(f'<p class="muted">{_esc(EVIDENCE_NOTE)}</p>')
 
     for idx, c in enumerate(careers, 1):
         c["_idx"] = idx
@@ -231,8 +238,12 @@ def generate_pdf(report, theme="light"):
     parts.append("@kelajakkailkqadam_bot</p>")
     parts.append("</body></html>")
 
-    html = "\n".join(parts)
+    return "\n".join(parts)
 
+
+def generate_pdf(report, theme="light"):
+    """Report dict -> PDF bytes."""
+    html = build_report_html(report)
     output = BytesIO()
     pisa.CreatePDF(html, dest=output, encoding="utf-8")
     return output.getvalue()
