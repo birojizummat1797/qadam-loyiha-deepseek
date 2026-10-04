@@ -1,18 +1,21 @@
-"""Manual to'lov — callback + text commands."""
-import os
+"""Manual to'lov — admin decides with buttons or /approve, /reject; users get one clear message.
+
+All state changes go through `backend.services.manual_payment_service`
+(locked row, no double grant, reject-after-approve revokes access).
+"""
 import logging
-from aiogram import Router, F
+import os
+from html import escape
+
+from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import (
-    CallbackQuery, Message,
-    InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo,
+    CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, WebAppInfo,
 )
-from sqlalchemy import select, desc
+from sqlalchemy import desc, select
 
 router = Router()
 log = logging.getLogger("qadam.bot.payment")
-
-PREMIUM_KEY = "premium_career_intelligence"
 
 
 def _is_admin(uid: int) -> bool:
@@ -20,139 +23,97 @@ def _is_admin(uid: int) -> bool:
     return uid in ids
 
 
-async def _approve_impl(payment_id: int) -> dict:
-    from backend.db import SessionLocal
-    from backend.models import Payment
-    from backend.services.entitlement_service import grant_entitlement
-
-    async with SessionLocal() as s:
-        pay = await s.get(Payment, payment_id)
-        if not pay:
-            return {"ok": False, "error": f"Payment #{payment_id} topilmadi"}
-        pay.status = "paid"
-        await s.commit()
-        user_id = pay.user_id
-
-    await grant_entitlement(
-        user_id=user_id,
-        entitlement_key=PREMIUM_KEY,
-        source="manual_card",
-        payment_reference=str(payment_id),
-    )
-    return {"ok": True, "user_id": user_id}
+def _webapp_button(text: str, path: str) -> InlineKeyboardMarkup:
+    webapp = os.getenv("WEBAPP_URL", "")
+    return InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(text=text, web_app=WebAppInfo(url=f"{webapp}{path}")),
+    ]])
 
 
-async def _reject_impl(payment_id: int) -> dict:
-    from backend.db import SessionLocal
-    from backend.models import Payment
+# What the user is told after a real state change. No-ops send nothing.
+USER_MESSAGES = {
+    "approved": (
+        "✅ <b>To'lovingiz tasdiqlandi!</b>\n\nChuqur tahlil siz uchun ochildi.",
+        ("🎯 Chuqur tahlilni boshlash", "/deep-diagnostic"),
+    ),
+    "rejected": (
+        "❌ <b>To'lov tasdiqlanmadi</b>\n\n"
+        "Kartaga to'lov topilmadi yoki skrinshot aniq emas.\n"
+        "Agar pul o'tkazgan bo'lsangiz, to'lov chekining aniq skrinshotini qayta yuboring.",
+        ("📤 Skrinshotni qayta yuborish", "/premium"),
+    ),
+    "approval_revoked": (
+        "⚠️ <b>Avvalgi tasdiq bekor qilindi</b>\n\n"
+        "Tekshiruvda to'lov kartaga tushmagani aniqlandi, shuning uchun chuqur tahlil yopildi.\n"
+        "Xato bo'lgan deb o'ylasangiz, to'lov chekining skrinshotini qayta yuboring.",
+        ("📤 Skrinshotni qayta yuborish", "/premium"),
+    ),
+}
 
-    async with SessionLocal() as s:
-        pay = await s.get(Payment, payment_id)
-        if not pay:
-            return {"ok": False, "error": f"Payment #{payment_id} topilmadi"}
-        pay.status = "rejected"
-        await s.commit()
-        user_id = pay.user_id
+# What the admin sees.
+ADMIN_RESULT = {
+    "approved": "✅ TASDIQLANDI",
+    "rejected": "❌ RAD ETILDI",
+    "approval_revoked": "⚠️ TASDIQ BEKOR QILINDI — kirish yopildi",
+    "already_approved": "Bu to'lov allaqachon tasdiqlangan",
+    "already_rejected": "Bu to'lov allaqachon rad etilgan",
+    "not_found": "To'lov topilmadi",
+}
 
-    return {"ok": True, "user_id": user_id}
 
-
-async def _notify_user_approve(bot, user_id: int):
+async def notify_user(bot, decision) -> None:
+    msg = USER_MESSAGES.get(decision.outcome)
+    if not msg or decision.user_id is None:
+        return
+    text, (button, path) = msg
     try:
-        webapp = os.getenv("WEBAPP_URL", "")
-        kb = InlineKeyboardMarkup(inline_keyboard=[[
-            InlineKeyboardButton(
-                text="🎯 Chuqur tahlilni boshlash",
-                web_app=WebAppInfo(url=f"{webapp}/deep-diagnostic"),
-            )
-        ]])
-        await bot.send_message(
-            user_id,
-            "✅ <b>To'lovingiz tasdiqlandi!</b>\n\n"
-            "Chuqur tahlilni boshlashingiz mumkin.",
-            reply_markup=kb,
-        )
+        await bot.send_message(decision.user_id, text, reply_markup=_webapp_button(button, path))
     except Exception as e:
-        log.error(f"notify approve: {e}")
+        log.error(f"payment {decision.payment_id}: user notify failed: {e}")
 
 
-async def _notify_user_reject(bot, user_id: int):
-    try:
-        await bot.send_message(
-            user_id,
-            "❌ <b>To'lov tasdiqlanmadi</b>\n\n"
-            "Skrinshot aniq emas yoki to'lov topilmadi. Qaytadan urinib ko'ring.",
-        )
-    except Exception as e:
-        log.error(f"notify reject: {e}")
+async def decide(action: str, payment_id: int, admin_id: int):
+    from backend.services import manual_payment_service as mps
+
+    fn = mps.approve if action == "approve" else mps.reject
+    return await fn(payment_id, admin_id)
+
+
+def _undo_hint(decision) -> str:
+    if decision.outcome == "approved":
+        return f"\nO'zgartirish: /reject {decision.payment_id}"
+    if decision.outcome in ("rejected", "approval_revoked"):
+        return f"\nO'zgartirish: /approve {decision.payment_id}"
+    return ""
 
 
 # ═══════════════ CALLBACK ═══════════════
 
-@router.callback_query(F.data.startswith("pay:approve:"))
-async def cb_approve(callback: CallbackQuery):
-    log.info(f"cb_approve: from={callback.from_user.id} data={callback.data}")
-
+@router.callback_query(F.data.regexp(r"^pay:(approve|reject):\d+$"))
+async def cb_decide(callback: CallbackQuery):
+    log.info(f"pay callback: from={callback.from_user.id} data={callback.data}")
     if not _is_admin(callback.from_user.id):
         await callback.answer("Ruxsat yo'q", show_alert=True)
         return
 
-    await callback.answer("Tasdiqlanmoqda...")
+    _, action, raw_id = callback.data.split(":")
+    decision = await decide(action, int(raw_id), callback.from_user.id)
 
-    try:
-        payment_id = int(callback.data.split(":")[2])
-    except Exception:
+    if not decision.changed:
+        await callback.answer(ADMIN_RESULT[decision.outcome], show_alert=True)
         return
+    await callback.answer(ADMIN_RESULT[decision.outcome])
+    await notify_user(callback.bot, decision)
 
-    result = await _approve_impl(payment_id)
-    if not result["ok"]:
-        try:
-            await callback.message.edit_caption(
-                caption=(callback.message.caption or "") + f"\n\n⚠️ {result['error']}"
-            )
-        except Exception:
-            pass
-        return
-
-    await _notify_user_approve(callback.bot, result["user_id"])
-
+    admin = escape(callback.from_user.first_name or str(callback.from_user.id))
     try:
         await callback.message.edit_caption(
-            caption=(callback.message.caption or "") + "\n\n✅ <b>TASDIQLANDI</b>",
+            caption=escape(callback.message.caption or "")
+            + f"\n\n<b>{ADMIN_RESULT[decision.outcome]}</b> — {admin}{_undo_hint(decision)}",
             reply_markup=None,
         )
-    except Exception:
-        pass
-
-
-@router.callback_query(F.data.startswith("pay:reject:"))
-async def cb_reject(callback: CallbackQuery):
-    log.info(f"cb_reject: from={callback.from_user.id} data={callback.data}")
-
-    if not _is_admin(callback.from_user.id):
-        await callback.answer("Ruxsat yo'q", show_alert=True)
-        return
-
-    await callback.answer("Rad etilmoqda...")
-
-    try:
-        payment_id = int(callback.data.split(":")[2])
-    except Exception:
-        return
-
-    result = await _reject_impl(payment_id)
-    if not result["ok"]:
-        return
-
-    await _notify_user_reject(callback.bot, result["user_id"])
-
-    try:
-        await callback.message.edit_caption(
-            caption=(callback.message.caption or "") + "\n\n❌ <b>RAD ETILDI</b>",
-            reply_markup=None,
-        )
-    except Exception:
-        pass
+    except Exception as e:
+        log.warning(f"payment {decision.payment_id}: caption edit failed: {e}")
 
 
 # ═══════════════ TEXT COMMANDS ═══════════════
@@ -189,53 +150,26 @@ async def cmd_pending(m: Message):
     await m.answer(text)
 
 
-@router.message(Command("approve"))
-async def cmd_approve(m: Message):
+async def _cmd_decide(m: Message, action: str):
     if not _is_admin(m.from_user.id):
         await m.answer("Ruxsat yo'q")
         return
-
     parts = (m.text or "").split()
-    if len(parts) < 2:
-        await m.answer("Format: /approve <payment_id>\nMisol: /approve 5")
+    if len(parts) < 2 or not parts[1].isdigit():
+        await m.answer(f"Format: /{action} <payment_id>\nMisol: /{action} 5")
         return
 
-    try:
-        pid = int(parts[1])
-    except ValueError:
-        await m.answer("payment_id raqam bo'lishi kerak")
-        return
+    decision = await decide(action, int(parts[1]), m.from_user.id)
+    await m.answer(f"#{decision.payment_id}: {ADMIN_RESULT[decision.outcome]}{_undo_hint(decision)}")
+    if decision.changed:
+        await notify_user(m.bot, decision)
 
-    result = await _approve_impl(pid)
-    if not result["ok"]:
-        await m.answer(f"❌ {result['error']}")
-        return
 
-    await m.answer(f"✅ Payment #{pid} tasdiqlandi (user: {result['user_id']})")
-    await _notify_user_approve(m.bot, result["user_id"])
+@router.message(Command("approve"))
+async def cmd_approve(m: Message):
+    await _cmd_decide(m, "approve")
 
 
 @router.message(Command("reject"))
 async def cmd_reject(m: Message):
-    if not _is_admin(m.from_user.id):
-        await m.answer("Ruxsat yo'q")
-        return
-
-    parts = (m.text or "").split()
-    if len(parts) < 2:
-        await m.answer("Format: /reject <payment_id>")
-        return
-
-    try:
-        pid = int(parts[1])
-    except ValueError:
-        await m.answer("payment_id raqam bo'lishi kerak")
-        return
-
-    result = await _reject_impl(pid)
-    if not result["ok"]:
-        await m.answer(f"❌ {result['error']}")
-        return
-
-    await m.answer(f"❌ Payment #{pid} rad etildi")
-    await _notify_user_reject(m.bot, result["user_id"])
+    await _cmd_decide(m, "reject")

@@ -8,6 +8,21 @@ import {
 } from "lucide-react";
 import { api, getInitData } from "@/lib/api";
 
+type PayState = "loading" | "none" | "pending" | "rejected" | "unlocked";
+
+async function fetchPayState(): Promise<PayState> {
+  const r = await api.get("/payments/manual/my-status", {
+    params: { init_data: getInitData() },
+  });
+  return r.data.state as PayState;
+}
+
+function errorDetail(e: any): { code?: string; message: string } {
+  const d = e?.response?.data?.detail;
+  if (d && typeof d === "object") return { code: d.code, message: d.message };
+  return { message: typeof d === "string" ? d : "Tarmoq xatosi. Qayta urinib ko'ring." };
+}
+
 export default function PremiumPage() {
   const router = useRouter();
   const [card, setCard] = useState<any>(null);
@@ -18,13 +33,32 @@ export default function PremiumPage() {
   const [copied, setCopied] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // unlocked | pending | rejected | none — from the backend, never guessed on the client.
+  const [status, setStatus] = useState<PayState>("loading");
+  const [checking, setChecking] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const discoverySessionId = typeof window !== "undefined"
     ? Number(sessionStorage.getItem("discovery_session_id"))
     : null;
 
+  const refreshStatus = async () => {
+    setChecking(true);
+    try {
+      const next = await fetchPayState();
+      setStatus(next);
+      return next;
+    } catch {
+      setStatus((s) => (s === "loading" ? "none" : s));
+      return null;
+    } finally {
+      setChecking(false);
+    }
+  };
+
   useEffect(() => {
+    refreshStatus();
     api.get("/payments/manual/card-info")
       .then((r) => setCard(r.data.card))
       .catch(() => setError("Karta malumotlarini yuklab bolmadi"));
@@ -52,23 +86,31 @@ export default function PremiumPage() {
   };
 
   const handleSubmit = async () => {
-    if (!file || !discoverySessionId) {
-      alert("Iltimos, rasm tanlang");
-      return;
-    }
+    if (!file) return;
     setUploading(true);
     try {
       const formData = new FormData();
       formData.append("init_data", getInitData());
-      formData.append("discovery_session_id", String(discoverySessionId));
+      if (discoverySessionId) {
+        formData.append("discovery_session_id", String(discoverySessionId));
+      }
       formData.append("screenshot", file);
 
       const r = await api.post("/payments/manual/upload-v2", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (r.data.ok) setDone(true);
+      if (r.data.ok) {
+        setDone(true);
+        setStatus("pending");
+      }
     } catch (e: any) {
-      alert("Xatolik: " + (e?.response?.data?.detail || e.message));
+      const { code, message } = errorDetail(e);
+      if (code === "already_unlocked" || code === "pending_exists") {
+        setOpenPay(false);
+        setStatus(code === "already_unlocked" ? "unlocked" : "pending");
+      } else {
+        alert(message);
+      }
     } finally {
       setUploading(false);
     }
@@ -87,6 +129,39 @@ export default function PremiumPage() {
             Dalil darajasi, to'siqlar, skill-gap, 6-12 oylik reja va PDF hisobot.
           </p>
         </div>
+
+        {/* Payment state */}
+        {status === "unlocked" && (
+          <div className="card-clean mb-6 fade-in">
+            <p className="t-heading mb-1">Chuqur tahlil siz uchun ochiq</p>
+            <p className="t-small text-muted mb-4">To&apos;lovingiz tasdiqlangan.</p>
+            <button onClick={() => router.push("/deep-diagnostic")} className="btn btn-primary">
+              <Sparkles className="w-4 h-4" />
+              <span>Chuqur tahlilni boshlash</span>
+            </button>
+          </div>
+        )}
+        {status === "pending" && (
+          <div className="card-clean mb-6 fade-in">
+            <p className="t-heading mb-1">Skrinshotingiz tekshirilmoqda</p>
+            <p className="t-small text-muted mb-4">
+              Admin to&apos;lovni qo&apos;lda tekshiradi. Qaror bo&apos;lgach, Telegram orqali xabar keladi.
+            </p>
+            <button onClick={refreshStatus} disabled={checking} className="btn btn-ghost">
+              {checking ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+              <span>Holatni yangilash</span>
+            </button>
+          </div>
+        )}
+        {status === "rejected" && (
+          <div className="card-clean mb-6 fade-in border-[var(--color-danger)]/40">
+            <p className="t-heading mb-1">Oldingi to&apos;lov tasdiqlanmadi</p>
+            <p className="t-small text-muted">
+              Kartaga to&apos;lov topilmadi yoki skrinshot aniq emas. Agar pul o&apos;tkazgan
+              bo&apos;lsangiz, to&apos;lov chekining aniq skrinshotini qayta yuboring.
+            </p>
+          </div>
+        )}
 
         {/* Features */}
         <div className="card-clean mb-6 fade-in fade-in-1">
@@ -117,19 +192,25 @@ export default function PremiumPage() {
               <span className="t-small text-muted ml-1">so&apos;m</span>
             </div>
           </div>
-          <p className="t-caption text-subtle">yoki 150 Stars</p>
         </div>
 
-        {/* CTA */}
-        <div className="fade-in fade-in-3">
-          <button onClick={() => setOpenPay(true)} className="btn btn-primary">
-            <CreditCard className="w-4 h-4" />
-            <span>Karta orqali to&apos;lash</span>
-          </button>
-          <p className="t-caption text-subtle text-center mt-4">
-            Admin tekshiradi va 5-10 daqiqada tasdiqlanadi
-          </p>
-        </div>
+        {/* CTA — only when a payment can actually be started */}
+        {(status === "none" || status === "rejected") && (
+          <div className="fade-in fade-in-3">
+            <button onClick={() => { setDone(false); setOpenPay(true); }} className="btn btn-primary">
+              <CreditCard className="w-4 h-4" />
+              <span>{status === "rejected" ? "Skrinshotni qayta yuborish" : "Karta orqali to'lash"}</span>
+            </button>
+            <p className="t-caption text-subtle text-center mt-4">
+              Admin to&apos;lovni qo&apos;lda tekshiradi. Natija Telegram orqali keladi.
+            </p>
+          </div>
+        )}
+        {status === "loading" && (
+          <div className="flex justify-center py-4">
+            <Loader2 className="w-5 h-5 animate-spin text-muted" />
+          </div>
+        )}
 
         {error && (
           <div className="card-clean border-[var(--color-danger)]/40 mt-4">
@@ -168,30 +249,27 @@ export default function PremiumPage() {
                 </div>
                 <h3 className="t-heading mb-2">Skrinshot yuborildi</h3>
                 <p className="t-small text-muted mb-6">
-                  Admin tasdiqlagach sizga Telegram orqali xabar keladi.
+                  Admin to&apos;lovni qo&apos;lda tekshiradi. Qaror bo&apos;lgach, Telegram orqali xabar keladi.
                 </p>
                 <button
                   onClick={async () => {
-                    try {
-                      const r = await api.get("/api/v1/entitlements/check", {
-                        params: {
-                          init_data: getInitData(),
-                          entitlement_key: "premium_career_intelligence",
-                        },
-                      });
-                      if (r.data.active) {
-                        router.push("/deep-diagnostic");
-                      } else {
-                        alert("To'lov hali tasdiqlanmagan. Iltimos, admin tasdiqini kuting.");
-                      }
-                    } catch (err) {
-                      alert("Xatolik: " + err);
+                    const next = await refreshStatus();
+                    if (next === "unlocked") {
+                      router.push("/deep-diagnostic");
+                    } else {
+                      setNotice(
+                        next === "rejected"
+                          ? "To'lov tasdiqlanmadi. Botdagi xabarni ko'ring."
+                          : "Hali tekshirilmoqda. Admin qaror qilgach, Telegram orqali xabar keladi."
+                      );
                     }
                   }}
+                  disabled={checking}
                   className="btn btn-primary"
                 >
-                  Chuqur tahlilni boshlash
+                  Holatni tekshirish
                 </button>
+                {notice && <p className="t-caption text-muted mt-3">{notice}</p>}
                 <button
                   onClick={() => {
                     const tg = (window as any).Telegram?.WebApp;
@@ -285,7 +363,7 @@ export default function PremiumPage() {
                 <div className="p-4 pt-0">
                   <button
                     onClick={handleSubmit}
-                    disabled={!file || uploading || !discoverySessionId}
+                    disabled={!file || uploading}
                     className="btn btn-primary"
                   >
                     {uploading ? (
@@ -294,11 +372,6 @@ export default function PremiumPage() {
                       <><ImageIcon className="w-4 h-4" /><span>Skrinshotni yuborish</span></>
                     )}
                   </button>
-                  {!discoverySessionId && (
-                    <p className="t-caption text-danger text-center mt-2">
-                      Discovery session topilmadi. Avval bepul diagnostikani o&apos;ting.
-                    </p>
-                  )}
                 </div>
               </>
             )}
