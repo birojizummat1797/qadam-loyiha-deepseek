@@ -11,6 +11,7 @@ from aiogram.types import BotCommand
 
 from bot.handlers import start as start_handlers
 from bot.handlers import payment as payment_handlers
+from bot import webhook_secret
 
 load_dotenv()
 
@@ -22,7 +23,6 @@ log = logging.getLogger("qadam.bot")
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 WEBHOOK_BASE = os.getenv("WEBHOOK_BASE", "").strip()
-WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "qadam-secret")
 PORT = int(os.getenv("PORT", 8080))
 
 bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
@@ -51,7 +51,21 @@ async def run_polling():
     await dp.start_polling(bot, allowed_updates=["message", "callback_query"])
 
 
-def run_webhook():
+async def on_shutdown(bot: Bot):
+    """Do NOT delete the webhook here.
+
+    On a redeploy Render starts the new instance (which sets the webhook) and only
+    then stops the old one. Deleting the webhook on shutdown removed the new
+    instance's webhook, so Telegram stopped delivering updates (incident 2026-10-04).
+    The webhook is (re)set on every startup; shutdown only closes the HTTP session.
+    """
+    try:
+        await bot.session.close()
+    except Exception:
+        pass
+
+
+def run_webhook(secret_token: str):
     from aiohttp import web
     from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
@@ -63,7 +77,7 @@ def run_webhook():
         try:
             result = await bot.set_webhook(
                 webhook_url,
-                secret_token=WEBHOOK_SECRET,
+                secret_token=secret_token,
                 drop_pending_updates=True,
                 allowed_updates=["message", "callback_query"],
             )
@@ -76,18 +90,12 @@ def run_webhook():
         except Exception as e:
             log.error(f"set_webhook xato: {e}")
 
-    async def on_shutdown(bot: Bot):
-        try:
-            await bot.delete_webhook()
-        except Exception:
-            pass
-
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)
 
     app = web.Application()
     SimpleRequestHandler(
-        dispatcher=dp, bot=bot, secret_token=WEBHOOK_SECRET
+        dispatcher=dp, bot=bot, secret_token=secret_token
     ).register(app, path=webhook_path)
     setup_application(app, dp, bot=bot)
 
@@ -114,7 +122,15 @@ def main():
     log.info("Routers ulandi: start + payment")
 
     if WEBHOOK_BASE:
-        run_webhook()
+        try:
+            secret_token = webhook_secret.telegram_token(os.getenv("WEBHOOK_SECRET"))
+        except webhook_secret.WeakWebhookSecret as e:
+            # Fail closed: without a strong secret anyone could forge updates
+            # (including admin payment approvals).
+            log.error(f"Bot not started: {e}. Set a random WEBHOOK_SECRET (40+ letters/digits).")
+            raise SystemExit(1)
+        log.info("WEBHOOK_SECRET: ok")
+        run_webhook(secret_token)
     else:
         asyncio.run(run_polling())
 
