@@ -1,0 +1,93 @@
+# ONE-TIME, MANUAL: audited --apply of the signal recompute (PM approval 2026-10-04).
+#
+# Before running: owner creates a Neon backup branch (primary backup) and the
+# repository secrets QADAM_DRY_RUN_DATABASE_URL and QADAM_SNAPSHOT_KEY exist.
+# Run: Actions → "Recompute APPLY (one-time, audited)" → confirm = APPLY-2026-10-04.
+#
+# Steps run strictly in order; any failure stops the job (later steps are skipped):
+#   1 guard  2 snapshot (read-only)  3 encrypt + store snapshot  4 apply (one
+#   transaction, read-back check, rollback on any mismatch)  5 post-apply dry run
+#   (read-only, must report sessions_changed 0)  6 verify against the snapshot.
+#
+# The repository is public: the snapshot holds per-session values, so it is
+# stored only encrypted (AES-256, key = QADAM_SNAPSHOT_KEY). Logs are aggregate.
+name: Recompute APPLY (one-time, audited)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type APPLY-2026-10-04 to confirm"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recompute-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: qadam
+    env:
+      DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
+    steps:
+      - name: 1. Guard — confirmation and secrets
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+          SNAPSHOT_KEY: ${{ secrets.QADAM_SNAPSHOT_KEY }}
+        working-directory: .
+        run: |
+          [ "$CONFIRM" = "APPLY-2026-10-04" ] || { echo "confirmation text does not match"; exit 1; }
+          [ -n "$DATABASE_URL" ] || { echo "QADAM_DRY_RUN_DATABASE_URL missing"; exit 1; }
+          [ ${#SNAPSHOT_KEY} -ge 32 ] || { echo "QADAM_SNAPSHOT_KEY missing or shorter than 32"; exit 1; }
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -q -r requirements.txt
+      - name: 2. Pre-apply snapshot (read-only)
+        env:
+          QADAM_DB_READ_ONLY: "1"
+        run: python scripts/apply_recompute.py snapshot "$RUNNER_TEMP/snapshot.json"
+      - name: 3. Encrypt and store snapshot
+        env:
+          SNAPSHOT_KEY: ${{ secrets.QADAM_SNAPSHOT_KEY }}
+        run: |
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -pass env:SNAPSHOT_KEY \
+            -in "$RUNNER_TEMP/snapshot.json" -out "$RUNNER_TEMP/snapshot.json.enc"
+          sha256sum "$RUNNER_TEMP/snapshot.json" | cut -d' ' -f1 > "$RUNNER_TEMP/snapshot.sha256"
+          echo "plaintext sha256: $(cat "$RUNNER_TEMP/snapshot.sha256")"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pre-apply-snapshot-encrypted
+          path: |
+            ${{ runner.temp }}/snapshot.json.enc
+            ${{ runner.temp }}/snapshot.sha256
+          retention-days: 90
+          if-no-files-found: error
+      - name: 4. Apply (one transaction, read-back check, rollback on mismatch)
+        env:
+          QADAM_APPLY_CONFIRM: ${{ inputs.confirm }}
+        run: python scripts/apply_recompute.py apply "$RUNNER_TEMP/snapshot.json"
+      - name: 5. Post-apply dry run (read-only) — must be sessions_changed 0
+        env:
+          QADAM_DB_READ_ONLY: "1"
+        run: |
+          python scripts/recompute_signals.py > "$RUNNER_TEMP/dry.json"
+          cat "$RUNNER_TEMP/dry.json"
+          python -c "import json,sys; d=json.load(open(sys.argv[1])); assert d['applied'] is False and d['sessions_changed']==0 and d['stored_values_above_10']==0, d; print('DRY RUN OK')" "$RUNNER_TEMP/dry.json"
+      - name: 6. Verify against the pre-apply snapshot (read-only)
+        env:
+          QADAM_DB_READ_ONLY: "1"
+        run: python scripts/apply_recompute.py verify "$RUNNER_TEMP/snapshot.json"
+      - name: Remove plaintext snapshot
+        if: always()
+        run: rm -f "$RUNNER_TEMP/snapshot.json" "$RUNNER_TEMP/dry.json"
