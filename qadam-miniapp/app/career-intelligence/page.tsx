@@ -3,6 +3,7 @@
 import { DeepPdfButton } from "@/components/DeepPdfButton";
 import { signalLabel } from "@/lib/signals";
 import { ContextNote, EvidenceBadge } from "@/components/EvidenceLevel";
+import { NoClearDirection } from "@/components/NoClearDirection";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -29,6 +30,7 @@ export default function CareerIntelligencePage() {
   if (!data) return null;
 
   const ranked = data.ranked || [];
+  const noClearDirection = data.no_clear_direction === true;
   const signals = data.signals || {};
 
   // Top measured signals
@@ -74,7 +76,10 @@ export default function CareerIntelligencePage() {
           </motion.div>
         )}
 
+        {noClearDirection && <NoClearDirection />}
+
         {/* Ranked careers */}
+        {ranked.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,6 +141,7 @@ export default function CareerIntelligencePage() {
               Qadam katalogidagi boshqa yo&apos;nalishlar bu ro&apos;yxatga keyinroq qo&apos;shiladi.
             </p>
         </motion.div>
+        )}
 
         {ranked.length > 0 && data.session_id && (
           <div className="mb-6">
@@ -143,7 +149,7 @@ export default function CareerIntelligencePage() {
           </div>
         )}
 
-        {ranked.length === 0 && (
+        {ranked.length === 0 && !noClearDirection && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

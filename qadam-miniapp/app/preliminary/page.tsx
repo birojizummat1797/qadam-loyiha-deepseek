@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Lock, Check, Sparkles, TrendingUp, Info } from "lucide-react";
 import { EvidenceBadge } from "@/components/EvidenceLevel";
+import { NoClearDirection } from "@/components/NoClearDirection";
 
 
 export default function PreliminaryPage() {
@@ -42,6 +43,7 @@ export default function PreliminaryPage() {
   const signals = insight.signals_top || [];
   const pathways = insight.pathways || [];
   const devAreas = insight.development_areas || [];
+  const noClearDirection = insight.no_clear_direction === true;
 
   return (
     <main className="min-h-screen flex justify-center">
@@ -53,13 +55,19 @@ export default function PreliminaryPage() {
           className="mb-8"
         >
           <p className="t-caption text-primary mb-2">Dastlabki natija</p>
-          <h1 className="t-display mb-3">
-            Signallaringizga yaqin<br />yo&apos;nalishlar
-          </h1>
-          <p className="t-small text-muted">
-            Javoblaringiz asosida signallaringizga yaqinroq yo&apos;nalishlar.
-            Bu tavsiya, hukm emas — qarorni siz qilasiz.
-          </p>
+          {noClearDirection ? (
+            <h1 className="t-display mb-3">Sizning natijangiz</h1>
+          ) : (
+            <>
+              <h1 className="t-display mb-3">
+                Signallaringizga yaqin<br />yo&apos;nalishlar
+              </h1>
+              <p className="t-small text-muted">
+                Javoblaringiz asosida signallaringizga yaqinroq yo&apos;nalishlar.
+                Bu tavsiya, hukm emas — qarorni siz qilasiz.
+              </p>
+            </>
+          )}
         </motion.div>
 
         {/* SIGNALS */}
@@ -82,6 +90,8 @@ export default function PreliminaryPage() {
             </div>
           </motion.div>
         )}
+
+        {noClearDirection && <NoClearDirection />}
 
         {/* PATHWAYS */}
         {pathways.length > 0 && (
