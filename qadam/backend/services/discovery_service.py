@@ -103,10 +103,11 @@ def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> d
         key=lambda x: -(x["value"] * x["trust"]),
     )[:5]
 
-    # Development areas (unmeasured yoki low value)
+    # Development areas: measured AND low only. Unmeasured is not weak
+    # (phone test 2026-10-04: unmeasured signals were shown as weaknesses).
     dev_areas = [
         k for k, v in signals.items()
-        if v.get("value") is None or v["value"] < 4.0
+        if v.get("value") is not None and v["value"] < 4.0
     ][:3]
 
     return {
