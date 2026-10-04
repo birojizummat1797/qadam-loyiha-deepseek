@@ -2,7 +2,10 @@
 Telegram initData tekshiruvi.
 Master § 49: Telegram WebApp authentication must be verified server-side.
 
-DEV mode: ENV=development bo'lsa - mock user qaytaradi (brauzerda test uchun).
+DEV mode (fail-closed): a mock user is returned only when ALL hold:
+ENV=development, DEV_AUTH=1, and not running on Render (RENDER unset).
+A missing or mistyped ENV means production (incident review 2026-10-03:
+ENV used to default to "development", so a missing variable opened the mock).
 """
 import hmac
 import hashlib
@@ -16,7 +19,17 @@ load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 AUTH_MAX_AGE = 86400  # 24 soat
-ENV = os.getenv("ENV", "development")
+ENV = os.getenv("ENV", "production")
+
+
+def dev_auth_enabled(env: dict | None = None) -> bool:
+    """True only for an explicit local dev setup; any doubt → False."""
+    e = os.environ if env is None else env
+    return (
+        e.get("ENV", "production") == "development"
+        and e.get("DEV_AUTH") == "1"
+        and not e.get("RENDER")
+    )
 
 
 def verify_init_data(init_data: str) -> dict | None:
@@ -24,8 +37,8 @@ def verify_init_data(init_data: str) -> dict | None:
     initData'ni HMAC-SHA256 bilan tekshiradi.
     DEV mode: initData bo'sh bo'lsa - mock user qaytaradi.
     """
-    # DEV MODE - brauzerda test uchun
-    if ENV == "development" and (not init_data or len(init_data) < 10):
+    # DEV MODE - brauzerda test uchun (fail-closed, see dev_auth_enabled)
+    if dev_auth_enabled() and (not init_data or len(init_data) < 10):
         return {
             "id": 999999999,
             "username": "dev_user",

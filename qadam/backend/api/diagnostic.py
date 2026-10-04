@@ -21,7 +21,7 @@ V0_GONE = (
 
 APP_URL = os.getenv("APP_URL", "https://qadam.uz")
 
-ENV = os.getenv("ENV", "development")
+ENV = os.getenv("ENV", "production")
 
 
 class Stage1Payload(BaseModel):
