@@ -34,7 +34,7 @@ export default function Home() {
 
           <ul className="space-y-3 mb-12 fade-in fade-in-3">
             {[
-              "8 savol — 3 daqiqa",
+              "13 savol",
               "Dalil darajasi va to'siqlar tahlili",
               "Shaxsiy 6 oylik yo'l xaritasi",
             ].map((text, i) => (
