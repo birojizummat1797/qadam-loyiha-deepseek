@@ -7,6 +7,11 @@ from backend.models_v2 import Entitlement, PaymentEvent
 
 PREMIUM_KEY = "premium_career_intelligence"
 
+# PM decision 2026-10-04: deep diagnostic runs as a free beta until the legal
+# review of payments is done. While True, access needs only the 18+ gate, and
+# no payment is accepted. Changing this is a product decision (PM + owner).
+DEEP_DIAGNOSTIC_FREE_BETA = True
+
 
 async def get_active_entitlement(user_id: int, entitlement_key: str):
     """Aktiv entitlement qaytaradi (yoki None)."""

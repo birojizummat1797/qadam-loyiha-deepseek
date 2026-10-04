@@ -187,7 +187,8 @@ def _build_career_html(c):
 
 EVIDENCE_NOTE = (
     "Dalil darajasi javoblaringiz kasb talablarining qanchasini qamraganini bildiradi. "
-    "Bu tavsiya, hukm emas — qarorni siz qilasiz."
+    "Bu tavsiya, hukm emas — qarorni siz qilasiz. "
+    "Beta versiya: natijalar yo'nalish tanlashga yordam uchun — yakuniy xulosa yoki ilmiy tashxis emas."
 )
 
 

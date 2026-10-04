@@ -114,15 +114,22 @@ async def manual_upload_v2(
     if not user:
         raise HTTPException(401, "Invalid initData")
 
+    from backend.services.age_gate import require_adult
+    from backend.services.entitlement_service import DEEP_DIAGNOSTIC_FREE_BETA
+
+    await require_adult(user["id"])
+    if DEEP_DIAGNOSTIC_FREE_BETA:
+        raise HTTPException(409, {
+            "code": "free_beta",
+            "message": "Chuqur tahlil hozir beta bosqichida va bepul. To'lov qilish shart emas.",
+        })
+
     content = await screenshot.read(MAX_SCREENSHOT_BYTES + 1)
     if len(content) > MAX_SCREENSHOT_BYTES:
         raise HTTPException(400, "Rasm hajmi 5 MB dan oshmasin")
     if image_kind(content) is None:
         raise HTTPException(400, "Faqat rasm yuklang (JPG, PNG yoki WEBP)")
 
-    from backend.services.age_gate import require_adult
-
-    await require_adult(user["id"])
     session_id = await _owned_discovery_session(user["id"], discovery_session_id)
     try:
         payment_id = await mps.create_pending(user["id"], session_id, PRICE_UZS)

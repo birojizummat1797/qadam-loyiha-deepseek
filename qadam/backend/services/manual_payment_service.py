@@ -174,7 +174,11 @@ async def reject(payment_id: int, admin_id: int) -> Decision:
 
 
 async def my_status(user_id: int) -> dict:
-    """What the Mini App shows: unlocked, or the state of the latest manual payment."""
+    """What the Mini App shows: free_beta, unlocked, or the state of the latest manual payment."""
+    from backend.services.entitlement_service import DEEP_DIAGNOSTIC_FREE_BETA
+
+    if DEEP_DIAGNOSTIC_FREE_BETA:
+        return {"state": "free_beta"}
     if await has_active_entitlement(user_id, PREMIUM_KEY):
         return {"state": "unlocked"}
     async with SessionLocal() as s:

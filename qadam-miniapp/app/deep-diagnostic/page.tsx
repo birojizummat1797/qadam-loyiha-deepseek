@@ -91,6 +91,7 @@ export default function DeepDiagnosticPage() {
           <div className="flex items-center justify-between mb-4">
             <span className="t-caption text-subtle">
               {question.dimension_uz || "Chuqur tahlil"}
+              <span className="ml-2 px-1.5 py-0.5 rounded bg-[var(--color-primary-soft)] text-primary">Beta</span>
             </span>
             <span className="t-caption text-subtle">
               {question.index + 1} / {question.total}

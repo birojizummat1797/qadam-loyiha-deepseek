@@ -171,6 +171,9 @@ SCENARIOS = {f.__name__: f for f in (
 
 async def main(name):
     await init_db()
+    # Paid path is kept for after the legal review; the free beta switch is off here (PM 2026-10-04).
+    from backend.services import entitlement_service
+    entitlement_service.DEEP_DIAGNOSTIC_FREE_BETA = False
     from backend.services import age_gate
     await age_gate.submit({"id": USER, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
     payments.verify_init_data = fake_verify

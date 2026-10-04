@@ -21,7 +21,7 @@ WELCOME_TEXT = (
     "Men — <b>Qadam.io</b>, kasb va soha tanlashda yordamchi.\n\n"
     "Signallaringizga yaqin yo'nalishlarni dalillar asosida ko'rish va shaxsiy "
     "yo'l xaritasi tuzishda yordam beraman.\n\n"
-    "<b>3 daqiqa</b> — 13 savol — <b>bepul</b>."
+    "13 savol — <b>bepul</b>."
 )
 
 PREMIUM_INTRO_TEXT = (
@@ -33,7 +33,8 @@ PREMIUM_INTRO_TEXT = (
     "• Skill-gap tahlili\n"
     "• 6-12 oylik shaxsiy yo'l xaritasi\n"
     "• PDF hisobot\n\n"
-    "Narx: <b>39 000 so'm</b> yoki <b>150 Stars</b>"
+    "Hozir <b>beta</b> bosqichida — <b>bepul</b>.\n"
+    "Natijalar yo'nalish tanlashga yordam uchun — yakuniy xulosa yoki ilmiy tashxis emas."
 )
 
 HELP_TEXT = (
@@ -51,7 +52,7 @@ def main_menu_kb(attribution: StartAttribution | None = None) -> InlineKeyboardM
             web_app=WebAppInfo(url=discovery_url(WEBAPP_URL, attribution)),
         )],
         [InlineKeyboardButton(
-            text="💎 Chuqur tahlil (premium)",
+            text="🔎 Chuqur tahlil (beta, bepul)",
             callback_data="diag:premium",
         )],
         [InlineKeyboardButton(
@@ -122,7 +123,7 @@ async def cb_how(q: CallbackQuery):
     await q.answer()
     await q.message.answer(
         "<b>Qadam.io qanday ishlaydi?</b>\n\n"
-        "1. Siz 13 ta savolga javob berasiz (3 daqiqa).\n"
+        "1. Siz 13 ta savolga javob berasiz.\n"
         "2. Tizim javoblarni signallarga aylantiradi.\n"
         "3. Signallar kasb talablari bilan taqqoslanadi.\n"
         "4. Natijada hozircha yo'l xaritasi tayyor bo'lgan yo'nalishlar ko'rsatiladi. Qarorni siz qilasiz.\n\n"
