@@ -171,6 +171,8 @@ SCENARIOS = {f.__name__: f for f in (
 
 async def main(name):
     await init_db()
+    from backend.services import age_gate
+    await age_gate.submit({"id": USER, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
     payments.verify_init_data = fake_verify
     dd_api.verify_init_data = fake_verify
     payments._send_to_admin = AsyncMock()

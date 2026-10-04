@@ -130,14 +130,26 @@ async def cb_how(q: CallbackQuery):
     )
 
 
+PRIVACY_TEXT = (
+    "🔒 <b>Maxfiylik</b>\n\n"
+    "Qadam faqat sizga natija tayyorlash uchun quyidagilarni saqlaydi: Telegram'dagi ismingiz, "
+    "yoshingiz va savollarga javoblaringiz. Ular server va ma'lumotlar bazasi xizmatlarida "
+    "(Render, Neon, Vercel) saqlanadi.\n\n"
+    "Ma'lumotlaringizni sotmaymiz va reklama uchun bermaymiz. Ism va yosh natijangizga ta'sir qilmaydi.\n\n"
+    "Qadam hozircha 18 yosh va undan kattalar uchun."
+)
+
+
 @router.callback_query(F.data == "info:privacy")
 async def cb_privacy(q: CallbackQuery):
     await q.answer()
-    await q.message.answer(
-        "<b>Maxfiylik</b>\n\n"
-        "Javoblaringiz faqat tahlil uchun ishlatiladi. "
-        "Uchinchi shaxslarga ruxsatsiz uzatilmaydi."
-    )
+    await q.message.answer(PRIVACY_TEXT)
+
+
+@router.message(Command("privacy"))
+async def cmd_privacy(m: Message):
+    """Telegram Bot Platform terms: bots must offer their privacy policy via /privacy."""
+    await m.answer(PRIVACY_TEXT)
 
 
 @router.message(Command("admin"))

@@ -174,3 +174,25 @@ export async function requestDeepPdf(sessionId: number) {
   });
   return r.data as { ok: boolean; sent_to_telegram: boolean };
 }
+
+
+// ═══════════════════════════════════════════════════════════
+// AGE GATE + CONSENT (18+, PM 2026-10-04)
+// ═══════════════════════════════════════════════════════════
+
+export type GateStatus = { status: "required" | "ok"; age_warning?: boolean };
+
+export async function getGateStatus(): Promise<GateStatus> {
+  const r = await api.get("/api/v1/profile/gate", { params: { init_data: getInitData() } });
+  return r.data;
+}
+
+export async function submitGate(consent: boolean, age: number) {
+  const r = await api.post("/api/v1/profile/gate", { init_data: getInitData(), consent, age });
+  return r.data as { status: "ok" | "under_age"; age_warning?: boolean };
+}
+
+export function isGateRequired(e: any): boolean {
+  const d = e?.response?.data?.detail;
+  return e?.response?.status === 403 && d && typeof d === "object" && d.code === "age_gate_required";
+}

@@ -37,6 +37,8 @@ class AnswerPayload(BaseModel):
 
 
 async def _require_premium(uid: int):
+    from backend.services.age_gate import require_adult
+    await require_adult(uid)
     ok = await has_active_entitlement(uid, PREMIUM_KEY)
     if not ok:
         raise HTTPException(402, "Premium kerak")

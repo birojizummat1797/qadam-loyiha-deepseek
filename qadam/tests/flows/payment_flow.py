@@ -111,6 +111,9 @@ async def deep_start_status(user_id: int) -> int:
 
 async def main():
     await init_db()
+    from backend.services import age_gate
+    await age_gate.submit({"id": USER, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
+    await age_gate.submit({"id": 3002, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
     payments.verify_init_data = fake_verify
     dd_api.verify_init_data = fake_verify
     sent_to_admin = AsyncMock()

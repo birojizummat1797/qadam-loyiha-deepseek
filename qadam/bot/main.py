@@ -36,6 +36,7 @@ async def _set_commands():
         await bot.set_my_commands([
             BotCommand(command="start", description="Boshlash"),
             BotCommand(command="help", description="Yordam"),
+            BotCommand(command="privacy", description="Maxfiylik"),
             BotCommand(command="pending", description="Kutilayotgan to'lovlar"),
             BotCommand(command="approve", description="To'lovni tasdiqlash"),
             BotCommand(command="reject", description="To'lovni rad etish"),

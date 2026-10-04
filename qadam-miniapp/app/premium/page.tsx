@@ -105,7 +105,9 @@ export default function PremiumPage() {
       }
     } catch (e: any) {
       const { code, message } = errorDetail(e);
-      if (code === "already_unlocked" || code === "pending_exists") {
+      if (code === "age_gate_required") {
+        router.push("/discovery");
+      } else if (code === "already_unlocked" || code === "pending_exists") {
         setOpenPay(false);
         setStatus(code === "already_unlocked" ? "unlocked" : "pending");
       } else {

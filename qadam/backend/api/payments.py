@@ -120,6 +120,9 @@ async def manual_upload_v2(
     if image_kind(content) is None:
         raise HTTPException(400, "Faqat rasm yuklang (JPG, PNG yoki WEBP)")
 
+    from backend.services.age_gate import require_adult
+
+    await require_adult(user["id"])
     session_id = await _owned_discovery_session(user["id"], discovery_session_id)
     try:
         payment_id = await mps.create_pending(user["id"], session_id, PRICE_UZS)

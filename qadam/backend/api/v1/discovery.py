@@ -15,6 +15,7 @@ from backend.services.discovery_service import (
     get_next_question, compute_signals_from_discovery, build_preliminary_insight,
 )
 from backend.services.taxonomy_service import load_taxonomy_from_db
+from backend.services import age_gate
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["discovery-v1"])
 
@@ -36,6 +37,7 @@ async def start_session(payload: StartSessionPayload):
     user = verify_init_data(payload.init_data)
     if not user:
         raise HTTPException(401, "Invalid initData")
+    await age_gate.require_adult(user["id"])
 
     async with SessionLocal() as s:
         # Eski aktiv sessiyani yopish

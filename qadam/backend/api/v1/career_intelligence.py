@@ -19,6 +19,8 @@ PREMIUM_KEY = "premium_career_intelligence"
 
 
 async def _require_premium(user_id: int):
+    from backend.services.age_gate import require_adult
+    await require_adult(user_id)
     ok = await has_active_entitlement(user_id, PREMIUM_KEY)
     if not ok:
         raise HTTPException(
