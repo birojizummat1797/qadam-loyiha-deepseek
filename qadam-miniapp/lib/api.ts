@@ -17,42 +17,12 @@ export async function fetchQuestions() {
 }
 
 
-
 export async function fetchReport(id: number) {
   const r = await api.get(`/diagnostic/report/${id}`, {
     params: { init_data: getInitData() },
   });
   return r.data;
 }
-
-export async function createPayment(
-  stage1_result_id: number,
-  provider: string
-) {
-  const r = await api.post("/payments/create", {
-    init_data: getInitData(),
-    stage1_result_id,
-    provider,
-  });
-  return r.data;
-}
-
-export async function createStarsInvoice(stage1_result_id: number) {
-  const r = await api.post("/payments/stars/invoice", {
-    init_data: getInitData(),
-    stage1_result_id,
-    provider: "stars",
-  });
-  return r.data;
-}
-
-export async function checkPaid(stage1_result_id: number) {
-  const r = await api.get(`/payments/check/${stage1_result_id}`, {
-    params: { init_data: getInitData() },
-  });
-  return r.data;
-}
-
 
 
 export async function completeReport(report_id: number) {
@@ -115,33 +85,8 @@ export async function getAdminFeedbacks(limit: number = 50) {
 }
 
 
-
-
 export async function getCardInfo() {
   const r = await api.get("/payments/manual/card-info");
-  return r.data;
-}
-
-export async function uploadPaymentScreenshot(
-  stage1_result_id: number,
-  file: File
-) {
-  const formData = new FormData();
-  formData.append("init_data", getInitData());
-  formData.append("stage1_result_id", String(stage1_result_id));
-  formData.append("screenshot", file);
-
-  const r = await api.post("/payments/manual/upload", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return r.data;
-}
-
-
-export async function getPaymentStatus(payment_id: number) {
-  const r = await api.get(`/payments/manual/status/${payment_id}`, {
-    params: { init_data: getInitData() },
-  });
   return r.data;
 }
 
