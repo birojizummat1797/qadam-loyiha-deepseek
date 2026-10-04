@@ -36,10 +36,10 @@ def test_signals_computation_choice():
         {"question_id": "DISC_Q02", "answer_id": "DISC_Q02_A01", "answer_value": 4},
     ]
     signals = compute_signals_from_discovery(answers, questions)
-    # technical_interest = 1.5 * 7.5 = 11.25 → weighted avg 11.25
+    # Vaznli o'rtacha Σ(v·w)/Σw: bitta javob → 7.5, 10 dan oshmaydi
     ti = signals["technical_interest"]
     assert ti["value"] is not None
-    assert ti["value"] == 11.25 or ti["value"] > 8
+    assert ti["value"] == 7.5
     assert ti["coverage"] == 1
     assert ti["evidence_state"] == "insufficient"
 

@@ -11,6 +11,8 @@ from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
 from backend.engine.ranking import rank_careers
 from backend.engine.roadmap_engine import build_roadmap
+from backend.engine.public_output import strip_unsupported
+from backend.services.context_service import discovery_constraints
 
 router = APIRouter(prefix="/api/v1/roadmap", tags=["roadmap-v1"])
 
@@ -57,9 +59,8 @@ async def get_roadmap(
             )).scalars().all()
 
     signals = {**_signals_from_rows(disc_rows), **_signals_from_rows(signal_rows)}
-    constraints = (sess.meta or {}).get("constraints") or {}
-    base = {"time": "2_3h", "device": "laptop", "english": "b1"}
-    base.update(constraints)
+    # Haqiqiy sharoit discovery javoblaridan (deep meta'da faqat moliya/shoshilinchlik bor)
+    base = await discovery_constraints(sess.discovery_session_id)
 
     taxonomy = await load_taxonomy_from_db()
 
@@ -85,6 +86,7 @@ async def get_roadmap(
         # Top-25'da yo'q — qo'lda hisoblash
         from backend.engine.fit import calculate_fit
         from backend.engine.readiness import calculate_readiness
+        from backend.engine.levels import context_status, evidence_level
         fit = calculate_fit(signals, career_data)
         readiness = calculate_readiness(base, career_data.get("prerequisites", {}))
         ranked_item = {
@@ -95,6 +97,8 @@ async def get_roadmap(
             "readiness": readiness["readiness"],
             "barriers": readiness["barriers"],
             "has_hard_barrier": readiness["has_hard_barrier"],
+            "evidence_level": evidence_level(fit["coverage"]),
+            "context_status": context_status(readiness),
         }
 
     # Roadmap
@@ -108,5 +112,7 @@ async def get_roadmap(
         "confidence": ranked_item.get("confidence"),
         "readiness": ranked_item.get("readiness"),
         "has_hard_barrier": ranked_item.get("has_hard_barrier"),
-        "roadmap": roadmap,
+        "evidence_level": ranked_item.get("evidence_level"),
+        "context_status": ranked_item.get("context_status"),
+        "roadmap": strip_unsupported(roadmap),
     }

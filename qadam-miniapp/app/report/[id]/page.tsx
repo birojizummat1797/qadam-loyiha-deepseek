@@ -1,5 +1,6 @@
 "use client";
 
+import { ContextNote, EvidenceBadge } from "@/components/EvidenceLevel";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Sparkles, AlertCircle, Trophy } from "lucide-react";
@@ -64,7 +65,7 @@ export default function ReportPage() {
         {/* ═══ CAREERS HEADER ═══ */}
         <div className="flex items-center gap-2 mb-4 fade-in fade-in-2">
           <Trophy className="w-4 h-4 text-warning" />
-          <h2 className="t-heading">Top-{careers.length} mos yo&apos;nalish</h2>
+          <h2 className="t-heading">Signallaringizga yaqinroq yo&apos;nalishlar</h2>
         </div>
 
         {/* ═══ CAREERS ═══ */}
@@ -84,23 +85,15 @@ export default function ReportPage() {
                 </div>
 
                 <div className="text-right shrink-0">
-                  <p className="t-metric text-primary leading-none">
-                    {Math.round(c.fit)}
-                    <span className="text-xl">%</span>
-                  </p>
-                  <p className="t-caption text-subtle mt-1">Moslik</p>
+                  <EvidenceBadge level={c.evidence_level} coverage={c.coverage} />
                 </div>
               </div>
 
               <div className="divider" />
 
-              <div className="flex items-center justify-between">
-                <span className="t-caption text-subtle">
-                  Tayyorgarlik darajasi
-                </span>
-                <span className="t-heading text-success tabular-nums">
-                  {Math.round(c.readiness)}%
-                </span>
+              <div className="flex flex-col gap-2">
+                <span className="t-caption text-subtle">Hozirgi sharoit</span>
+                <ContextNote readiness={c.readiness} barriers={c.barriers} />
               </div>
 
               {c.has_hard_barrier && (

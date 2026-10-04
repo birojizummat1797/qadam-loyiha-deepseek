@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 from .fit import calculate_fit
 from .readiness import calculate_readiness
+from .levels import context_status, evidence_level
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 
@@ -66,10 +67,11 @@ def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
                 constraints, career.get("prerequisites", {})
             )
 
-            # Composite score (Fit ustuvor, Readiness modifikator)
-            composite = fit_result["fit"] * (
-                0.7 + 0.3 * (readiness_result["readiness"] / 100.0)
-            )
+            # Composite score (Fit ustuvor, Readiness modifikator).
+            # Sharoit noma'lum bo'lsa, modifikator qo'llanmaydi (taxmin qilinmaydi).
+            readiness_value = readiness_result["readiness"]
+            modifier = 1.0 if readiness_value is None else 0.7 + 0.3 * (readiness_value / 100.0)
+            composite = fit_result["fit"] * modifier
 
             candidates.append({
                 "career_id": career_key,
@@ -90,6 +92,9 @@ def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
                 "learning_months": career.get("learning_months"),
                 "pathway_type": career.get("pathway_type"),
                 "composite_score": round(composite, 2),
+                # User-facing (no percentages): see engine/levels.py
+                "evidence_level": evidence_level(fit_result["coverage"]),
+                "context_status": context_status(readiness_result),
             })
 
     candidates.sort(key=lambda x: -x["composite_score"])

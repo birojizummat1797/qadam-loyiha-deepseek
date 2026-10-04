@@ -16,25 +16,7 @@ export async function fetchQuestions() {
   return r.data;
 }
 
-export async function submitStage1(answers: Record<string, any>) {
-  const r = await api.post("/diagnostic/stage1", {
-    init_data: getInitData(),
-    answers,
-  });
-  return r.data;
-}
 
-export async function submitStage2(
-  stage1_result_id: number,
-  answers: Record<string, any>
-) {
-  const r = await api.post("/diagnostic/stage2", {
-    init_data: getInitData(),
-    answers,
-    stage1_result_id,
-  });
-  return r.data;
-}
 
 export async function fetchReport(id: number) {
   const r = await api.get(`/diagnostic/report/${id}`, {
@@ -71,13 +53,6 @@ export async function checkPaid(stage1_result_id: number) {
   return r.data;
 }
 
-export async function devUnlock(stage1_result_id: number) {
-  const r = await api.post("/diagnostic/dev-unlock", {
-    init_data: getInitData(),
-    stage1_result_id,
-  });
-  return r.data;
-}
 
 
 export async function completeReport(report_id: number) {
@@ -244,4 +219,13 @@ export async function checkEntitlement(key: string) {
     params: { init_data: getInitData(), entitlement_key: key },
   });
   return r.data;
+}
+
+
+/** v1 flow: Action Document (PDF) for a completed deep diagnostic, sent via the bot. */
+export async function requestDeepPdf(sessionId: number) {
+  const r = await api.post(`/api/v1/deep-diagnostic/${sessionId}/pdf`, {
+    init_data: getInitData(),
+  });
+  return r.data as { ok: boolean; sent_to_telegram: boolean };
 }

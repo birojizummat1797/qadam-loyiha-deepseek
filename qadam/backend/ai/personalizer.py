@@ -6,7 +6,9 @@ Master § 27: AI output must be schema-validated. Invalid → deterministic fall
 import os
 import json
 import httpx
-from pydantic import BaseModel, Field, ValidationError
+import re
+
+from pydantic import BaseModel, Field, ValidationError, model_validator
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,12 +19,30 @@ MODEL = os.getenv("OPENROUTER_MODEL", "google/gemini-flash-1.5")
 APP_URL = os.getenv("APP_URL", "https://qadam.uz")
 
 
+# Foydalanuvchiga ko'rinadigan matnda foiz va qat'iy hukm bo'lmaydi (PM P0-1).
+FORBIDDEN_TEXT_RE = re.compile(
+    r"%|foiz|eng mos|albatta|aniq mos|kafolat|100\s*%|fit\b|readiness",
+    re.IGNORECASE,
+)
+
+
+def contains_forbidden_text(text: str) -> bool:
+    return bool(FORBIDDEN_TEXT_RE.search(text or ""))
+
+
 class AIExplanation(BaseModel):
     """AI faqat IZOH va SHAXSIYLASHTIRISH qiladi. Ballar bu yerga kirmaydi."""
     summary: str = Field(min_length=40, max_length=600)
     why_this_fits: list[str] = Field(min_length=2, max_length=5)
     risks: list[str] = Field(default_factory=list, max_length=3)
     next_step_emphasis: str = Field(min_length=20, max_length=300)
+
+    @model_validator(mode="after")
+    def no_percentages_or_verdicts(self):
+        texts = [self.summary, self.next_step_emphasis, *self.why_this_fits, *self.risks]
+        if any(contains_forbidden_text(t) for t in texts):
+            raise ValueError("percentages or verdicts are not allowed in user-facing text")
+        return self
 
 
 SYSTEM_PROMPT = """Sen Qadam.io loyihasining kasb yo'naltiruvchi maslahatchisisan.
@@ -34,7 +54,10 @@ QAT'IY QOIDALAR:
 2. Yangi kasb o'ylab topmaysan — faqat berilgan ro'yxatdan.
 3. "Siz albatta..." deb va'da bermaysan.
 4. Maosh raqamlarini o'zingdan to'qimaysan.
-5. Faqat quyidagi JSON formatda javob qaytarasan:
+5. Foiz, ball yoki raqamli moslik yozmaysan. "Eng mos", "aniq mos", "kafolat" kabi qat'iy hukm yo'q.
+   Yo'nalishlar "signallaringizga yaqinroq" deb tasvirlanadi. Qarorni foydalanuvchi qiladi.
+6. Sharoit (qurilma, ingliz tili, vaqt) qobiliyat haqida emas — uni to'siq sifatida, ayblovsiz yozasan.
+7. Faqat quyidagi JSON formatda javob qaytarasan:
 
 {
   "summary": "2-3 gap, umumiy xulosa",
@@ -46,31 +69,32 @@ QAT'IY QOIDALAR:
 
 
 def _build_user_prompt(profile: dict, ranked: list, confidence: str) -> str:
-    signals_summary = {
-        k: round(v["score"], 3)
-        for k, v in profile.items()
-        if v.get("score") is not None
-    }
+    # AI'ga raqam berilmaydi: faqat tartib, dalil darajasi va to'siq turlari.
+    top_signals = [
+        k for k, v in sorted(
+            ((k, v) for k, v in profile.items() if v.get("score") is not None),
+            key=lambda kv: -kv[1]["score"],
+        )[:5]
+    ]
     careers_summary = [
         {
             "career": c["career_uz"],
             "cluster": c["cluster_uz"],
-            "fit": c["fit"],
-            "readiness": c["readiness"],
-            "barriers_count": len(c["barriers"]),
+            "evidence_level": c.get("evidence_level"),
+            "barriers": [b.get("type") for b in c.get("barriers", [])],
         }
         for c in ranked[:5]
     ]
-    return f"""Foydalanuvchi signallari (0-1 shkalada):
-{json.dumps(signals_summary, ensure_ascii=False)}
+    return f"""Foydalanuvchining eng kuchli signallari (tartib bo'yicha):
+{json.dumps(top_signals, ensure_ascii=False)}
 
-Top-5 mos yo'nalishlar (deterministik):
+Signallarga yaqinroq yo'nalishlar (deterministik tartib):
 {json.dumps(careers_summary, ensure_ascii=False)}
 
-Confidence: {confidence}
+Umumiy dalil darajasi: {confidence}
 
 Vazifa: foydalanuvchi uchun qisqa, halol va aniq IZOH yoz.
-O'zbek tilida yoz. Raqamlarni o'zgartirmasdan.
+O'zbek tilida yoz. Foiz va ball yozma.
 """
 
 
@@ -130,19 +154,17 @@ def _fallback(ranked: list) -> dict:
     second = ranked[1] if len(ranked) > 1 else None
 
     summary = (
-        f"Sizning profilingiz {top['career_uz']} yo'nalishiga eng mos keladi "
-        f"(Fit: {top['fit']}%, Readiness: {top['readiness']}%)."
+        f"Javoblaringizga ko'ra signallaringiz {top['career_uz']} yo'nalishiga yaqinroq. "
+        "Bu tavsiya, hukm emas — qarorni siz qilasiz."
     )
     if second:
-        summary += f" Shuningdek {second['career_uz']} ham variant sifatida ko'rilishi mumkin."
+        summary += f" {second['career_uz']} ham ko'rib chiqishga arziydi."
 
-    why = [f"{top['career_uz']} signallaringizga mos keladi."]
+    why = [f"{top['career_uz']} uchun muhim signallar javoblaringizda ko'rindi."]
     if top.get("coverage", 0) >= 0.7:
-        why.append("Yetarli ma'lumot yig'ildi.")
-    if top.get("readiness", 0) >= 70:
-        why.append("Hozirgi sharoitda boshlash uchun tayyorlik yuqori.")
-    if not why:
-        why.append("Profilingiz bu yo'nalishga qisman mos keladi.")
+        why.append("Bu xulosa uchun ma'lumot yetarli yig'ildi.")
+    if top.get("readiness") is not None and not top.get("barriers"):
+        why.append("Hozirgi sharoitingiz boshlash uchun to'siq emas.")
 
     risks = []
     if top.get("has_hard_barrier"):

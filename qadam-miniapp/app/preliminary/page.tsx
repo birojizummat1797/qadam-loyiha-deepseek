@@ -1,25 +1,12 @@
 "use client";
 
+import { signalLabel } from "@/lib/signals";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Lock, Check, Sparkles, TrendingUp, Info } from "lucide-react";
+import { EvidenceBadge } from "@/components/EvidenceLevel";
 
-const SIGNAL_UZ: Record<string, string> = {
-  logical_thinking: "Mantiqiy fikrlash",
-  problem_solving: "Muammo hal qilish",
-  technical_interest: "Texnikaga qiziqish",
-  creative_design: "Ijodiy dizayn",
-  visual_logic: "Vizual mantiq",
-  user_empathy: "Empatiya",
-  system_design: "Tizimli fikrlash",
-  analytical: "Tahliliy fikrlash",
-  persistence: "Qat'iyat",
-  math_logic: "Matematik mantiq",
-  attention_to_detail: "Detallarga e'tibor",
-  business_sense: "Biznes hissi",
-  innovation: "Innovatsiya",
-};
 
 export default function PreliminaryPage() {
   const router = useRouter();
@@ -67,11 +54,11 @@ export default function PreliminaryPage() {
         >
           <p className="t-caption text-primary mb-2">Dastlabki natija</p>
           <h1 className="t-display mb-3">
-            Profilingizga mos<br />yo&apos;nalishlar
+            Signallaringizga yaqin<br />yo&apos;nalishlar
           </h1>
           <p className="t-small text-muted">
-            Javoblaringiz asosida sizga mos kelishi mumkin bo&apos;lgan yo&apos;nalishlar
-            aniqlandi.
+            Javoblaringiz asosida signallaringizga yaqinroq yo&apos;nalishlar.
+            Bu tavsiya, hukm emas — qarorni siz qilasiz.
           </p>
         </motion.div>
 
@@ -88,18 +75,7 @@ export default function PreliminaryPage() {
               {signals.slice(0, 5).map((s: any, i: number) => (
                 <div key={s.key} className="flex items-center gap-3">
                   <span className="t-small flex-1 truncate">
-                    {SIGNAL_UZ[s.key] ?? s.key}
-                  </span>
-                  <div className="w-24 h-1.5 bg-[var(--color-surface-2)] rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(s.value / 10) * 100}%` }}
-                      transition={{ delay: 0.1 + i * 0.05, duration: 0.6 }}
-                      className="h-full bg-primary"
-                    />
-                  </div>
-                  <span className="t-caption text-subtle tabular-nums w-8 text-right">
-                    {Math.round(s.value)}
+                    {signalLabel(s.key)}
                   </span>
                 </div>
               ))}
@@ -116,7 +92,7 @@ export default function PreliminaryPage() {
             className="mb-6"
           >
             <p className="t-caption text-subtle mb-3">
-              Sizga mos yo&apos;nalishlar
+              Signallaringizga yaqinroq
             </p>
             <div className="space-y-3">
               {pathways.slice(0, 3).map((p: any, i: number) => (
@@ -126,14 +102,15 @@ export default function PreliminaryPage() {
                     <p className="t-caption text-subtle">{p.cluster_uz}</p>
                   </div>
                   <div className="text-right shrink-0 pl-3">
-                    <p className="t-heading text-primary tabular-nums">
-                      {Math.round(p.fit)}%
-                    </p>
-                    <p className="t-caption text-subtle">Fit</p>
+                    <EvidenceBadge level={p.evidence_level} coverage={p.coverage} />
                   </div>
                 </div>
               ))}
             </div>
+            <p className="t-caption text-subtle mt-3">
+              Hozircha natijada faqat yo&apos;l xaritasi tayyor bo&apos;lgan yo&apos;nalishlar ko&apos;rib chiqiladi.
+              Qadam katalogidagi boshqa yo&apos;nalishlar bu ro&apos;yxatga keyinroq qo&apos;shiladi.
+            </p>
           </motion.div>
         )}
 
@@ -152,7 +129,7 @@ export default function PreliminaryPage() {
             <div className="flex flex-wrap gap-1.5">
               {devAreas.map((k: string) => (
                 <span key={k} className="badge-soft badge-warning">
-                  {SIGNAL_UZ[k] ?? k}
+                  {signalLabel(k)}
                 </span>
               ))}
             </div>
@@ -186,8 +163,8 @@ export default function PreliminaryPage() {
           <ul className="space-y-2 mb-4">
             {[
               "18 savol chuqur diagnostika",
-              "Top-5 mos yo'nalish",
-              "Fit + Readiness har biri uchun",
+              "Signallaringizga yaqin yo'nalishlar (yo'l xaritasi tayyorlari)",
+              "Har biri uchun dalil darajasi va to'siqlar",
               "Skill-gap va to'siqlar",
               "6-12 oy shaxsiy yo'l xaritasi",
               "PDF hisobot",

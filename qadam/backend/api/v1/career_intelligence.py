@@ -9,6 +9,8 @@ from backend.auth import verify_init_data
 from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
 from backend.engine.ranking import rank_careers
+from backend.services.context_service import discovery_constraints
+from backend.engine.public_output import strip_unsupported
 
 router = APIRouter(prefix="/api/v1/career-intelligence", tags=["career-intelligence-v1"])
 
@@ -72,10 +74,8 @@ async def get_career_intelligence(
     # DB taxonomy
     taxonomy = await load_taxonomy_from_db()
 
-    # Constraints sessiya meta'sidan
-    constraints = (sess.meta or {}).get("constraints") or {
-        "time": "2_3h", "device": "laptop", "english": "b1",
-    }
+    # Foydalanuvchining haqiqiy sharoiti (default yo'q; noma'lum bo'lsa readiness = None)
+    constraints = await discovery_constraints(discovery_session_id)
 
     # Ranking
     ranking = rank_careers(
@@ -126,58 +126,4 @@ async def get_career_detail(
     if not found:
         raise HTTPException(404, "Career topilmadi")
 
-    return found
-
-
-@router.get("/compare")
-async def compare_careers(
-    slugs: str = Query(..., description="vergul bilan ajratilgan slug'lar"),
-    discovery_session_id: int = Query(...),
-    init_data: str = Query(...),
-):
-    """2-3 ta career taqqoslash."""
-    user = verify_init_data(init_data)
-    if not user:
-        raise HTTPException(401, "Invalid initData")
-
-    await _require_premium(user["id"])
-
-    slug_list = [x.strip() for x in slugs.split(",") if x.strip()][:3]
-    if len(slug_list) < 2:
-        raise HTTPException(400, "Kamida 2 ta career kerak")
-
-    taxonomy = await load_taxonomy_from_db()
-    from backend.engine.fit import calculate_fit
-    from backend.engine.readiness import calculate_readiness
-
-    async with SessionLocal() as s:
-        signal_rows = (await s.execute(
-            select(DiscoverySignal).where(
-                DiscoverySignal.session_id == discovery_session_id
-            )
-        )).scalars().all()
-    signals = _signals_from_db(signal_rows)
-
-    out = []
-    for slug in slug_list:
-        for cluster_key, cluster in taxonomy["clusters"].items():
-            if slug in cluster["careers"]:
-                c = cluster["careers"][slug]
-                fit = calculate_fit(signals, c)
-                readiness = calculate_readiness(
-                    {"device": "laptop", "english": "b1", "time": "2_3h"},
-                    c.get("prerequisites", {}),
-                )
-                out.append({
-                    "slug": slug,
-                    "title_uz": c["uz"],
-                    "cluster_uz": cluster["uz"],
-                    "fit": fit["fit"],
-                    "coverage": fit["coverage"],
-                    "confidence": fit["confidence"],
-                    "readiness": readiness["readiness"],
-                    "barriers_count": len(readiness["barriers"]),
-                })
-                break
-
-    return {"careers": out}
+    return strip_unsupported(found)

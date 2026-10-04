@@ -7,6 +7,9 @@ Confidence(c) = Coverage × avg(T_s)
 """
 
 
+from .signals import clamp_value
+
+
 def calculate_fit(signals, career):
     weights = career["signals"]  # {signal_key: weight 1-5}
 
@@ -25,8 +28,9 @@ def calculate_fit(signals, career):
             missing.append(sig)
             continue
 
-        v = s["value"]           # [0, 10]
-        t = s["trust"]           # 0.0 - 1.0
+        # Eski sessiyalarda DB'da 10 dan katta qiymat saqlangan bo'lishi mumkin.
+        v = clamp_value(s["value"])                  # [0, 10]
+        t = max(0.0, min(1.0, float(s["trust"])))    # [0, 1]
 
         num += w * v * t
         measured_weight += w

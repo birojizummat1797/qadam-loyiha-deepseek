@@ -1,25 +1,13 @@
 "use client";
 
+import { DeepPdfButton } from "@/components/DeepPdfButton";
+import { signalLabel } from "@/lib/signals";
+import { ContextNote, EvidenceBadge } from "@/components/EvidenceLevel";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Sparkles, AlertCircle } from "lucide-react";
 
-const SIGNAL_UZ: Record<string, string> = {
-  logical_thinking: "Mantiqiy fikrlash",
-  problem_solving: "Muammo hal qilish",
-  technical_interest: "Texnikaga qiziqish",
-  creative_design: "Ijodiy dizayn",
-  visual_logic: "Vizual mantiq",
-  user_empathy: "Empatiya",
-  system_design: "Tizimli fikrlash",
-  analytical: "Tahliliy fikrlash",
-  persistence: "Qat'iyat",
-  math_logic: "Matematik mantiq",
-  attention_to_detail: "Detallarga e'tibor",
-  business_sense: "Biznes hissi",
-  innovation: "Innovatsiya",
-};
 
 export default function CareerIntelligencePage() {
   const router = useRouter();
@@ -60,8 +48,7 @@ export default function CareerIntelligencePage() {
           <p className="t-caption text-primary mb-2">Chuqur tahlil</p>
           <h1 className="t-display mb-3">Sizning natijangiz</h1>
           <p className="t-small text-muted">
-            {ranked.length} ta yo&apos;nalish tahlil qilindi. Ishonch:{" "}
-            <span className="text-primary font-medium">{data.confidence}</span>
+            Natija tayyor. Bu tavsiya, hukm emas — qarorni siz qilasiz.
           </p>
         </motion.div>
 
@@ -78,18 +65,7 @@ export default function CareerIntelligencePage() {
               {measuredSignals.map(([key, v]: any, i: number) => (
                 <div key={key} className="flex items-center gap-3">
                   <span className="t-small flex-1 truncate">
-                    {SIGNAL_UZ[key] ?? key}
-                  </span>
-                  <div className="w-24 h-1.5 bg-[var(--color-surface-2)] rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(v.value / 10) * 100}%` }}
-                      transition={{ delay: 0.1 + i * 0.05, duration: 0.6 }}
-                      className="h-full bg-primary"
-                    />
-                  </div>
-                  <span className="t-caption text-subtle tabular-nums w-8 text-right">
-                    {Math.round(v.value)}
+                    {signalLabel(key)}
                   </span>
                 </div>
               ))}
@@ -105,7 +81,7 @@ export default function CareerIntelligencePage() {
           className="mb-6"
         >
           <p className="t-caption text-subtle mb-3">
-            Sizga eng mos yo&apos;nalishlar
+            Signallaringizga yaqinroq yo&apos;nalishlar
           </p>
           <div className="space-y-4">
             {ranked.map((c: any, i: number) => (
@@ -121,20 +97,16 @@ export default function CareerIntelligencePage() {
                     <p className="t-caption text-subtle">{c.cluster_uz}</p>
                   </div>
                   <div className="text-right shrink-0 pl-3">
-                    <p className="t-metric text-primary leading-none">
-                      {Math.round(c.fit)}
-                      <span className="text-base">%</span>
-                    </p>
-                    <p className="t-caption text-subtle mt-1">Fit</p>
+                    <EvidenceBadge level={c.evidence_level} coverage={c.coverage} />
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-3 border-t border-[var(--color-border)]">
-                  <span className="t-caption text-subtle">Readiness</span>
-                  <span className="t-small text-success font-medium tabular-nums">
-                    {Math.round(c.readiness)}%
-                  </span>
-                </div>
+                {c.readiness != null && (
+                  <div className="flex flex-col gap-2 pt-3 border-t border-[var(--color-border)]">
+                    <span className="t-caption text-subtle">Hozirgi sharoit</span>
+                    <ContextNote readiness={c.readiness} barriers={c.barriers} />
+                  </div>
+                )}
 
                 {c.has_hard_barrier && (
                   <div className="flex items-start gap-2 mt-3 pt-3 border-t border-[var(--color-border)]">
@@ -158,7 +130,17 @@ export default function CareerIntelligencePage() {
               </div>
             ))}
           </div>
+          <p className="t-caption text-subtle mt-3">
+              Hozircha natijada faqat yo&apos;l xaritasi tayyor bo&apos;lgan yo&apos;nalishlar ko&apos;rib chiqiladi.
+              Qadam katalogidagi boshqa yo&apos;nalishlar bu ro&apos;yxatga keyinroq qo&apos;shiladi.
+            </p>
         </motion.div>
+
+        {ranked.length > 0 && data.session_id && (
+          <div className="mb-6">
+            <DeepPdfButton sessionId={Number(data.session_id)} />
+          </div>
+        )}
 
         {ranked.length === 0 && (
           <motion.div
@@ -171,8 +153,9 @@ export default function CareerIntelligencePage() {
               <div>
                 <p className="t-heading mb-2">Yetarli dalil yo&apos;q</p>
                 <p className="t-small text-muted">
-                  Hozircha sizning javoblaringiz asosida yetarli mos yo&apos;nalish
-                  topilmadi. Iltimos, savollarga samimiyroq javob bering.
+                  Hozircha javoblaringiz asosida yo&apos;nalish ko&apos;rsatish uchun
+                  ma&apos;lumot yetarli emas. Bu qobiliyatingiz haqida emas —
+                  ba&apos;zi signallar o&apos;lchanmagan.
                 </p>
               </div>
             </div>

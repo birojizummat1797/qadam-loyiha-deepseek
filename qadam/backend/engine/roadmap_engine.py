@@ -106,12 +106,13 @@ def _from_template(slug: str, career: dict, template: dict, ranked: dict) -> dic
     return {
         "career_id": slug,
         "career_uz": career.get("title_uz") or career.get("uz", ""),
-        "why": f"Bu yo'nalish sizning signallaringizga mos keladi.",
+        "why": "Bu yo'nalish uchun muhim signallar javoblaringizda ko'rindi.",
         "source": "template",
         "phases": phases,
         "next_3_actions": first_3,
         "resources": [],
-        "b_point": career.get("salary_usd") and {"salary_usd": career["salary_usd"]} or {},
+        # Maosh — data passport yo'q, ko'rsatilmaydi (PM Q3).
+        "b_point": {},
         "milestones": [p.get("milestone", "") for p in phases if p.get("milestone")],
         "barrier_resolutions": _barrier_resolutions(ranked.get("barriers", [])),
         "first_step_reasoning": _first_step_reasoning(ranked, phases),

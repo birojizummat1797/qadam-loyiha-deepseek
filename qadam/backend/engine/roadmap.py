@@ -2,6 +2,7 @@
 Roadmap Engine v2.0 — ACQ uslubida.
 A nuqta → Yo'l (5 stage) → B nuqta + Calendar + First 3 Actions.
 """
+from backend.engine.public_output import strip_unsupported
 import json
 from pathlib import Path
 
@@ -23,15 +24,15 @@ def build_roadmap(career_id, readiness_result, user_constraints, signals=None):
     # v2 dan izlash
     kb2 = KB_V2["careers"].get(career_id)
     if kb2:
-        return _build_v2(career_id, kb2, readiness_result, user_constraints, signals)
-
-    # v1 fallback
-    kb1 = KB_V1["careers"].get(career_id)
-    if kb1:
-        return _build_v1_fallback(career_id, kb1, readiness_result)
-
-    # Hech narsa yo'q — placeholder
-    return _placeholder(career_id, readiness_result)
+        rm = _build_v2(career_id, kb2, readiness_result, user_constraints, signals)
+    elif KB_V1["careers"].get(career_id):
+        # v1 fallback
+        rm = _build_v1_fallback(career_id, KB_V1["careers"][career_id], readiness_result)
+    else:
+        # Hech narsa yo'q — placeholder
+        rm = _placeholder(career_id, readiness_result)
+    # Foydalanuvchiga: maosh va dalilsiz da'volarsiz (kb_claims_audit_v1.json).
+    return strip_unsupported(rm)
 
 
 def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
@@ -49,8 +50,8 @@ def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
         "signal_summary": _signal_summary(signals) if signals else {},
     }
 
-    # ── B NUQTA ──
-    b_point = kb.get("b_point", {})
+    # ── B NUQTA ── (maosh — data passport yo'q, ko'rsatilmaydi)
+    b_point = strip_unsupported(kb.get("b_point", {}))
 
     # ── YO'L — 5 stage ──
     stages = []
@@ -87,12 +88,7 @@ def _build_v2(career_id, kb, readiness_result, user_constraints, signals):
             "total_weeks": sum(s["weeks"] for s in stages),
             "stages": stages,
         },
-        "b_point": {
-            **b_point,
-            "salary_uzs": kb.get("salary_uzs", {}),
-            "salary_usd": kb.get("salary_usd", {}),
-        },
-        "income_factors": KB_V2.get("income_factors", {}).get("factors", []),
+        "b_point": b_point,
 
         # ── Bonus bloklar ──
         "calendar_30d": kb.get("calendar_30d", []),
@@ -211,6 +207,8 @@ def build_full_report(ranked, constraints, taxonomy, signals=None):
             "fit": item["fit"],
             "readiness": item["readiness"],
             "coverage": item["coverage"],
+            "evidence_level": item.get("evidence_level"),
+            "context_status": item.get("context_status"),
             "barriers": item["barriers"],
             "has_hard_barrier": item["has_hard_barrier"],
             "roadmap": rm,

@@ -1,12 +1,12 @@
 "use client";
 
+import { signalLabel } from "@/lib/signals";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IncomeSection } from "./IncomeSection";
 import {
   MapPin, Target, Calendar, ChevronDown, ChevronRight, Info,
   AlertCircle, Check, X, TrendingUp, Clock, BookOpen,
-  Zap, DollarSign, GraduationCap, Users, Rocket, Star,
+  Zap, GraduationCap, Users, Star,
 } from "lucide-react";
 
 type Constraint = { problem?: string; type?: string; level?: string; solution: string };
@@ -27,23 +27,9 @@ type Roadmap = {
   };
   path: { total_weeks: number; stages: Stage[] };
   b_point: {
-    junior_salary_uzs?: string;
-    remote_salary_usd?: string;
-    salary_uzs?: Record<string, any>;
-    salary_usd?: {
-      junior: { min: number; max: number };
-      middle: { min: number; max: number };
-      senior: { min: number; max: number };
-    };
     outcomes?: string[];
     next_step?: string;
   };
-  income_factors?: {
-    name: string;
-    icon: string;
-    boost: string;
-    desc: string;
-  }[];
   calendar_30d: { w: number; theme: string; days: string[] }[];
   first_3_actions: string[];
   mentor_path: string[];
@@ -52,14 +38,6 @@ type Roadmap = {
   is_placeholder?: boolean;
 };
 
-const SIGNAL_UZ: Record<string, string> = {
-  logical_thinking: "Mantiq", problem_solving: "Muammo hal",
-  technical_interest: "Texnika", creative_design: "Ijodiy dizayn",
-  visual_logic: "Vizual mantiq", user_empathy: "Empatiya",
-  system_design: "Tizim", analytical: "Tahlil", persistence: "Qatiyat",
-  math_logic: "Matematika", attention_to_detail: "Detal",
-  business_sense: "Biznes", innovation: "Innovatsiya",
-};
 
 const STAGE_COLORS = [
   { from: "from-slate-500", to: "to-slate-700", bg: "bg-slate-500/15", text: "text-slate-300", accent: "border-slate-500/40" },
@@ -87,7 +65,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
               Bu yonalish uchun batafsil tahlil
             </h4>
             <p className="text-xs text-[var(--tg-hint)] leading-relaxed">
-              Sizga eng mos yonalishlar uchun toliq roadmap tayyorlangan.
+              Signallaringizga yaqin yo'nalishlar uchun to'liq roadmap tayyorlangan.
               Bu yonalish boyicha malumot tez orada qoshiladi.
             </p>
           </div>
@@ -106,7 +84,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
       >
         <div className="flex items-center gap-2 mb-2">
           <Star className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-sm">Nega bu sizga mos</h3>
+          <h3 className="font-semibold text-sm">Nega bu yo&apos;nalish ko&apos;rsatildi</h3>
         </div>
         <p className="text-sm leading-relaxed">{roadmap.why_this_path}</p>
       </motion.div>
@@ -129,16 +107,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
             <div className="space-y-2">
               {roadmap.a_point.signal_summary.top_5.map((s, i) => (
                 <div key={s.key} className="flex items-center gap-2">
-                  <span className="text-xs w-24 capitalize">{SIGNAL_UZ[s.key] ?? s.key}</span>
-                  <div className="flex-1 h-2 bg-[var(--tg-hint)]/10 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
-                      style={{ width: `${s.score * 100}%` }}
-                    />
-                  </div>
-                  <span className="text-xs w-10 text-right font-medium">
-                    {Math.round(s.score * 100)}%
-                  </span>
+                  <span className="text-xs capitalize">{signalLabel(s.key)}</span>
                 </div>
               ))}
             </div>
@@ -359,27 +328,6 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            {roadmap.b_point.junior_salary_uzs && (
-              <div className="p-3 rounded-xl bg-[var(--tg-bg)]/60 backdrop-blur-sm">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <DollarSign className="w-3 h-3 text-emerald-400" />
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--tg-hint)]">Junior UZ</p>
-                </div>
-                <p className="text-xl font-bold">{roadmap.b_point.junior_salary_uzs}</p>
-              </div>
-            )}
-            {roadmap.b_point.remote_salary_usd && (
-              <div className="p-3 rounded-xl bg-[var(--tg-bg)]/60 backdrop-blur-sm">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Rocket className="w-3 h-3 text-cyan-400" />
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--tg-hint)]">Remote</p>
-                </div>
-                <p className="text-xl font-bold">{roadmap.b_point.remote_salary_usd}</p>
-              </div>
-            )}
-          </div>
-
           {roadmap.b_point.outcomes && (
             <ul className="space-y-1.5">
               {roadmap.b_point.outcomes.map((o, i) => (
@@ -399,12 +347,6 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
           )}
         </div>
       </motion.div>
-
-      {/* ═══ INCOME ═══ */}
-      <IncomeSection
-        salary={roadmap.b_point?.salary_usd}
-        factors={(roadmap as any).income_factors}
-      />
 
       {/* ═══ FIRST 3 ACTIONS ═══ */}
       {roadmap.first_3_actions.length > 0 && (

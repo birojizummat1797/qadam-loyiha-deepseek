@@ -28,14 +28,14 @@ export default function Home() {
           </h1>
 
           <p className="t-body text-muted mb-10 fade-in fade-in-2">
-            Qadam.io profilingizni tahlil qiladi, sizga mos kasblarni
-            aniqlaydi va amaliy yo&apos;l xaritasi tuzadi.
+            Qadam.io profilingizni tahlil qiladi, signallaringizga yaqin kasblarni
+            ko&apos;rsatadi va amaliy yo&apos;l xaritasi tuzadi.
           </p>
 
           <ul className="space-y-3 mb-12 fade-in fade-in-3">
             {[
               "8 savol — 3 daqiqa",
-              "Fit va Readiness tahlili",
+              "Dalil darajasi va to'siqlar tahlili",
               "Shaxsiy 6 oylik yo'l xaritasi",
             ].map((text, i) => (
               <li

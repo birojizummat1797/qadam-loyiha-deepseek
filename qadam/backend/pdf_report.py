@@ -1,24 +1,19 @@
 """PDF Report generator - xhtml2pdf, jinja2 yo'q."""
+from backend.engine.levels import EVIDENCE_LABELS_UZ, evidence_level
+from backend.engine.public_output import strip_unsupported
 from datetime import datetime
 from io import BytesIO
 from xhtml2pdf import pisa
 
 
-SIGNAL_UZ = {
-    "logical_thinking": "Mantiq",
-    "problem_solving": "Muammo hal",
-    "technical_interest": "Texnika",
-    "creative_design": "Ijodiy dizayn",
-    "visual_logic": "Vizual mantiq",
-    "user_empathy": "Empatiya",
-    "system_design": "Tizim",
-    "analytical": "Tahlil",
-    "persistence": "Qatiyat",
-    "math_logic": "Matematika",
-    "attention_to_detail": "Detal",
-    "business_sense": "Biznes",
-    "innovation": "Innovatsiya",
-}
+def _signal_labels():
+    """Signal labels from the single backend source (signals_v1.json)."""
+    from backend.data_loader import load_signals
+
+    return {k: v["uz"] for k, v in load_signals()["signals"].items()}
+
+
+SIGNAL_UZ = _signal_labels()
 
 
 STYLE = """
@@ -71,7 +66,8 @@ def _build_career_html(c):
     html.append("<table width=\"100%\"><tr>")
     html.append(f'<td><h3 style="margin:0"><span class="badge badge-indigo">#{_esc(c.get("_idx", ""))}</span> {_esc(career.get("uz", ""))}</h3>')
     html.append(f'<p class="muted" style="margin:2pt 0 0 0">{_esc(career.get("cluster_uz", ""))}</p></td>')
-    html.append(f'<td align="right" valign="top"><span class="fit-big">{_esc(c.get("fit", 0))}%</span><br><span class="muted" style="font-size:8pt">FIT</span><br><span class="muted">Ready: {_esc(c.get("readiness", 0))}%</span></td>')
+    level = EVIDENCE_LABELS_UZ.get(evidence_level(c.get("coverage")), "")
+    html.append(f'<td align="right" valign="top"><span class="muted">{_esc(level)}</span></td>')
     html.append("</tr></table></div>")
 
     # Placeholder bo'lsa — o'tkazib yuborish
@@ -80,9 +76,9 @@ def _build_career_html(c):
 
     html.append(f'<div class="section-title">{_esc(career.get("uz", ""))} — Roadmap</div>')
 
-    # Nega mos
+    # Nega ko'rsatildi
     if roadmap.get("why_this_path"):
-        html.append('<div class="card"><h4>Nega bu sizga mos</h4>')
+        html.append('<div class="card"><h4>Nega bu yo\'nalish ko\'rsatildi</h4>')
         html.append(f'<p>{_esc(roadmap["why_this_path"])}</p></div>')
 
     # A NUQTA
@@ -94,8 +90,7 @@ def _build_career_html(c):
             html.append('<p class="muted">Kuchli signallaringiz:</p><ul>')
             for s in sig["top_5"]:
                 name = SIGNAL_UZ.get(s["key"], s["key"])
-                pct = round(s["score"] * 100)
-                html.append(f'<li><b>{_esc(name)}</b> — {pct}%</li>')
+                html.append(f'<li><b>{_esc(name)}</b></li>')
             html.append("</ul>")
         if a_point.get("constraints"):
             html.append("<h4>To'siqlar va yechim</h4><ul>")
@@ -147,12 +142,6 @@ def _build_career_html(c):
     b_point = roadmap.get("b_point", {})
     if b_point:
         html.append('<div class="card card-emerald"><h4>B NUQTA — Erishishingiz mumkin</h4>')
-        html.append('<table width="100%"><tr>')
-        if b_point.get("junior_salary_uzs"):
-            html.append(f'<td width="50%"><p class="muted" style="margin:0">Junior UZ</p><p style="font-size:13pt;font-weight:bold;color:#059669;margin:2pt 0">{_esc(b_point["junior_salary_uzs"])}</p></td>')
-        if b_point.get("remote_salary_usd"):
-            html.append(f'<td width="50%"><p class="muted" style="margin:0">Remote</p><p style="font-size:13pt;font-weight:bold;color:#0891b2;margin:2pt 0">{_esc(b_point["remote_salary_usd"])}</p></td>')
-        html.append("</tr></table>")
         if b_point.get("outcomes"):
             html.append("<ul>")
             for o in b_point["outcomes"]:
@@ -196,9 +185,17 @@ def _build_career_html(c):
     return "\n".join(html)
 
 
-def generate_pdf(report, theme="light"):
-    """Report dict -> PDF bytes."""
-    date_str = datetime.utcnow().strftime("%d.%m.%Y")
+EVIDENCE_NOTE = (
+    "Dalil darajasi javoblaringiz kasb talablarining qanchasini qamraganini bildiradi. "
+    "Bu tavsiya, hukm emas — qarorni siz qilasiz."
+)
+
+
+def build_report_html(report, date_str=None):
+    """Report dict -> HTML (PDF manbasi). Snapshot testlari shu funksiyani tekshiradi."""
+    # Eski saqlangan hisobotlarda maosh bo'lishi mumkin — PDF'ga tushmaydi.
+    report = strip_unsupported(report)
+    date_str = date_str or datetime.utcnow().strftime("%d.%m.%Y")
     ai = report.get("ai") or {}
     careers = (report.get("roadmap") or {}).get("careers", [])
 
@@ -212,7 +209,8 @@ def generate_pdf(report, theme="light"):
         parts.append('<div class="card card-indigo"><h3>Umumiy xulosa</h3>')
         parts.append(f'<p>{_esc(ai["summary"])}</p></div>')
 
-    parts.append(f'<h2>Top-{len(careers)} mos yonalish</h2>')
+    parts.append('<h2>Signallaringizga yaqinroq yo\'nalishlar</h2>')
+    parts.append(f'<p class="muted">{_esc(EVIDENCE_NOTE)}</p>')
 
     for idx, c in enumerate(careers, 1):
         c["_idx"] = idx
@@ -233,8 +231,12 @@ def generate_pdf(report, theme="light"):
     parts.append("@kelajakkailkqadam_bot</p>")
     parts.append("</body></html>")
 
-    html = "\n".join(parts)
+    return "\n".join(parts)
 
+
+def generate_pdf(report, theme="light"):
+    """Report dict -> PDF bytes."""
+    html = build_report_html(report)
     output = BytesIO()
     pisa.CreatePDF(html, dest=output, encoding="utf-8")
     return output.getvalue()

@@ -1,0 +1,18 @@
+{
+  "_source": "qadam/backend/data/signals_v1.json (copied verbatim; parity is tested)",
+  "labels": {
+    "logical_thinking": "Mantiqiy fikrlash",
+    "problem_solving": "Muammo hal qilish",
+    "technical_interest": "Texnikaga qiziqish",
+    "creative_design": "Ijodiy dizayn",
+    "visual_logic": "Vizual mantiq",
+    "user_empathy": "Empatiya",
+    "system_design": "Tizimli fikrlash",
+    "analytical": "Tahliliy fikrlash",
+    "persistence": "Qat’iyat",
+    "math_logic": "Matematik mantiq",
+    "attention_to_detail": "Detallarga e’tibor",
+    "business_sense": "Biznes hissi",
+    "innovation": "Innovatsiya"
+  }
+}

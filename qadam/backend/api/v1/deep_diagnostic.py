@@ -199,8 +199,9 @@ async def complete(session_id: int, payload: StartPayload):
     # Constraints
     dd_constraints = dd_extract_cons(dd_answers_list, questions)
 
-    # Discovery constraints (agar mavjud)
-    base_constraints = {"time": "2_3h", "device": "laptop", "english": "b1"}
+    # Discovery'dagi haqiqiy sharoit (default yo'q; noma'lum bo'lsa readiness = None)
+    from backend.services.context_service import discovery_constraints
+    base_constraints = await discovery_constraints(sess.discovery_session_id)
 
     # Ranking
     taxonomy = await load_taxonomy_from_db()
@@ -260,3 +261,61 @@ async def complete(session_id: int, payload: StartPayload):
         "confidence": ranking["confidence"],
         "constraints": base_constraints,
     }
+
+
+@router.post("/{session_id}/pdf")
+async def pdf(session_id: int, payload: StartPayload):
+    """Action Document (PDF) for a completed deep diagnostic — the v1 flow's PDF.
+
+    Rebuilt from stored signals and the user's own context (no hard-coded
+    conditions, no salary, no percentages) and sent to the user via the bot.
+    """
+    user = verify_init_data(payload.init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+    await _require_premium(user["id"])
+
+    async with SessionLocal() as s:
+        sess = await s.get(DeepDiagnosticSession, session_id)
+        if not sess or sess.user_id != user["id"]:
+            raise HTTPException(404, "Session topilmadi")
+        if sess.status != "completed":
+            raise HTTPException(400, "Diagnostika yakunlanmagan")
+        deep_rows = (await s.execute(
+            select(DeepDiagnosticSignal).where(DeepDiagnosticSignal.session_id == session_id)
+        )).scalars().all()
+        disc_rows = []
+        if sess.discovery_session_id:
+            disc_rows = (await s.execute(
+                select(DiscoverySignal).where(DiscoverySignal.session_id == sess.discovery_session_id)
+            )).scalars().all()
+
+    def rows(rs):
+        return {r.signal_key: {"value": r.value, "trust": r.trust,
+                               "evidence_state": r.evidence_state, "coverage": r.coverage} for r in rs}
+
+    from backend.ai.personalizer import _fallback
+    from backend.engine.roadmap import build_full_report
+    from backend.pdf_report import generate_pdf
+    from backend.services.context_service import discovery_constraints
+    from backend.services.pdf_delivery import send_pdf
+
+    signals = merge_signals(rows(disc_rows), rows(deep_rows))
+    constraints = await discovery_constraints(sess.discovery_session_id)
+    taxonomy = await load_taxonomy_from_db()
+    ranking = rank_careers(signals=signals, taxonomy=taxonomy, constraints=constraints, top_n=5)
+    if not ranking["ranked"]:
+        raise HTTPException(422, "Yetarli ma'lumot yo'q")
+
+    report = {
+        "id": session_id,
+        "profile": {},
+        "roadmap": build_full_report(ranking["ranked"], constraints, taxonomy, signals),
+        # Deterministic text: the PDF repeats nothing the user has not seen in the app.
+        "ai": _fallback(ranking["ranked"]),
+        "created_at": "",
+    }
+    pdf_bytes = generate_pdf(report)
+    filename = f"QADAM-{session_id}.pdf"
+    sent = await send_pdf(user, pdf_bytes, filename, ranking["ranked"][0]["career_uz"])
+    return {"ok": True, "session_id": session_id, "sent_to_telegram": sent, "size_bytes": len(pdf_bytes)}

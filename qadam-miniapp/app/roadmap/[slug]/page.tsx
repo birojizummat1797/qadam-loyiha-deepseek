@@ -1,5 +1,6 @@
 "use client";
 
+import { ContextNote, EvidenceBadge } from "@/components/EvidenceLevel";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -60,22 +61,18 @@ export default function RoadmapPage() {
           <p className="t-caption text-primary mb-2">Shaxsiy yo&apos;l xaritasi</p>
           <h1 className="t-display mb-4">{rm.career_uz || slug}</h1>
 
-          {/* Fit + Readiness */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="card-clean text-center">
-              <p className="t-caption text-subtle mb-1">Fit</p>
-              <p className="t-metric text-primary leading-none">
-                {data.fit !== null ? Math.round(data.fit) : "—"}
-                <span className="text-base">%</span>
-              </p>
+          {/* Dalil darajasi va sharoit (foizsiz) */}
+          <div className="card-clean mb-4 flex flex-col gap-3">
+            <div className="flex items-center justify-between gap-3">
+              <span className="t-caption text-subtle">Dalil darajasi</span>
+              <EvidenceBadge level={data.evidence_level} coverage={data.coverage} />
             </div>
-            <div className="card-clean text-center">
-              <p className="t-caption text-subtle mb-1">Readiness</p>
-              <p className="t-metric text-success leading-none">
-                {data.readiness !== null ? Math.round(data.readiness) : "—"}
-                <span className="text-base">%</span>
-              </p>
-            </div>
+            {data.readiness != null && (
+              <div className="flex flex-col gap-2">
+                <span className="t-caption text-subtle">Hozirgi sharoit</span>
+                <ContextNote readiness={data.readiness} barriers={data.barriers} />
+              </div>
+            )}
           </div>
 
           {data.has_hard_barrier && (
@@ -96,7 +93,7 @@ export default function RoadmapPage() {
             transition={{ delay: 0.05 }}
             className="card-clean mb-6"
           >
-            <p className="t-caption text-subtle mb-2">Nega bu mos</p>
+            <p className="t-caption text-subtle mb-2">Nega bu yo&apos;nalish ko&apos;rsatildi</p>
             <p className="t-small text-muted">{rm.why}</p>
           </motion.div>
         )}
@@ -241,32 +238,6 @@ export default function RoadmapPage() {
                   <ExternalLink className="w-3.5 h-3.5 text-subtle" />
                 </a>
               ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Salary (B nuqta) */}
-        {rm.b_point?.salary_usd && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="card-clean mb-6"
-          >
-            <p className="t-caption text-subtle mb-3">Daromad salohiyati (oyiga)</p>
-            <div className="space-y-2">
-              {["junior", "middle", "senior"].map((lvl) => {
-                const s = rm.b_point.salary_usd[lvl];
-                if (!s) return null;
-                return (
-                  <div key={lvl} className="flex items-center justify-between">
-                    <span className="t-small capitalize text-muted">{lvl}</span>
-                    <span className="t-heading tabular-nums">
-                      ${s.min} — ${s.max}
-                    </span>
-                  </div>
-                );
-              })}
             </div>
           </motion.div>
         )}
