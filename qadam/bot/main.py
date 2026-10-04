@@ -51,6 +51,20 @@ async def run_polling():
     await dp.start_polling(bot, allowed_updates=["message", "callback_query"])
 
 
+async def on_shutdown(bot: Bot):
+    """Do NOT delete the webhook here.
+
+    On a redeploy Render starts the new instance (which sets the webhook) and only
+    then stops the old one. Deleting the webhook on shutdown removed the new
+    instance's webhook, so Telegram stopped delivering updates (incident 2026-10-04).
+    The webhook is (re)set on every startup; shutdown only closes the HTTP session.
+    """
+    try:
+        await bot.session.close()
+    except Exception:
+        pass
+
+
 def run_webhook():
     from aiohttp import web
     from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
@@ -75,12 +89,6 @@ def run_webhook():
             await _set_commands()
         except Exception as e:
             log.error(f"set_webhook xato: {e}")
-
-    async def on_shutdown(bot: Bot):
-        try:
-            await bot.delete_webhook()
-        except Exception:
-            pass
 
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)
