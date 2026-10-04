@@ -93,7 +93,7 @@ export default function RoadmapPage() {
             transition={{ delay: 0.05 }}
             className="card-clean mb-6"
           >
-            <p className="t-caption text-subtle mb-2">Nega bu yo&apos;nalish ko&apos;rsatildi</p>
+            <p className="t-caption text-subtle mb-2">Bu yo&apos;nalish haqida</p>
             <p className="t-small text-muted">{rm.why}</p>
           </motion.div>
         )}
@@ -135,7 +135,7 @@ export default function RoadmapPage() {
               <Rocket className="w-4 h-4 text-primary" />
               <p className="t-heading">Birinchi 3 qadam</p>
             </div>
-            <p className="t-caption text-subtle mb-3">Bugun boshlang</p>
+            <p className="t-caption text-subtle mb-3">Boshlash uchun</p>
             <ol className="space-y-3">
               {rm.next_3_actions.map((a: string, i: number) => (
                 <li key={i} className="flex items-start gap-3 t-small">

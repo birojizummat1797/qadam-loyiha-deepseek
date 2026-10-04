@@ -7,13 +7,13 @@
       "uz": "Foundation Programming",
       "cluster": "software",
       "cluster_uz": "Dasturlash",
-      "why": "Dasturlash asoslari — har qanday IT yo'nalishga kirish eshigi. Bu bosqich sizga mantiqiy fikrlash, muammoni bo'laklarga bo'lish va kod yozish tajribasini beradi.",
+      "why": "Dasturlash asoslari — ko'plab IT yo'nalishlar uchun umumiy poydevor. Bu bosqichda mantiqiy fikrlash, muammoni bo'laklarga bo'lish va kod yozish tajribasi shakllanadi.",
       "b_point": {
         "junior_salary_uzs": "3-6 mln so'm",
         "remote_salary_usd": "$300-600/oy",
         "outcomes": [
-          "Junior dasturchi lavozimiga ariza berish imkoniyati",
-          "Keyingi yo'nalish (Frontend/Backend/Mobile) tanlash imkoniyati",
+          "Junior dasturchi vakansiyalariga ariza berish",
+          "Keyingi yo'nalishni (Frontend/Backend/Mobile) tanlash",
           "GitHub'da 3-5 ta loyiha",
           "Texnik suhbatga tayyorlik"
         ],
@@ -405,15 +405,15 @@
       "uz": "Frontend Development",
       "cluster": "software",
       "cluster_uz": "Dasturlash",
-      "why": "Frontend — foydalanuvchi ko'radigan qism. Sizning vizual didingiz, tizimli fikrlashingiz va foydalanuvchi ehtiyojini tushunishingiz bu yo'nalishda kuchli ustunlik beradi.",
+      "why": "Frontend — foydalanuvchi ko'radigan qism: sahifalar, tugmalar, formalar. Bu ishda vizual did, tizimli fikrlash va foydalanuvchi ehtiyojini tushunish ko'p ishlatiladi.",
       "b_point": {
         "junior_salary_uzs": "4-8 mln so'm",
         "remote_salary_usd": "$500-1500/oy",
         "outcomes": [
-          "Junior Frontend Developer lavozimi",
-          "Freelance loyihalar (Upwork, Fiverr)",
-          "Startup'larda ishlash imkoniyati",
-          "Remote ish (xalqaro kompaniyalar)"
+          "Junior Frontend Developer vakansiyalariga ariza berish",
+          "Freelance buyurtmalarga taklif yuborish (Upwork, Fiverr)",
+          "Startaplardagi vakansiyalarga ariza berish",
+          "Masofaviy (remote) vakansiyalarga ariza berish"
         ],
         "next_step": "Middle Frontend (React/Vue chuqur) → 1-2 yil"
       },
@@ -485,7 +485,7 @@
               "Box model, Flexbox, Grid tartib bilan"
             ],
             [
-              "Dizayn qobiliyati yo'q",
+              "Dizayn tajribasi hali kam",
               "Mashhur saytlarni nusxalash"
             ],
             [
@@ -670,7 +670,7 @@
             "5+ ariza yuborildi"
           ],
           "signs_wrong": [
-            "Yangi framework o'rganish (bir joyda to'xta!)",
+            "Har safar yangi framework'ga o'tish (bittasida chuqurlashish foydaliroq)",
             "Mukammal loyiha qidirish",
             "Faqat mahalliy kompaniyalar"
           ],
@@ -805,15 +805,15 @@
       "uz": "Data Analytics",
       "cluster": "data_ai",
       "cluster_uz": "Data & AI",
-      "why": "Sizning tahliliy fikrlashingiz, detallarga e'tiboringiz va tizimli yondashuvingiz bu sohada eng qimmatli ko'nikmalar. Data Analyst — bu biznes qarorlarini raqamlar bilan asoslash san'ati.",
+      "why": "Data Analyst raqamlar yordamida biznes savollariga javob izlaydi. Bu ishda tahliliy fikrlash, detallarga e'tibor va tizimli yondashuv ko'p ishlatiladi.",
       "b_point": {
         "junior_salary_uzs": "4-7 mln so'm",
         "remote_salary_usd": "$500-1200/oy",
         "outcomes": [
-          "Junior Data Analyst lavozimi",
-          "Fintech/bank/e-commerce'da ishlash",
-          "Remote analytics ishi",
-          "Data Science'ga o'tish imkoniyati"
+          "Junior Data Analyst vakansiyalariga ariza berish",
+          "Fintech, bank yoki e-commerce vakansiyalariga ariza berish",
+          "Masofaviy analitika vakansiyalariga ariza berish",
+          "Keyinchalik Data Science'ni o'rganishni boshlash"
         ],
         "next_step": "Data Science yoki Analytics Engineer → 1-2 yil"
       },
@@ -1164,14 +1164,14 @@
       "uz": "UI/UX Design",
       "cluster": "design_creative",
       "cluster_uz": "Dizayn",
-      "why": "Sizning ijodiy didingiz, vizual mantig'ingiz va foydalanuvchi ehtiyojini tushunishingiz bu sohada asosiy qurolingiz. UI/UX — estetika va psixologiya kesishmasi.",
+      "why": "UI/UX dizayn — estetika va foydalanuvchi psixologiyasi kesishgan joy. Bu ishda ijodiy did, vizual mantiq va foydalanuvchi ehtiyojini tushunish ko'p ishlatiladi.",
       "b_point": {
         "junior_salary_uzs": "3-7 mln so'm",
         "remote_salary_usd": "$500-1500/oy",
         "outcomes": [
-          "Junior UI/UX Designer lavozimi",
-          "Freelance dizayn loyihalar",
-          "Startup'larda Product Designer",
+          "Junior UI/UX Designer vakansiyalariga ariza berish",
+          "Freelance dizayn buyurtmalariga taklif yuborish",
+          "Startaplardagi Product Designer vakansiyalariga ariza berish",
           "Portfolio case study'lar"
         ],
         "next_step": "Product Designer → 1-2 yil"
@@ -1524,14 +1524,14 @@
       "uz": "SMM Manager",
       "cluster": "digital_marketing",
       "cluster_uz": "Marketing",
-      "why": "Sizning kreativligingiz va odamlar bilan muloqot qobiliyatingiz bu sohada muvaffaqiyat keltiradi. SMM — ham ijod, ham tahlil, ham psixologiya.",
+      "why": "SMM — ijod, tahlil va auditoriya psixologiyasini birlashtiradigan ish. Bu ishda kreativlik va odamlar bilan muloqot ko'nikmalari ko'p ishlatiladi.",
       "b_point": {
         "junior_salary_uzs": "3-6 mln so'm",
         "remote_salary_usd": "$300-1000/oy",
         "outcomes": [
-          "Junior SMM Manager lavozimi",
+          "Junior SMM Manager vakansiyalariga ariza berish",
           "Freelance mijozlar (3-5 ta)",
-          "Agentlikda ishlash",
+          "Agentlik vakansiyalariga ariza berish",
           "O'z brendini rivojlantirish"
         ],
         "next_step": "Performance Marketing yoki Brand Strategy"
@@ -1593,7 +1593,7 @@
           "graduate_by": "10+ post",
           "constraints": [
             [
-              "Dizayn qobiliyati yo'q",
+              "Dizayn tajribasi hali kam",
               "Canva templates"
             ],
             [
