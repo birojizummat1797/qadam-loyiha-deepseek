@@ -44,11 +44,62 @@ def _changed(old: dict, new: dict) -> list[str]:
     return out
 
 
+def _new_breakdown() -> dict:
+    return {
+        "sessions": 0, "sessions_changed": 0, "signals_changed": 0,
+        "was_above_10": 0,            # stored > 10 (old overflow bug) → clamped/recomputed
+        "number_to_unmeasured": 0,    # stored a number, now "not measured" (unmeasured ≠ 0)
+        "of_which_stored_zero": 0,    #   … and that stored number was 0
+        "unmeasured_to_number": 0,    # stored nothing/None, now measured
+        "value_shift": 0,             # both numbers, different (formula change)
+        "shift_up": 0, "shift_down": 0,
+        "shift_abs_le_0_5": 0, "shift_abs_0_5_to_1": 0, "shift_abs_1_to_2": 0, "shift_abs_gt_2": 0,
+        "shift_abs_sum": 0.0, "shift_abs_max": 0.0,
+    }
+
+
+def _classify(b: dict, old: dict, new: dict, changed: list[str]) -> None:
+    """Aggregate counts only — nothing user-identifying leaves this function."""
+    b["sessions"] += 1
+    if changed:
+        b["sessions_changed"] += 1
+        b["signals_changed"] += len(changed)
+    for k in changed:
+        a = (old.get(k) or {}).get("value")
+        n = (new.get(k) or {}).get("value")
+        if a is not None and a > 10:
+            b["was_above_10"] += 1
+        elif a is not None and n is None:
+            b["number_to_unmeasured"] += 1
+            b["of_which_stored_zero"] += int(abs(a) <= EPS)
+        elif a is None and n is not None:
+            b["unmeasured_to_number"] += 1
+        else:
+            d = n - a
+            b["value_shift"] += 1
+            b["shift_up" if d > 0 else "shift_down"] += 1
+            ad = abs(d)
+            key = ("shift_abs_le_0_5" if ad <= 0.5 else "shift_abs_0_5_to_1" if ad <= 1
+                   else "shift_abs_1_to_2" if ad <= 2 else "shift_abs_gt_2")
+            b[key] += 1
+            b["shift_abs_sum"] += ad
+            b["shift_abs_max"] = max(b["shift_abs_max"], ad)
+
+
+def _finish(b: dict) -> dict:
+    out = dict(b)
+    out["shift_abs_mean"] = round(b["shift_abs_sum"] / b["value_shift"], 2) if b["value_shift"] else 0.0
+    out["shift_abs_max"] = round(b["shift_abs_max"], 2)
+    del out["shift_abs_sum"]
+    return out
+
+
 async def recompute(apply: bool) -> dict:
     disc_q = load_discovery_questions()["questions"]
     deep_q = flatten_questions(load_deep_diagnostic())
     stats = {"discovery_sessions": 0, "deep_sessions": 0, "sessions_changed": 0,
              "signals_changed": 0, "stored_values_above_10": 0, "applied": apply}
+    breakdown = {"discovery": _new_breakdown(), "deep": _new_breakdown()}
 
     async with SessionLocal() as s:
         disc_ids = (await s.execute(
@@ -70,6 +121,7 @@ async def recompute(apply: bool) -> dict:
                 disc_q,
             )
             changed = _changed(old, new)
+            _classify(breakdown["discovery"], old, new, changed)
             if changed:
                 stats["sessions_changed"] += 1
                 stats["signals_changed"] += len(changed)
@@ -89,6 +141,7 @@ async def recompute(apply: bool) -> dict:
             stats["stored_values_above_10"] += sum(1 for r in rows if r.value is not None and r.value > 10)
             new = compute_signals([{"question_id": a.question_id, "answer_value": a.answer_value} for a in answers], deep_q)
             changed = _changed(old, new)
+            _classify(breakdown["deep"], old, new, changed)
             if changed:
                 stats["sessions_changed"] += 1
                 stats["signals_changed"] += len(changed)
@@ -99,6 +152,7 @@ async def recompute(apply: bool) -> dict:
                             s.add(DeepDiagnosticSignal(session_id=sid, signal_key=k, value=v["value"], trust=v["trust"],
                                                        evidence_state=v["evidence_state"], coverage=v["coverage"]))
                     await s.commit()
+    stats["breakdown"] = {k: _finish(v) for k, v in breakdown.items()}
     return stats
 
 
