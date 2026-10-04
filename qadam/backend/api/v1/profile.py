@@ -66,6 +66,10 @@ async def upsert_profile(payload: ProfilePayload):
         return {"ok": True, "user_id": user["id"]}
 
 
+class StartLikePayload(BaseModel):
+    init_data: str
+
+
 class GatePayload(BaseModel):
     init_data: str
     consent: bool
@@ -79,6 +83,15 @@ async def gate_status(init_data: str = Query(...)):
     if not user:
         raise HTTPException(401, "Invalid initData")
     return await age_gate.status(user["id"])
+
+
+@router.post("/gate/ack-warning")
+async def gate_ack_warning(payload: StartLikePayload):
+    """35+ user saw the honest warning and chose to continue."""
+    user = verify_init_data(payload.init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+    return await age_gate.ack_warning(user["id"])
 
 
 @router.post("/gate")

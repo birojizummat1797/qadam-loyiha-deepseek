@@ -136,7 +136,8 @@ PRIVACY_TEXT = (
     "Qadam faqat sizga natija tayyorlash uchun quyidagilarni saqlaydi: Telegram'dagi ismingiz, "
     "yoshingiz va savollarga javoblaringiz. Ular server va ma'lumotlar bazasi xizmatlarida "
     "(Render, Neon, Vercel) saqlanadi.\n\n"
-    "Ma'lumotlaringizni sotmaymiz va reklama uchun bermaymiz. Ism va yosh natijangizga ta'sir qilmaydi.\n\n"
+    "Ma'lumotlaringiz faqat natijangizni tayyorlash uchun ishlatiladi va boshqa maqsadlarda hech kimga berilmaydi. "
+    "Ism va yosh natijangizga ta'sir qilmaydi.\n\n"
     "Qadam hozircha 18 yosh va undan kattalar uchun."
 )
 
