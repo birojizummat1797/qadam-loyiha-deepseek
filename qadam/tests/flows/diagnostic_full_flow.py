@@ -61,6 +61,8 @@ def check_career(item, where):
 
 async def main():
     await init_db()
+    from backend.services import age_gate
+    await age_gate.submit({"id": USER, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
     for module in (disc_api, dd_api, ci_api, rm_api):
         module.verify_init_data = fake_verify
 

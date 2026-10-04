@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
 import {
-  startDiscovery, submitDiscoveryAnswer, completeDiscovery,
+  startDiscovery, submitDiscoveryAnswer, completeDiscovery, getGateStatus, isGateRequired,
 } from "@/lib/api";
+import AgeGate from "@/components/AgeGate";
 
 type Question = {
   id: string;
@@ -39,9 +40,11 @@ export default function DiscoveryPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [needGate, setNeedGate] = useState(false);
 
-  // Session boshlash
-  useEffect(() => {
+  // Session boshlash (18+ gate first; the backend enforces it too)
+  const begin = () => {
+    setLoading(true);
     startDiscovery()
       .then((r) => {
         setSessionId(r.session_id);
@@ -49,9 +52,23 @@ export default function DiscoveryPage() {
         setLoading(false);
       })
       .catch((e) => {
-        setError(e?.response?.data?.detail || e.message);
+        if (isGateRequired(e)) setNeedGate(true);
+        else setError(e?.response?.data?.detail || e.message);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    getGateStatus()
+      .then((g) => {
+        if (g.status === "ok") begin();
+        else {
+          setNeedGate(true);
+          setLoading(false);
+        }
+      })
+      .catch(() => begin());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelect = (optionId: string, value: number) => {
@@ -84,6 +101,7 @@ export default function DiscoveryPage() {
     }
   };
 
+  if (needGate) return <AgeGate onPassed={() => { setNeedGate(false); begin(); }} />;
   if (loading) return <Loader />;
   if (error) return <Err msg={error} />;
   if (!question) return <Loader />;

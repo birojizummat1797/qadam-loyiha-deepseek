@@ -32,6 +32,9 @@ async def bot_start(user_id, args):
 
 async def main():
     await init_db()
+    from backend.services import age_gate
+    await age_gate.submit({"id": WEB_USER, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
+    await age_gate.submit({"id": PLAIN_USER, "first_name": "Test"}, True, 25)  # 18+ gate (PM 2026-10-04)
     api.verify_init_data = fake_verify
     deeplink.known_career_slugs = AsyncMock(return_value={"data_analytics"})
     start_handlers.WEBAPP_URL = "https://mini.example"

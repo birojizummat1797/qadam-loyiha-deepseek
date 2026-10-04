@@ -36,6 +36,7 @@ async def _set_commands():
         await bot.set_my_commands([
             BotCommand(command="start", description="Boshlash"),
             BotCommand(command="help", description="Yordam"),
+            BotCommand(command="privacy", description="Maxfiylik"),
             BotCommand(command="pending", description="Kutilayotgan to'lovlar"),
             BotCommand(command="approve", description="To'lovni tasdiqlash"),
             BotCommand(command="reject", description="To'lovni rad etish"),
@@ -65,6 +66,30 @@ async def on_shutdown(bot: Bot):
         pass
 
 
+async def register_webhook(bot: Bot, webhook_url: str, secret_token: str) -> None:
+    """(Re)register the webhook on every startup; never drop waiting updates.
+
+    drop_pending_updates must stay False: on Render's free plan the update that
+    wakes a sleeping instance (e.g. a user's /start) is itself pending while the
+    instance boots. Dropping it meant that first message was never answered.
+    """
+    try:
+        result = await bot.set_webhook(
+            webhook_url,
+            secret_token=secret_token,
+            drop_pending_updates=False,
+            allowed_updates=["message", "callback_query"],
+        )
+        log.info(f"set_webhook: {result}")
+        info = await bot.get_webhook_info()
+        log.info(f"webhook_info: url={info.url}, pending={info.pending_update_count}")
+        if info.last_error_message:
+            log.error(f"webhook LAST ERROR: {info.last_error_message}")
+        await _set_commands()
+    except Exception as e:
+        log.error(f"set_webhook xato: {e}")
+
+
 def run_webhook(secret_token: str):
     from aiohttp import web
     from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
@@ -74,21 +99,7 @@ def run_webhook(secret_token: str):
     log.info(f"Webhook URL: {webhook_url}")
 
     async def on_startup(bot: Bot):
-        try:
-            result = await bot.set_webhook(
-                webhook_url,
-                secret_token=secret_token,
-                drop_pending_updates=True,
-                allowed_updates=["message", "callback_query"],
-            )
-            log.info(f"set_webhook: {result}")
-            info = await bot.get_webhook_info()
-            log.info(f"webhook_info: url={info.url}, pending={info.pending_update_count}")
-            if info.last_error_message:
-                log.error(f"webhook LAST ERROR: {info.last_error_message}")
-            await _set_commands()
-        except Exception as e:
-            log.error(f"set_webhook xato: {e}")
+        await register_webhook(bot, webhook_url, secret_token)
 
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)

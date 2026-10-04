@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { api, getInitData } from "@/lib/api";
 
-type PayState = "loading" | "none" | "pending" | "rejected" | "unlocked";
+type PayState = "loading" | "free_beta" | "none" | "pending" | "rejected" | "unlocked";
 
 async function fetchPayState(): Promise<PayState> {
   const r = await api.get("/payments/manual/my-status", {
@@ -105,7 +105,9 @@ export default function PremiumPage() {
       }
     } catch (e: any) {
       const { code, message } = errorDetail(e);
-      if (code === "already_unlocked" || code === "pending_exists") {
+      if (code === "age_gate_required") {
+        router.push("/discovery");
+      } else if (code === "already_unlocked" || code === "pending_exists") {
         setOpenPay(false);
         setStatus(code === "already_unlocked" ? "unlocked" : "pending");
       } else {
@@ -131,6 +133,20 @@ export default function PremiumPage() {
         </div>
 
         {/* Payment state */}
+        {status === "free_beta" && (
+          <div className="card-clean mb-6 fade-in">
+            <p className="t-caption text-primary mb-1">Beta · bepul</p>
+            <p className="t-heading mb-1">Chuqur tahlil hozir sinov bosqichida</p>
+            <p className="t-small text-muted mb-4">
+              To&apos;lov shart emas. Natijalar yo&apos;nalish tanlashga yordam uchun — yakuniy xulosa
+              yoki ilmiy tashxis emas.
+            </p>
+            <button onClick={() => router.push("/deep-diagnostic")} className="btn btn-primary">
+              <Sparkles className="w-4 h-4" />
+              <span>Chuqur tahlilni boshlash</span>
+            </button>
+          </div>
+        )}
         {status === "unlocked" && (
           <div className="card-clean mb-6 fade-in">
             <p className="t-heading mb-1">Chuqur tahlil siz uchun ochiq</p>
@@ -183,16 +199,20 @@ export default function PremiumPage() {
           </ul>
         </div>
 
+        {status !== "free_beta" && status !== "loading" && (
+          <>
         {/* Price */}
-        <div className="card-clean mb-6 fade-in fade-in-2">
-          <div className="flex items-baseline justify-between mb-1">
-            <span className="t-small text-muted">Narx</span>
-            <div className="text-right">
-              <span className="t-title">39 000</span>
-              <span className="t-small text-muted ml-1">so&apos;m</span>
+          <div className="card-clean mb-6 fade-in fade-in-2">
+            <div className="flex items-baseline justify-between mb-1">
+              <span className="t-small text-muted">Narx</span>
+              <div className="text-right">
+                <span className="t-title">39 000</span>
+                <span className="t-small text-muted ml-1">so&apos;m</span>
+              </div>
             </div>
           </div>
-        </div>
+          </>
+        )}
 
         {/* CTA — only when a payment can actually be started */}
         {(status === "none" || status === "rejected") && (

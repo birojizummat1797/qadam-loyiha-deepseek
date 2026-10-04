@@ -45,11 +45,12 @@ export default function CareerIntelligencePage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <p className="t-caption text-primary mb-2">Chuqur tahlil</p>
+          <p className="t-caption text-primary mb-2">Chuqur tahlil · Beta</p>
           <h1 className="t-display mb-3">Sizning natijangiz</h1>
           <p className="t-small text-muted">
             Natija tayyor. Bu tavsiya, hukm emas — qarorni siz qilasiz.
           </p>
+          <p className="t-caption text-subtle mt-2">Beta: natijalar yo&apos;nalish tanlashga yordam uchun — yakuniy xulosa yoki ilmiy tashxis emas.</p>
         </motion.div>
 
         {/* Top signallar */}

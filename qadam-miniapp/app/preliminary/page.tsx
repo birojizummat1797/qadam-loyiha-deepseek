@@ -176,8 +176,8 @@ export default function PreliminaryPage() {
             ))}
           </ul>
           <div className="flex items-center justify-between mb-3 pt-3 border-t border-[var(--color-border)]">
-            <span className="t-small text-muted">Narx</span>
-            <span className="t-heading">39 000 so&apos;m</span>
+            <span className="t-small text-muted">Hozir</span>
+            <span className="t-heading">Beta · bepul</span>
           </div>
           <button
             onClick={() => router.push("/premium")}

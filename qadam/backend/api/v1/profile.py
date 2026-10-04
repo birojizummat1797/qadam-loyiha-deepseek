@@ -4,13 +4,13 @@ from pydantic import BaseModel
 from backend.db import SessionLocal
 from backend.models_v2 import Profile
 from backend.auth import verify_init_data
+from backend.services import age_gate
 
 router = APIRouter(prefix="/api/v1/profile", tags=["profile-v1"])
 
 
 class ProfilePayload(BaseModel):
     init_data: str
-    age: int | None = None
     location: str | None = None
     current_status: str | None = None
     education: str | None = None
@@ -45,18 +45,13 @@ async def upsert_profile(payload: ProfilePayload):
     if not user:
         raise HTTPException(401, "Invalid initData")
 
-    # Validatsiya
-    if payload.age is not None and not (10 <= payload.age <= 80):
-        raise HTTPException(400, "age 10-80 orasida bo'lishi kerak")
-
+    # Age is set only through /gate (consent + 18+ policy), never here.
     async with SessionLocal() as s:
         p = await s.get(Profile, user["id"])
         if not p:
             p = Profile(user_id=user["id"])
             s.add(p)
 
-        if payload.age is not None:
-            p.age = payload.age
         if payload.location is not None:
             p.location = payload.location[:64]
         if payload.current_status is not None:
@@ -69,3 +64,27 @@ async def upsert_profile(payload: ProfilePayload):
         await s.commit()
         await s.refresh(p)
         return {"ok": True, "user_id": user["id"]}
+
+
+class GatePayload(BaseModel):
+    init_data: str
+    consent: bool
+    age: int
+
+
+@router.get("/gate")
+async def gate_status(init_data: str = Query(...)):
+    """required | ok (+ age_warning for 35+)."""
+    user = verify_init_data(init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+    return await age_gate.status(user["id"])
+
+
+@router.post("/gate")
+async def gate_submit(payload: GatePayload):
+    """Consent + self-reported age. Under 18 → nothing stored, status under_age."""
+    user = verify_init_data(payload.init_data)
+    if not user:
+        raise HTTPException(401, "Invalid initData")
+    return await age_gate.submit(user, payload.consent, payload.age)

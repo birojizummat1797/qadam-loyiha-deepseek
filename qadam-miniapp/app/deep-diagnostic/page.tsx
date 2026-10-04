@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
-import { api, getInitData } from "@/lib/api";
+import { api, getInitData, isGateRequired } from "@/lib/api";
+import AgeGate from "@/components/AgeGate";
 
 const LIKERT = [
   { value: 1, label: "Umuman yo'q" },
@@ -22,6 +23,8 @@ export default function DeepDiagnosticPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [needGate, setNeedGate] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   const discoverySessionId = typeof window !== "undefined"
     ? Number(sessionStorage.getItem("discovery_session_id")) || null
@@ -38,10 +41,11 @@ export default function DeepDiagnosticPage() {
         setLoading(false);
       })
       .catch((e) => {
-        setError(e?.response?.data?.detail || e.message);
+        if (isGateRequired(e)) setNeedGate(true);
+        else setError(e?.response?.data?.detail || e.message);
         setLoading(false);
       });
-  }, [discoverySessionId]);
+  }, [discoverySessionId, attempt]);
 
   const handleNext = async () => {
     if (!sessionId || !question || selected === null) return;
@@ -71,6 +75,9 @@ export default function DeepDiagnosticPage() {
     }
   };
 
+  if (needGate) {
+    return <AgeGate onPassed={() => { setNeedGate(false); setLoading(true); setAttempt((a) => a + 1); }} />;
+  }
   if (loading) return <Loader />;
   if (error) return <Err msg={error} />;
   if (!question) return <Loader />;
@@ -84,6 +91,7 @@ export default function DeepDiagnosticPage() {
           <div className="flex items-center justify-between mb-4">
             <span className="t-caption text-subtle">
               {question.dimension_uz || "Chuqur tahlil"}
+              <span className="ml-2 px-1.5 py-0.5 rounded bg-[var(--color-primary-soft)] text-primary">Beta</span>
             </span>
             <span className="t-caption text-subtle">
               {question.index + 1} / {question.total}
