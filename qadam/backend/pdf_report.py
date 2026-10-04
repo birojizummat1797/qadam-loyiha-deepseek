@@ -78,7 +78,7 @@ def _build_career_html(c):
 
     # Nega ko'rsatildi
     if roadmap.get("why_this_path"):
-        html.append('<div class="card"><h4>Nega bu yo\'nalish ko\'rsatildi</h4>')
+        html.append('<div class="card"><h4>Bu yo\'nalish haqida</h4>')
         html.append(f'<p>{_esc(roadmap["why_this_path"])}</p></div>')
 
     # A NUQTA
@@ -127,7 +127,7 @@ def _build_career_html(c):
                 html.append("</ul>")
 
             if s.get("graduate_criteria"):
-                html.append("<p><b>Keyingi stage'ga shart:</b></p><ul>")
+                html.append("<p><b>Keyingi bosqichga tayyorlik belgilari:</b></p><ul>")
                 for gc in s["graduate_criteria"]:
                     html.append(f"<li>{_esc(gc)}</li>")
                 html.append("</ul>")
@@ -141,7 +141,7 @@ def _build_career_html(c):
     # B NUQTA
     b_point = roadmap.get("b_point", {})
     if b_point:
-        html.append('<div class="card card-emerald"><h4>B NUQTA — Erishishingiz mumkin</h4>')
+        html.append('<div class="card card-emerald"><h4>B NUQTA — Bu yo\'l nimaga tayyorlaydi</h4>')
         if b_point.get("outcomes"):
             html.append("<ul>")
             for o in b_point["outcomes"]:

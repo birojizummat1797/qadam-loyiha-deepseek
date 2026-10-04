@@ -3,7 +3,7 @@
   "careers": {
     "foundation_programming": {
       "uz": "Foundation Programming",
-      "why": "Dasturlash asoslari - har qanday IT yonalishga kirish eshigi.",
+      "why": "Dasturlash asoslari — ko'plab IT yo'nalishlar uchun umumiy poydevor. Bu bosqichda mantiqiy fikrlash, muammoni bo'laklarga bo'lish va kod yozish tajribasi shakllanadi.",
       "skill_gap": [
         "Python yoki JavaScript",
         "Algoritmik fikrlash",
@@ -78,7 +78,7 @@
     },
     "frontend_development": {
       "uz": "Frontend Development",
-      "why": "Frontend - foydalanuvchi koradigan qism.",
+      "why": "Frontend — foydalanuvchi ko'radigan qism: sahifalar, tugmalar, formalar. Bu ishda vizual did, tizimli fikrlash va foydalanuvchi ehtiyojini tushunish ko'p ishlatiladi.",
       "skill_gap": [
         "HTML CSS JS",
         "React yoki Vue",
@@ -153,7 +153,7 @@
     },
     "ui_ux_design": {
       "uz": "UI/UX Design",
-      "why": "Ijodiy did va empatiya bu sohada asosiy qurol.",
+      "why": "UI/UX dizayn — estetika va foydalanuvchi psixologiyasi kesishgan joy. Bu ishda ijodiy did, vizual mantiq va foydalanuvchi ehtiyojini tushunish ko'p ishlatiladi.",
       "skill_gap": [
         "Figma",
         "Dizayn nazariyasi",
@@ -227,7 +227,7 @@
     },
     "smm_manager": {
       "uz": "SMM Manager",
-      "why": "Ijod, muloqot va tahlil birlashmasi.",
+      "why": "SMM — ijod, tahlil va auditoriya psixologiyasini birlashtiradigan ish. Bu ishda kreativlik va odamlar bilan muloqot ko'nikmalari ko'p ishlatiladi.",
       "skill_gap": [
         "Kontent strategiya",
         "Algoritmlar",
@@ -301,7 +301,7 @@
     },
     "data_analytics": {
       "uz": "Data Analytics",
-      "why": "Tahlil, detal va tizimli yondashuv qimmatli.",
+      "why": "Data Analyst raqamlar yordamida biznes savollariga javob izlaydi. Bu ishda tahliliy fikrlash, detallarga e'tibor va tizimli yondashuv ko'p ishlatiladi.",
       "skill_gap": [
         "Excel",
         "SQL",

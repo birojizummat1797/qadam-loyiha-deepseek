@@ -173,7 +173,7 @@ def _placeholder(career_id, readiness_result):
     return {
         "career_id": career_id,
         "career_uz": career_id,
-        "why_this_path": "Bu yo'nalish signallaringizga mos, roadmap tayyorlanmoqda.",
+        "why_this_path": "Bu yo'nalish uchun batafsil yo'l xaritasi hali tayyorlanmoqda.",
         "version": "placeholder",
         "a_point": {"constraints": [
             {"type": b["type"], "level": b["level"], "solution": b.get("path", "")}

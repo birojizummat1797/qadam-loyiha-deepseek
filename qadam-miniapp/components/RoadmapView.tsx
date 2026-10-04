@@ -84,7 +84,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
       >
         <div className="flex items-center gap-2 mb-2">
           <Star className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-sm">Nega bu yo&apos;nalish ko&apos;rsatildi</h3>
+          <h3 className="font-semibold text-sm">Bu yo&apos;nalish haqida</h3>
         </div>
         <p className="text-sm leading-relaxed">{roadmap.why_this_path}</p>
       </motion.div>
@@ -116,7 +116,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
 
         {roadmap.a_point?.constraints?.length > 0 && (
           <div>
-            <p className="text-xs text-[var(--tg-hint)] mb-2">Hal qilish kerak</p>
+            <p className="text-xs text-[var(--tg-hint)] mb-2">E&apos;tibor beriladigan to&apos;siqlar</p>
             <div className="space-y-2">
               {roadmap.a_point.constraints.map((c, i) => (
                 <div key={i} className="p-3 bg-[var(--tg-bg)] rounded-xl">
@@ -252,7 +252,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                         )}
 
                         {s.signs_right.length > 0 && (
-                          <SubSection title="To'g'ri ketayapsizmi" icon={Check} color="text-emerald-400">
+                          <SubSection title="Oldinga siljish belgilari" icon={Check} color="text-emerald-400">
                             <ul className="space-y-1">
                               {s.signs_right.map((x, j) => (
                                 <li key={j} className="flex gap-1.5">
@@ -265,7 +265,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                         )}
 
                         {s.signs_wrong.length > 0 && (
-                          <SubSection title="Yaxshilash kerak" icon={X} color="text-red-400">
+                          <SubSection title="Ko'p uchraydigan tuzoqlar" icon={X} color="text-red-400">
                             <ul className="space-y-1">
                               {s.signs_wrong.map((x, j) => (
                                 <li key={j} className="flex gap-1.5">
@@ -278,7 +278,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
                         )}
 
                         {s.graduate_criteria.length > 0 && (
-                          <SubSection title="Keyingi stage'ga shart" icon={GraduationCap} color="text-indigo-400">
+                          <SubSection title="Keyingi bosqichga tayyorlik belgilari" icon={GraduationCap} color="text-indigo-400">
                             <ul className="space-y-1">
                               {s.graduate_criteria.map((x, j) => (
                                 <li key={j} className="flex gap-1.5">
@@ -323,7 +323,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
               <Target className="w-4 h-4 text-emerald-400" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-emerald-400/80">Erishishingiz mumkin</p>
+              <p className="text-[10px] uppercase tracking-wider text-emerald-400/80">Bu yo&apos;l nimaga tayyorlaydi</p>
               <h3 className="font-semibold">B NUQTA</h3>
             </div>
           </div>
@@ -361,7 +361,7 @@ export function RoadmapView({ roadmap }: { roadmap: Roadmap }) {
               <Zap className="w-4 h-4 text-amber-400" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-amber-400/80">Bugun boshlang</p>
+              <p className="text-[10px] uppercase tracking-wider text-amber-400/80">Boshlash uchun</p>
               <h3 className="font-semibold">Birinchi 3 qadam</h3>
             </div>
           </div>
