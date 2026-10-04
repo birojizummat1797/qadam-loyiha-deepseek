@@ -1,0 +1,42 @@
+# Recompute dry run against production — READ ONLY (PM gate 2026-10-04).
+#
+# Run manually: Actions → "Recompute dry run (read-only)" → Run workflow.
+# Needs repository secret QADAM_DRY_RUN_DATABASE_URL (the backend's DATABASE_URL).
+# Delete the secret after the run.
+#
+# Read-only on three levels:
+#  1. no --apply anywhere in this workflow (and the script refuses --apply here);
+#  2. QADAM_DB_READ_ONLY=1 → every PostgreSQL transaction is read-only;
+#  3. output is aggregate counts only (no names, ids or answers).
+name: Recompute dry run (read-only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: qadam
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -q -r requirements.txt
+      - name: Check secret is present
+        env:
+          DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
+        run: |
+          if [ -z "$DATABASE_URL" ]; then echo "Secret QADAM_DRY_RUN_DATABASE_URL is not set"; exit 1; fi
+      - name: Recompute signals — DRY RUN (no writes)
+        env:
+          DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
+          QADAM_DB_READ_ONLY: "1"
+        run: python scripts/recompute_signals.py
