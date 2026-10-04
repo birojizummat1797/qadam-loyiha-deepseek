@@ -180,7 +180,7 @@ export async function requestDeepPdf(sessionId: number) {
 // AGE GATE + CONSENT (18+, PM 2026-10-04)
 // ═══════════════════════════════════════════════════════════
 
-export type GateStatus = { status: "required" | "ok"; age_warning?: boolean };
+export type GateStatus = { status: "required" | "ok"; age_warning?: boolean; warning_ack?: boolean };
 
 export async function getGateStatus(): Promise<GateStatus> {
   const r = await api.get("/api/v1/profile/gate", { params: { init_data: getInitData() } });
@@ -190,6 +190,12 @@ export async function getGateStatus(): Promise<GateStatus> {
 export async function submitGate(consent: boolean, age: number) {
   const r = await api.post("/api/v1/profile/gate", { init_data: getInitData(), consent, age });
   return r.data as { status: "ok" | "under_age"; age_warning?: boolean };
+}
+
+/** 35+ user chose "Ha, davom etaman" (stored, so "Keyinroq" asks again next time). */
+export async function ackAgeWarning() {
+  const r = await api.post("/api/v1/profile/gate/ack-warning", { init_data: getInitData() });
+  return r.data as GateStatus;
 }
 
 export function isGateRequired(e: any): boolean {

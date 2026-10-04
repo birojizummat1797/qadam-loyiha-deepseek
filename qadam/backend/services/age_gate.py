@@ -44,7 +44,21 @@ async def status(user_id: int) -> dict:
         p = await s.get(Profile, user_id)
     if not _passed(p):
         return {"status": "required"}
-    return {"status": "ok", "age_warning": p.age > WARN_AGE}
+    warning = p.age > WARN_AGE
+    # "Keyinroq" on the 35+ warning is not agreement: ask again until the user continues.
+    return {"status": "ok", "age_warning": warning,
+            "warning_ack": (not warning) or bool((p.meta or {}).get("age_warning_ack_at"))}
+
+
+async def ack_warning(user_id: int) -> dict:
+    """The 35+ user chose "Ha, davom etaman"."""
+    async with SessionLocal() as s:
+        p = await s.get(Profile, user_id)
+        if not _passed(p):
+            raise HTTPException(403, GATE_REQUIRED)
+        p.meta = {**(p.meta or {}), "age_warning_ack_at": _now()}
+        await s.commit()
+    return await status(user_id)
 
 
 async def submit(user: dict, consent: bool, age: int) -> dict:

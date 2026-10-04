@@ -41,6 +41,7 @@ export default function DiscoveryPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [needGate, setNeedGate] = useState(false);
+  const [gateStep, setGateStep] = useState<"consent" | "over_35">("consent");
 
   // Session boshlash (18+ gate first; the backend enforces it too)
   const begin = () => {
@@ -61,7 +62,12 @@ export default function DiscoveryPage() {
   useEffect(() => {
     getGateStatus()
       .then((g) => {
-        if (g.status === "ok") begin();
+        if (g.status === "ok" && g.age_warning && !g.warning_ack) {
+          // 35+ chose "Keyinroq" last time: show the warning again, do not start.
+          setGateStep("over_35");
+          setNeedGate(true);
+          setLoading(false);
+        } else if (g.status === "ok") begin();
         else {
           setNeedGate(true);
           setLoading(false);
@@ -101,7 +107,9 @@ export default function DiscoveryPage() {
     }
   };
 
-  if (needGate) return <AgeGate onPassed={() => { setNeedGate(false); begin(); }} />;
+  if (needGate) {
+    return <AgeGate initialStep={gateStep} onPassed={() => { setNeedGate(false); begin(); }} />;
+  }
   if (loading) return <Loader />;
   if (error) return <Err msg={error} />;
   if (!question) return <Loader />;

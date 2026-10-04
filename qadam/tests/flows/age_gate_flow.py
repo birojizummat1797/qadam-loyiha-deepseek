@@ -118,12 +118,17 @@ async def main():
         u, p = await s.get(User, 5003), await s.get(Profile, 5003)
     check(u.first_name == "Name5003" and u.username == "u5003", "telegram name not stored")
     check(p.age == 18 and p.meta["consent_version"] == age_gate.CONSENT_VERSION and p.meta["consented_at"], "consent")
-    check(await status(5003) == {"status": "ok", "age_warning": False}, "status 18")
+    check(await status(5003) == {"status": "ok", "age_warning": False, "warning_ack": True}, "status 18")
 
     # 5) 35 → no warning; 36 → warning but allowed (never blocked).
     check((await gate(5004, 35))["age_warning"] is False, "35 warned")
     check(await gate(5005, 36) == {"status": "ok", "age_warning": True}, "36 not warned")
-    check(await status(5005) == {"status": "ok", "age_warning": True}, "status 36")
+    # "Keyinroq" (no ack) → warning shown again next time; "Ha, davom etaman" → stored.
+    check(await status(5005) == {"status": "ok", "age_warning": True, "warning_ack": False}, "status 36 before ack")
+    check(await status(5005) == {"status": "ok", "age_warning": True, "warning_ack": False}, "ack appeared by itself")
+    acked = await profile_api.gate_ack_warning(profile_api.StartLikePayload(init_data="5005"))
+    check(acked == {"status": "ok", "age_warning": True, "warning_ack": True}, "ack not stored")
+    await expect(profile_api.gate_ack_warning(profile_api.StartLikePayload(init_data="5099")), 403, "age_gate_required")
 
     # 6) The generic profile endpoint cannot set age (no bypass of consent/gate).
     try:

@@ -7,9 +7,9 @@
  */
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { submitGate } from "@/lib/api";
+import { ackAgeWarning, submitGate } from "@/lib/api";
 
-type Step = "consent" | "age" | "under_age" | "over_35";
+export type Step = "consent" | "age" | "under_age" | "over_35";
 
 function firstName(): string {
   if (typeof window === "undefined") return "";
@@ -21,8 +21,14 @@ function closeApp() {
   if (tg?.close) tg.close();
 }
 
-export default function AgeGate({ onPassed }: { onPassed: () => void }) {
-  const [step, setStep] = useState<Step>("consent");
+export default function AgeGate({
+  onPassed,
+  initialStep = "consent",
+}: {
+  onPassed: () => void;
+  initialStep?: Step;
+}) {
+  const [step, setStep] = useState<Step>(initialStep);
   const [age, setAge] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,6 +55,18 @@ export default function AgeGate({ onPassed }: { onPassed: () => void }) {
     }
   };
 
+  const continueOver35 = async () => {
+    setSending(true);
+    try {
+      await ackAgeWarning();
+    } catch {
+      // The warning is information, not a block: continue even if saving the choice failed.
+    } finally {
+      setSending(false);
+    }
+    onPassed();
+  };
+
   return (
     <main className="min-h-screen flex justify-center">
       <div className="w-full max-w-md px-6 safe-top safe-bottom pt-10 pb-6">
@@ -69,7 +87,7 @@ export default function AgeGate({ onPassed }: { onPassed: () => void }) {
               </p>
               <p className="t-small mb-1">Va&apos;damiz:</p>
               <ul className="t-small text-muted space-y-1 list-disc pl-5">
-                <li>ma&apos;lumotlaringizni sotmaymiz va reklama uchun bermaymiz;</li>
+                <li>ma&apos;lumotlaringiz faqat natijangizni tayyorlash uchun ishlatiladi va boshqa maqsadlarda hech kimga berilmaydi;</li>
                 <li>ismingiz va yoshingiz natijangizga ta&apos;sir qilmaydi — natija faqat javoblaringizga asoslanadi.</li>
               </ul>
             </div>
@@ -123,7 +141,7 @@ export default function AgeGate({ onPassed }: { onPassed: () => void }) {
               yoshdagilar tajribasiga moslashtirilgan. Shuning uchun natijalar siz uchun kamroq aniq bo&apos;lishi
               mumkin. Yoshingiz natijaga ta&apos;sir qilmaydi. Davom etishni xohlaysizmi?
             </p>
-            <button onClick={onPassed} className="btn btn-primary">Ha, davom etaman</button>
+            <button onClick={continueOver35} disabled={sending} className="btn btn-primary">Ha, davom etaman</button>
             <button onClick={closeApp} className="btn btn-ghost mt-2">Keyinroq</button>
           </div>
         )}
