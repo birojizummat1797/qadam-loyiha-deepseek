@@ -5,7 +5,9 @@ numbers only; real-user validation is still required. Not wired into the app.
 
     python scripts/discovery_v2_sim.py
 """
-import random, itertools, collections
+import random
+import itertools
+import collections
 CAT=["dev","data","infra","design","mkt","media","product","sales","finance"]
 def cost(B):
     bad=sum(len(b)-len(set(b)) for b in B)*10
