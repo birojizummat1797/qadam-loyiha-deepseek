@@ -9,6 +9,7 @@ from backend.models_v2 import (
     DiscoverySession, DiscoveryAnswer, DiscoverySignal, SignalEvidence,
 )
 from backend.auth import verify_init_data
+from backend.entry_context import latest_web_entry
 from backend.data_loader import load_discovery_questions
 from backend.services.discovery_service import (
     get_next_question, compute_signals_from_discovery, build_preliminary_insight,
@@ -46,7 +47,14 @@ async def start_session(payload: StartSessionPayload):
         for o in old:
             o.status = "abandoned"
 
-        session = DiscoverySession(user_id=user["id"], status="active")
+        # Website entry (state/source/career) from the user's recent bot_start,
+        # re-validated server-side. Missing or invalid → no context, flow unchanged.
+        entry_context = await latest_web_entry(user["id"])
+        session = DiscoverySession(
+            user_id=user["id"],
+            status="active",
+            meta={"entry_context": entry_context} if entry_context else None,
+        )
         s.add(session)
         await s.commit()
         await s.refresh(session)
@@ -59,6 +67,8 @@ async def start_session(payload: StartSessionPayload):
         "status": "active",
         "total_questions": len(questions),
         "current_question": first_q,
+        # Optional hint for the Mini App UI; None when the user did not come from the website.
+        "entry_state": (entry_context or {}).get("state"),
     }
 
 
@@ -196,7 +206,9 @@ async def complete_session(session_id: int, payload: StartSessionPayload):
         sess = await s.get(DiscoverySession, session_id)
         sess.status = "completed"
         sess.completed_at = datetime.now(timezone.utc)
+        # Merge, don't overwrite: keeps entry_context attached at session start.
         sess.meta = {
+            **(sess.meta or {}),
             "confidence": insight.get("confidence"),
             "constraints": constraints,
         }
