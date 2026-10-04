@@ -16,7 +16,7 @@ on:
       check:
         description: "Read-only check to run"
         type: choice
-        options: [recompute, ranking_audit]
+        options: [recompute, ranking_audit, threshold_audit]
         default: recompute
 
 permissions:
@@ -53,3 +53,9 @@ jobs:
           DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
           QADAM_DB_READ_ONLY: "1"
         run: python scripts/ranking_audit.py
+      - name: Threshold audit — recommendations per candidate minimum score, BL-14 (no writes)
+        if: inputs.check == 'threshold_audit'
+        env:
+          DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
+          QADAM_DB_READ_ONLY: "1"
+        run: python scripts/threshold_audit.py
