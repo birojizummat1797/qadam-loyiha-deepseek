@@ -13,6 +13,7 @@ recomputed (that engine is retired); they are served read-only and filtered.
 import argparse
 import asyncio
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -105,6 +106,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--apply", action="store_true", help="write changes (default: dry run)")
     args = parser.parse_args()
+    if args.apply and os.getenv("QADAM_DB_READ_ONLY") == "1":
+        sys.exit("refused: --apply in a read-only run")
     print(json.dumps(asyncio.run(recompute(args.apply)), indent=2))
 
 
