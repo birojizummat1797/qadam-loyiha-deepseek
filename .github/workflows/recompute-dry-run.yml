@@ -1,4 +1,4 @@
-# Recompute dry run against production — READ ONLY (PM gate 2026-10-04).
+# Recompute dry run / ranking audit against production — READ ONLY (PM gate 2026-10-04).
 #
 # Run manually: Actions → "Recompute dry run (read-only)" → Run workflow.
 # Needs repository secret QADAM_DRY_RUN_DATABASE_URL (the backend's DATABASE_URL).
@@ -12,6 +12,12 @@ name: Recompute dry run (read-only)
 
 on:
   workflow_dispatch:
+    inputs:
+      check:
+        description: "Read-only check to run"
+        type: choice
+        options: [recompute, ranking_audit]
+        default: recompute
 
 permissions:
   contents: read
@@ -36,7 +42,14 @@ jobs:
         run: |
           if [ -z "$DATABASE_URL" ]; then echo "Secret QADAM_DRY_RUN_DATABASE_URL is not set"; exit 1; fi
       - name: Recompute signals — DRY RUN (no writes)
+        if: inputs.check == 'recompute'
         env:
           DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
           QADAM_DB_READ_ONLY: "1"
         run: python scripts/recompute_signals.py
+      - name: Ranking audit — old vs new formula (no writes)
+        if: inputs.check == 'ranking_audit'
+        env:
+          DATABASE_URL: ${{ secrets.QADAM_DRY_RUN_DATABASE_URL }}
+          QADAM_DB_READ_ONLY: "1"
+        run: python scripts/ranking_audit.py
