@@ -1,0 +1,371 @@
+{
+ "short": [
+  {
+   "q": "Bo‘sh vaqtingizda qaysi biri sizga ko‘proq zavq beradi?",
+   "o": [
+    "Xarajatlarimni yozib, pulimni rejalashtirish",
+    "Video olib, uni chiroyli montaj qilish",
+    "Rasm chizish yoki biror narsani bezash",
+    "Ijtimoiy tarmoqda sahifa yuritib, obunachi yig‘ish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi ishni boshqalardan yaxshiroq bajarasiz?",
+   "o": [
+    "Biror narsani odamlarga qiziqarli qilib e’lon qilish",
+    "Odamni gapimga ishontirib, kelishib olish",
+    "Qiziqarli hikoya yoki post yozish",
+    "Buzilgan kompyuter yoki internetni tuzatish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Bolaligingizda nimani ko‘proq yoqtirib qilardingiz?",
+   "o": [
+    "Pul yig‘ib, hisob-kitob qilish",
+    "Texnikani ochib, ichi qanday ishlashini ko‘rish",
+    "Rasm chizish, rang tanlash",
+    "E’lon yoki plakat tayyorlab, hammani tadbirga chaqirish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi topshiriqqa birinchi bo‘lib qo‘l urardingiz?",
+   "o": [
+    "Kompyuterga buyruq yozib, uni xohlagan ishimni qildirish",
+    "Ko‘p raqamlar ichidan muhim xulosani topish",
+    "Sayt yoki ilova ko‘rinishini chiroyli va qulay qilish",
+    "Hujjat va hisob-kitoblarni tartibga keltirish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Do‘stlaringiz sizdan ko‘pincha qanday yordam so‘raydi?",
+   "o": [
+    "Tadbir yoki safarni rejalashtirib, hammani uyushtirishni",
+    "Narxlarni solishtirib, eng foydalisini topib berishni",
+    "Rasm yoki videoni chiroyli qilib berishni",
+    "Telefon, kompyuter yoki Wi-Fi’ni sozlab berishni",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Sizni bir kunlik sinov ishiga chaqirishsa, qaysi birini tanlardingiz?",
+   "o": [
+    "Jamoaga bosh bo‘lib, ishni taqsimlash",
+    "Xaridorlar bilan gaplashib, mahsulot sotish",
+    "Jadvaldagi ma’lumotlarni o‘rganib, hisobot tayyorlash",
+    "Yangi mahsulot uchun qadoq dizaynini chizish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi natijadan ko‘proq faxrlanardingiz?",
+   "o": [
+    "Men boshqargan loyiha vaqtida va yaxshi tugadi",
+    "Men topgan raqamlar tufayli to‘g‘ri qaror qabul qilindi",
+    "Men yozgan dasturdan minglab odam foydalanyapti",
+    "Men qilgan reklama tufayli mijozlar ko‘paydi",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Maktabda qaysi mashg‘ulot sizga ko‘proq yoqardi?",
+   "o": [
+    "Aniq hisob-kitob talab qiladigan matematika masalalari",
+    "Informatika darsida kompyuterda masala yechish",
+    "Guruh loyihasida reja tuzib, hammani ishga solish",
+    "Sinf oldida chiqib, fikrimni tushuntirish va himoya qilish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Kelajakda kuningiz qaysi ish bilan o‘tishini xohlardingiz?",
+   "o": [
+    "Kompaniya kompyuterlari to‘xtovsiz va xavfsiz ishlashini ta’minlash",
+    "Har kuni yangi odamlar bilan uchrashib, kelishuvlar qilish",
+    "Video, matn va suratlar bilan kontent yaratish",
+    "Kompyuterda yangi dasturlar yaratish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  }
+ ],
+ "ctx": [
+  {
+   "q": "Hozir hayotingizning qaysi bosqichidasiz?",
+   "o": [
+    "Maktab / litsey bitiruvchisi",
+    "Talaba",
+    "Ishlayapman",
+    "Kasbni o‘zgartirmoqchiman",
+    "Ishsizman"
+   ]
+  },
+  {
+   "q": "Kuniga qancha vaqt o‘rganishga tayyorsiz?",
+   "o": [
+    "1 soatdan kam",
+    "1 soat",
+    "2–3 soat",
+    "4+ soat",
+    "To‘liq kun"
+   ]
+  },
+  {
+   "q": "Qaysi qurilmadan foydalanasiz?",
+   "o": [
+    "Noutbuk / kompyuter",
+    "Faqat smartfon",
+    "Ikkalasi ham",
+    "Hozircha yo‘q"
+   ]
+  },
+  {
+   "q": "Ingliz tilingizni qanday baholaysiz?",
+   "o": [
+    "Bilmayman",
+    "A1–A2",
+    "B1",
+    "B2",
+    "C1+"
+   ]
+  }
+ ],
+ "dev": [
+  {
+   "q": "Sayt yoki ilovaning qaysi qismi sizni ko‘proq qiziqtiradi?",
+   "o": [
+    "Odam ko‘radigan qismi: tugmalar, sahifalar, harakatlar",
+    "Ko‘rinmaydigan qismi: ma’lumot qayerda saqlanadi va qanday ishlanadi",
+    "Telefondagi ilova: cho‘ntakda yuradigan, barmoq bilan bosiladigan",
+    "Hammasi to‘g‘ri ishlayaptimi — xatolarni qidirish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Ish kuningiz qaysi biri bilan o‘tsa, xursand bo‘lardingiz?",
+   "o": [
+    "Sahifani chiroyli va qulay ko‘rinishga keltirish",
+    "Minglab buyurtma bir vaqtda kelganda tizim qotib qolmasligini ta’minlash",
+    "Telefon ilovasiga yangi imkoniyat qo‘shish",
+    "Ilovani har xil usulda sinab, yashirin xatoni topish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi maqtov sizni ko‘proq quvontirardi?",
+   "o": [
+    "«Saytingiz juda chiroyli va qulay ekan»",
+    "«Tizimingiz hech qachon to‘xtamaydi»",
+    "«Ilovangizni telefonimga o‘rnatdim, har kuni ishlataman»",
+    "«Siz tufayli mijozlar birorta ham xatoga duch kelmadi»",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi kamchilik sizni ko‘proq bezovta qiladi?",
+   "o": [
+    "Tugmalar tartibsiz, matnni o‘qib bo‘lmaydi",
+    "Sayt sekin ishlaydi, ma’lumotlar yo‘qolib qoladi",
+    "Ilova telefonda qotib qoladi yoki zaryadni tez tugatadi",
+    "Hech kim tekshirmagani uchun xato mijozga yetib boradi",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi vazifani o‘z zimmangizga olardingiz?",
+   "o": [
+    "Do‘kon saytining bosh sahifasini yasash",
+    "To‘lov va buyurtmalarni saqlaydigan tizimni qurish",
+    "Taksi chaqirish ilovasini yasash",
+    "Yangi ilovani chiqishidan oldin boshdan-oyoq tekshirish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qanday ishlash sizga yaqinroq?",
+   "o": [
+    "O‘zgartirdim — natija darhol ko‘zim oldida",
+    "Murakkab mantiq ustida uzoq va chuqur o‘ylash",
+    "Qilganimni telefonda qo‘lda ushlab sinab ko‘rish",
+    "Ro‘yxat bo‘yicha qadamma-qadam, sinchkovlik bilan tekshirish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi birini o‘rganish sizga qiziqroq?",
+   "o": [
+    "Ranglar, shriftlar va sahifa joylashuvi qanday ishlaydi",
+    "Ma’lumotlar qanday saqlanadi va qanday tez topiladi",
+    "Android va iPhone ilovalari qanday yasaladi",
+    "Dasturda xato qanday paydo bo‘ladi va qanday topiladi",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Do‘stingiz ilova yaratmoqchi. Siz qaysi qismini olardingiz?",
+   "o": [
+    "Ekranlari va ko‘rinishini",
+    "Ichki mantiqi va ma’lumotlarini",
+    "Telefonga moslashtirishni",
+    "Ishga tushirishdan oldin tekshirishni",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi yangilik sizni ko‘proq sevintirardi?",
+   "o": [
+    "Odamlar saytda adashmay, oson yo‘l topyapti",
+    "Tizim bir kunda million odamni ko‘tara oldi",
+    "Ilovangiz Play Market’da yuqori baho oldi",
+    "Siz topgan xato katta zararning oldini oldi",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi birida sabringiz ko‘proq yetadi?",
+   "o": [
+    "Bitta tugmani mukammal bo‘lguncha qayta-qayta o‘zgartirishda",
+    "Murakkab muammoning ildizini topguncha izlashda",
+    "Ilovani har xil telefonda bir xil ishlaydigan qilishda",
+    "Bir amalni ko‘p marta takrorlab, xato qidirishda",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Ijtimoiy tarmoqlarda qanday sahifa va bloglarni ko‘proq kuzatasiz?",
+   "o": [
+    "Chiroyli sayt va ekran namunalarini ko‘rsatadigan sahifalar",
+    "Katta kompaniyalar tizimi ichidan qanday ishlashi haqidagi bloglar",
+    "Yangi telefon va ilovalar sharhlari",
+    "«Bu ilovada qanday xato topildi» kabi qiziq hikoyalar",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  }
+ ],
+ "style": [
+  {
+   "q": "Qanday muhitda o‘zingizni yaxshi his qilasiz?",
+   "o": [
+    "Doim odamlar bilan muloqotda",
+    "Tinch joyda, o‘zim yolg‘iz",
+    "Jamoada, lekin o‘z vazifam bilan",
+    "Har kuni yangi joy, yangi vaziyat",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Ishda siz uchun eng muhimi nima?",
+   "o": [
+    "Aniq tartib va qoidalar",
+    "Ijod qilish erkinligi",
+    "Natijani tez ko‘rish",
+    "Odamlarga foyda keltirish",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Muammo chiqsa, odatda nima qilasiz?",
+   "o": [
+    "Darhol kimgadir maslahat solaman",
+    "O‘zim o‘tirib, oxirigacha o‘ylayman",
+    "Shunga o‘xshash yechimni qidiraman",
+    "Har xil yo‘lni sinab ko‘raman",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Qaysi kun sizga ko‘proq yoqadi?",
+   "o": [
+    "Rejadagi ishlar birma-bir bajarilgan kun",
+    "Kutilmagan, qiziq vazifalar ko‘p bo‘lgan kun",
+    "Ko‘p odam bilan uchrashgan kun",
+    "Bitta katta ishga to‘liq sho‘ng‘igan kun",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Ishingiz natijasini kim ko‘rishini xohlaysiz?",
+   "o": [
+    "Minglab oddiy odamlar",
+    "Kompaniya rahbarlari",
+    "Ko‘pchilik bilmasa ham, hamma narsa men tufayli ishlaydi",
+    "Mijozlar — yuzma-yuz",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Birinchi ishga qachongacha kirishingiz kerak?",
+   "o": [
+    "3 oy ichida",
+    "6 oy ichida",
+    "1 yil ichida",
+    "Shoshilmayman",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "O‘qishga qanday imkoniyatingiz bor?",
+   "o": [
+    "Faqat bepul manbalar",
+    "Oz miqdorda pul sarflay olaman",
+    "Pullik kursga bora olaman",
+    "Mablag‘ muammo emas",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  },
+  {
+   "q": "Yangi kasbni o‘rganishga qancha vaqt ajrata olasiz?",
+   "o": [
+    "3 oygacha",
+    "6 oygacha",
+    "1 yilgacha",
+    "1 yildan ko‘proq ham bo‘laveradi",
+    "Bilmayman / bu yerda menga mosi yo‘q"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "q": "Do‘konda qoida: xarid 100 000 so‘mdan oshsa, 10% chegirma beriladi. Xaridor 120 000 so‘mlik narsa oldi. U qancha to‘laydi?",
+   "o": [
+    "108 000 so‘m",
+    "110 000 so‘m",
+    "12 000 so‘m",
+    "120 000 so‘m",
+    "Bilmayman"
+   ]
+  },
+  {
+   "q": "Ilovadagi savatcha: «3 ta mahsulot: 20 000, 15 000 va 5 000 so‘m. Jami: 45 000 so‘m». Bu yerda xato bormi?",
+   "o": [
+    "Ha, jami 40 000 so‘m bo‘lishi kerak",
+    "Ha, mahsulot 4 ta bo‘lishi kerak",
+    "Ha, 5 000 so‘mlik mahsulot bo‘lishi mumkin emas",
+    "Xato yo‘q",
+    "Bilmayman"
+   ]
+  },
+  {
+   "q": "Ro‘yxatdan o‘tishda «Tug‘ilgan yilingiz» so‘raladi. Bugun 2026-yil. Qaysi qiymatni tizim QABUL QILMASLIGI kerak?",
+   "o": [
+    "1985",
+    "1998",
+    "2001",
+    "2030",
+    "Bilmayman"
+   ]
+  },
+  {
+   "q": "Ro‘yxatdan o‘tish sahifasi uchun qaysi tartib foydalanuvchiga eng qulay?",
+   "o": [
+    "Ism → Telefon → Parol → «Ro‘yxatdan o‘tish» tugmasi",
+    "Tugma → Parol → Ism → Telefon",
+    "Parol → Tugma → Telefon → Ism",
+    "Telefon → Tugma → Ism → Parol",
+    "Bilmayman"
+   ]
+  }
+ ]
+}
