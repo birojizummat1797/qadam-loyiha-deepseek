@@ -1,0 +1,159 @@
+{
+ "short": [
+  [
+   "finance",
+   "media",
+   "design",
+   "mkt"
+  ],
+  [
+   "mkt",
+   "sales",
+   "media",
+   "infra"
+  ],
+  [
+   "finance",
+   "infra",
+   "design",
+   "mkt"
+  ],
+  [
+   "dev",
+   "data",
+   "design",
+   "finance"
+  ],
+  [
+   "product",
+   "data",
+   "media",
+   "infra"
+  ],
+  [
+   "product",
+   "sales",
+   "data",
+   "design"
+  ],
+  [
+   "product",
+   "data",
+   "dev",
+   "mkt"
+  ],
+  [
+   "finance",
+   "dev",
+   "product",
+   "sales"
+  ],
+  [
+   "infra",
+   "sales",
+   "media",
+   "dev"
+  ]
+ ],
+ "catalog_names": {
+  "dev": "Dasturlash",
+  "data": "Ma’lumotlar va sun’iy intellekt",
+  "infra": "Tizimlar, tarmoq va xavfsizlik",
+  "design": "Raqamli dizayn",
+  "mkt": "Raqamli marketing",
+  "media": "Kontent va media",
+  "product": "Mahsulot va loyiha boshqaruvi",
+  "sales": "Sotuv va mijozlar bilan ishlash",
+  "finance": "Moliya va raqamli ofis"
+ },
+ "dev": [
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ],
+  [
+   "F",
+   "B",
+   "M",
+   "Q"
+  ]
+ ],
+ "dev_names": {
+  "F": "Frontend",
+  "B": "Backend",
+  "M": "Mobil",
+  "Q": "QA / test"
+ },
+ "tasks_correct": [
+  "A",
+  "A",
+  "D",
+  "A"
+ ],
+ "learn_correct": [
+  "A",
+  "C"
+ ],
+ "task_labels": [
+  "Shart bo‘yicha hisoblash",
+  "Xatoni topish",
+  "Tizim qoidasini o‘ylash",
+  "Foydalanuvchi uchun tartib"
+ ]
+}
