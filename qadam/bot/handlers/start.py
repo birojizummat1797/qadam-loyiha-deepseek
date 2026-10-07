@@ -168,3 +168,19 @@ async def cmd_admin(m: Message):
         InlineKeyboardButton(text="Admin Panel", web_app=WebAppInfo(url=url))
     ]])
     await m.answer("Admin panel:", reply_markup=kb)
+
+
+@router.message(Command("v2test"))
+async def cmd_v2test(m: Message):
+    """Diagnostic v2 draft (9×25) — internal testing only, admins only. Not in the menu."""
+    admin_ids = set(
+        int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()
+    )
+    if m.from_user.id not in admin_ids:
+        await m.answer("Ruxsat yo'q")
+        return
+
+    kb = InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(text="Diagnostika v2 (sinov)", web_app=WebAppInfo(url=f"{WEBAPP_URL}/v2"))
+    ]])
+    await m.answer("Diagnostika v2 — qoralama, faqat ichki sinov uchun:", reply_markup=kb)
