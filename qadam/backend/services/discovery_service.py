@@ -77,7 +77,7 @@ def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> d
     Free Discovery natijasi — PRELIMINARY.
     Bu Premium Deep Diagnostic emas — yuzaki.
     """
-    from backend.engine.ranking import rank_careers
+    from backend.engine.ranking import MIN_RECOMMENDATION_SCORE, rank_careers
     # taxonomy tashqaridan beriladi (async)
 
     # Constraints (Q11, Q12, Q13)
@@ -89,6 +89,7 @@ def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> d
             taxonomy=taxonomy,
             constraints=constraints,
             top_n=3,
+            min_score=MIN_RECOMMENDATION_SCORE,
         )
     except Exception as e:
         return {"error": str(e)[:200], "confidence": "none"}
@@ -114,6 +115,7 @@ def build_preliminary_insight(signals: dict, answers: list, taxonomy: dict) -> d
         "signals_top": top_signals,
         "development_areas": dev_areas,
         "pathways": ranking["ranked"],
+        "no_clear_direction": ranking["no_clear_direction"],
         "confidence": ranking["confidence"],
         "disclaimer": (
             "Bu dastlabki tahlil — 13 savolga asoslangan. "

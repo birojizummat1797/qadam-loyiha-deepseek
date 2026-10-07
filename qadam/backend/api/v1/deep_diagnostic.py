@@ -18,7 +18,7 @@ from backend.services.deep_diagnostic_service import (
     merge_signals,
 )
 from backend.data_loader import load_deep_diagnostic
-from backend.engine.ranking import rank_careers
+from backend.engine.ranking import MIN_RECOMMENDATION_SCORE, rank_careers
 
 router = APIRouter(prefix="/api/v1/deep-diagnostic", tags=["deep-diagnostic-v1"])
 
@@ -215,6 +215,7 @@ async def complete(session_id: int, payload: StartPayload):
         taxonomy=taxonomy,
         constraints=base_constraints,
         top_n=5,
+        min_score=MIN_RECOMMENDATION_SCORE,
     )
 
     # Saqlash
@@ -262,6 +263,7 @@ async def complete(session_id: int, payload: StartPayload):
         "session_id": session_id,
         "signals": merged,
         "ranked": ranking["ranked"],
+        "no_clear_direction": ranking["no_clear_direction"],
         "excluded": ranking["excluded"][:10],
         "confidence": ranking["confidence"],
         "constraints": base_constraints,
@@ -308,9 +310,12 @@ async def pdf(session_id: int, payload: StartPayload):
     signals = merge_signals(rows(disc_rows), rows(deep_rows))
     constraints = await discovery_constraints(sess.discovery_session_id)
     taxonomy = await load_taxonomy_from_db()
-    ranking = rank_careers(signals=signals, taxonomy=taxonomy, constraints=constraints, top_n=5)
+    ranking = rank_careers(signals=signals, taxonomy=taxonomy, constraints=constraints, top_n=5,
+                           min_score=MIN_RECOMMENDATION_SCORE)
     if not ranking["ranked"]:
-        raise HTTPException(422, "Yetarli ma'lumot yo'q")
+        # Same rule as the result page: no list is padded, so there is no PDF to send.
+        raise HTTPException(422, "Aniq yo'nalish ko'rinmayapti" if ranking["no_clear_direction"]
+                            else "Yetarli ma'lumot yo'q")
 
     report = {
         "id": session_id,

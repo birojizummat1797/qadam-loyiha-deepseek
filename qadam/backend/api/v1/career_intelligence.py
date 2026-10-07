@@ -8,7 +8,7 @@ from backend.models_v2 import (
 from backend.auth import verify_init_data
 from backend.services.entitlement_service import has_active_entitlement
 from backend.services.taxonomy_service import load_taxonomy_from_db
-from backend.engine.ranking import rank_careers
+from backend.engine.ranking import MIN_RECOMMENDATION_SCORE, rank_careers
 from backend.services.context_service import discovery_constraints
 from backend.engine.public_output import strip_unsupported
 
@@ -88,6 +88,7 @@ async def get_career_intelligence(
         taxonomy=taxonomy,
         constraints=constraints,
         top_n=5,
+        min_score=MIN_RECOMMENDATION_SCORE,
     )
 
     return {
@@ -96,6 +97,7 @@ async def get_career_intelligence(
         "signals": signals,
         "constraints": constraints,
         "ranked": ranking["ranked"],
+        "no_clear_direction": ranking["no_clear_direction"],
         "excluded": ranking["excluded"][:10],
         "confidence": ranking["confidence"],
     }

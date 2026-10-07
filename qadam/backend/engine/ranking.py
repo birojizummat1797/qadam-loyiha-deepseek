@@ -39,8 +39,16 @@ KB_CAREERS = _load_roadmap_careers()
 MIN_COVERAGE = 0.5
 TOP_N = 5
 
+# Founder decision 2026-10-04 (BL-14): a career is recommended only if its fit
+# is at least this score; top_n is a ceiling, not a quota. When careers were
+# measured but none reaches it, the user gets an honest "no clear direction"
+# message instead of a filled-up list. Applied to recommendation lists
+# (preliminary, career intelligence, deep result, PDF) — not to the roadmap of
+# a career the user opened. Audit: claude-qadamio docs/reviews/2026-10-04-threshold-audit-report.md
+MIN_RECOMMENDATION_SCORE = 51.0
 
-def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
+
+def rank_careers(signals, taxonomy, constraints, top_n=TOP_N, min_score=None):
     candidates = []
     excluded = []
 
@@ -98,6 +106,12 @@ def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
             })
 
     candidates.sort(key=lambda x: -x["composite_score"])
+    eligible = len(candidates)
+    if min_score is not None:
+        for c in candidates:
+            if c["fit"] < min_score:
+                excluded.append({"career_id": c["career_id"], "reason": "below_min_score"})
+        candidates = [c for c in candidates if c["fit"] >= min_score]
     top = candidates[:top_n]
 
     # Global confidence
@@ -116,6 +130,9 @@ def rank_careers(signals, taxonomy, constraints, top_n=TOP_N):
         "ranked": top,
         "excluded": excluded,
         "confidence": confidence,
-        "total_candidates": len(candidates),
+        "total_candidates": eligible,
         "kb_careers_count": len(KB_CAREERS),
+        "min_score": min_score,
+        # Careers were measured, but none reached the minimum score → honest message.
+        "no_clear_direction": min_score is not None and eligible > 0 and not top,
     }
