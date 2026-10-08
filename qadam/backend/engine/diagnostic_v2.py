@@ -63,6 +63,27 @@ def load_roadmap_ids() -> frozenset:
     return frozenset(ids)
 
 
+@lru_cache(maxsize=1)
+def _roadmap_kb() -> tuple[dict, frozenset]:
+    """Merged KB (v3 draft + live v2; v2 wins on overlap) and the set of live v2 IDs."""
+    v2 = json.loads((DATA_DIR / "roadmap_kb_v2.json").read_text(encoding="utf-8"))["careers"]
+    v3 = json.loads((DATA_DIR / "roadmap_kb_v3_draft.json").read_text(encoding="utf-8"))["careers"]
+    return {**v3, **v2}, frozenset(v2)
+
+
+def build_roadmap(career_id: str) -> dict | None:
+    """Public roadmap for one career (no salary, no unsupported claims); None if there is none."""
+    from backend.engine.public_output import strip_unsupported
+    from backend.engine.roadmap import _build_v2
+
+    kb, live = _roadmap_kb()
+    if career_id not in kb:
+        return None
+    rm = _build_v2(career_id, kb[career_id], {}, {}, None)
+    rm["version"] = "v2.0" if career_id in live else "v3.0-draft"
+    return strip_unsupported(rm)
+
+
 def catalogs_by_id() -> dict:
     return {c["id"]: c for c in load_data()["catalogs"]}
 

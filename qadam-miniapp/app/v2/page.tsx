@@ -203,7 +203,10 @@ export default function V2Page() {
               <div key={c.id} className="card-clean mb-3">
                 <p className="t-heading mb-2">{c.uz}</p>
                 {c.has_roadmap
-                  ? <button className="btn btn-secondary" onClick={() => router.push(`/v2/roadmap/${c.id}`)}>Yo‘l xaritasini ko‘rish</button>
+                  ? <>
+                      <button className="btn btn-secondary" onClick={() => router.push(`/v2/roadmap/${c.id}`)}>Yo‘l xaritasini olish</button>
+                      <p className="t-caption text-subtle mt-2">Shu yerda ochiladi va PDF ko‘rinishida botga ham yuboriladi.</p>
+                    </>
                   : <p className="t-small text-muted">Yo‘l xaritasi hali tayyor emas.</p>}
               </div>
             ))}

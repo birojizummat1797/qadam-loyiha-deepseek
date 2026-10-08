@@ -104,8 +104,39 @@ async def main():
     check("junior_salary_uzs" not in json.dumps(rm2), "salary leaked")
     await expect(api.roadmap("nope", init_data=uid), 404)
 
+    # Roadmap PDF to the bot chat (founder request 2026-10-08).
+    from backend.services import pdf_delivery
+    sent_docs = []
+
+    async def fake_send(user, pdf_bytes, filename, career_uz):
+        sent_docs.append((user["id"], pdf_bytes[:4], filename, career_uz))
+        return True
+
+    pdf_delivery.send_pdf = fake_send
+    await expect(api.roadmap_pdf("frontend_development", api.PdfPayload(init_data=uid)), 409)
+    r1 = await api.roadmap_pdf("backend_development", api.PdfPayload(init_data=uid))
+    check(r1 == {"ok": True, "sent_to_telegram": True, "already_sent": False}, r1)
+    check(sent_docs == [(7001, b"%PDF", "QADAM-yol-xaritasi-backend_development.pdf", "Backend dasturchi")], sent_docs)
+    r2 = await api.roadmap_pdf("backend_development", api.PdfPayload(init_data=uid))
+    check(r2["already_sent"] is True and len(sent_docs) == 1, "automatic resend within cooldown")
+    r3 = await api.roadmap_pdf("backend_development", api.PdfPayload(init_data=uid, force=True))
+    check(r3["already_sent"] is True and len(sent_docs) == 1, "forced resend within one minute")
+
+    async def failing_send(*a):
+        return False
+
+    pdf_delivery.send_pdf = failing_send
+    uid2 = "7002"
+    await profile_api.gate_submit(profile_api.GatePayload(init_data=uid2, consent=True, age=30))
+    await api.deep_submit(api.DeepSubmit(init_data=uid2, catalogs=["software"], answers=deep_answers, ease=ease))
+    r4 = await api.roadmap_pdf("backend_development", api.PdfPayload(init_data=uid2))
+    check(r4 == {"ok": True, "sent_to_telegram": False, "already_sent": False}, r4)
+    pdf_delivery.send_pdf = fake_send
+    r5 = await api.roadmap_pdf("backend_development", api.PdfPayload(init_data=uid2))
+    check(r5["sent_to_telegram"] is True, "a failed send must not block the next try")
+
     async with SessionLocal() as s:
-        rows = (await s.execute(select(DiagnosticV2Result))).scalars().all()
+        rows = (await s.execute(select(DiagnosticV2Result).where(DiagnosticV2Result.user_id == 7001))).scalars().all()
     check([r.stage for r in rows] == ["discovery", "deep"], [r.stage for r in rows])
     check(rows[0].result["_points"]["software"] == 4, "internal counts stored for analysis")
 
