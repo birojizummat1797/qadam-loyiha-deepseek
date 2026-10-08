@@ -7,8 +7,7 @@ Answers are submitted once per stage (stateless questions, one stored result
 per finished stage). Correct task answers never leave the server.
 """
 import json
-from functools import lru_cache
-from pathlib import Path
+from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -17,8 +16,7 @@ from sqlalchemy import select, desc
 from backend.auth import verify_init_data
 from backend.db import SessionLocal
 from backend.engine import diagnostic_v2 as dv2
-from backend.engine.public_output import strip_unsupported
-from backend.engine.roadmap import _build_v2
+from backend.models import Event
 from backend.models_v2 import DiagnosticV2Result
 from backend.services import age_gate
 
@@ -157,23 +155,75 @@ async def latest(init_data: str = Query(...)):
     return out
 
 
-DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
-
-
-@lru_cache(maxsize=1)
-def _roadmap_kb() -> tuple[dict, frozenset]:
-    """Merged KB (v3 draft + live v2; v2 wins on overlap) and the set of live v2 IDs."""
-    v2 = json.loads((DATA_DIR / "roadmap_kb_v2.json").read_text(encoding="utf-8"))["careers"]
-    v3 = json.loads((DATA_DIR / "roadmap_kb_v3_draft.json").read_text(encoding="utf-8"))["careers"]
-    return {**v3, **v2}, frozenset(v2)
+def _build_roadmap(career_id: str) -> dict:
+    rm = dv2.build_roadmap(career_id)
+    if rm is None:
+        raise HTTPException(404, "Bu kasb uchun yo‘l xaritasi hali tayyor emas")
+    return rm
 
 
 @router.get("/roadmap/{career_id}")
 async def roadmap(career_id: str, init_data: str = Query(...)):
     await _user(init_data)
-    kb, live = _roadmap_kb()
-    if career_id not in kb:
-        raise HTTPException(404, "Bu kasb uchun yo‘l xaritasi hali tayyor emas")
-    rm = _build_v2(career_id, kb[career_id], {}, {}, None)
-    rm["version"] = "v2.0" if career_id in live else "v3.0-draft"
-    return strip_unsupported(rm)
+    return _build_roadmap(career_id)
+
+
+# Founder request (2026-10-08): after the roadmap opens in the Mini App, the same
+# roadmap is also sent to the user's bot chat as a PDF document.
+PDF_EVENT = "v2_roadmap_pdf_sent"
+PDF_COOLDOWN = timedelta(minutes=10)      # automatic send: once per career per 10 minutes
+PDF_FORCE_COOLDOWN = timedelta(minutes=1)  # "Qayta yuborish" button: at most once a minute
+
+
+class PdfPayload(BaseModel):
+    init_data: str
+    force: bool = False
+
+
+def _utc(dt):
+    return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt
+
+
+@router.post("/roadmap/{career_id}/pdf")
+async def roadmap_pdf(career_id: str, payload: PdfPayload):
+    """Send this career's roadmap as a PDF to the user's bot chat.
+
+    Only for a career in the user's latest deep result (the PDF repeats that
+    result's evidence). Repeated calls within the cooldown are not re-sent.
+    """
+    from backend.pdf_report import generate_v2_roadmap_pdf
+    from backend.services.pdf_delivery import send_pdf
+
+    user = await _user(payload.init_data)
+    rm = _build_roadmap(career_id)
+    async with SessionLocal() as s:
+        row = (await s.execute(
+            select(DiagnosticV2Result)
+            .where(DiagnosticV2Result.user_id == user["id"], DiagnosticV2Result.stage == "deep")
+            .order_by(desc(DiagnosticV2Result.id)).limit(1)
+        )).scalar_one_or_none()
+        recent = (await s.execute(
+            select(Event)
+            .where(Event.user_id == user["id"], Event.event_name == PDF_EVENT)
+            .order_by(desc(Event.id)).limit(20)
+        )).scalars().all()
+
+    career = next((c for c in (row.result.get("careers") or []) if c["id"] == career_id), None) if row else None
+    if career is None:
+        raise HTTPException(409, "Bu kasb oxirgi chuqur tahlil natijangizda yo‘q")
+
+    now = datetime.now(timezone.utc)
+    window = PDF_FORCE_COOLDOWN if payload.force else PDF_COOLDOWN
+    for e in recent:
+        if (e.payload or {}).get("career_id") == career_id and e.created_at and now - _utc(e.created_at) < window:
+            return {"ok": True, "sent_to_telegram": False, "already_sent": True}
+
+    catalog_uz = dv2.catalogs_by_id().get(career["catalog"], {}).get("uz", "")
+    pdf_bytes = generate_v2_roadmap_pdf(career["uz"], catalog_uz, rm, dv2.public_result(row.result))
+    sent = await send_pdf(user, pdf_bytes, f"QADAM-yol-xaritasi-{career_id}.pdf", career["uz"])
+    if sent:
+        async with SessionLocal() as s:
+            s.add(Event(user_id=user["id"], event_name=PDF_EVENT,
+                        payload={"career_id": career_id, "result_id": row.id, "force": payload.force}))
+            await s.commit()
+    return {"ok": True, "sent_to_telegram": sent, "already_sent": False}

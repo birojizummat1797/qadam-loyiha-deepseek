@@ -92,3 +92,11 @@ export function shuffleKeepLast<T>(items: T[]): T[] {
   }
   return [...head, items[items.length - 1]];
 }
+
+export type PdfSendResult = { ok: boolean; sent_to_telegram: boolean; already_sent: boolean };
+
+/** Sends the roadmap PDF to the user's bot chat (founder request 2026-10-08). */
+export async function v2SendRoadmapPdf(careerId: string, force = false) {
+  const r = await api.post(`/api/v2/diagnostic/roadmap/${careerId}/pdf`, { init_data: getInitData(), force });
+  return r.data as PdfSendResult;
+}

@@ -74,7 +74,14 @@ def _build_career_html(c):
     if not roadmap or roadmap.get("is_placeholder"):
         return "\n".join(html)
 
-    html.append(f'<div class="section-title">{_esc(career.get("uz", ""))} — Roadmap</div>')
+    html.extend(_roadmap_html(career.get("uz", ""), roadmap))
+    return "\n".join(html)
+
+
+def _roadmap_html(career_uz, roadmap):
+    """Roadmap section (shared by the v1 report and the v2 roadmap PDF)."""
+    html = []
+    html.append(f'<div class="section-title">{_esc(career_uz)} — Roadmap</div>')
 
     # Nega ko'rsatildi
     if roadmap.get("why_this_path"):
@@ -182,7 +189,7 @@ def _build_career_html(c):
             html.append(f'<li>{_esc(r.get("name", ""))} — {_esc(r.get("url", ""))}</li>')
         html.append("</ul></div>")
 
-    return "\n".join(html)
+    return html
 
 
 EVIDENCE_NOTE = (
@@ -238,6 +245,59 @@ def build_report_html(report, date_str=None):
 def generate_pdf(report, theme="light"):
     """Report dict -> PDF bytes."""
     html = build_report_html(report)
+    output = BytesIO()
+    pisa.CreatePDF(html, dest=output, encoding="utf-8")
+    return output.getvalue()
+
+
+V2_PRINCIPLE = "Signallarni Qadam o\u2019qiydi. Qarorni siz qilasiz."
+V2_DRAFT_NOTE = "Yo\u2018l xaritasi \u2014 qoralama (ko\u2018rib chiqilmoqda)."
+
+
+def _box(inner, bg, border):
+    """One bordered block (xhtml2pdf draws div borders around each child, a table cell stays whole)."""
+    return (f'<table width="100%" style="border:1pt solid {border}; background:{bg}; margin-bottom:8pt">'
+            f'<tr><td style="padding:6pt 8pt">{inner}</td></tr></table>')
+
+
+def build_v2_roadmap_html(career_uz, catalog_uz, roadmap, deep_result, date_str=None):
+    """Diagnostic v2: one career's roadmap + the user's own evidence. No scores, no percentages."""
+    roadmap = strip_unsupported(dict(roadmap))
+    roadmap.pop("a_point", None)  # v2 has no signal summary; an empty "A nuqta" card would mislead
+    date_str = date_str or datetime.utcnow().strftime("%d.%m.%Y")
+    evidence = (deep_result or {}).get("evidence") or {}
+
+    parts = ['<!DOCTYPE html><html><head><meta charset="UTF-8">', f"<style>{STYLE}</style></head><body>"]
+    parts.append("<h1>Yo\u2018l xaritangiz</h1>")
+    parts.append(f'<p class="muted">{date_str} \u2022 Qadam.io diagnostikasi (sinov versiyasi)</p>')
+
+    head = '<p class="muted" style="margin:0">Hozirgi javoblaringizga eng yaqin kasb</p>'
+    head += f'<h3 style="margin:2pt 0">{_esc(career_uz)}</h3>'
+    if catalog_uz:
+        head += f'<p class="muted" style="margin:0">{_esc(catalog_uz)}</p>'
+    parts.append(_box(head, "#eef2ff", "#c7d2fe"))
+
+    if evidence.get("statements"):
+        items = "".join(f"<li>{_esc(st)}</li>" for st in evidence["statements"])
+        parts.append(_box(f"<h4>Amaliy dalillar</h4><ul>{items}</ul>", "#ecfdf5", "#a7f3d0"))
+
+    if deep_result and deep_result.get("snapshot_note"):
+        parts.append(f'<p class="muted">{_esc(deep_result["snapshot_note"])}</p>')
+
+    if roadmap.get("version") == "v3.0-draft":
+        parts.append(f'<p class="muted">{_esc(V2_DRAFT_NOTE)}</p>')
+
+    parts.extend(_roadmap_html(career_uz, roadmap))
+
+    parts.append('<p class="muted" style="text-align:center;margin-top:20pt">')
+    parts.append(f"{_esc(V2_PRINCIPLE)}<br>Qadam.io \u2014 Halol tahlil, manipulyatsiyasiz<br>")
+    parts.append("@kelajakkailkqadam_bot</p>")
+    parts.append("</body></html>")
+    return "\n".join(parts)
+
+
+def generate_v2_roadmap_pdf(career_uz, catalog_uz, roadmap, deep_result):
+    html = build_v2_roadmap_html(career_uz, catalog_uz, roadmap, deep_result)
     output = BytesIO()
     pisa.CreatePDF(html, dest=output, encoding="utf-8")
     return output.getvalue()

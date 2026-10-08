@@ -198,6 +198,27 @@ def test_invalid_catalogs_rejected():
             dv2.validate_catalog_ids(bad)
 
 
+# ── Roadmap PDF ──
+
+def test_v2_roadmap_pdf_html_has_evidence_no_scores_no_salary():
+    from backend.pdf_report import build_v2_roadmap_html, generate_v2_roadmap_pdf
+
+    _build_roadmap = dv2.build_roadmap
+
+    cid = "data_ai"
+    result = dv2.public_result(dv2.score_deep([cid], _deep_answers(cid, "database_specialist")))
+    rm = _build_roadmap("database_specialist")
+    html = build_v2_roadmap_html("Ma’lumotlar bazasi mutaxassisi", "Ma’lumotlar va sun’iy intellekt", rm, result)
+    assert "Amaliy dalillar" in html and result["evidence"]["statements"][0].split("“")[0] in html
+    assert "A NUQTA" not in html and "qoralama" in html
+    visible = re.sub(r"<style>.*?</style>|<[^>]+>", " ", html, flags=re.S)
+    assert not re.search(r"\d+\s*%", visible)
+    assert not re.search(r"\bmln\b|\$\d", visible)
+    live = build_v2_roadmap_html("Frontend dasturchi", "Dasturlash", _build_roadmap("frontend_development"), result)
+    assert "qoralama" not in live and "mln" not in live
+    assert generate_v2_roadmap_pdf("X", "Y", rm, result)[:4] == b"%PDF"
+
+
 # ── API flow (real SQLite DB, subprocess) ──
 
 def test_diagnostic_v2_api_flow(tmp_path):
