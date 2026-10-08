@@ -1,0 +1,7350 @@
+{
+ "version": "v3.0-draft",
+ "created_at": "2026-10-07",
+ "note": "QADAM Roadmap KB v3 draft — 21 careers for the 9x25 catalog (adds to the 4 existing v2 careers). Same schema as v2. No salary, statistics or outcome promises; time budgets and plan targets are Qadam's own recommendations. Founder review required before use.",
+ "careers": {
+  "backend_development": {
+   "uz": "Backend dasturchi",
+   "cluster": "software",
+   "cluster_uz": "Dasturlash",
+   "why": "Backend — ko'rinmaydigan qism: ma'lumot qayerda saqlanadi, qanday qoida bilan ishlaydi, server so'rovga qanday javob beradi. Mantiq va tizim qurishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior Backend vakansiyalariga ariza berish",
+     "Portfolio: 2–3 ta ishlaydigan API loyiha",
+     "Ochiq loyihalarga kichik hissa qo'shish"
+    ],
+    "next_step": "Middle Backend, DevOps yoki ma'lumotlar bazasi yo'nalishi"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Til tanlangan, muhit o'rnatilgan",
+     "constraints": [
+      [
+       "Qaysi tildan boshlash?",
+       "Bitta tilni tanlash: Python yoki JavaScript (Node.js)"
+      ],
+      [
+       "Kompyuter kuchsiz",
+       "Brauzerdagi muhit yoki yengil muharrir"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Internet va server qanday ishlaydi",
+      "30 daqiqa: Muhitni o'rnatish",
+      "60 daqiqa: Birinchi kichik dastur"
+     ],
+     "signs_right": [
+      "Til tanlandi",
+      "Kod muharriri ishlayapti",
+      "Birinchi dastur ishga tushdi"
+     ],
+     "signs_wrong": [
+      "Har kuni boshqa til",
+      "Faqat video ko'rish"
+     ],
+     "graduate_criteria": [
+      "Muhit tayyor",
+      "Server/so'rov tushunchasi",
+      "Birinchi dastur"
+     ],
+     "challenges": [
+      "Tanlov ko'pligi",
+      "Terminal qo'rquvi"
+     ],
+     "skills_gained": [
+      "Dasturlash muhiti",
+      "Asosiy tushunchalar"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "LANGUAGE BASICS",
+     "name_uz": "Til asoslari",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Kichik konsol ilova",
+     "constraints": [
+      [
+       "Xatolar ko'p",
+       "Xato matnini o'qish va qidirish odati"
+      ],
+      [
+       "Mavzu qiyin",
+       "Kichik masalalarni har kuni yechish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Yangi mavzu",
+      "60 daqiqa: Masala yechish",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "O'zgaruvchi, shart, sikl, funksiyani bilaman",
+      "Kichik masalani o'zim yechaman",
+      "Git'ga kod yuklayman"
+     ],
+     "signs_wrong": [
+      "Faqat tayyor kodni ko'chirish",
+      "Xatodan qochish"
+     ],
+     "graduate_criteria": [
+      "Konsol ilova (masalan, xarajatlar hisobi)",
+      "Git va GitHub",
+      "20+ yechilgan masala"
+     ],
+     "challenges": [
+      "Mantiqni yo'qotish",
+      "Sabr"
+     ],
+     "skills_gained": [
+      "Python/JavaScript",
+      "Git"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "WEB + DATABASE",
+     "name_uz": "Server va baza",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Bazaga ulangan API",
+     "constraints": [
+      [
+       "SQL notanish",
+       "SQL'ni oddiy jadvallardan boshlash"
+      ],
+      [
+       "HTTP tushunarsiz",
+       "Postman bilan so'rovlarni qo'lda yuborish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: HTTP va REST",
+      "30 daqiqa: SQL",
+      "60 daqiqa: API yozish"
+     ],
+     "signs_right": [
+      "GET/POST farqini bilaman",
+      "SQL'da so'rov yozaman",
+      "API bazadan ma'lumot qaytaradi"
+     ],
+     "signs_wrong": [
+      "Bazasiz faqat ro'yxat bilan ishlash",
+      "Xatolarni tekshirmaslik"
+     ],
+     "graduate_criteria": [
+      "CRUD API (masalan, vazifalar ro'yxati)",
+      "SQL: SELECT, JOIN, INDEX asoslari",
+      "Kirishni tekshirish (validatsiya)"
+     ],
+     "challenges": [
+      "Baza tuzilishi",
+      "Ko'p yangi tushuncha"
+     ],
+     "skills_gained": [
+      "REST API",
+      "SQL",
+      "Framework asoslari"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL PROJECT",
+     "name_uz": "Real loyiha",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Internetga chiqarilgan loyiha",
+     "constraints": [
+      [
+       "G'oya yo'q",
+       "Tanish kichik biznes uchun buyurtma yoki navbat tizimi"
+      ],
+      [
+       "Deploy qiyin",
+       "Bepul tarifli hosting bilan boshlash"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Loyiha kodi",
+      "30 daqiqa: Test yozish",
+      "30 daqiqa: Hujjat (README)"
+     ],
+     "signs_right": [
+      "Ro'yxatdan o'tish va kirish ishlaydi",
+      "Testlar bor",
+      "Loyiha internetda ochiladi"
+     ],
+     "signs_wrong": [
+      "Loyihani tugatmasdan yangisini boshlash",
+      "Parolni ochiq saqlash"
+     ],
+     "graduate_criteria": [
+      "Autentifikatsiya",
+      "Avtomatik testlar",
+      "Deploy qilingan loyiha",
+      "README"
+     ],
+     "challenges": [
+      "Xavfsizlik",
+      "Loyihani oxiriga yetkazish"
+     ],
+     "skills_gained": [
+      "Autentifikatsiya",
+      "Testlash",
+      "Deploy"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Junior Backend ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba yo'q",
+       "Portfolio va GitHub tarixini ko'rsatish"
+      ],
+      [
+       "Suhbatdan qo'rqish",
+       "Mashq suhbatlari va kod tushuntirish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar yuboryapman",
+      "Loyihamni og'zaki tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat bitta joyga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume + GitHub",
+      "2–3 loyiha",
+      "Muntazam arizalar",
+      "Mashq suhbatlari"
+     ],
+     "challenges": [
+      "Rad javoblari",
+      "O'ziga ishonch"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Til tanlash",
+      "Se: Muhit o'rnatish",
+      "Ch: O'zgaruvchilar",
+      "Pa: Shartlar",
+      "Ju: Sikllar",
+      "Sh: 5 ta masala",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Funksiya va Git",
+     "days": [
+      "Du: Funksiyalar",
+      "Se: Ro'yxat va lug'at",
+      "Ch: Git asoslari",
+      "Pa: GitHub",
+      "Ju: Xatolarni o'qish",
+      "Sh: Konsol ilova",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "HTTP va SQL",
+     "days": [
+      "Du: HTTP so'rovlari",
+      "Se: Postman",
+      "Ch: SQL SELECT",
+      "Pa: SQL JOIN",
+      "Ju: Jadval loyihalash",
+      "Sh: Mini baza",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Birinchi API",
+     "days": [
+      "Du: Framework o'rnatish",
+      "Se: GET endpoint",
+      "Ch: POST endpoint",
+      "Pa: Bazaga ulash",
+      "Ju: Validatsiya",
+      "Sh: API tayyor",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Python yoki JavaScript'ni tanlash (bugun, 10 daqiqa)",
+    "Kod muharririni o'rnatish (bugun, 20 daqiqa)",
+    "Birinchi dasturni ishga tushirish (bugun, 30 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "roadmap.sh — Backend",
+     "url": "https://roadmap.sh/backend",
+     "lang": "EN"
+    },
+    {
+     "name": "freeCodeCamp",
+     "url": "https://www.freecodecamp.org/learn",
+     "lang": "EN"
+    },
+    {
+     "name": "SQLBolt",
+     "url": "https://sqlbolt.com/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Muhit tayyor"
+    },
+    {
+     "week": 5,
+     "milestone": "Konsol ilova"
+    },
+    {
+     "week": 10,
+     "milestone": "Bazaga ulangan API"
+    },
+    {
+     "week": 16,
+     "milestone": "Internetdagi loyiha"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "mobile_development": {
+   "uz": "Mobil dasturchi",
+   "cluster": "software",
+   "cluster_uz": "Dasturlash",
+   "why": "Mobil dasturchi odamlar har kuni qo'lida ishlatadigan ilovani yaratadi. Telefonda qulay, tez va tushunarli narsa qurishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior Mobile vakansiyalariga ariza berish",
+     "Portfolio: 2 ta ishlaydigan ilova",
+     "Freelance: kichik biznes uchun oddiy ilova"
+    ],
+    "next_step": "Middle Mobile yoki Frontend/Backend bilan full-stack"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Platforma tanlangan, emulyator ishlayapti",
+     "constraints": [
+      [
+       "Android yoki iOS?",
+       "Kross-platforma (Flutter) yoki Android (Kotlin) bilan boshlash"
+      ],
+      [
+       "Kompyuter kuchsiz",
+       "Emulyator o'rniga o'z telefonida sinash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Ilova qanday ishlaydi",
+      "30 daqiqa: Muhit o'rnatish",
+      "60 daqiqa: Birinchi ekran"
+     ],
+     "signs_right": [
+      "Platforma tanlandi",
+      "Ilova telefonda ochildi",
+      "Birinchi ekran tayyor"
+     ],
+     "signs_wrong": [
+      "Ikki platformani birdan boshlash",
+      "Faqat video ko'rish"
+     ],
+     "graduate_criteria": [
+      "Muhit tayyor",
+      "\"Salom\" ilovasi telefonda",
+      "Platforma tanlangan"
+     ],
+     "challenges": [
+      "O'rnatish qiyinligi",
+      "Tanlov"
+     ],
+     "skills_gained": [
+      "Mobil muhit",
+      "Asosiy tushunchalar"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "LANGUAGE + UI",
+     "name_uz": "Til va ekranlar",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "3 ekranli ilova",
+     "constraints": [
+      [
+       "Dart/Kotlin notanish",
+       "Har kuni kichik mashq"
+      ],
+      [
+       "Dizayn qiyin",
+       "Tayyor komponentlardan foydalanish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Til asoslari",
+      "60 daqiqa: Ekran yasash",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "Tugma, ro'yxat, forma yasayman",
+      "Ekranlar orasida o'taman",
+      "Kodni Git'da saqlayman"
+     ],
+     "signs_wrong": [
+      "Faqat dizaynga berilish",
+      "Kodni saqlamaslik"
+     ],
+     "graduate_criteria": [
+      "3 ekranli ilova",
+      "Navigatsiya",
+      "Git va GitHub"
+     ],
+     "challenges": [
+      "Ekran o'lchamlari",
+      "Holat (state)"
+     ],
+     "skills_gained": [
+      "Flutter/Kotlin",
+      "UI komponentlar"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "DATA + API",
+     "name_uz": "Ma'lumot va internet",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Internetdan ma'lumot oladigan ilova",
+     "constraints": [
+      [
+       "API tushunarsiz",
+       "Ochiq API'dan (masalan, ob-havo) boshlash"
+      ],
+      [
+       "Ma'lumot saqlash",
+       "Telefon ichidagi oddiy baza"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: HTTP va JSON",
+      "60 daqiqa: Ilova kodi",
+      "30 daqiqa: Xatolarni tuzatish"
+     ],
+     "signs_right": [
+      "API'dan ma'lumot olaman",
+      "Ma'lumotni telefonda saqlayman",
+      "Internet yo'qligini to'g'ri ko'rsataman"
+     ],
+     "signs_wrong": [
+      "Xatolarni e'tiborsiz qoldirish",
+      "Hamma kod bitta faylda"
+     ],
+     "graduate_criteria": [
+      "API bilan ilova",
+      "Lokal saqlash",
+      "Yuklanish va xato holatlari"
+     ],
+     "challenges": [
+      "Asinxron kod",
+      "Arxitektura"
+     ],
+     "skills_gained": [
+      "HTTP/JSON",
+      "Lokal baza",
+      "Holatni boshqarish"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL APP",
+     "name_uz": "Real ilova",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Do'kon yoki test uchun tayyor ilova",
+     "constraints": [
+      [
+       "G'oya yo'q",
+       "O'zingiz yoki tanishingiz uchun foydali kichik ilova"
+      ],
+      [
+       "Do'konga chiqarish murakkab",
+       "Avval test fayli (APK) bilan tanishlarga berish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Ilova kodi",
+      "30 daqiqa: Sinovchilardan fikr",
+      "30 daqiqa: Tuzatish"
+     ],
+     "signs_right": [
+      "5+ kishi ilovani sinadi",
+      "Fikrlar asosida tuzatdim",
+      "Ilova barqaror ishlaydi"
+     ],
+     "signs_wrong": [
+      "Sinovchilarsiz ishlash",
+      "Har kuni yangi funksiya qo'shish"
+     ],
+     "graduate_criteria": [
+      "Tugallangan ilova",
+      "Sinovchilar fikri",
+      "Ekran rasmlari va tavsif"
+     ],
+     "challenges": [
+      "Oxiriga yetkazish",
+      "Turli telefonlar"
+     ],
+     "skills_gained": [
+      "Relizga tayyorlash",
+      "Foydalanuvchi fikri bilan ishlash"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Junior Mobile ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba yo'q",
+       "Ilovalarni telefonda ko'rsatish"
+      ],
+      [
+       "Suhbatdan qo'rqish",
+       "Mashq suhbatlari"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Ilovamni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat bitta joyga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume + GitHub",
+      "2 ta ilova",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Rad javoblari",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Muhit va til",
+     "days": [
+      "Du: Platforma tanlash",
+      "Se: Muhit o'rnatish",
+      "Ch: Birinchi ekran",
+      "Pa: O'zgaruvchilar",
+      "Ju: Funksiyalar",
+      "Sh: Kichik mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Ekranlar",
+     "days": [
+      "Du: Tugma va matn",
+      "Se: Ro'yxat",
+      "Ch: Forma",
+      "Pa: Navigatsiya",
+      "Ju: Git",
+      "Sh: 3 ekranli ilova",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Ma'lumot",
+     "days": [
+      "Du: JSON",
+      "Se: HTTP so'rov",
+      "Ch: Ochiq API",
+      "Pa: Yuklanish holati",
+      "Ju: Xato holati",
+      "Sh: API ilova",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Saqlash",
+     "days": [
+      "Du: Lokal saqlash",
+      "Se: Sozlamalar ekrani",
+      "Ch: Holatni boshqarish",
+      "Pa: Kod tartibi",
+      "Ju: Sinovchiga berish",
+      "Sh: Fikrlarni yig'ish",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Flutter yoki Kotlin'ni tanlash (bugun, 10 daqiqa)",
+    "Muhitni o'rnatishni boshlash (bugun, 40 daqiqa)",
+    "Ilovani o'z telefoningizda ochish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Flutter — Get started",
+     "url": "https://docs.flutter.dev/get-started",
+     "lang": "EN"
+    },
+    {
+     "name": "Android Developers — Courses",
+     "url": "https://developer.android.com/courses",
+     "lang": "EN"
+    },
+    {
+     "name": "roadmap.sh — Android",
+     "url": "https://roadmap.sh/android",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Ilova telefonda ochildi"
+    },
+    {
+     "week": 5,
+     "milestone": "3 ekranli ilova"
+    },
+    {
+     "week": 10,
+     "milestone": "API bilan ilova"
+    },
+    {
+     "week": 16,
+     "milestone": "Sinovdan o'tgan ilova"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "qa_automation": {
+   "uz": "QA / test mutaxassisi",
+   "cluster": "software",
+   "cluster_uz": "Dasturlash",
+   "why": "QA mutaxassisi mahsulot odamga yetib borishidan oldin xatolarni topadi. Diqqatli, \"bu yerda nima buzilishi mumkin?\" deb o'ylaydigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior QA vakansiyalariga ariza berish",
+     "Portfolio: test hujjatlari va avtotestlar",
+     "Freelance test topshiriqlari"
+    ],
+    "next_step": "QA Automation, keyinchalik QA Lead yoki dasturlash"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Test nima ekanini tushunish",
+     "constraints": [
+      [
+       "Dasturlash bilmayman",
+       "Qo'lda testdan boshlash — kod keyin"
+      ],
+      [
+       "Qayerda mashq qilaman?",
+       "Mashq uchun mo'ljallangan ochiq saytlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Test turlari",
+      "30 daqiqa: Xato hisoboti namunasi",
+      "60 daqiqa: Ilovani sinab ko'rish"
+     ],
+     "signs_right": [
+      "Test turlarini ajrataman",
+      "Birinchi xatoni topdim",
+      "Hisobot yozdim"
+     ],
+     "signs_wrong": [
+      "Faqat nazariya",
+      "Xatoni tushuntirmasdan yozish"
+     ],
+     "graduate_criteria": [
+      "Test turlari",
+      "1 ta xato hisoboti",
+      "Mashq sayti tanlangan"
+     ],
+     "challenges": [
+      "Qayerdan boshlash",
+      "Atamalar"
+     ],
+     "skills_gained": [
+      "Test asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "MANUAL TESTING",
+     "name_uz": "Qo'lda test",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Test-keyslar to'plami",
+     "constraints": [
+      [
+       "Nimani sinashni bilmayman",
+       "Chegara qiymatlar va teng bo'linish usuli"
+      ],
+      [
+       "Hisobot tartibsiz",
+       "Tayyor shablon: qadamlar, kutilgan, haqiqiy natija"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Usul o'rganish",
+      "60 daqiqa: Test-keys yozish",
+      "30 daqiqa: Xato hisoboti"
+     ],
+     "signs_right": [
+      "Test-keys yozaman",
+      "Xatoni qayta takrorlash qadamlarini yozaman",
+      "Jira/Trello'da ishlayman"
+     ],
+     "signs_wrong": [
+      "Faqat \"ishlamayapti\" deb yozish",
+      "Bir xil testni takrorlash"
+     ],
+     "graduate_criteria": [
+      "30+ test-keys",
+      "10+ xato hisoboti",
+      "Test rejasi"
+     ],
+     "challenges": [
+      "Mayda detallar",
+      "Bir xillik"
+     ],
+     "skills_gained": [
+      "Test dizayn",
+      "Bug report",
+      "Jira/Trello"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "WEB + API TESTING",
+     "name_uz": "Veb va API test",
+     "weeks": 4,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Brauzer vositalari va API testlari",
+     "constraints": [
+      [
+       "Brauzer vositalari notanish",
+       "DevTools'da Network va Console"
+      ],
+      [
+       "API nima?",
+       "Postman bilan oddiy so'rovlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: DevTools",
+      "30 daqiqa: SQL asoslari",
+      "60 daqiqa: API test"
+     ],
+     "signs_right": [
+      "Network'da xatoni topaman",
+      "Postman'da API sinayman",
+      "Bazadan natijani tekshiraman"
+     ],
+     "signs_wrong": [
+      "Faqat ekranga qarash",
+      "Server javobini tekshirmaslik"
+     ],
+     "graduate_criteria": [
+      "API test to'plami",
+      "SQL bilan tekshiruv",
+      "DevTools hisobotlari"
+     ],
+     "challenges": [
+      "Texnik atamalar",
+      "Ko'p vosita"
+     ],
+     "skills_gained": [
+      "DevTools",
+      "Postman",
+      "SQL"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "AUTOMATION",
+     "name_uz": "Avtotest",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Avtotestlar to'plami",
+     "constraints": [
+      [
+       "Kod yozish qiyin",
+       "Python yoki JavaScript asoslaridan boshlash"
+      ],
+      [
+       "Testlar beqaror",
+       "To'g'ri kutish va aniq lokatorlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Til asoslari",
+      "60 daqiqa: Avtotest yozish",
+      "30 daqiqa: Natijani tahlil"
+     ],
+     "signs_right": [
+      "Brauzerni kod bilan boshqaraman",
+      "10+ avtotest yozdim",
+      "Testlar GitHub'da"
+     ],
+     "signs_wrong": [
+      "Hamma narsani avtomatlashtirishga urinish",
+      "Beqaror testlarni qoldirish"
+     ],
+     "graduate_criteria": [
+      "Playwright/Selenium testlari",
+      "GitHub loyiha",
+      "Test hisoboti"
+     ],
+     "challenges": [
+      "Dasturlash",
+      "Barqarorlik"
+     ],
+     "skills_gained": [
+      "Playwright/Selenium",
+      "Python/JS asoslari"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Junior QA ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba yo'q",
+       "Ochiq mahsulotlarni sinab, hisobotlarni portfolioga qo'shish"
+      ],
+      [
+       "Suhbat",
+       "Test-keys yozishni jonli mashq qilish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Test jarayonini tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Portfoliosiz ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Test hujjatlari portfoliosi",
+      "Avtotest loyihasi"
+     ],
+     "challenges": [
+      "Rad javoblari",
+      "O'ziga ishonch"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Test asoslari",
+     "days": [
+      "Du: Test nima",
+      "Se: Test turlari",
+      "Ch: Test-keys",
+      "Pa: Bug report",
+      "Ju: Mashq sayti",
+      "Sh: 5 ta xato",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Test dizayn",
+     "days": [
+      "Du: Chegara qiymatlar",
+      "Se: Teng bo'linish",
+      "Ch: Test rejasi",
+      "Pa: Jira/Trello",
+      "Ju: Regression",
+      "Sh: 20 test-keys",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Veb va API",
+     "days": [
+      "Du: DevTools Console",
+      "Se: DevTools Network",
+      "Ch: Postman",
+      "Pa: API javoblari",
+      "Ju: SQL SELECT",
+      "Sh: API to'plam",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Avtotestga kirish",
+     "days": [
+      "Du: Til asoslari",
+      "Se: Playwright o'rnatish",
+      "Ch: Birinchi avtotest",
+      "Pa: Lokatorlar",
+      "Ju: Kutishlar",
+      "Sh: 5 avtotest",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Test turlari haqida qisqa material o'qish (bugun, 20 daqiqa)",
+    "Sevimli ilovangizda 1 ta xato yoki noqulaylik topish (bugun, 30 daqiqa)",
+    "Uni qadamlar bilan hisobot qilib yozish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "roadmap.sh — QA",
+     "url": "https://roadmap.sh/qa",
+     "lang": "EN"
+    },
+    {
+     "name": "Playwright — Docs",
+     "url": "https://playwright.dev/docs/intro",
+     "lang": "EN"
+    },
+    {
+     "name": "Selenium — Documentation",
+     "url": "https://www.selenium.dev/documentation/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi xato hisoboti"
+    },
+    {
+     "week": 5,
+     "milestone": "30+ test-keys"
+    },
+    {
+     "week": 9,
+     "milestone": "API testlari"
+    },
+    {
+     "week": 15,
+     "milestone": "Avtotest loyiha"
+    },
+    {
+     "week": 19,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "data_science": {
+   "uz": "AI va Data Science muhandisi",
+   "cluster": "data_ai",
+   "cluster_uz": "Ma'lumotlar va sun'iy intellekt",
+   "why": "Data Science va AI — ma'lumotdan qonuniyat topib, bashorat qiladigan model qurish. Matematikadan qo'rqmaydigan, tajriba qilib natijani asta-sekin yaxshilashni yoqtiradigan odam uchun. Yo'l uzoqroq va matematika talab qiladi — buni oldindan bilish kerak.",
+   "b_point": {
+    "outcomes": [
+     "Junior Data Scientist / ML stajyor vakansiyalariga ariza",
+     "Portfolio: 3 ta model loyihasi",
+     "Kaggle musobaqalarida qatnashish"
+    ],
+    "next_step": "ML Engineer yoki AI mahsulot jamoasi"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Python muhiti va reja",
+     "constraints": [
+      [
+       "Matematika esdan chiqqan",
+       "Kerakli mavzularni yo'l davomida takrorlash"
+      ],
+      [
+       "Kompyuter kuchsiz",
+       "Brauzerdagi bepul notebook muhiti"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: AI va ML nima",
+      "30 daqiqa: Notebook muhiti",
+      "60 daqiqa: Birinchi Python kod"
+     ],
+     "signs_right": [
+      "Notebook ochildi",
+      "Birinchi kod ishladi",
+      "O'qish rejasi bor"
+     ],
+     "signs_wrong": [
+      "Darhol murakkab neyron tarmoqqa o'tish",
+      "Faqat yangilik o'qish"
+     ],
+     "graduate_criteria": [
+      "Muhit tayyor",
+      "Reja",
+      "Python'da birinchi qadam"
+     ],
+     "challenges": [
+      "Mavzu kengligi",
+      "Qo'rquv"
+     ],
+     "skills_gained": [
+      "Notebook",
+      "Asosiy tushunchalar"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "PYTHON + MATH",
+     "name_uz": "Python va matematika",
+     "weeks": 5,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Python va statistika asoslari",
+     "constraints": [
+      [
+       "Statistika qiyin",
+       "Har mavzuni kichik ma'lumotda sinab ko'rish"
+      ],
+      [
+       "Python yangi",
+       "Har kuni kichik masala"
+      ]
+     ],
+     "daily_focus": [
+      "45 daqiqa: Python",
+      "45 daqiqa: Statistika va ehtimollik",
+      "30 daqiqa: Mashq"
+     ],
+     "signs_right": [
+      "Pandas bilan jadval o'qiyman",
+      "O'rtacha, mediana, taqsimotni tushunaman",
+      "Grafik chizaman"
+     ],
+     "signs_wrong": [
+      "Formulani tushunmasdan yodlash",
+      "Mashqsiz o'qish"
+     ],
+     "graduate_criteria": [
+      "Python asoslari",
+      "Pandas",
+      "Statistika asoslari",
+      "Grafiklar"
+     ],
+     "challenges": [
+      "Matematika",
+      "Sabr"
+     ],
+     "skills_gained": [
+      "Python",
+      "Pandas",
+      "Statistika"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "MACHINE LEARNING",
+     "name_uz": "Mashinali o'qitish",
+     "weeks": 6,
+     "role": "Amaliyotchi",
+     "daily_hours": "2-3 soat",
+     "graduate_by": "Birinchi modellar",
+     "constraints": [
+      [
+       "Algoritmlar ko'p",
+       "Avval 3 tasi: chiziqli regressiya, qaror daraxti, klasterlash"
+      ],
+      [
+       "Natija yomon",
+       "Ma'lumotni tozalash va to'g'ri baholash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Model qurish",
+      "30 daqiqa: Natijani baholash"
+     ],
+     "signs_right": [
+      "Ma'lumotni train/test'ga ajrataman",
+      "Modelni baholayman",
+      "Natijani tushuntiraman"
+     ],
+     "signs_wrong": [
+      "Test ma'lumotida o'qitish",
+      "Faqat aniqlikka qarash"
+     ],
+     "graduate_criteria": [
+      "3 ta model loyihasi",
+      "Baholash metrikalari",
+      "Natija hisoboti"
+     ],
+     "challenges": [
+      "Overfitting",
+      "Ma'lumot tozalash"
+     ],
+     "skills_gained": [
+      "scikit-learn",
+      "Model baholash"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL PROJECT",
+     "name_uz": "Real loyiha",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "To'liq loyiha va tushuntirish",
+     "constraints": [
+      [
+       "Ma'lumot topish",
+       "Ochiq ma'lumotlar to'plamlari"
+      ],
+      [
+       "Loyiha chuqur emas",
+       "Bitta savolga to'liq javob"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Loyiha",
+      "30 daqiqa: Hujjat",
+      "30 daqiqa: Kaggle"
+     ],
+     "signs_right": [
+      "Loyiha savoldan xulosagacha tugadi",
+      "Natijani sodda tushuntirdim",
+      "Kod GitHub'da"
+     ],
+     "signs_wrong": [
+      "Natijani bo'rttirish",
+      "Tushuntirishsiz loyiha"
+     ],
+     "graduate_criteria": [
+      "To'liq loyiha",
+      "Notebook + hisobot",
+      "1 ta musobaqada qatnashish"
+     ],
+     "challenges": [
+      "Oxiriga yetkazish",
+      "Tushuntirish"
+     ],
+     "skills_gained": [
+      "End-to-end loyiha",
+      "Taqdimot"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Stajyor/junior ariza va suhbatlar",
+     "constraints": [
+      [
+       "Junior o'rinlar kam",
+       "Data analitik yoki stajyorlik orqali kirish"
+      ],
+      [
+       "Suhbat",
+       "Loyihani 5 daqiqada tushuntirish mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Loyihalarimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat \"AI engineer\" o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume + GitHub",
+      "3 ta loyiha",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Tajriba talabi"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Python asoslari",
+     "days": [
+      "Du: Notebook muhiti",
+      "Se: O'zgaruvchilar",
+      "Ch: Ro'yxatlar",
+      "Pa: Funksiyalar",
+      "Ju: Fayl o'qish",
+      "Sh: Kichik mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Jadval bilan ishlash",
+     "days": [
+      "Du: Pandas o'rnatish",
+      "Se: Jadval o'qish",
+      "Ch: Filtrlash",
+      "Pa: Guruhlash",
+      "Ju: Grafik",
+      "Sh: Mini tahlil",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Statistika",
+     "days": [
+      "Du: O'rtacha va mediana",
+      "Se: Taqsimot",
+      "Ch: Ehtimollik",
+      "Pa: Korrelyatsiya",
+      "Ju: Namuna",
+      "Sh: Statistika mashqi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Birinchi model",
+     "days": [
+      "Du: ML nima",
+      "Se: Train/test",
+      "Ch: Chiziqli regressiya",
+      "Pa: Baholash",
+      "Ju: Xulosa yozish",
+      "Sh: Birinchi model",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Brauzerda bepul notebook ochish (bugun, 10 daqiqa)",
+    "Kaggle Learn'dagi Python kursini boshlash (bugun, 40 daqiqa)",
+    "Bir haftalik o'qish vaqtini kalendarga yozish (bugun, 10 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Kaggle Learn",
+     "url": "https://www.kaggle.com/learn",
+     "lang": "EN"
+    },
+    {
+     "name": "Google — Machine Learning Crash Course",
+     "url": "https://developers.google.com/machine-learning/crash-course",
+     "lang": "EN"
+    },
+    {
+     "name": "scikit-learn — Tutorials",
+     "url": "https://scikit-learn.org/stable/tutorial/index.html",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Muhit tayyor"
+    },
+    {
+     "week": 6,
+     "milestone": "Python va statistika"
+    },
+    {
+     "week": 12,
+     "milestone": "3 ta model"
+    },
+    {
+     "week": 18,
+     "milestone": "To'liq loyiha"
+    },
+    {
+     "week": 22,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "database_specialist": {
+   "uz": "Ma'lumotlar bazasi mutaxassisi",
+   "cluster": "data_ai",
+   "cluster_uz": "Ma'lumotlar va sun'iy intellekt",
+   "why": "Ma'lumotlar bazasi mutaxassisi kompaniya ma'lumotlarining tartibli, tez va xavfsiz saqlanishini ta'minlaydi. Tartibni yaxshi ko'radigan, ishonchlilikni qadrlaydigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior DBA / SQL dasturchi vakansiyalariga ariza",
+     "Portfolio: loyihalangan baza va so'rovlar to'plami",
+     "Data yoki backend jamoasida stajyorlik"
+    ],
+    "next_step": "DBA, Data Engineer yoki Backend"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "PostgreSQL o'rnatilgan",
+     "constraints": [
+      [
+       "Qaysi baza?",
+       "PostgreSQL bilan boshlash"
+      ],
+      [
+       "O'rnatish qiyin",
+       "Onlayn SQL mashq saytlari"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Baza nima",
+      "30 daqiqa: O'rnatish",
+      "60 daqiqa: Birinchi jadval"
+     ],
+     "signs_right": [
+      "Baza o'rnatildi",
+      "Birinchi jadval yaratildi",
+      "Birinchi so'rov ishladi"
+     ],
+     "signs_wrong": [
+      "Faqat nazariya",
+      "Excel bilan adashtirish"
+     ],
+     "graduate_criteria": [
+      "PostgreSQL tayyor",
+      "1 ta jadval",
+      "1 ta so'rov"
+     ],
+     "challenges": [
+      "Atamalar",
+      "O'rnatish"
+     ],
+     "skills_gained": [
+      "SQL muhiti"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "SQL BASICS",
+     "name_uz": "SQL asoslari",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Murakkab so'rovlar yozish",
+     "constraints": [
+      [
+       "JOIN tushunarsiz",
+       "Ikki kichik jadvalda qo'lda sinash"
+      ],
+      [
+       "Mashq yetmaydi",
+       "Har kuni 5 ta masala"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Yangi mavzu",
+      "60 daqiqa: Masalalar",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "SELECT, WHERE, GROUP BY yozaman",
+      "JOIN ishlataman",
+      "Natijani tekshiraman"
+     ],
+     "signs_wrong": [
+      "Natijani tekshirmaslik",
+      "Faqat oson masalalar"
+     ],
+     "graduate_criteria": [
+      "50+ yechilgan masala",
+      "JOIN va agregatlar",
+      "Subquery"
+     ],
+     "challenges": [
+      "Mantiq",
+      "Aniqlik"
+     ],
+     "skills_gained": [
+      "SQL",
+      "JOIN",
+      "Agregatlar"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "DATABASE DESIGN",
+     "name_uz": "Bazani loyihalash",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "To'g'ri tuzilgan baza",
+     "constraints": [
+      [
+       "Jadvallar takrorlanadi",
+       "Normalizatsiya qoidalari"
+      ],
+      [
+       "Bog'lanishlar chalkash",
+       "ER-diagramma chizish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Loyihalash",
+      "30 daqiqa: Sinash"
+     ],
+     "signs_right": [
+      "ER-diagramma chizaman",
+      "Kalitlarni to'g'ri qo'yaman",
+      "Takror ma'lumotdan qochaman"
+     ],
+     "signs_wrong": [
+      "Hamma narsa bitta jadvalda",
+      "Kalitsiz jadvallar"
+     ],
+     "graduate_criteria": [
+      "Do'kon yoki maktab bazasi loyihasi",
+      "ER-diagramma",
+      "Cheklovlar (constraints)"
+     ],
+     "challenges": [
+      "Abstrakt fikrlash",
+      "Ko'p qoida"
+     ],
+     "skills_gained": [
+      "Normalizatsiya",
+      "ER-diagramma"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "PERFORMANCE + BACKUP",
+     "name_uz": "Tezlik va zaxira",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Tezlashtirilgan va zaxiralangan baza",
+     "constraints": [
+      [
+       "So'rov sekin",
+       "EXPLAIN va indekslar"
+      ],
+      [
+       "Zaxira qo'rqinchli",
+       "Zaxira olish va tiklashni mashq qilish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Indekslar",
+      "60 daqiqa: Amaliyot",
+      "30 daqiqa: Zaxira mashqi"
+     ],
+     "signs_right": [
+      "EXPLAIN'ni o'qiyman",
+      "Indeks bilan so'rovni tezlashtirdim",
+      "Zaxiradan tikladim"
+     ],
+     "signs_wrong": [
+      "Har ustunga indeks qo'yish",
+      "Zaxirani sinamaslik"
+     ],
+     "graduate_criteria": [
+      "Indekslash loyihasi",
+      "Zaxira va tiklash",
+      "Foydalanuvchi huquqlari"
+     ],
+     "challenges": [
+      "Tezlik tahlili",
+      "Xavfsizlik"
+     ],
+     "skills_gained": [
+      "Indekslar",
+      "Backup/restore",
+      "Huquqlar"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Junior ariza va suhbatlar",
+     "constraints": [
+      [
+       "Junior DBA o'rinlari kam",
+       "SQL dasturchi yoki data jamoasi orqali kirish"
+      ],
+      [
+       "Suhbat",
+       "SQL masalalarni jonli yechish mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: SQL mashq"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Loyihamni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat DBA o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume + GitHub",
+      "Baza loyihasi",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Baza asoslari",
+     "days": [
+      "Du: Baza nima",
+      "Se: O'rnatish",
+      "Ch: Jadval yaratish",
+      "Pa: INSERT",
+      "Ju: SELECT",
+      "Sh: 10 masala",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "So'rovlar",
+     "days": [
+      "Du: WHERE",
+      "Se: ORDER BY",
+      "Ch: GROUP BY",
+      "Pa: JOIN",
+      "Ju: Subquery",
+      "Sh: 20 masala",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Loyihalash",
+     "days": [
+      "Du: Kalitlar",
+      "Se: Bog'lanishlar",
+      "Ch: Normalizatsiya",
+      "Pa: ER-diagramma",
+      "Ju: Cheklovlar",
+      "Sh: Mini baza",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Ishonchlilik",
+     "days": [
+      "Du: Indeks",
+      "Se: EXPLAIN",
+      "Ch: Zaxira",
+      "Pa: Tiklash",
+      "Ju: Huquqlar",
+      "Sh: Loyiha hisoboti",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "SQLBolt'ning birinchi 3 darsini o'tish (bugun, 40 daqiqa)",
+    "PostgreSQL o'rnatish yoki onlayn muhit ochish (bugun, 20 daqiqa)",
+    "O'z ro'yxatingizdan (kitoblar, xarajatlar) jadval yaratish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "SQLBolt",
+     "url": "https://sqlbolt.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "PostgreSQL — Tutorial",
+     "url": "https://www.postgresql.org/docs/current/tutorial.html",
+     "lang": "EN"
+    },
+    {
+     "name": "roadmap.sh — PostgreSQL DBA",
+     "url": "https://roadmap.sh/postgresql-dba",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi jadval"
+    },
+    {
+     "week": 5,
+     "milestone": "50+ SQL masala"
+    },
+    {
+     "week": 10,
+     "milestone": "Loyihalangan baza"
+    },
+    {
+     "week": 16,
+     "milestone": "Tezlik va zaxira"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "system_network_admin": {
+   "uz": "Tizim va tarmoq ma'muri",
+   "cluster": "infra_security",
+   "cluster_uz": "Tizimlar, tarmoq va xavfsizlik",
+   "why": "Tizim va tarmoq ma'muri ofisdagi kompyuter, server va internetning uzluksiz ishlashini ta'minlaydi. Qo'l bilan ishlashni, buzilgan narsani tez tuzatishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Helpdesk / IT support vakansiyalariga ariza",
+     "Junior tizim ma'muri o'rinlari",
+     "Kichik ofislarga xizmat ko'rsatish"
+    ],
+    "next_step": "Tizim muhandisi, DevOps yoki kiberxavfsizlik"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Kompyuter va tarmoq asoslari",
+     "constraints": [
+      [
+       "Uskuna yo'q",
+       "Virtual mashina (VirtualBox) bilan mashq"
+      ],
+      [
+       "Atamalar ko'p",
+       "Lug'at daftar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Kompyuter qismlari",
+      "30 daqiqa: Tarmoq nima",
+      "60 daqiqa: Virtual mashina o'rnatish"
+     ],
+     "signs_right": [
+      "Virtual mashina ishlayapti",
+      "IP manzilni topa olaman",
+      "Atamalar lug'ati bor"
+     ],
+     "signs_wrong": [
+      "Faqat video ko'rish",
+      "Amaliyotsiz o'qish"
+     ],
+     "graduate_criteria": [
+      "Virtual mashina",
+      "Asosiy atamalar",
+      "IP manzil"
+     ],
+     "challenges": [
+      "Atamalar",
+      "Qayerdan boshlash"
+     ],
+     "skills_gained": [
+      "Virtualizatsiya",
+      "Asosiy tushunchalar"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "OS + SUPPORT",
+     "name_uz": "Operatsion tizimlar",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Windows va Linux asoslari",
+     "constraints": [
+      [
+       "Linux qo'rqinchli",
+       "Har kuni 10 ta buyruq"
+      ],
+      [
+       "Muammoni qayerdan izlash",
+       "Tekshiruv ro'yxati (checklist)"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Windows",
+      "45 daqiqa: Linux buyruqlari",
+      "45 daqiqa: Muammo hal qilish mashqi"
+     ],
+     "signs_right": [
+      "Foydalanuvchi va huquqlarni sozlayman",
+      "Linux'da fayl va jarayonlar bilan ishlayman",
+      "Muammoni bosqichma-bosqich tekshiraman"
+     ],
+     "signs_wrong": [
+      "Taxmin bilan tuzatish",
+      "Qilganini yozib qo'ymaslik"
+     ],
+     "graduate_criteria": [
+      "Windows sozlash",
+      "Linux asoslari",
+      "Muammo hal qilish checklisti"
+     ],
+     "challenges": [
+      "Buyruqlar",
+      "Mantiqiy tekshiruv"
+     ],
+     "skills_gained": [
+      "Windows",
+      "Linux",
+      "Troubleshooting"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "NETWORKING",
+     "name_uz": "Tarmoq",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Kichik tarmoqni sozlash",
+     "constraints": [
+      [
+       "Tarmoq mavhum",
+       "Uydagi routerdan boshlash"
+      ],
+      [
+       "Uskuna yo'q",
+       "Tarmoq simulyatori"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Simulyatorda mashq",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "IP, DNS, DHCP'ni tushunaman",
+      "Simulyatorda tarmoq qurdim",
+      "ping va traceroute ishlataman"
+     ],
+     "signs_wrong": [
+      "Faqat yodlash",
+      "Routerni tushunmasdan sozlash"
+     ],
+     "graduate_criteria": [
+      "Ofis tarmog'i loyihasi",
+      "IP rejalash",
+      "Wi-Fi xavfsizligi"
+     ],
+     "challenges": [
+      "Mavhum tushunchalar",
+      "Ko'p protokol"
+     ],
+     "skills_gained": [
+      "TCP/IP",
+      "DNS/DHCP",
+      "Router sozlash"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "SERVERS + PRACTICE",
+     "name_uz": "Server va amaliyot",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ishlaydigan server va hujjatlar",
+     "constraints": [
+      [
+       "Real tajriba yo'q",
+       "Tanish ofis yoki maktabga ko'ngilli yordam"
+      ],
+      [
+       "Hujjat yozish",
+       "Qilingan ishni qadamma-qadam yozish odati"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Server sozlash",
+      "30 daqiqa: Zaxira",
+      "30 daqiqa: Hujjat"
+     ],
+     "signs_right": [
+      "Linux server sozladim",
+      "Zaxira tizimini qurdim",
+      "Real joyda yordam berdim"
+     ],
+     "signs_wrong": [
+      "Hujjatsiz ishlash",
+      "Zaxirani sinamaslik"
+     ],
+     "graduate_criteria": [
+      "Server (fayl yoki veb)",
+      "Zaxira rejasi",
+      "Real yordam tajribasi",
+      "Ish hujjatlari"
+     ],
+     "challenges": [
+      "Mas'uliyat",
+      "Hujjat"
+     ],
+     "skills_gained": [
+      "Linux server",
+      "Backup",
+      "Hujjatlash"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Helpdesk / junior ariza va suhbatlar",
+     "constraints": [
+      [
+       "Sertifikat yo'q",
+       "Bepul kurs sertifikatlari va amaliy ish"
+      ],
+      [
+       "Suhbat",
+       "Muammo hal qilish ssenariylarini mashq qilish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Rezyume",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Muammo hal qilishni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat \"tizim ma'muri\" o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Amaliy ishlar ro'yxati",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Navbatchilik"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Rezyume"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Kompyuter qismlari",
+      "Se: Virtual mashina",
+      "Ch: Windows sozlash",
+      "Pa: Foydalanuvchilar",
+      "Ju: IP manzil",
+      "Sh: Mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Linux",
+     "days": [
+      "Du: Terminal",
+      "Se: Fayllar",
+      "Ch: Huquqlar",
+      "Pa: Jarayonlar",
+      "Ju: Paketlar",
+      "Sh: 10 buyruq mashqi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Tarmoq",
+     "days": [
+      "Du: IP va subnet",
+      "Se: DNS",
+      "Ch: DHCP",
+      "Pa: Router",
+      "Ju: Wi-Fi xavfsizligi",
+      "Sh: Simulyator",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Muammo hal qilish",
+     "days": [
+      "Du: Checklist",
+      "Se: ping/traceroute",
+      "Ch: Printer muammosi",
+      "Pa: Internet muammosi",
+      "Ju: Hujjat",
+      "Sh: Ssenariy mashqi",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "VirtualBox o'rnatish (bugun, 20 daqiqa)",
+    "Kompyuteringizning IP manzilini topish (bugun, 10 daqiqa)",
+    "Linux Journey'ning birinchi darsini o'tish (bugun, 30 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Cisco Networking Academy",
+     "url": "https://www.netacad.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Linux Journey",
+     "url": "https://linuxjourney.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Microsoft Learn",
+     "url": "https://learn.microsoft.com/en-us/training/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Virtual mashina"
+    },
+    {
+     "week": 5,
+     "milestone": "Windows va Linux asoslari"
+    },
+    {
+     "week": 10,
+     "milestone": "Tarmoq loyihasi"
+    },
+    {
+     "week": 16,
+     "milestone": "Server va real yordam"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "devops_cloud": {
+   "uz": "DevOps / Cloud muhandisi",
+   "cluster": "infra_security",
+   "cluster_uz": "Tizimlar, tarmoq va xavfsizlik",
+   "why": "DevOps muhandisi dasturning tez, avtomatik va ishonchli ishga tushishini ta'minlaydi. Takroriy ishni avtomatlashtirishni yoqtiradigan odam uchun. Odatda Linux, tarmoq va dasturlash asoslari oldindan kerak bo'ladi.",
+   "b_point": {
+    "outcomes": [
+     "Junior DevOps / Cloud stajyorlik",
+     "Tizim ma'muri yoki backend orqali o'tish",
+     "Portfolio: avtomatlashtirilgan loyiha"
+    ],
+    "next_step": "DevOps/SRE yoki Cloud arxitektor"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Linux muhiti va reja",
+     "constraints": [
+      [
+       "Linux bilmayman",
+       "Linux asoslaridan boshlash"
+      ],
+      [
+       "Kompyuter kuchsiz",
+       "Virtual mashina yoki bulutdagi bepul sinov"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: DevOps nima",
+      "30 daqiqa: Linux muhiti",
+      "60 daqiqa: Terminal"
+     ],
+     "signs_right": [
+      "Linux muhiti bor",
+      "Terminalda ishlayman",
+      "Reja tuzildi"
+     ],
+     "signs_wrong": [
+      "Darhol Kubernetes'ga o'tish",
+      "Faqat atamalarni yodlash"
+     ],
+     "graduate_criteria": [
+      "Linux muhiti",
+      "Terminal asoslari",
+      "O'qish rejasi"
+     ],
+     "challenges": [
+      "Mavzu kengligi",
+      "Atamalar"
+     ],
+     "skills_gained": [
+      "Linux muhiti"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "LINUX + SCRIPTING",
+     "name_uz": "Linux va skript",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Avtomatlashtiruvchi skriptlar",
+     "constraints": [
+      [
+       "Skript qiyin",
+       "Kichik takroriy ishdan boshlash"
+      ],
+      [
+       "Xatolar",
+       "Loglarni o'qish odati"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Linux",
+      "60 daqiqa: Bash/Python skript",
+      "30 daqiqa: Git"
+     ],
+     "signs_right": [
+      "Bash skript yozaman",
+      "Cron bilan vazifa rejalashtiraman",
+      "Git ishlataman"
+     ],
+     "signs_wrong": [
+      "Qo'lda takrorlash",
+      "Skriptni sinamaslik"
+     ],
+     "graduate_criteria": [
+      "5+ foydali skript",
+      "Git va GitHub",
+      "Loglar bilan ishlash"
+     ],
+     "challenges": [
+      "Sintaksis",
+      "Mantiq"
+     ],
+     "skills_gained": [
+      "Bash",
+      "Git",
+      "Cron"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "CONTAINERS + CI/CD",
+     "name_uz": "Konteyner va avtomatik chiqarish",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2-3 soat",
+     "graduate_by": "Docker va CI/CD pipeline",
+     "constraints": [
+      [
+       "Docker tushunarsiz",
+       "Bitta oddiy ilovani konteynerga solish"
+      ],
+      [
+       "Pipeline murakkab",
+       "Avval faqat test bosqichi"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Docker",
+      "30 daqiqa: CI/CD"
+     ],
+     "signs_right": [
+      "Dockerfile yozaman",
+      "docker compose bilan ko'p servis",
+      "Push'dan keyin testlar o'zi ishlaydi"
+     ],
+     "signs_wrong": [
+      "Konteynerga hamma narsani tiqish",
+      "Maxfiy kalitni kodda saqlash"
+     ],
+     "graduate_criteria": [
+      "Docker'dagi ilova",
+      "CI/CD pipeline",
+      "Maxfiy kalitlarni to'g'ri saqlash"
+     ],
+     "challenges": [
+      "Ko'p yangi vosita",
+      "Xatolarni topish"
+     ],
+     "skills_gained": [
+      "Docker",
+      "CI/CD",
+      "Secrets"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "CLOUD + MONITORING",
+     "name_uz": "Bulut va kuzatuv",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Bulutda ishlaydigan, kuzatiladigan loyiha",
+     "constraints": [
+      [
+       "Bulut pullik",
+       "Bepul sinov limitlari va xarajat ogohlantirishi"
+      ],
+      [
+       "Kuzatuv yo'q",
+       "Oddiy monitoring va alertlar"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Bulut",
+      "30 daqiqa: Monitoring",
+      "30 daqiqa: Hujjat"
+     ],
+     "signs_right": [
+      "Ilovani bulutga joyladim",
+      "Monitoring va ogohlantirish bor",
+      "Infratuzilma kod bilan yozilgan"
+     ],
+     "signs_wrong": [
+      "Xarajat limitisiz ishlash",
+      "Hujjatsiz infratuzilma"
+     ],
+     "graduate_criteria": [
+      "Bulutdagi loyiha",
+      "Monitoring",
+      "Infrastructure as Code asoslari"
+     ],
+     "challenges": [
+      "Xarajat",
+      "Murakkablik"
+     ],
+     "skills_gained": [
+      "Cloud asoslari",
+      "Monitoring",
+      "Terraform asoslari"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Stajyorlik/junior ariza va suhbatlar",
+     "constraints": [
+      [
+       "Junior DevOps o'rinlari kam",
+       "Tizim ma'muri yoki backend orqali kirish"
+      ],
+      [
+       "Suhbat",
+       "Loyiha arxitekturasini chizib tushuntirish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Pipeline'imni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat DevOps o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume + GitHub",
+      "Avtomatlashtirilgan loyiha",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Linux",
+     "days": [
+      "Du: Terminal",
+      "Se: Fayllar",
+      "Ch: Huquqlar",
+      "Pa: Jarayonlar",
+      "Ju: Tarmoq buyruqlari",
+      "Sh: Mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Skript",
+     "days": [
+      "Du: Bash asoslari",
+      "Se: O'zgaruvchi va sikl",
+      "Ch: Cron",
+      "Pa: Git",
+      "Ju: Loglar",
+      "Sh: Foydali skript",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Docker",
+     "days": [
+      "Du: Konteyner nima",
+      "Se: Image va container",
+      "Ch: Dockerfile",
+      "Pa: Volume",
+      "Ju: Compose",
+      "Sh: Docker loyiha",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "CI/CD",
+     "days": [
+      "Du: Pipeline nima",
+      "Se: Test bosqichi",
+      "Ch: Build bosqichi",
+      "Pa: Secrets",
+      "Ju: Deploy bosqichi",
+      "Sh: Ishlaydigan pipeline",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Linux muhitini tayyorlash (bugun, 30 daqiqa)",
+    "roadmap.sh'dagi DevOps xaritasini ko'rib chiqish (bugun, 15 daqiqa)",
+    "Takroriy bitta ishingizni yozib qo'yish — keyin avtomatlashtirasiz (bugun, 10 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "roadmap.sh — DevOps",
+     "url": "https://roadmap.sh/devops",
+     "lang": "EN"
+    },
+    {
+     "name": "Docker — Get started",
+     "url": "https://docs.docker.com/get-started/",
+     "lang": "EN"
+    },
+    {
+     "name": "Linux Journey",
+     "url": "https://linuxjourney.com/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Linux muhiti"
+    },
+    {
+     "week": 5,
+     "milestone": "Foydali skriptlar"
+    },
+    {
+     "week": 10,
+     "milestone": "Docker va CI/CD"
+    },
+    {
+     "week": 16,
+     "milestone": "Bulutdagi loyiha"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "cybersecurity": {
+   "uz": "Kiberxavfsizlik mutaxassisi",
+   "cluster": "infra_security",
+   "cluster_uz": "Tizimlar, tarmoq va xavfsizlik",
+   "why": "Kiberxavfsizlik mutaxassisi tizim va ma'lumotlarni hujumlardan himoya qiladi. Hushyor, \"buni qanday buzish mumkin?\" deb o'ylaydigan va qoidaga rioya qiladigan odam uchun. Tarmoq va Linux asoslari oldindan kerak.",
+   "b_point": {
+    "outcomes": [
+     "SOC tahlilchi (1-bosqich) yoki IT support orqali kirish",
+     "Portfolio: laboratoriya hisobotlari",
+     "CTF musobaqalarida qatnashish"
+    ],
+    "next_step": "SOC tahlilchi, pentest yoki xavfsizlik muhandisi"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Xavfsiz mashq muhiti va qoidalar",
+     "constraints": [
+      [
+       "Qonuniy chegara",
+       "Faqat ruxsat berilgan laboratoriya va musobaqa muhitida mashq qilish"
+      ],
+      [
+       "Bilim yo'q",
+       "Asoslardan boshlash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Kiberxavfsizlik nima",
+      "30 daqiqa: Etika va qonun",
+      "60 daqiqa: Laboratoriya muhiti"
+     ],
+     "signs_right": [
+      "Mashq platformasida akkaunt bor",
+      "Qonuniy chegarani bilaman",
+      "Reja tuzildi"
+     ],
+     "signs_wrong": [
+      "Begona tizimni sinab ko'rish",
+      "Faqat film va video"
+     ],
+     "graduate_criteria": [
+      "Mashq muhiti",
+      "Etika qoidalari",
+      "O'qish rejasi"
+     ],
+     "challenges": [
+      "Qayerdan boshlash",
+      "Qonuniy chegara"
+     ],
+     "skills_gained": [
+      "Xavfsizlik asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "NETWORK + LINUX",
+     "name_uz": "Tarmoq va Linux",
+     "weeks": 5,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Tarmoq va Linux asoslari",
+     "constraints": [
+      [
+       "Tarmoq mavhum",
+       "Wireshark bilan o'z trafigingizni kuzatish"
+      ],
+      [
+       "Linux yangi",
+       "Har kuni buyruqlar mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "45 daqiqa: Tarmoq",
+      "45 daqiqa: Linux",
+      "30 daqiqa: Laboratoriya"
+     ],
+     "signs_right": [
+      "TCP/IP va portlarni tushunaman",
+      "Linux'da erkin ishlayman",
+      "Trafikni tahlil qila olaman"
+     ],
+     "signs_wrong": [
+      "Asoslarni o'tkazib yuborish",
+      "Faqat vosita ishlatish"
+     ],
+     "graduate_criteria": [
+      "Tarmoq asoslari",
+      "Linux asoslari",
+      "Wireshark mashqi"
+     ],
+     "challenges": [
+      "Ko'p asos bilim",
+      "Sabr"
+     ],
+     "skills_gained": [
+      "TCP/IP",
+      "Linux",
+      "Wireshark"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "SECURITY BASICS",
+     "name_uz": "Xavfsizlik asoslari",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Asosiy hujum va himoya turlari",
+     "constraints": [
+      [
+       "Hujum turlari ko'p",
+       "OWASP Top 10 dan boshlash"
+      ],
+      [
+       "Amaliyot yo'q",
+       "Laboratoriya xonalari"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Laboratoriya",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "Fishingni taniyman",
+      "OWASP Top 10 ni tushuntira olaman",
+      "Laboratoriya hisobotini yozaman"
+     ],
+     "signs_wrong": [
+      "Hisobotsiz mashq",
+      "Vosita ortidan quvish"
+     ],
+     "graduate_criteria": [
+      "10+ laboratoriya",
+      "OWASP Top 10",
+      "Hisobot namunalari"
+     ],
+     "challenges": [
+      "Texnik chuqurlik",
+      "Tartib"
+     ],
+     "skills_gained": [
+      "OWASP",
+      "Zaifliklarni aniqlash"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "BLUE TEAM PRACTICE",
+     "name_uz": "Himoya amaliyoti",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Loglar tahlili va hodisaga javob",
+     "constraints": [
+      [
+       "Loglar ko'p",
+       "Bitta hodisani boshidan oxirigacha tekshirish"
+      ],
+      [
+       "Real tajriba yo'q",
+       "SOC mashqlari va CTF"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Log tahlili",
+      "30 daqiqa: CTF",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "Logda shubhali harakatni topaman",
+      "Hodisaga javob qadamlarini bilaman",
+      "CTF'da qatnashdim"
+     ],
+     "signs_wrong": [
+      "Faqat hujum tomoni",
+      "Hisobot yozmaslik"
+     ],
+     "graduate_criteria": [
+      "Log tahlili loyihasi",
+      "Hodisa hisoboti",
+      "1+ CTF"
+     ],
+     "challenges": [
+      "Diqqat",
+      "Hujjat"
+     ],
+     "skills_gained": [
+      "SIEM asoslari",
+      "Incident response"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "SOC / IT support ariza va suhbatlar",
+     "constraints": [
+      [
+       "Junior o'rinlar kam",
+       "IT support yoki tizim ma'muri orqali kirish"
+      ],
+      [
+       "Suhbat",
+       "Hodisa ssenariylarini mashq qilish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Laboratoriya ishlarimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat pentest o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Laboratoriya hisobotlari",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Ishonch"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar va etika",
+     "days": [
+      "Du: Kiberxavfsizlik nima",
+      "Se: Qonun va etika",
+      "Ch: Mashq platformasi",
+      "Pa: Parollar",
+      "Ju: Fishing",
+      "Sh: Birinchi xona",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Tarmoq",
+     "days": [
+      "Du: IP va portlar",
+      "Se: TCP/UDP",
+      "Ch: DNS",
+      "Pa: Wireshark",
+      "Ju: Trafik tahlili",
+      "Sh: Tarmoq xonasi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Linux",
+     "days": [
+      "Du: Terminal",
+      "Se: Fayllar va huquqlar",
+      "Ch: Jarayonlar",
+      "Pa: Loglar",
+      "Ju: Foydalanuvchilar",
+      "Sh: Linux xonasi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Veb xavfsizlik",
+     "days": [
+      "Du: OWASP Top 10",
+      "Se: Inyeksiya",
+      "Ch: Autentifikatsiya",
+      "Pa: XSS",
+      "Ju: Hisobot yozish",
+      "Sh: Veb xonasi",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "TryHackMe yoki Cisco NetAcad'da akkaunt ochish (bugun, 10 daqiqa)",
+    "Kiberxavfsizlikda etika va qonun haqida o'qish (bugun, 20 daqiqa)",
+    "Birinchi bepul laboratoriya xonasini boshlash (bugun, 40 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "TryHackMe",
+     "url": "https://tryhackme.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Cisco Networking Academy",
+     "url": "https://www.netacad.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "OWASP Top 10",
+     "url": "https://owasp.org/www-project-top-ten/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Mashq muhiti"
+    },
+    {
+     "week": 6,
+     "milestone": "Tarmoq va Linux"
+    },
+    {
+     "week": 11,
+     "milestone": "10+ laboratoriya"
+    },
+    {
+     "week": 17,
+     "milestone": "Log tahlili va CTF"
+    },
+    {
+     "week": 21,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "graphic_design": {
+   "uz": "Grafik dizayner",
+   "cluster": "design_creative",
+   "cluster_uz": "Raqamli dizayn",
+   "why": "Grafik dizayner rang, shrift va obraz orqali brendni tanitadi: logotip, post, afisha, qadoq. Didli, fikrini rasm bilan ifodalashni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior grafik dizayner vakansiyalariga ariza",
+     "Freelance: logotip va post buyurtmalari",
+     "Agentlikda stajyorlik"
+    ],
+    "next_step": "Brend dizayn, motion yoki UI/UX"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Vosita tanlangan, ilhom papkasi tayyor",
+     "constraints": [
+      [
+       "Pullik dasturlar",
+       "Bepul vositalar (Canva, Figma, Photopea) bilan boshlash"
+      ],
+      [
+       "Chiza olmayman",
+       "Grafik dizayn rasm chizish emas — kompozitsiya va tartib"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Dizayn turlari",
+      "30 daqiqa: Vosita o'rnatish",
+      "60 daqiqa: Namunalar yig'ish"
+     ],
+     "signs_right": [
+      "Vosita tanlandi",
+      "Ilhom papkasi bor",
+      "Birinchi eskiz"
+     ],
+     "signs_wrong": [
+      "Faqat tomosha",
+      "Ko'chirish"
+     ],
+     "graduate_criteria": [
+      "Vosita",
+      "Ilhom papkasi",
+      "Birinchi eskiz"
+     ],
+     "challenges": [
+      "O'ziga ishonch",
+      "Tanlov"
+     ],
+     "skills_gained": [
+      "Dizayn vositasi"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "DESIGN BASICS",
+     "name_uz": "Dizayn asoslari",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Kompozitsiya, rang va shrift",
+     "constraints": [
+      [
+       "Rang tanlash qiyin",
+       "Tayyor palitra va rang qoidalari"
+      ],
+      [
+       "Shriftlar ko'p",
+       "Bitta dizaynda 2 tadan ko'p emas"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Mashq",
+      "30 daqiqa: Tahlil"
+     ],
+     "signs_right": [
+      "Kompozitsiya qoidalarini qo'llayman",
+      "Rang uyg'unligini tanlayman",
+      "Shriftlarni to'g'ri juftlayman"
+     ],
+     "signs_wrong": [
+      "Hamma rangni ishlatish",
+      "Bo'sh joydan qo'rqish"
+     ],
+     "graduate_criteria": [
+      "10+ mashq ishi",
+      "Rang va shrift qoidalari",
+      "Kompozitsiya"
+     ],
+     "challenges": [
+      "Did",
+      "Sabr"
+     ],
+     "skills_gained": [
+      "Kompozitsiya",
+      "Rang",
+      "Tipografika"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "TOOLS + BRAND",
+     "name_uz": "Vositalar va brend",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Logotip va brend uslubi",
+     "constraints": [
+      [
+       "Illustrator qiyin",
+       "Figma'da vektor bilan boshlash"
+      ],
+      [
+       "G'oya yo'q",
+       "Xayoliy brend uchun ishlash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Vosita",
+      "60 daqiqa: Brend loyiha",
+      "30 daqiqa: Fikr so'rash"
+     ],
+     "signs_right": [
+      "Vektorda logotip chizaman",
+      "Brend uslub qo'llanmasi tuzaman",
+      "Fikr asosida qayta ishlayman"
+     ],
+     "signs_wrong": [
+      "Bitta variant bilan to'xtash",
+      "Fikrdan xafa bo'lish"
+     ],
+     "graduate_criteria": [
+      "2 ta xayoliy brend",
+      "Logotip + uslub qo'llanmasi",
+      "Post shablonlari"
+     ],
+     "challenges": [
+      "Ko'p variant",
+      "Tanqid"
+     ],
+     "skills_gained": [
+      "Vektor grafika",
+      "Brend identifikatsiyasi"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL CLIENT",
+     "name_uz": "Birinchi mijoz",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real buyurtma va keys",
+     "constraints": [
+      [
+       "Mijoz topish",
+       "Tanish kichik biznes yoki tadbir"
+      ],
+      [
+       "Brif tushunarsiz",
+       "Boshida savollar ro'yxati bilan brif olish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Mijoz bilan aloqa",
+      "60 daqiqa: Dizayn",
+      "30 daqiqa: Keys yozish"
+     ],
+     "signs_right": [
+      "1+ real buyurtma",
+      "Brif bilan ishladim",
+      "Keys yozdim"
+     ],
+     "signs_wrong": [
+      "Brifsiz ishlash",
+      "Cheksiz tuzatish"
+     ],
+     "graduate_criteria": [
+      "1+ real ish",
+      "Keys: vazifa → jarayon → natija",
+      "Tuzatishlar soni kelishilgan"
+     ],
+     "challenges": [
+      "Mijoz bilan muloqot",
+      "Muddat"
+     ],
+     "skills_gained": [
+      "Brif",
+      "Mijoz bilan ishlash"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Portfolio va arizalar",
+     "constraints": [
+      [
+       "Portfolio tartibsiz",
+       "Eng yaxshi 6–8 ish, har biri keys bilan"
+      ],
+      [
+       "Narx belgilash",
+       "Ish hajmi va vaqtga qarab hisoblash"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Networking"
+     ],
+     "signs_right": [
+      "Portfolio onlayn",
+      "Har hafta arizalar",
+      "Ishimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Hamma ishni portfolioga qo'yish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Portfolio (Behance yoki sayt)",
+      "6–8 keys",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Narx"
+     ],
+     "skills_gained": [
+      "Portfolio",
+      "Taqdimot"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Dizayn turlari",
+      "Se: Vosita o'rnatish",
+      "Ch: Kompozitsiya",
+      "Pa: Bo'sh joy",
+      "Ju: Ilhom papkasi",
+      "Sh: Birinchi post",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Rang va shrift",
+     "days": [
+      "Du: Rang doirasi",
+      "Se: Palitra",
+      "Ch: Kontrast",
+      "Pa: Shrift turlari",
+      "Ju: Shrift juftligi",
+      "Sh: Afisha",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Logotip",
+     "days": [
+      "Du: Logotip turlari",
+      "Se: Eskiz",
+      "Ch: Vektor",
+      "Pa: Variantlar",
+      "Ju: Fikr so'rash",
+      "Sh: Logotip",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Brend",
+     "days": [
+      "Du: Uslub qo'llanmasi",
+      "Se: Post shabloni",
+      "Ch: Story shabloni",
+      "Pa: Taqdimot",
+      "Ju: Keys yozish",
+      "Sh: Brend loyiha",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Bepul dizayn vositasida akkaunt ochish (bugun, 10 daqiqa)",
+    "Yoqqan 20 ta dizaynni bitta papkaga yig'ish (bugun, 30 daqiqa)",
+    "Birinchi oddiy afishani yasash (bugun, 30 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Canva Design School",
+     "url": "https://www.canva.com/designschool/",
+     "lang": "EN"
+    },
+    {
+     "name": "Google Fonts — Knowledge",
+     "url": "https://fonts.google.com/knowledge",
+     "lang": "EN"
+    },
+    {
+     "name": "Figma — Help Center",
+     "url": "https://help.figma.com/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi afisha"
+    },
+    {
+     "week": 5,
+     "milestone": "10+ mashq ishi"
+    },
+    {
+     "week": 10,
+     "milestone": "2 ta brend loyiha"
+    },
+    {
+     "week": 16,
+     "milestone": "Real buyurtma"
+    },
+    {
+     "week": 20,
+     "milestone": "Portfolio va arizalar"
+    }
+   ]
+  },
+  "performance_marketing": {
+   "uz": "Target (performance) marketolog",
+   "cluster": "digital_marketing",
+   "cluster_uz": "Raqamli marketing",
+   "why": "Target marketolog reklamani kerakli odamga ko'rsatib, har sarflangan pulning natijasini hisoblaydi. Raqamlarni, solishtirib sinashni va aniq natijani yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior target/performance vakansiyalariga ariza",
+     "Freelance: kichik biznes reklamasi",
+     "Agentlikda stajyorlik"
+    ],
+    "next_step": "Performance lead yoki marketing analitika"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Reklama kabinetlari bilan tanishuv",
+     "constraints": [
+      [
+       "Reklama budjeti yo'q",
+       "Avval bepul o'quv kurslari va demo kabinetlar"
+      ],
+      [
+       "Atamalar ko'p",
+       "Asosiy ko'rsatkichlar lug'ati"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Reklama qanday ishlaydi",
+      "30 daqiqa: Kabinet bilan tanishuv",
+      "60 daqiqa: Reklamalarni tahlil"
+     ],
+     "signs_right": [
+      "Asosiy ko'rsatkichlarni bilaman",
+      "Kabinetni ochdim",
+      "10 ta reklamani tahlil qildim"
+     ],
+     "signs_wrong": [
+      "Darhol pul sarflash",
+      "Faqat nazariya"
+     ],
+     "graduate_criteria": [
+      "Ko'rsatkichlar lug'ati",
+      "Kabinet",
+      "Reklama tahlili"
+     ],
+     "challenges": [
+      "Atamalar",
+      "Qo'rquv"
+     ],
+     "skills_gained": [
+      "Reklama asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "PLATFORMS",
+     "name_uz": "Reklama platformalari",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Meta va Google kurslari",
+     "constraints": [
+      [
+       "Platforma murakkab",
+       "Rasmiy bepul kurslar"
+      ],
+      [
+       "Auditoriya tanlash",
+       "Mijoz portretini yozishdan boshlash"
+      ]
+     ],
+     "daily_focus": [
+      "45 daqiqa: Kurs",
+      "45 daqiqa: Kabinetda mashq",
+      "30 daqiqa: Tahlil"
+     ],
+     "signs_right": [
+      "Kampaniya tuzilishini bilaman",
+      "Auditoriya sozlayman",
+      "Reklama matni va rasmini tanlayman"
+     ],
+     "signs_wrong": [
+      "Auditoriyani juda keng qo'yish",
+      "Maqsadsiz kampaniya"
+     ],
+     "graduate_criteria": [
+      "Meta va Google kurslari",
+      "Mijoz portreti",
+      "Mashq kampaniyalar"
+     ],
+     "challenges": [
+      "Ko'p sozlama",
+      "Mantiq"
+     ],
+     "skills_gained": [
+      "Meta Ads",
+      "Google Ads",
+      "Auditoriya"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "ANALYTICS + TESTING",
+     "name_uz": "Analitika va sinov",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Natijani o'lchash va A/B sinov",
+     "constraints": [
+      [
+       "Natija o'lchanmaydi",
+       "Analitika va konversiya kuzatuvini o'rnatish"
+      ],
+      [
+       "Qaysi reklama yaxshi?",
+       "Bir vaqtda faqat bitta narsani o'zgartirish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Analitika",
+      "60 daqiqa: Sinov rejasi",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "Konversiyani kuzataman",
+      "A/B sinov qilaman",
+      "Hisobot tayyorlayman"
+     ],
+     "signs_wrong": [
+      "Bir vaqtda ko'p narsani o'zgartirish",
+      "Faqat ko'rishlar soniga qarash"
+     ],
+     "graduate_criteria": [
+      "Analitika sozlangan",
+      "2+ A/B sinov",
+      "Haftalik hisobot"
+     ],
+     "challenges": [
+      "Raqamlar",
+      "Sabr"
+     ],
+     "skills_gained": [
+      "Google Analytics",
+      "A/B test",
+      "Hisobot"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL CLIENT",
+     "name_uz": "Birinchi mijoz",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real kampaniya va keys",
+     "constraints": [
+      [
+       "Mijoz topish",
+       "Tanish kichik biznes, kichik budjet"
+      ],
+      [
+       "Natija kafolati so'raladi",
+       "Natijani va'da qilmasdan, jarayon va hisobotni kelishish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Mijoz bilan aloqa",
+      "60 daqiqa: Kampaniya",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "1+ real kampaniya",
+      "Har hafta hisobot",
+      "Keys yozdim"
+     ],
+     "signs_wrong": [
+      "Natijani bo'rttirish",
+      "Hisobotsiz ishlash"
+     ],
+     "graduate_criteria": [
+      "Real kampaniya",
+      "Keys: maqsad → sinov → natija",
+      "Mijoz fikri"
+     ],
+     "challenges": [
+      "Mas'uliyat",
+      "Budjet"
+     ],
+     "skills_gained": [
+      "Mijoz bilan ishlash",
+      "Optimallashtirish"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Portfolio va arizalar",
+     "constraints": [
+      [
+       "Tajriba kam",
+       "Keyslarni raqamlari bilan halol ko'rsatish"
+      ],
+      [
+       "Suhbat",
+       "Kampaniya tahlilini jonli tushuntirish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Portfolio tayyor",
+      "Har hafta arizalar",
+      "Keyslarni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Natijalarni o'ylab topish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "2–3 keys",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Tajriba talabi"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Reklama qanday ishlaydi",
+      "Se: Ko'rsatkichlar",
+      "Ch: Voronka",
+      "Pa: Mijoz portreti",
+      "Ju: Raqiblar reklamasi",
+      "Sh: Tahlil",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Meta",
+     "days": [
+      "Du: Blueprint kursi",
+      "Se: Kampaniya tuzilishi",
+      "Ch: Auditoriya",
+      "Pa: Kreativ",
+      "Ju: Reklama matni",
+      "Sh: Mashq kampaniya",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Google",
+     "days": [
+      "Du: Skillshop kursi",
+      "Se: Qidiruv reklamasi",
+      "Ch: Kalit so'zlar",
+      "Pa: Reklama matni",
+      "Ju: Sozlamalar",
+      "Sh: Mashq kampaniya",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Analitika",
+     "days": [
+      "Du: Google Analytics",
+      "Se: Konversiya",
+      "Ch: A/B sinov",
+      "Pa: Hisobot",
+      "Ju: Xulosa",
+      "Sh: Haftalik hisobot",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Meta Blueprint'da bepul kursni boshlash (bugun, 30 daqiqa)",
+    "Telefoningizda ko'rgan 5 ta reklamani yozib, nega sizga chiqqanini o'ylash (bugun, 20 daqiqa)",
+    "Asosiy ko'rsatkichlar lug'atini tuzish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Meta Blueprint",
+     "url": "https://www.facebook.com/business/learn",
+     "lang": "EN"
+    },
+    {
+     "name": "Google Skillshop",
+     "url": "https://skillshop.withgoogle.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Google Analytics — Help",
+     "url": "https://support.google.com/analytics",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Ko'rsatkichlar lug'ati"
+    },
+    {
+     "week": 5,
+     "milestone": "Meta va Google kurslari"
+    },
+    {
+     "week": 10,
+     "milestone": "A/B sinov va hisobot"
+    },
+    {
+     "week": 16,
+     "milestone": "Real kampaniya"
+    },
+    {
+     "week": 20,
+     "milestone": "Portfolio va arizalar"
+    }
+   ]
+  },
+  "seo": {
+   "uz": "SEO mutaxassisi",
+   "cluster": "digital_marketing",
+   "cluster_uz": "Raqamli marketing",
+   "why": "SEO mutaxassisi saytni odamlar qidiruvda topadigan qiladi. Natijani sabr bilan kutadigan, so'z va tartibga e'tiborli odam uchun. SEO natijasi odatda haftalar va oylar ichida ko'rinadi.",
+   "b_point": {
+    "outcomes": [
+     "Junior SEO vakansiyalariga ariza",
+     "Freelance: kichik biznes saytlari",
+     "Agentlikda stajyorlik"
+    ],
+    "next_step": "SEO lead, kontent strategiya yoki marketing analitika"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Qidiruv qanday ishlashini tushunish",
+     "constraints": [
+      [
+       "Sayt yo'q",
+       "Bepul blog ochib, unda mashq qilish"
+      ],
+      [
+       "Atamalar",
+       "SEO lug'ati"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Qidiruv tizimi qanday ishlaydi",
+      "30 daqiqa: Blog ochish",
+      "60 daqiqa: Raqib saytlar tahlili"
+     ],
+     "signs_right": [
+      "Qidiruv tizimi ishlashini tushuntira olaman",
+      "Mashq sayti bor",
+      "SEO lug'ati bor"
+     ],
+     "signs_wrong": [
+      "Faqat nazariya",
+      "Tez natija kutish"
+     ],
+     "graduate_criteria": [
+      "Mashq sayti",
+      "SEO lug'ati",
+      "Raqiblar tahlili"
+     ],
+     "challenges": [
+      "Atamalar",
+      "Sabr"
+     ],
+     "skills_gained": [
+      "SEO asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "KEYWORDS + CONTENT",
+     "name_uz": "Kalit so'z va kontent",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Kalit so'zlar ro'yxati va maqolalar",
+     "constraints": [
+      [
+       "Qaysi so'zlarni tanlash?",
+       "Odamlar haqiqatan qidiradigan so'zlarni vositalar bilan tekshirish"
+      ],
+      [
+       "Yozish qiyin",
+       "Avval reja, keyin matn"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Kalit so'z tadqiqoti",
+      "60 daqiqa: Maqola yozish",
+      "30 daqiqa: Tahrir"
+     ],
+     "signs_right": [
+      "Kalit so'zlar ro'yxati bor",
+      "Sarlavha va tavsifni to'g'ri yozaman",
+      "3+ maqola chiqardim"
+     ],
+     "signs_wrong": [
+      "Kalit so'zni haddan tashqari takrorlash",
+      "Ko'chirilgan matn"
+     ],
+     "graduate_criteria": [
+      "Kalit so'zlar ro'yxati",
+      "3+ optimallashtirilgan maqola",
+      "Sarlavha va meta tavsif"
+     ],
+     "challenges": [
+      "Yozish",
+      "Tanlov"
+     ],
+     "skills_gained": [
+      "Kalit so'z tadqiqoti",
+      "On-page SEO"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "TECHNICAL SEO",
+     "name_uz": "Texnik SEO",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Sayt texnik auditi",
+     "constraints": [
+      [
+       "Texnik tomonlar qiyin",
+       "Search Console xabarlaridan boshlash"
+      ],
+      [
+       "Sayt sekin",
+       "Tezlikni o'lchash vositalari"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Nazariya",
+      "60 daqiqa: Audit",
+      "30 daqiqa: Tuzatish rejasi"
+     ],
+     "signs_right": [
+      "Search Console bilan ishlayman",
+      "Sayt tezligini tekshiraman",
+      "Audit hisobotini yozaman"
+     ],
+     "signs_wrong": [
+      "Hamma xatoni birdan tuzatishga urinish",
+      "Ustuvorliksiz ro'yxat"
+     ],
+     "graduate_criteria": [
+      "Search Console sozlangan",
+      "Texnik audit hisoboti",
+      "Tuzatish rejasi"
+     ],
+     "challenges": [
+      "Texnik atamalar",
+      "Ustuvorlik"
+     ],
+     "skills_gained": [
+      "Search Console",
+      "Texnik audit"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL PROJECT",
+     "name_uz": "Real loyiha",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real sayt bilan ishlash va keys",
+     "constraints": [
+      [
+       "Mijoz topish",
+       "Tanish kichik biznesning sayti yoki Google xaritadagi sahifasi"
+      ],
+      [
+       "Natija sekin",
+       "Har hafta o'lchab, yozib borish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Mijoz bilan aloqa",
+      "60 daqiqa: Optimallashtirish",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "1+ real sayt ustida ishladim",
+      "Har hafta ko'rsatkichlarni yozaman",
+      "Keys yozdim"
+     ],
+     "signs_wrong": [
+      "Natijani va'da qilish",
+      "O'lchovsiz ishlash"
+     ],
+     "graduate_criteria": [
+      "Real loyiha",
+      "Haftalik hisobot",
+      "Keys"
+     ],
+     "challenges": [
+      "Sabr",
+      "Mijoz kutishi"
+     ],
+     "skills_gained": [
+      "Mahalliy SEO",
+      "Hisobot"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Portfolio va arizalar",
+     "constraints": [
+      [
+       "Natija hali kichik",
+       "Jarayon va qilingan ishni halol ko'rsatish"
+      ],
+      [
+       "Suhbat",
+       "Audit namunasini tushuntirish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbatga tayyorgarlik"
+     ],
+     "signs_right": [
+      "Portfolio tayyor",
+      "Har hafta arizalar",
+      "Auditimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Natijani bo'rttirish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Audit + keys",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Tajriba talabi"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Qidiruv qanday ishlaydi",
+      "Se: SEO turlari",
+      "Ch: Blog ochish",
+      "Pa: Raqiblar",
+      "Ju: SEO lug'ati",
+      "Sh: Tahlil",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Kalit so'zlar",
+     "days": [
+      "Du: Kalit so'z nima",
+      "Se: Tadqiqot vositalari",
+      "Ch: Ro'yxat tuzish",
+      "Pa: Guruhlash",
+      "Ju: Sarlavha yozish",
+      "Sh: Birinchi maqola",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "On-page",
+     "days": [
+      "Du: Meta tavsif",
+      "Se: Sarlavhalar tuzilishi",
+      "Ch: Ichki havolalar",
+      "Pa: Rasmlar",
+      "Ju: Matn sifati",
+      "Sh: 2-maqola",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Texnik",
+     "days": [
+      "Du: Search Console",
+      "Se: Indekslash",
+      "Ch: Tezlik",
+      "Pa: Mobil versiya",
+      "Ju: Audit",
+      "Sh: Tuzatish rejasi",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Google'ning SEO Starter Guide'ini o'qishni boshlash (bugun, 30 daqiqa)",
+    "Bepul blog ochish (bugun, 20 daqiqa)",
+    "O'z sohangiz bo'yicha 10 ta qidiruv so'zini yozish (bugun, 15 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Google — SEO Starter Guide",
+     "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+     "lang": "EN"
+    },
+    {
+     "name": "Google Search Console",
+     "url": "https://search.google.com/search-console/about",
+     "lang": "EN"
+    },
+    {
+     "name": "Moz — Beginner's Guide to SEO",
+     "url": "https://moz.com/beginners-guide-to-seo",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Mashq sayti"
+    },
+    {
+     "week": 5,
+     "milestone": "3+ maqola"
+    },
+    {
+     "week": 10,
+     "milestone": "Texnik audit"
+    },
+    {
+     "week": 16,
+     "milestone": "Real loyiha"
+    },
+    {
+     "week": 20,
+     "milestone": "Portfolio va arizalar"
+    }
+   ]
+  },
+  "video_motion": {
+   "uz": "Video va motion kontent mutaxassisi",
+   "cluster": "content_media",
+   "cluster_uz": "Kontent va media",
+   "why": "Video va motion mutaxassisi kadr, ritm va harakat orqali hikoya qiladi: reklama roliklari, reels, animatsiyalar. Vizual his-tuyg'u va sabr bilan detal ustida ishlashni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior videomontajchi / motion dizayner vakansiyalari",
+     "Freelance: reels va reklama roliklari",
+     "Agentlik yoki media kompaniyada stajyorlik"
+    ],
+    "next_step": "Motion dizayn, rejissyorlik yoki kontent prodyuserlik"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Montaj dasturi va birinchi kichik video",
+     "constraints": [
+      [
+       "Kamera yo'q",
+       "Telefon kamerasi yetarli"
+      ],
+      [
+       "Dastur pullik",
+       "Bepul montaj dasturlari bilan boshlash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Video turlari",
+      "30 daqiqa: Dastur o'rnatish",
+      "60 daqiqa: 15 soniyalik video"
+     ],
+     "signs_right": [
+      "Dastur o'rnatildi",
+      "Birinchi video montaj qilindi",
+      "Yoqqan videolar papkasi bor"
+     ],
+     "signs_wrong": [
+      "Faqat effektlar bilan o'ynash",
+      "Videoni tugatmaslik"
+     ],
+     "graduate_criteria": [
+      "Montaj dasturi",
+      "Birinchi video",
+      "Ilhom papkasi"
+     ],
+     "challenges": [
+      "Texnika",
+      "Qayerdan boshlash"
+     ],
+     "skills_gained": [
+      "Montaj asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "SHOOTING + EDITING",
+     "name_uz": "Suratga olish va montaj",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Kadr, yorug'lik va montaj asoslari",
+     "constraints": [
+      [
+       "Video titraydi",
+       "Ikki qo'l bilan ushlash yoki tripod"
+      ],
+      [
+       "Montaj zerikarli",
+       "Musiqa ritmiga moslab kesish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Kadr va yorug'lik",
+      "60 daqiqa: Montaj",
+      "30 daqiqa: Tahlil"
+     ],
+     "signs_right": [
+      "Uchdan bir qoidasini qo'llayman",
+      "Ovozni toza yozaman",
+      "Ritmga moslab montaj qilaman"
+     ],
+     "signs_wrong": [
+      "Uzun, keraksiz joylarni qoldirish",
+      "Ovozga e'tibor bermaslik"
+     ],
+     "graduate_criteria": [
+      "5+ qisqa video",
+      "Toza ovoz",
+      "Rang tuzatish asoslari"
+     ],
+     "challenges": [
+      "Texnika",
+      "Ritm"
+     ],
+     "skills_gained": [
+      "Kadr",
+      "Montaj",
+      "Ovoz"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "MOTION BASICS",
+     "name_uz": "Motion asoslari",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Oddiy animatsiyalar",
+     "constraints": [
+      [
+       "Animatsiya qiyin",
+       "Matn va logotip animatsiyasidan boshlash"
+      ],
+      [
+       "Kompyuter kuchsiz",
+       "Yengil loyihalar va qisqa formatlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Animatsiya tamoyillari",
+      "60 daqiqa: Mashq",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "Keyframe bilan ishlayman",
+      "Logotipni jonlantirdim",
+      "Silliq harakat qilaman"
+     ],
+     "signs_wrong": [
+      "Haddan ko'p effekt",
+      "Tamoyillarsiz ishlash"
+     ],
+     "graduate_criteria": [
+      "3+ animatsiya",
+      "Logotip animatsiyasi",
+      "Titrlar"
+     ],
+     "challenges": [
+      "Sabr",
+      "Detal"
+     ],
+     "skills_gained": [
+      "Keyframe",
+      "Motion tamoyillari"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL CLIENT",
+     "name_uz": "Birinchi mijoz",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real buyurtma va showreel boshlanishi",
+     "constraints": [
+      [
+       "Mijoz topish",
+       "Tanish biznes yoki tadbir uchun rolik"
+      ],
+      [
+       "Brif yo'q",
+       "Boshida maqsad, davomiylik va uslubni kelishish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Mijoz bilan aloqa",
+      "60 daqiqa: Ishlab chiqarish",
+      "30 daqiqa: Tuzatish"
+     ],
+     "signs_right": [
+      "1+ real buyurtma",
+      "Muddatda topshirdim",
+      "Fikr asosida tuzatdim"
+     ],
+     "signs_wrong": [
+      "Brifsiz ishlash",
+      "Cheksiz tuzatish"
+     ],
+     "graduate_criteria": [
+      "1+ real rolik",
+      "Kelishilgan tuzatishlar soni",
+      "Keys"
+     ],
+     "challenges": [
+      "Muddat",
+      "Mijoz bilan muloqot"
+     ],
+     "skills_gained": [
+      "Brif",
+      "Mijoz bilan ishlash"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Showreel va arizalar",
+     "constraints": [
+      [
+       "Showreel uzun",
+       "Eng yaxshi 30–60 soniya"
+      ],
+      [
+       "Narx",
+       "Ish vaqtiga qarab hisoblash"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Showreel",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Networking"
+     ],
+     "signs_right": [
+      "Showreel tayyor",
+      "Har hafta arizalar",
+      "Ishimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Hamma ishni showreelga qo'yish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Showreel",
+      "Portfolio",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Narx"
+     ],
+     "skills_gained": [
+      "Showreel",
+      "Taqdimot"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Boshlanish",
+     "days": [
+      "Du: Video turlari",
+      "Se: Dastur o'rnatish",
+      "Ch: Interfeys",
+      "Pa: Kesish",
+      "Ju: Musiqa qo'yish",
+      "Sh: 15 soniyalik video",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Kadr",
+     "days": [
+      "Du: Uchdan bir qoidasi",
+      "Se: Yorug'lik",
+      "Ch: Ovoz",
+      "Pa: Plan turlari",
+      "Ju: Hikoya kadrlari",
+      "Sh: Qisqa rolik",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Montaj",
+     "days": [
+      "Du: Ritm",
+      "Se: O'tishlar",
+      "Ch: Rang tuzatish",
+      "Pa: Titrlar",
+      "Ju: Eksport",
+      "Sh: Reels",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Motion",
+     "days": [
+      "Du: Keyframe",
+      "Se: Matn animatsiyasi",
+      "Ch: Logotip animatsiyasi",
+      "Pa: Silliqlik",
+      "Ju: Ovoz bilan moslash",
+      "Sh: Animatsiya",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Bepul montaj dasturini o'rnatish (bugun, 20 daqiqa)",
+    "Telefonda 10 ta qisqa kadr olish (bugun, 20 daqiqa)",
+    "Ulardan 15 soniyalik video yig'ish (bugun, 30 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "DaVinci Resolve — Training",
+     "url": "https://www.blackmagicdesign.com/products/davinciresolve/training",
+     "lang": "EN"
+    },
+    {
+     "name": "Adobe After Effects — Help",
+     "url": "https://helpx.adobe.com/after-effects.html",
+     "lang": "EN"
+    },
+    {
+     "name": "Adobe Premiere Pro — Help",
+     "url": "https://helpx.adobe.com/premiere-pro.html",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi video"
+    },
+    {
+     "week": 5,
+     "milestone": "5+ qisqa video"
+    },
+    {
+     "week": 10,
+     "milestone": "3+ animatsiya"
+    },
+    {
+     "week": 16,
+     "milestone": "Real buyurtma"
+    },
+    {
+     "week": 20,
+     "milestone": "Showreel va arizalar"
+    }
+   ]
+  },
+  "content_copywriting": {
+   "uz": "Kontent va kopirayting mutaxassisi",
+   "cluster": "content_media",
+   "cluster_uz": "Kontent va media",
+   "why": "Kontent va kopirayting mutaxassisi so'z orqali hikoya qiladi va ishontiradi: postlar, reklama matnlari, sayt matnlari, ssenariylar. So'z bilan ishlashni va murakkab narsani sodda tushuntirishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior kopirayter / kontent menejer vakansiyalari",
+     "Freelance: matn buyurtmalari",
+     "Agentlik yoki media kompaniyada stajyorlik"
+    ],
+    "next_step": "Kontent strategiya, muharrirlik yoki marketing"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Yozish odati va namunalar",
+     "constraints": [
+      [
+       "Nima yozishni bilmayman",
+       "Har kuni bitta kichik matn"
+      ],
+      [
+       "Imlo",
+       "Imlo qoidalari va tekshiruv vositasi"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Kontent turlari",
+      "30 daqiqa: Namunalar yig'ish",
+      "60 daqiqa: Birinchi post"
+     ],
+     "signs_right": [
+      "Namunalar papkasi bor",
+      "Birinchi post yozildi",
+      "Imlo tekshiruvi odat bo'ldi"
+     ],
+     "signs_wrong": [
+      "Faqat o'qish, yozmaslik",
+      "Ko'chirish"
+     ],
+     "graduate_criteria": [
+      "Namunalar",
+      "Birinchi post",
+      "Yozish jadvali"
+     ],
+     "challenges": [
+      "Boshlash",
+      "O'ziga ishonch"
+     ],
+     "skills_gained": [
+      "Yozish odati"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "WRITING BASICS",
+     "name_uz": "Yozish asoslari",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Aniq va qisqa yozish",
+     "constraints": [
+      [
+       "Matn uzun",
+       "Har jumlani qisqartirish mashqi"
+      ],
+      [
+       "Sarlavha zaif",
+       "Har matn uchun 5 ta sarlavha varianti"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Qoida",
+      "60 daqiqa: Yozish",
+      "30 daqiqa: Tahrir"
+     ],
+     "signs_right": [
+      "Qisqa va aniq yozaman",
+      "Sarlavha variantlari yozaman",
+      "O'z matnimni tahrir qilaman"
+     ],
+     "signs_wrong": [
+      "Murakkab so'zlar",
+      "Tahrirsiz chiqarish"
+     ],
+     "graduate_criteria": [
+      "15+ post",
+      "Sarlavha mashqlari",
+      "Tahrir odati"
+     ],
+     "challenges": [
+      "Qisqartirish",
+      "Tahrir"
+     ],
+     "skills_gained": [
+      "Aniq yozish",
+      "Sarlavha",
+      "Tahrir"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "COPYWRITING",
+     "name_uz": "Ishontiruvchi matn",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Reklama va sotuv matnlari",
+     "constraints": [
+      [
+       "Sotuvchi matn yolg'on bo'lib qoladi",
+       "Faqat haqiqiy foydani aytish"
+      ],
+      [
+       "Formula ko'p",
+       "Muammo → Yechim → Natija va AIDA'dan boshlash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Formula",
+      "60 daqiqa: Matn",
+      "30 daqiqa: Fikr so'rash"
+     ],
+     "signs_right": [
+      "Mijoz og'rig'idan boshlayman",
+      "Aniq chaqiriq (CTA) yozaman",
+      "Bir matnning 2 variantini solishtiraman"
+     ],
+     "signs_wrong": [
+      "Bo'rttirilgan va'dalar",
+      "Hamma uchun yozish"
+     ],
+     "graduate_criteria": [
+      "10+ reklama matni",
+      "Sayt sahifasi matni",
+      "Ssenariy"
+     ],
+     "challenges": [
+      "Ishontirish",
+      "Halollik"
+     ],
+     "skills_gained": [
+      "Kopirayting",
+      "Ssenariy"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL CLIENT",
+     "name_uz": "Birinchi mijoz",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real buyurtma va keys",
+     "constraints": [
+      [
+       "Mijoz topish",
+       "Tanish kichik biznes sahifasi yoki sayti"
+      ],
+      [
+       "Uslub kelishilmagan",
+       "Boshida brend ovozi va auditoriyani so'rash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Mijoz bilan aloqa",
+      "60 daqiqa: Yozish",
+      "30 daqiqa: Tuzatish"
+     ],
+     "signs_right": [
+      "1+ real buyurtma",
+      "Kontent reja tuzdim",
+      "Keys yozdim"
+     ],
+     "signs_wrong": [
+      "Brifsiz yozish",
+      "Muddatni buzish"
+     ],
+     "graduate_criteria": [
+      "1+ real ish",
+      "Kontent reja",
+      "Keys"
+     ],
+     "challenges": [
+      "Muddat",
+      "Mijoz bilan muloqot"
+     ],
+     "skills_gained": [
+      "Kontent reja",
+      "Mijoz bilan ishlash"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Portfolio va arizalar",
+     "constraints": [
+      [
+       "Portfolio tartibsiz",
+       "Turlari bo'yicha 6–8 eng yaxshi matn"
+      ],
+      [
+       "Test topshiriq",
+       "Muddatda va brifga mos topshirish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Test topshiriq mashqi"
+     ],
+     "signs_right": [
+      "Portfolio onlayn",
+      "Har hafta arizalar",
+      "Test topshiriqlarni bajaryapman"
+     ],
+     "signs_wrong": [
+      "Hamma matnni qo'yish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Portfolio",
+      "6–8 namuna",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Test topshiriqlar"
+     ],
+     "skills_gained": [
+      "Portfolio",
+      "Taqdimot"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Boshlanish",
+     "days": [
+      "Du: Kontent turlari",
+      "Se: Namunalar",
+      "Ch: Imlo tekshiruvi",
+      "Pa: Birinchi post",
+      "Ju: Tahrir",
+      "Sh: 3 ta post",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Aniq yozish",
+     "days": [
+      "Du: Qisqa jumla",
+      "Se: Faol nisbat",
+      "Ch: Sarlavha",
+      "Pa: Kirish",
+      "Ju: Tuzilma",
+      "Sh: Maqola",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Ishontirish",
+     "days": [
+      "Du: Mijoz og'rig'i",
+      "Se: Muammo → Yechim → Natija",
+      "Ch: AIDA",
+      "Pa: CTA",
+      "Ju: 2 variant",
+      "Sh: Reklama matni",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Formatlar",
+     "days": [
+      "Du: Sayt matni",
+      "Se: Ssenariy",
+      "Ch: Xabarnoma matni",
+      "Pa: Kontent reja",
+      "Ju: Brend ovozi",
+      "Sh: Mini portfolio",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Yoqqan 10 ta post yoki reklamani bitta papkaga yig'ish (bugun, 20 daqiqa)",
+    "O'zingiz yaxshi biladigan mavzuda 1 ta post yozish (bugun, 30 daqiqa)",
+    "Uni ikki baravar qisqartirib, ma'nosini saqlash (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "HubSpot Academy",
+     "url": "https://academy.hubspot.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Google — Developer documentation style guide",
+     "url": "https://developers.google.com/style",
+     "lang": "EN"
+    },
+    {
+     "name": "Nielsen Norman Group — Articles",
+     "url": "https://www.nngroup.com/articles/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi post"
+    },
+    {
+     "week": 5,
+     "milestone": "15+ post"
+    },
+    {
+     "week": 10,
+     "milestone": "Reklama matnlari"
+    },
+    {
+     "week": 16,
+     "milestone": "Real buyurtma"
+    },
+    {
+     "week": 20,
+     "milestone": "Portfolio va arizalar"
+    }
+   ]
+  },
+  "product_management": {
+   "uz": "Product menejer",
+   "cluster": "product_project",
+   "cluster_uz": "Mahsulot va loyiha boshqaruvi",
+   "why": "Product menejer \"nimani va nima uchun qilamiz?\" degan savolga javob beradi: foydalanuvchini tushunadi, g'oyalarni saralaydi, jamoani bir maqsadga yo'naltiradi. Odamlarni tushunishni va qaror qabul qilishni yoqtiradigan odam uchun. Ko'pincha boshqa roldan (analitik, loyiha, dizayn) o'tib kelinadi.",
+   "b_point": {
+    "outcomes": [
+     "Junior/Associate Product Manager vakansiyalari",
+     "Product analitik yoki loyiha menejeri orqali kirish",
+     "Portfolio: mahsulot keyslari"
+    ],
+    "next_step": "Product menejer, keyinchalik Product lead"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Product menejer ishini tushunish",
+     "constraints": [
+      [
+       "Rol mavhum",
+       "Real ilovalarni tahlil qilishdan boshlash"
+      ],
+      [
+       "Tajriba yo'q",
+       "O'z hayotingizdagi kichik loyihalarni misol qilish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: PM nima qiladi",
+      "30 daqiqa: Ilova tahlili",
+      "60 daqiqa: Mahsulot kundaligi"
+     ],
+     "signs_right": [
+      "PM vazifalarini tushuntira olaman",
+      "3 ta ilovani tahlil qildim",
+      "Mahsulot kundaligini boshladim"
+     ],
+     "signs_wrong": [
+      "Faqat kitob o'qish",
+      "Rolni rahbarlik deb tushunish"
+     ],
+     "graduate_criteria": [
+      "Rol tushunchasi",
+      "3 ta ilova tahlili",
+      "Kundalik"
+     ],
+     "challenges": [
+      "Mavhumlik",
+      "Qayerdan boshlash"
+     ],
+     "skills_gained": [
+      "Mahsulot fikrlash"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "USER RESEARCH",
+     "name_uz": "Foydalanuvchini tushunish",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Intervyular va muammo ta'rifi",
+     "constraints": [
+      [
+       "Noto'g'ri savollar",
+       "O'tmishdagi xatti-harakat haqida so'rash"
+      ],
+      [
+       "Odam topish",
+       "Tanishlar va onlayn hamjamiyatlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Usul",
+      "60 daqiqa: Intervyu",
+      "30 daqiqa: Xulosa"
+     ],
+     "signs_right": [
+      "5+ intervyu o'tkazdim",
+      "Muammoni aniq yozaman",
+      "Taxmin va faktni ajrataman"
+     ],
+     "signs_wrong": [
+      "\"Yoqadimi?\" deb so'rash",
+      "O'z g'oyasini sotish"
+     ],
+     "graduate_criteria": [
+      "5+ intervyu",
+      "Muammo ta'rifi",
+      "Foydalanuvchi portreti"
+     ],
+     "challenges": [
+      "Tinglash",
+      "Xolislik"
+     ],
+     "skills_gained": [
+      "Customer interview",
+      "Problem framing"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "PRIORITIZATION + SPECS",
+     "name_uz": "Saralash va talablar",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Reja va talablar hujjati",
+     "constraints": [
+      [
+       "G'oya ko'p",
+       "Qiymat va harakat bo'yicha saralash"
+      ],
+      [
+       "Talablar noaniq",
+       "User story va qabul mezonlari"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Freymvork",
+      "60 daqiqa: Hujjat yozish",
+      "30 daqiqa: Fikr so'rash"
+     ],
+     "signs_right": [
+      "G'oyalarni saralayman",
+      "User story yozaman",
+      "Roadmap tuzaman"
+     ],
+     "signs_wrong": [
+      "Hamma narsani birdan qilish",
+      "Hujjatni hech kim o'qimaydigan qilish"
+     ],
+     "graduate_criteria": [
+      "Saralangan g'oyalar ro'yxati",
+      "Talablar hujjati (PRD)",
+      "Mahsulot roadmapi"
+     ],
+     "challenges": [
+      "Ustuvorlik",
+      "Yozish"
+     ],
+     "skills_gained": [
+      "Prioritization",
+      "User stories",
+      "Roadmap"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "METRICS + PROJECT",
+     "name_uz": "Ko'rsatkich va loyiha",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Mahsulot keysi",
+     "constraints": [
+      [
+       "Ko'rsatkichlar tushunarsiz",
+       "Bitta asosiy ko'rsatkich tanlash"
+      ],
+      [
+       "Real mahsulot yo'q",
+       "Mavjud ilova uchun yaxshilash taklifi yoki o'z kichik loyihangiz"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Metrikalar",
+      "60 daqiqa: Keys",
+      "30 daqiqa: Taqdimot"
+     ],
+     "signs_right": [
+      "Asosiy ko'rsatkichni tanlayman",
+      "Gipotezani tekshiruvga aylantiraman",
+      "Keysni taqdim etdim"
+     ],
+     "signs_wrong": [
+      "Ko'rsatkichsiz qaror",
+      "Faqat g'oya, tekshiruvsiz"
+     ],
+     "graduate_criteria": [
+      "To'liq mahsulot keysi",
+      "Metrikalar",
+      "Taqdimot"
+     ],
+     "challenges": [
+      "Analitika",
+      "Oxiriga yetkazish"
+     ],
+     "skills_gained": [
+      "Product metrics",
+      "Experimentation"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Junior PM o'rinlari kam",
+       "Yaqin rol orqali kirish va ichkarida o'tish"
+      ],
+      [
+       "Keys-suhbat",
+       "Mahsulot savollarini ovoz chiqarib yechish mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Keyslar",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Keysimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat PM o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "2 ta keys",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Keys taqdimoti"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Rol",
+     "days": [
+      "Du: PM nima qiladi",
+      "Se: Ilova tahlili 1",
+      "Ch: Ilova tahlili 2",
+      "Pa: Ilova tahlili 3",
+      "Ju: Mahsulot kundaligi",
+      "Sh: Xulosa",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Foydalanuvchi",
+     "days": [
+      "Du: Intervyu usuli",
+      "Se: Savollar ro'yxati",
+      "Ch: Intervyu 1",
+      "Pa: Intervyu 2",
+      "Ju: Intervyu 3",
+      "Sh: Muammo ta'rifi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Saralash",
+     "days": [
+      "Du: G'oyalar ro'yxati",
+      "Se: Qiymat/harakat",
+      "Ch: User story",
+      "Pa: Qabul mezonlari",
+      "Ju: Roadmap",
+      "Sh: PRD",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Ko'rsatkich",
+     "days": [
+      "Du: Metrikalar",
+      "Se: Asosiy ko'rsatkich",
+      "Ch: Gipoteza",
+      "Pa: Tajriba rejasi",
+      "Ju: Keys yozish",
+      "Sh: Taqdimot",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Eng ko'p ishlatadigan ilovangizni tanlab, unda nima noqulayligini yozish (bugun, 20 daqiqa)",
+    "Bir tanishingizdan oxirgi marta shu ishni qanday qilganini so'rash (bugun, 20 daqiqa)",
+    "Bitta yaxshilash g'oyasini muammo → yechim ko'rinishida yozish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Atlassian — Product management guide",
+     "url": "https://www.atlassian.com/agile/product-management",
+     "lang": "EN"
+    },
+    {
+     "name": "SVPG — Articles",
+     "url": "https://www.svpg.com/articles/",
+     "lang": "EN"
+    },
+    {
+     "name": "ProductPlan — Learning center",
+     "url": "https://www.productplan.com/learn/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "3 ta ilova tahlili"
+    },
+    {
+     "week": 5,
+     "milestone": "5+ intervyu"
+    },
+    {
+     "week": 10,
+     "milestone": "PRD va roadmap"
+    },
+    {
+     "week": 16,
+     "milestone": "Mahsulot keysi"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "project_management": {
+   "uz": "Loyiha menejeri",
+   "cluster": "product_project",
+   "cluster_uz": "Mahsulot va loyiha boshqaruvi",
+   "why": "Loyiha menejeri ishni rejalashtiradi, vazifalarni taqsimlaydi va hammasi vaqtida, kelishilgan doirada tugashini kuzatadi. Tartibni, rejani va odamlarni bir maqsadga yig'ishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior loyiha menejeri / koordinator vakansiyalari",
+     "Loyiha yordamchisi sifatida stajyorlik",
+     "Portfolio: tugallangan loyiha hujjatlari"
+    ],
+    "next_step": "Loyiha menejeri, keyinchalik dastur (program) menejeri"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Loyiha boshqaruvi asoslari",
+     "constraints": [
+      [
+       "Tajriba yo'q",
+       "Hayotdagi loyihalar: tadbir, ta'mirlash, o'qish rejasi"
+      ],
+      [
+       "Vosita tanlash",
+       "Bepul Trello yoki Notion bilan boshlash"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Loyiha nima",
+      "30 daqiqa: Vosita",
+      "60 daqiqa: Kichik loyiha rejasi"
+     ],
+     "signs_right": [
+      "Loyiha bosqichlarini bilaman",
+      "Vazifalar taxtasini ochdim",
+      "Kichik reja tuzdim"
+     ],
+     "signs_wrong": [
+      "Faqat nazariya",
+      "Rejasiz boshlash"
+     ],
+     "graduate_criteria": [
+      "Loyiha tushunchasi",
+      "Vazifalar taxtasi",
+      "Birinchi reja"
+     ],
+     "challenges": [
+      "Mavhumlik",
+      "Tartib"
+     ],
+     "skills_gained": [
+      "Loyiha asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "PLANNING",
+     "name_uz": "Rejalashtirish",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "To'liq loyiha rejasi",
+     "constraints": [
+      [
+       "Muddatni noto'g'ri baholash",
+       "Vazifani kichik bo'laklarga bo'lish"
+      ],
+      [
+       "Bog'liqliklar",
+       "Qaysi vazifa qaysinisini kutishini chizish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Usul",
+      "60 daqiqa: Reja tuzish",
+      "30 daqiqa: Tekshirish"
+     ],
+     "signs_right": [
+      "Ish tuzilmasini (WBS) tuzaman",
+      "Gantt jadvali chizaman",
+      "Bog'liqliklarni ko'raman"
+     ],
+     "signs_wrong": [
+      "Juda umumiy reja",
+      "Zaxira vaqtsiz reja"
+     ],
+     "graduate_criteria": [
+      "WBS",
+      "Gantt jadvali",
+      "Muddat baholari"
+     ],
+     "challenges": [
+      "Baholash",
+      "Detal"
+     ],
+     "skills_gained": [
+      "WBS",
+      "Gantt",
+      "Baholash"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "AGILE + COMMUNICATION",
+     "name_uz": "Agile va muloqot",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Scrum/Kanban va jamoa muloqoti",
+     "constraints": [
+      [
+       "Agile atamalari",
+       "Scrum qo'llanmasini o'qib, kichik jamoada sinash"
+      ],
+      [
+       "Kelishmovchilik",
+       "Muloqot rejasi va aniq kelishuvlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Agile",
+      "60 daqiqa: Amaliyot",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "Sprint rejalashtiraman",
+      "Stand-up o'tkazaman",
+      "Holat hisobotini yozaman"
+     ],
+     "signs_wrong": [
+      "Yig'ilishlarni haddan ko'p qilish",
+      "Muammoni yashirish"
+     ],
+     "graduate_criteria": [
+      "Scrum/Kanban amaliyoti",
+      "Muloqot rejasi",
+      "Haftalik holat hisoboti"
+     ],
+     "challenges": [
+      "Odamlar bilan ishlash",
+      "Ochiqlik"
+     ],
+     "skills_gained": [
+      "Scrum",
+      "Kanban",
+      "Muloqot"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "RISKS + REAL PROJECT",
+     "name_uz": "Risklar va real loyiha",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real loyihani boshqarish",
+     "constraints": [
+      [
+       "Real loyiha yo'q",
+       "Ko'ngilli tashkilot, tadbir yoki tanishlar jamoasi loyihasi"
+      ],
+      [
+       "Kutilmagan muammolar",
+       "Risklar ro'yxati va zaxira rejasi"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Risklar",
+      "60 daqiqa: Loyiha",
+      "30 daqiqa: Hisobot"
+     ],
+     "signs_right": [
+      "Real loyihani boshqardim",
+      "Risklar ro'yxati bor",
+      "Yakuniy xulosa yozdim"
+     ],
+     "signs_wrong": [
+      "Muammoni kech aytish",
+      "Xulosasiz yakunlash"
+     ],
+     "graduate_criteria": [
+      "Real loyiha",
+      "Risklar ro'yxati",
+      "Yakuniy xulosa (retrospektiva)"
+     ],
+     "challenges": [
+      "Mas'uliyat",
+      "Bosim"
+     ],
+     "skills_gained": [
+      "Risk management",
+      "Stakeholder management"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba kam",
+       "Real loyiha hujjatlarini ko'rsatish"
+      ],
+      [
+       "Sertifikat",
+       "Bepul yoki arzon boshlang'ich kurslar — majburiy emas"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Loyiham haqida STAR usulida gapira olaman"
+     ],
+     "signs_wrong": [
+      "Umumiy gaplar",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Loyiha hujjatlari",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Loyiha nima",
+      "Se: Bosqichlar",
+      "Ch: Vosita",
+      "Pa: Maqsad yozish",
+      "Ju: Vazifalar",
+      "Sh: Mini reja",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Reja",
+     "days": [
+      "Du: WBS",
+      "Se: Baholash",
+      "Ch: Bog'liqlik",
+      "Pa: Gantt",
+      "Ju: Zaxira vaqt",
+      "Sh: To'liq reja",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Agile",
+     "days": [
+      "Du: Scrum",
+      "Se: Kanban",
+      "Ch: Sprint",
+      "Pa: Stand-up",
+      "Ju: Retrospektiva",
+      "Sh: Sprint mashqi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Muloqot",
+     "days": [
+      "Du: Manfaatdor tomonlar",
+      "Se: Muloqot rejasi",
+      "Ch: Holat hisoboti",
+      "Pa: Risklar",
+      "Ju: Yig'ilish o'tkazish",
+      "Sh: Hisobot",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Bepul vazifalar taxtasini ochish (bugun, 10 daqiqa)",
+    "Yaqin oydagi bir ishingizni (tadbir, ta'mir) loyiha sifatida yozish (bugun, 30 daqiqa)",
+    "Uni 10 ta vazifaga bo'lib, muddat qo'yish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Atlassian — Project management",
+     "url": "https://www.atlassian.com/agile/project-management",
+     "lang": "EN"
+    },
+    {
+     "name": "The Scrum Guide",
+     "url": "https://scrumguides.org/",
+     "lang": "EN"
+    },
+    {
+     "name": "PMI",
+     "url": "https://www.pmi.org/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi reja"
+    },
+    {
+     "week": 5,
+     "milestone": "WBS va Gantt"
+    },
+    {
+     "week": 10,
+     "milestone": "Agile amaliyoti"
+    },
+    {
+     "week": 16,
+     "milestone": "Real loyiha"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "business_analysis": {
+   "uz": "Biznes-analitik",
+   "cluster": "product_project",
+   "cluster_uz": "Mahsulot va loyiha boshqaruvi",
+   "why": "Biznes-analitik jarayonni o'rganib, qayerda vaqt va resurs behuda ketayotganini topadi va yechimni talablar ko'rinishida yozadi. Har narsaning sababini bilmoqchi bo'ladigan, tartibli va diqqatli odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior biznes-analitik vakansiyalari",
+     "Stajyorlik yoki operatsion rol orqali kirish",
+     "Portfolio: jarayon tahlili keyslari"
+    ],
+    "next_step": "Biznes-analitik, keyinchalik tizim analitigi yoki product"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Biznes-analitik ishini tushunish",
+     "constraints": [
+      [
+       "Rol mavhum",
+       "Kundalik jarayonni (masalan, do'kondan xarid) qadamlarga bo'lib yozish"
+      ],
+      [
+       "Vosita",
+       "Bepul diagramma vositasi"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: BA nima qiladi",
+      "30 daqiqa: Vosita",
+      "60 daqiqa: Jarayonni yozish"
+     ],
+     "signs_right": [
+      "BA vazifalarini tushuntira olaman",
+      "Bir jarayonni qadamlarga bo'ldim",
+      "Diagramma vositasini ochdim"
+     ],
+     "signs_wrong": [
+      "Faqat nazariya",
+      "Rolni dasturchi bilan adashtirish"
+     ],
+     "graduate_criteria": [
+      "Rol tushunchasi",
+      "Birinchi jarayon tavsifi",
+      "Vosita"
+     ],
+     "challenges": [
+      "Mavhumlik",
+      "Atamalar"
+     ],
+     "skills_gained": [
+      "Analitik fikrlash"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "PROCESS MODELING",
+     "name_uz": "Jarayonni chizish",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Jarayon diagrammalari",
+     "constraints": [
+      [
+       "BPMN belgilari ko'p",
+       "Avval 5 ta asosiy belgi"
+      ],
+      [
+       "Jarayon chalkash",
+       "\"Hozir qanday\" va \"qanday bo'lishi kerak\"ni alohida chizish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: BPMN",
+      "60 daqiqa: Diagramma",
+      "30 daqiqa: Tahlil"
+     ],
+     "signs_right": [
+      "BPMN diagramma chizaman",
+      "Muammoli qadamni topaman",
+      "\"Hozir\" va \"keyin\" variantini chizaman"
+     ],
+     "signs_wrong": [
+      "Juda detal yoki juda umumiy diagramma",
+      "Muammoni sababsiz yozish"
+     ],
+     "graduate_criteria": [
+      "3+ jarayon diagrammasi",
+      "As-is / to-be",
+      "Muammolar ro'yxati"
+     ],
+     "challenges": [
+      "Detal darajasi",
+      "Mantiq"
+     ],
+     "skills_gained": [
+      "BPMN",
+      "Process analysis"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "REQUIREMENTS",
+     "name_uz": "Talablar",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Talablar hujjati",
+     "constraints": [
+      [
+       "Talab noaniq",
+       "Har talabni tekshirsa bo'ladigan qilib yozish"
+      ],
+      [
+       "Manfaatdorlar ko'p",
+       "Intervyu va kelishuv bayonnomasi"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Usul",
+      "60 daqiqa: Yozish",
+      "30 daqiqa: Tekshirish"
+     ],
+     "signs_right": [
+      "Funksional va nofunksional talablarni ajrataman",
+      "User story va use case yozaman",
+      "Intervyu o'tkazaman"
+     ],
+     "signs_wrong": [
+      "\"Qulay bo'lsin\" kabi noaniq talab",
+      "Kelishuvsiz hujjat"
+     ],
+     "graduate_criteria": [
+      "Talablar hujjati",
+      "Use case'lar",
+      "Intervyu yozuvlari"
+     ],
+     "challenges": [
+      "Aniqlik",
+      "Muloqot"
+     ],
+     "skills_gained": [
+      "Requirements",
+      "Use cases",
+      "Interviewing"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "DATA + CASE",
+     "name_uz": "Ma'lumot va keys",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Dalilga asoslangan keys",
+     "constraints": [
+      [
+       "Raqamlar bilan ishlash",
+       "Excel va SQL asoslari"
+      ],
+      [
+       "Real keys yo'q",
+       "Tanish biznes jarayoni yoki ochiq ma'lumot"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Excel/SQL",
+      "60 daqiqa: Keys",
+      "30 daqiqa: Taqdimot"
+     ],
+     "signs_right": [
+      "Ma'lumot bilan muammoni isbotlayman",
+      "Yechim taklifini hisob bilan asoslayman",
+      "Keysni taqdim etdim"
+     ],
+     "signs_wrong": [
+      "Dalilsiz xulosa",
+      "Faqat diagramma, raqamsiz"
+     ],
+     "graduate_criteria": [
+      "To'liq keys",
+      "Excel/SQL tahlil",
+      "Taqdimot"
+     ],
+     "challenges": [
+      "Ma'lumot",
+      "Taqdimot"
+     ],
+     "skills_gained": [
+      "Excel",
+      "SQL asoslari",
+      "Taqdimot"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba kam",
+       "Keyslarni hujjatlari bilan ko'rsatish"
+      ],
+      [
+       "Keys-suhbat",
+       "Jarayon muammosini ovoz chiqarib tahlil qilish mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Keysimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat nazariy bilim",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "2 ta keys",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: BA nima",
+      "Se: Jarayon nima",
+      "Ch: Vosita",
+      "Pa: Jarayonni yozish",
+      "Ju: Muammo topish",
+      "Sh: Xulosa",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "BPMN",
+     "days": [
+      "Du: Asosiy belgilar",
+      "Se: As-is",
+      "Ch: To-be",
+      "Pa: Muammoli qadam",
+      "Ju: Diagramma tahlili",
+      "Sh: 3 ta diagramma",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Talablar",
+     "days": [
+      "Du: Talab turlari",
+      "Se: User story",
+      "Ch: Use case",
+      "Pa: Intervyu",
+      "Ju: Kelishuv",
+      "Sh: Talablar hujjati",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Ma'lumot",
+     "days": [
+      "Du: Excel asoslari",
+      "Se: Pivot jadval",
+      "Ch: SQL SELECT",
+      "Pa: Hisob-kitob",
+      "Ju: Keys yozish",
+      "Sh: Taqdimot",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Kundalik bitta jarayonni (masalan, kafeda buyurtma) qadamlarga bo'lib yozish (bugun, 20 daqiqa)",
+    "Unda vaqt behuda ketadigan joyni belgilash (bugun, 15 daqiqa)",
+    "Bepul diagramma vositasida chizish (bugun, 30 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "IIBA",
+     "url": "https://www.iiba.org/",
+     "lang": "EN"
+    },
+    {
+     "name": "Lucidchart — BPMN tutorial",
+     "url": "https://www.lucidchart.com/pages/bpmn",
+     "lang": "EN"
+    },
+    {
+     "name": "SQLBolt",
+     "url": "https://sqlbolt.com/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi jarayon tavsifi"
+    },
+    {
+     "week": 5,
+     "milestone": "3+ diagramma"
+    },
+    {
+     "week": 10,
+     "milestone": "Talablar hujjati"
+    },
+    {
+     "week": 16,
+     "milestone": "Dalilga asoslangan keys"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "sales_manager": {
+   "uz": "Sotuv menejeri",
+   "cluster": "business_sales",
+   "cluster_uz": "Sotuv va mijozlar bilan ishlash",
+   "why": "Sotuv menejeri mijozning ehtiyojini tushunib, unga mos yechimni taklif qiladi va kelishuvga olib boradi. Odamlar bilan gaplashishni, maqsad qo'yib unga erishishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Junior sotuv menejeri vakansiyalari",
+     "IT yoki xizmat kompaniyasida sotuv stajyorligi",
+     "Freelance: kichik biznes uchun mijoz topish"
+    ],
+    "next_step": "Katta mijozlar menejeri (B2B), sotuv rahbari yoki Customer Success"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Sotuv jarayonini tushunish",
+     "constraints": [
+      [
+       "Sotuv \"aldash\" degan fikr",
+       "Yaxshi sotuv — ehtiyojni tushunib, foydali yechim berish"
+      ],
+      [
+       "Tajriba yo'q",
+       "Kundalik muzokaralarni kuzatish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Sotuv bosqichlari",
+      "30 daqiqa: Mahsulot tanlash",
+      "60 daqiqa: Sotuvchilarni kuzatish"
+     ],
+     "signs_right": [
+      "Sotuv bosqichlarini bilaman",
+      "Mashq uchun mahsulot tanladim",
+      "3 ta sotuv suhbatini kuzatdim"
+     ],
+     "signs_wrong": [
+      "Faqat motivatsion video",
+      "Bosim bilan sotish"
+     ],
+     "graduate_criteria": [
+      "Sotuv bosqichlari",
+      "Mashq mahsuloti",
+      "Kuzatuv yozuvlari"
+     ],
+     "challenges": [
+      "Qo'rquv",
+      "Noto'g'ri tasavvur"
+     ],
+     "skills_gained": [
+      "Sotuv asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "NEEDS + PITCH",
+     "name_uz": "Ehtiyoj va taqdimot",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Savol berish va taqdimot",
+     "constraints": [
+      [
+       "Ko'p gapirish",
+       "Savol berib, ko'proq tinglash"
+      ],
+      [
+       "Taqdimot uzun",
+       "Foyda bilan boshlanadigan 1 daqiqalik taqdimot"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Usul",
+      "60 daqiqa: Rol o'yini",
+      "30 daqiqa: Tahlil"
+     ],
+     "signs_right": [
+      "Ochiq savollar beraman",
+      "1 daqiqalik taqdimot tayyor",
+      "Rol o'yinida mashq qildim"
+     ],
+     "signs_wrong": [
+      "Mijozni bo'lish",
+      "Faqat narx haqida gapirish"
+     ],
+     "graduate_criteria": [
+      "Savollar ro'yxati",
+      "Taqdimot",
+      "5+ rol o'yini"
+     ],
+     "challenges": [
+      "Tinglash",
+      "Ishonch"
+     ],
+     "skills_gained": [
+      "Ehtiyojni aniqlash",
+      "Taqdimot"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "OBJECTIONS + CRM",
+     "name_uz": "E'tirozlar va CRM",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "E'tirozlar bilan ishlash va CRM",
+     "constraints": [
+      [
+       "\"Qimmat\" degan javob",
+       "Qiymatni tushuntirish va variantlar"
+      ],
+      [
+       "Mijozlarni unutish",
+       "CRM'da har bir aloqani yozish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: E'tirozlar",
+      "60 daqiqa: CRM mashqi",
+      "30 daqiqa: Rol o'yini"
+     ],
+     "signs_right": [
+      "Asosiy e'tirozlarga javobim bor",
+      "CRM'da voronka yuritaman",
+      "Keyingi qadamni doim kelishaman"
+     ],
+     "signs_wrong": [
+      "E'tirozdan keyin taslim bo'lish",
+      "Yozuvsiz ishlash"
+     ],
+     "graduate_criteria": [
+      "E'tirozlar jadvali",
+      "CRM voronka",
+      "Keyingi qadam odati"
+     ],
+     "challenges": [
+      "Rad javobi",
+      "Tartib"
+     ],
+     "skills_gained": [
+      "Objection handling",
+      "CRM"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "REAL SALES",
+     "name_uz": "Real sotuv",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real mijozlar bilan ishlash",
+     "constraints": [
+      [
+       "Mijoz topish",
+       "Tanish kichik biznes mahsuloti yoki xizmati"
+      ],
+      [
+       "Ko'p rad javobi",
+       "Har rad javobidan keyin qisqa tahlil"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Mijoz qidirish va qo'ng'iroq",
+      "30 daqiqa: CRM",
+      "30 daqiqa: Tahlil"
+     ],
+     "signs_right": [
+      "Real mijozlar bilan gaplashdim",
+      "Kelishuvga olib bordim",
+      "Natijalarni CRM'da yozdim"
+     ],
+     "signs_wrong": [
+      "Va'dani bo'rttirish",
+      "Kuzatuvsiz qoldirish"
+     ],
+     "graduate_criteria": [
+      "Real sotuv tajribasi",
+      "CRM tarixi",
+      "O'z xulosalarim"
+     ],
+     "challenges": [
+      "Rad javobi",
+      "Bosim"
+     ],
+     "skills_gained": [
+      "Prospecting",
+      "Closing"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba kam",
+       "Real sotuv tajribasi va CRM yozuvlari"
+      ],
+      [
+       "Suhbatda sotish topshirig'i",
+       "\"Menga shu ruchkani soting\" mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Rezyume",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Sotuv mashqini bajara olaman"
+     ],
+     "signs_wrong": [
+      "Faqat \"men gapga ustaman\" deyish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Sotuv tajribasi tavsifi",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Rad javoblari"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "O'zini taqdim etish"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Sotuv bosqichlari",
+      "Se: Yaxshi va yomon sotuv",
+      "Ch: Mahsulot tanlash",
+      "Pa: Kuzatuv",
+      "Ju: Mijoz portreti",
+      "Sh: Xulosa",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Savollar",
+     "days": [
+      "Du: Ochiq savollar",
+      "Se: Faol tinglash",
+      "Ch: Ehtiyojni aniqlash",
+      "Pa: Rol o'yini",
+      "Ju: Rol o'yini",
+      "Sh: Tahlil",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Taqdimot",
+     "days": [
+      "Du: Foyda va xususiyat",
+      "Se: 1 daqiqalik taqdimot",
+      "Ch: Hikoya",
+      "Pa: Rol o'yini",
+      "Ju: Fikr so'rash",
+      "Sh: Taqdimot tayyor",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "E'tirozlar",
+     "days": [
+      "Du: E'tiroz turlari",
+      "Se: \"Qimmat\"",
+      "Ch: \"O'ylab ko'raman\"",
+      "Pa: CRM",
+      "Ju: Keyingi qadam",
+      "Sh: E'tirozlar jadvali",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Mashq uchun bitta mahsulot yoki xizmat tanlash (bugun, 10 daqiqa)",
+    "Uni sotib olishi mumkin bo'lgan odamga 5 ta ochiq savol yozish (bugun, 20 daqiqa)",
+    "1 daqiqalik taqdimotni ovoz chiqarib mashq qilish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "HubSpot Academy",
+     "url": "https://academy.hubspot.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Salesforce Trailhead",
+     "url": "https://trailhead.salesforce.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "HubSpot — Sales blog",
+     "url": "https://blog.hubspot.com/sales",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Sotuv bosqichlari"
+    },
+    {
+     "week": 5,
+     "milestone": "Taqdimot va savollar"
+    },
+    {
+     "week": 10,
+     "milestone": "E'tirozlar va CRM"
+    },
+    {
+     "week": 16,
+     "milestone": "Real sotuv tajribasi"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "customer_success": {
+   "uz": "Customer Success mutaxassisi",
+   "cluster": "business_sales",
+   "cluster_uz": "Sotuv va mijozlar bilan ishlash",
+   "why": "Customer Success mutaxassisi mijoz mahsulotdan to'liq foyda olishiga yordam beradi va uni uzoq muddat saqlab qoladi. G'amxo'r, sabrli, muammoni oxirigacha hal qilishni yoqtiradigan odam uchun.",
+   "b_point": {
+    "outcomes": [
+     "Mijozlarni qo'llab-quvvatlash / Customer Success vakansiyalari",
+     "IT kompaniyada support orqali kirish",
+     "Portfolio: qo'llanma va jarayon namunalari"
+    ],
+    "next_step": "Customer Success menejer, keyinchalik CS rahbari yoki Account menejer"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Customer Success ishini tushunish",
+     "constraints": [
+      [
+       "Support bilan farqi",
+       "Support — savolga javob, CS — mijoz natijasiga erishishi"
+      ],
+      [
+       "Tajriba yo'q",
+       "Yaxshi va yomon xizmat misollarini yig'ish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: CS nima",
+      "30 daqiqa: Xizmat misollari",
+      "60 daqiqa: Mahsulot tanlash"
+     ],
+     "signs_right": [
+      "CS va support farqini bilaman",
+      "Xizmat misollari bor",
+      "Mashq mahsuloti tanlandi"
+     ],
+     "signs_wrong": [
+      "Faqat nazariya",
+      "Rolni oddiy operator deb tushunish"
+     ],
+     "graduate_criteria": [
+      "Rol tushunchasi",
+      "Misollar",
+      "Mashq mahsuloti"
+     ],
+     "challenges": [
+      "Mavhumlik",
+      "Qayerdan boshlash"
+     ],
+     "skills_gained": [
+      "Mijozga yo'naltirilgan fikrlash"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "COMMUNICATION",
+     "name_uz": "Muloqot",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Yozma va og'zaki muloqot",
+     "constraints": [
+      [
+       "Jahli chiqqan mijoz",
+       "Uzr, aniq keyingi qadam va muddat"
+      ],
+      [
+       "Javob uzun",
+       "Qisqa, aniq va do'stona shablonlar"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Usul",
+      "60 daqiqa: Javob yozish mashqi",
+      "30 daqiqa: Rol o'yini"
+     ],
+     "signs_right": [
+      "Faol tinglayman",
+      "Qisqa va aniq javob yozaman",
+      "Qiyin mijoz bilan mashq qildim"
+     ],
+     "signs_wrong": [
+      "Mijozni ayblash",
+      "Aniq muddatsiz va'da"
+     ],
+     "graduate_criteria": [
+      "20+ javob namunasi",
+      "Javob shablonlari",
+      "Rol o'yinlari"
+     ],
+     "challenges": [
+      "Sabr",
+      "Hissiyot"
+     ],
+     "skills_gained": [
+      "Faol tinglash",
+      "Yozma muloqot"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "ONBOARDING + TOOLS",
+     "name_uz": "Mijozni o'rgatish va vositalar",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Onboarding jarayoni va helpdesk",
+     "constraints": [
+      [
+       "Mijoz mahsulotni tushunmaydi",
+       "Qadamma-qadam qo'llanma va qisqa video"
+      ],
+      [
+       "Murojaatlar tartibsiz",
+       "Helpdesk yoki CRM'da yozib borish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Onboarding",
+      "60 daqiqa: Qo'llanma yozish",
+      "30 daqiqa: Vosita"
+     ],
+     "signs_right": [
+      "Onboarding rejasi tuzaman",
+      "Qo'llanma yozaman",
+      "Helpdesk'da ishlayman"
+     ],
+     "signs_wrong": [
+      "Hamma narsani bir kunda o'rgatish",
+      "Yozuvsiz ishlash"
+     ],
+     "graduate_criteria": [
+      "Onboarding rejasi",
+      "Mahsulot qo'llanmasi",
+      "FAQ"
+     ],
+     "challenges": [
+      "Tushuntirish",
+      "Tartib"
+     ],
+     "skills_gained": [
+      "Onboarding",
+      "Helpdesk/CRM"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "RETENTION + PRACTICE",
+     "name_uz": "Mijozni saqlash va amaliyot",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Real mijozlar bilan ishlash",
+     "constraints": [
+      [
+       "Mijoz ketib qoladi",
+       "Faollik pasayishini erta ko'rish va aloqaga chiqish"
+      ],
+      [
+       "Real tajriba yo'q",
+       "Tanish biznesning mijozlar bilan ishlashiga yordam"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Mijozlar bilan aloqa",
+      "30 daqiqa: Ko'rsatkichlar",
+      "30 daqiqa: Takliflar"
+     ],
+     "signs_right": [
+      "Xavf belgilarini ko'raman",
+      "Mijoz fikrini yig'aman",
+      "Jamoaga yaxshilash taklifi berdim"
+     ],
+     "signs_wrong": [
+      "Faqat shikoyat kutish",
+      "Fikrni jamoaga yetkazmaslik"
+     ],
+     "graduate_criteria": [
+      "Real amaliyot",
+      "Mijoz fikrlari to'plami",
+      "Yaxshilash takliflari"
+     ],
+     "challenges": [
+      "Bosim",
+      "Ko'p vazifa"
+     ],
+     "skills_gained": [
+      "Retention",
+      "Feedback"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba kam",
+       "Qo'llanma va javob namunalarini ko'rsatish"
+      ],
+      [
+       "Suhbatda ssenariy",
+       "Jahli chiqqan mijoz ssenariysini mashq qilish"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Ssenariyni yechib bera olaman"
+     ],
+     "signs_wrong": [
+      "Umumiy gaplar",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Namunalar to'plami",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Tajriba talabi"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: CS nima",
+      "Se: Support bilan farqi",
+      "Ch: Xizmat misollari",
+      "Pa: Mahsulot tanlash",
+      "Ju: Mijoz safari",
+      "Sh: Xulosa",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Muloqot",
+     "days": [
+      "Du: Faol tinglash",
+      "Se: Yozma javob",
+      "Ch: Uzr va keyingi qadam",
+      "Pa: Qiyin mijoz",
+      "Ju: Shablonlar",
+      "Sh: Rol o'yini",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Onboarding",
+     "days": [
+      "Du: Onboarding nima",
+      "Se: Reja",
+      "Ch: Qo'llanma",
+      "Pa: FAQ",
+      "Ju: Qisqa video",
+      "Sh: Onboarding paketi",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Saqlash",
+     "days": [
+      "Du: Xavf belgilari",
+      "Se: Faollik",
+      "Ch: Fikr yig'ish",
+      "Pa: Taklif yozish",
+      "Ju: Helpdesk",
+      "Sh: Hisobot",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Eng yaxshi va eng yomon xizmat tajribangizni yozish (bugun, 15 daqiqa)",
+    "Jahli chiqqan mijozga javob namunasini yozish (bugun, 20 daqiqa)",
+    "Bir ilova uchun 5 qadamli qo'llanma yozish (bugun, 30 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "HubSpot Academy",
+     "url": "https://academy.hubspot.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Salesforce Trailhead",
+     "url": "https://trailhead.salesforce.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Zendesk — Blog",
+     "url": "https://www.zendesk.com/blog/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Rol tushunchasi"
+    },
+    {
+     "week": 5,
+     "milestone": "Javob namunalari"
+    },
+    {
+     "week": 10,
+     "milestone": "Onboarding paketi"
+    },
+    {
+     "week": 16,
+     "milestone": "Real amaliyot"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "accountant": {
+   "uz": "Buxgalter",
+   "cluster": "finance_office",
+   "cluster_uz": "Moliya va raqamli ofis",
+   "why": "Buxgalter kompaniya pulining qayerdan kelib, qayerga ketganini aniq hisobga oladi va hisobotlarni qonunga muvofiq tayyorlaydi. Aniqlikni, tartibni va mas'uliyatni yoqtiradigan odam uchun. Qonun va soliq qoidalari o'zgarib turadi — doimiy o'qish talab qilinadi.",
+   "b_point": {
+    "outcomes": [
+     "Buxgalter yordamchisi vakansiyalari",
+     "Kichik biznesga birlamchi hujjatlar bo'yicha yordam",
+     "Buxgalteriya firmasida stajyorlik"
+    ],
+    "next_step": "Buxgalter, keyinchalik bosh buxgalter yoki moliyaviy tahlilchi"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Buxgalteriya asoslari bilan tanishuv",
+     "constraints": [
+      [
+       "Atamalar ko'p",
+       "Asosiy atamalar lug'ati"
+      ],
+      [
+       "Qonunlar murakkab",
+       "Rasmiy manbalardan (soliq.uz, lex.uz) o'qish odati"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Buxgalteriya nima",
+      "30 daqiqa: Rasmiy manbalar",
+      "60 daqiqa: Kirim-chiqim mashqi"
+     ],
+     "signs_right": [
+      "Asosiy atamalarni bilaman",
+      "Rasmiy manbalarni topa olaman",
+      "Shaxsiy kirim-chiqim jadvali bor"
+     ],
+     "signs_wrong": [
+      "Ijtimoiy tarmoqdagi tekshirilmagan maslahatga tayanish",
+      "Faqat nazariya"
+     ],
+     "graduate_criteria": [
+      "Atamalar lug'ati",
+      "Rasmiy manbalar ro'yxati",
+      "Kirim-chiqim jadvali"
+     ],
+     "challenges": [
+      "Atamalar",
+      "Qonunlar"
+     ],
+     "skills_gained": [
+      "Buxgalteriya asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "ACCOUNTING BASICS",
+     "name_uz": "Hisob asoslari",
+     "weeks": 5,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Ikki yoqlama yozuv va hisoblar",
+     "constraints": [
+      [
+       "Debet/kredit tushunarsiz",
+       "Har operatsiyani ikki tomonlama yozish mashqi"
+      ],
+      [
+       "Mashq yetmaydi",
+       "Har kuni 5 ta operatsiya"
+      ]
+     ],
+     "daily_focus": [
+      "45 daqiqa: Nazariya",
+      "45 daqiqa: Operatsiyalar mashqi",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "Ikki yoqlama yozuvni qo'llayman",
+      "Hisoblar rejasini tushunaman",
+      "Oddiy balans tuzaman"
+     ],
+     "signs_wrong": [
+      "Yodlash, tushunmasdan",
+      "Xatoni tekshirmaslik"
+     ],
+     "graduate_criteria": [
+      "Operatsiyalar jurnali",
+      "Oddiy balans",
+      "Moliyaviy natija hisoboti"
+     ],
+     "challenges": [
+      "Mantiq",
+      "Aniqlik"
+     ],
+     "skills_gained": [
+      "Ikki yoqlama yozuv",
+      "Balans"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "TAX + DOCUMENTS",
+     "name_uz": "Soliq va hujjatlar",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Birlamchi hujjatlar va soliq asoslari",
+     "constraints": [
+      [
+       "Soliq turlari ko'p",
+       "Avval kichik biznes uchun asosiy soliqlar"
+      ],
+      [
+       "Hujjatlar",
+       "Elektron hisob-faktura va dalolatnoma namunalari"
+      ]
+     ],
+     "daily_focus": [
+      "45 daqiqa: Soliq asoslari",
+      "45 daqiqa: Hujjatlar mashqi",
+      "30 daqiqa: Yangiliklar"
+     ],
+     "signs_right": [
+      "Asosiy soliq turlarini bilaman",
+      "Birlamchi hujjatlarni to'g'ri to'ldiraman",
+      "O'zgarishlarni rasmiy manbadan kuzataman"
+     ],
+     "signs_wrong": [
+      "Eskirgan ma'lumotga tayanish",
+      "Hujjatsiz yozuv"
+     ],
+     "graduate_criteria": [
+      "Soliq asoslari konspekti",
+      "Hujjat namunalari",
+      "Yangiliklarni kuzatish odati"
+     ],
+     "challenges": [
+      "Qoidalar o'zgarishi",
+      "Detal"
+     ],
+     "skills_gained": [
+      "Soliq asoslari",
+      "Birlamchi hujjatlar"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "SOFTWARE + PRACTICE",
+     "name_uz": "Dastur va amaliyot",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Buxgalteriya dasturi va real amaliyot",
+     "constraints": [
+      [
+       "Dastur notanish",
+       "1C yoki boshqa buxgalteriya dasturining o'quv versiyasi"
+      ],
+      [
+       "Real tajriba yo'q",
+       "Tanish kichik biznes hujjatlarini tartibga solishga yordam"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Dastur",
+      "30 daqiqa: Excel",
+      "30 daqiqa: Amaliyot"
+     ],
+     "signs_right": [
+      "Dasturda operatsiya kiritaman",
+      "Excel'da solishtirma qilaman",
+      "Real hujjatlar bilan ishladim"
+     ],
+     "signs_wrong": [
+      "Tekshiruvsiz kiritish",
+      "Maxfiy ma'lumotni ehtiyotsiz saqlash"
+     ],
+     "graduate_criteria": [
+      "Dasturda mashq davri",
+      "Solishtirma hisobot",
+      "Real amaliyot"
+     ],
+     "challenges": [
+      "Mas'uliyat",
+      "Maxfiylik"
+     ],
+     "skills_gained": [
+      "Buxgalteriya dasturi",
+      "Excel"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba talabi",
+       "Yordamchi lavozim va amaliyot orqali kirish"
+      ],
+      [
+       "Suhbatda amaliy topshiriq",
+       "Operatsiyalarni yozish mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Rezyume",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Amaliy topshiriqni bajara olaman"
+     ],
+     "signs_wrong": [
+      "Faqat bosh buxgalter o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Amaliyot tavsifi",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Rezyume"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Buxgalteriya nima",
+      "Se: Atamalar",
+      "Ch: Rasmiy manbalar",
+      "Pa: Kirim-chiqim",
+      "Ju: Hujjat turlari",
+      "Sh: Mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Hisoblar",
+     "days": [
+      "Du: Aktiv va passiv",
+      "Se: Debet va kredit",
+      "Ch: Hisoblar rejasi",
+      "Pa: Operatsiyalar",
+      "Ju: Operatsiyalar",
+      "Sh: Jurnal",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Hisobotlar",
+     "days": [
+      "Du: Balans",
+      "Se: Moliyaviy natija",
+      "Ch: Xatolarni topish",
+      "Pa: Solishtirish",
+      "Ju: Excel jadval",
+      "Sh: Mini hisobot",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Soliq va hujjat",
+     "days": [
+      "Du: Soliq turlari",
+      "Se: Hisob-faktura",
+      "Ch: Dalolatnoma",
+      "Pa: Muddatlar",
+      "Ju: Yangiliklar",
+      "Sh: Konspekt",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Bir oylik shaxsiy kirim-chiqimingizni jadvalga yozishni boshlash (bugun, 20 daqiqa)",
+    "soliq.uz saytida kichik biznes bo'limini ko'rib chiqish (bugun, 20 daqiqa)",
+    "10 ta asosiy atama lug'atini tuzish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Soliq qo'mitasi",
+     "url": "https://soliq.uz/",
+     "lang": "UZ"
+    },
+    {
+     "name": "Lex.uz — qonunchilik",
+     "url": "https://lex.uz/",
+     "lang": "UZ"
+    },
+    {
+     "name": "IFRS Foundation",
+     "url": "https://www.ifrs.org/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Atamalar va manbalar"
+    },
+    {
+     "week": 6,
+     "milestone": "Ikki yoqlama yozuv"
+    },
+    {
+     "week": 11,
+     "milestone": "Soliq va hujjatlar"
+    },
+    {
+     "week": 17,
+     "milestone": "Dastur va amaliyot"
+    },
+    {
+     "week": 21,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "fintech_specialist": {
+   "uz": "Fintech mutaxassisi",
+   "cluster": "finance_office",
+   "cluster_uz": "Moliya va raqamli ofis",
+   "why": "Fintech mutaxassisi bank va to'lov xizmatlarining raqamli ishlashiga yordam beradi: to'lov jarayonlari, ilova ichidagi moliyaviy mahsulotlar, operatsiyalar tahlili. Pul va texnologiya kesishmasini yoqtiradigan odam uchun. Bu keng soha — odatda operatsion, analitik yoki mahsulot roli orqali kiriladi.",
+   "b_point": {
+    "outcomes": [
+     "Bank/to'lov kompaniyasida operatsion yoki analitik stajyorlik",
+     "Fintech mahsulot jamoasida junior rol",
+     "Portfolio: to'lov jarayoni tahlili"
+    ],
+    "next_step": "Fintech product, risk/antifrod yoki to'lov operatsiyalari"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Fintech sohasini tushunish",
+     "constraints": [
+      [
+       "Soha keng",
+       "Avval to'lovlar va raqamli bank bilan boshlash"
+      ],
+      [
+       "Atamalar",
+       "Moliya va to'lov lug'ati"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Fintech nima",
+      "30 daqiqa: Ilovalar tahlili",
+      "60 daqiqa: Lug'at"
+     ],
+     "signs_right": [
+      "Fintech yo'nalishlarini bilaman",
+      "3 ta moliya ilovasini tahlil qildim",
+      "Lug'at bor"
+     ],
+     "signs_wrong": [
+      "Faqat kripto haqidagi postlar",
+      "Investitsiya maslahatlarini fakt deb qabul qilish"
+     ],
+     "graduate_criteria": [
+      "Soha xaritasi",
+      "Ilovalar tahlili",
+      "Lug'at"
+     ],
+     "challenges": [
+      "Kenglik",
+      "Atamalar"
+     ],
+     "skills_gained": [
+      "Fintech asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "PAYMENTS + BANKING",
+     "name_uz": "To'lovlar va bank",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "To'lov qanday o'tishini tushunish",
+     "constraints": [
+      [
+       "Jarayon ko'rinmaydi",
+       "Bitta karta to'lovini qadamma-qadam chizish"
+      ],
+      [
+       "Qoidalar",
+       "Markaziy bank va rasmiy manbalar"
+      ]
+     ],
+     "daily_focus": [
+      "45 daqiqa: Nazariya",
+      "45 daqiqa: Jarayon chizish",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "Karta to'lovi qadamlarini tushuntira olaman",
+      "Komissiya va foizni hisoblayman",
+      "Asosiy tartibga solish tamoyillarini bilaman"
+     ],
+     "signs_wrong": [
+      "Faqat ilova interfeysiga qarash",
+      "Xavfsizlikni e'tiborsiz qoldirish"
+     ],
+     "graduate_criteria": [
+      "To'lov jarayoni diagrammasi",
+      "Hisob-kitob mashqlari",
+      "Tartibga solish konspekti"
+     ],
+     "challenges": [
+      "Mavhum jarayon",
+      "Qoidalar"
+     ],
+     "skills_gained": [
+      "To'lov tizimlari",
+      "Moliyaviy hisob"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "DATA + RISK",
+     "name_uz": "Ma'lumot va risk",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Operatsiyalar tahlili va firibgarlik belgilari",
+     "constraints": [
+      [
+       "Raqamlar ko'p",
+       "Excel va SQL asoslari"
+      ],
+      [
+       "Firibgarlik mavzusi",
+       "Shubhali operatsiya belgilarini o'rganish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Excel/SQL",
+      "60 daqiqa: Tahlil mashqi",
+      "30 daqiqa: Risk"
+     ],
+     "signs_right": [
+      "Operatsiyalar jadvalini tahlil qilaman",
+      "Shubhali belgini topaman",
+      "Xulosa yozaman"
+     ],
+     "signs_wrong": [
+      "Dalilsiz xulosa",
+      "Shaxsiy ma'lumotni ehtiyotsiz ishlatish"
+     ],
+     "graduate_criteria": [
+      "Operatsiyalar tahlili",
+      "Risk belgilari ro'yxati",
+      "Xulosa hisoboti"
+     ],
+     "challenges": [
+      "Ma'lumot",
+      "Maxfiylik"
+     ],
+     "skills_gained": [
+      "Excel",
+      "SQL asoslari",
+      "Risk asoslari"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "PRODUCT CASE",
+     "name_uz": "Mahsulot keysi",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Fintech mahsulot yoki jarayon keysi",
+     "constraints": [
+      [
+       "Real ma'lumot yo'q",
+       "Ochiq ma'lumot yoki o'z tajribangiz asosida keys"
+      ],
+      [
+       "G'oya keng",
+       "Bitta muammo: masalan, to'lovdagi qadamlarni qisqartirish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Muammo",
+      "60 daqiqa: Keys",
+      "30 daqiqa: Taqdimot"
+     ],
+     "signs_right": [
+      "Muammoni foydalanuvchi bilan tekshirdim",
+      "Yechimni risk bilan birga taklif qildim",
+      "Keysni taqdim etdim"
+     ],
+     "signs_wrong": [
+      "Risksiz yechim",
+      "Tekshirilmagan raqamlar"
+     ],
+     "graduate_criteria": [
+      "Mahsulot/jarayon keysi",
+      "Foydalanuvchi fikrlari",
+      "Taqdimot"
+     ],
+     "challenges": [
+      "Murakkablik",
+      "Taqdimot"
+     ],
+     "skills_gained": [
+      "Product thinking",
+      "Taqdimot"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va suhbatlar",
+     "constraints": [
+      [
+       "Tajriba talabi",
+       "Operatsion yoki stajyorlik rollari orqali kirish"
+      ],
+      [
+       "Suhbat",
+       "To'lov jarayonini tushuntirish mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Suhbat mashqi"
+     ],
+     "signs_right": [
+      "Rezyume tayyor",
+      "Har hafta arizalar",
+      "Keysimni tushuntira olaman"
+     ],
+     "signs_wrong": [
+      "Faqat \"fintech product manager\" o'rinlariga ariza",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Keys",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Tajriba talabi",
+      "Raqobat"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Soha",
+     "days": [
+      "Du: Fintech nima",
+      "Se: Yo'nalishlar",
+      "Ch: Ilova tahlili 1",
+      "Pa: Ilova tahlili 2",
+      "Ju: Lug'at",
+      "Sh: Xulosa",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "To'lovlar",
+     "days": [
+      "Du: Karta to'lovi",
+      "Se: O'tkazmalar",
+      "Ch: Komissiya",
+      "Pa: Xavfsizlik",
+      "Ju: Tartibga solish",
+      "Sh: Diagramma",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Ma'lumot",
+     "days": [
+      "Du: Excel asoslari",
+      "Se: Filtr va jadval",
+      "Ch: SQL SELECT",
+      "Pa: Guruhlash",
+      "Ju: Shubhali belgilar",
+      "Sh: Mini tahlil",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Keys",
+     "days": [
+      "Du: Muammo tanlash",
+      "Se: Foydalanuvchi bilan suhbat",
+      "Ch: Yechim",
+      "Pa: Risklar",
+      "Ju: Taqdimot",
+      "Sh: Keys",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Ishlatadigan to'lov ilovangizda bitta o'tkazmani qadamma-qadam yozish (bugun, 20 daqiqa)",
+    "Markaziy bank saytida to'lov tizimlari bo'limini ko'rib chiqish (bugun, 20 daqiqa)",
+    "15 ta moliya atamasi lug'atini tuzish (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "O'zbekiston Markaziy banki",
+     "url": "https://cbu.uz/",
+     "lang": "UZ"
+    },
+    {
+     "name": "Stripe — Docs",
+     "url": "https://docs.stripe.com/",
+     "lang": "EN"
+    },
+    {
+     "name": "Investopedia",
+     "url": "https://www.investopedia.com/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Soha xaritasi"
+    },
+    {
+     "week": 5,
+     "milestone": "To'lov jarayoni"
+    },
+    {
+     "week": 10,
+     "milestone": "Operatsiyalar tahlili"
+    },
+    {
+     "week": 16,
+     "milestone": "Mahsulot keysi"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va suhbatlar"
+    }
+   ]
+  },
+  "spreadsheet_specialist": {
+   "uz": "Excel va Google Sheets mutaxassisi",
+   "cluster": "finance_office",
+   "cluster_uz": "Moliya va raqamli ofis",
+   "why": "Excel va Google Sheets mutaxassisi qo'lda qilinadigan hisob-kitobni avtomatik jadval va hisobotga aylantiradi. Vaqtni tejashni, tartibni va raqamlar bilan ishlashni yoqtiradigan odam uchun. Bu ko'nikma ko'p ofis lavozimlarida (operator, ofis menejeri, analitik yordamchisi) asos bo'ladi.",
+   "b_point": {
+    "outcomes": [
+     "Ofis/operatsion lavozimlar (hisobot, ma'lumot kiritish va tahlil)",
+     "Freelance: kichik biznes uchun jadval va hisobotlar",
+     "Analitik yordamchisi"
+    ],
+    "next_step": "Data analitik, moliyaviy tahlilchi yoki operatsion menejer"
+   },
+   "stages": [
+    {
+     "n": 0,
+     "name": "SETUP",
+     "name_uz": "Tayyorgarlik",
+     "weeks": 1,
+     "role": "Tadqiqotchi",
+     "daily_hours": "1-2 soat",
+     "graduate_by": "Jadval interfeysi bilan tanishuv",
+     "constraints": [
+      [
+       "Excel yo'q",
+       "Google Sheets bepul"
+      ],
+      [
+       "Qayerdan boshlash",
+       "O'z kundalik ma'lumotingizdan jadval"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Interfeys",
+      "30 daqiqa: Katakchalar va formatlash",
+      "60 daqiqa: Birinchi jadval"
+     ],
+     "signs_right": [
+      "Jadval yaratdim",
+      "Formatlashni bilaman",
+      "Oddiy hisob qildim"
+     ],
+     "signs_wrong": [
+      "Faqat video ko'rish",
+      "Ma'lumotni tartibsiz kiritish"
+     ],
+     "graduate_criteria": [
+      "Interfeys",
+      "Birinchi jadval",
+      "Formatlash"
+     ],
+     "challenges": [
+      "Interfeys",
+      "Odat"
+     ],
+     "skills_gained": [
+      "Jadval asoslari"
+     ]
+    },
+    {
+     "n": 1,
+     "name": "FORMULAS",
+     "name_uz": "Formulalar",
+     "weeks": 4,
+     "role": "O'rganuvchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Asosiy formulalar",
+     "constraints": [
+      [
+       "Formulalar ko'p",
+       "Avval 10 ta eng kerakli formula"
+      ],
+      [
+       "Xato chiqadi",
+       "Xato turlarini o'qishni o'rganish"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Yangi formula",
+      "60 daqiqa: Mashq",
+      "30 daqiqa: Takrorlash"
+     ],
+     "signs_right": [
+      "SUM, IF, COUNTIF ishlataman",
+      "XLOOKUP/VLOOKUP bilan ma'lumot topaman",
+      "Nisbiy va mutlaq havolani farqlayman"
+     ],
+     "signs_wrong": [
+      "Hisobni qo'lda yozish",
+      "Formulani tekshirmaslik"
+     ],
+     "graduate_criteria": [
+      "10 ta asosiy formula",
+      "Qidiruv formulalari",
+      "Xato turlari"
+     ],
+     "challenges": [
+      "Mantiq",
+      "Aniqlik"
+     ],
+     "skills_gained": [
+      "Formulalar",
+      "Lookup"
+     ]
+    },
+    {
+     "n": 2,
+     "name": "DATA + PIVOT",
+     "name_uz": "Ma'lumot va pivot",
+     "weeks": 5,
+     "role": "Amaliyotchi",
+     "daily_hours": "2 soat",
+     "graduate_by": "Tozalangan ma'lumot va pivot hisobotlar",
+     "constraints": [
+      [
+       "Ma'lumot tartibsiz",
+       "Tozalash qadamlari: takror, bo'sh, format"
+      ],
+      [
+       "Hisobot qo'lda",
+       "Pivot jadval"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Tozalash",
+      "60 daqiqa: Pivot",
+      "30 daqiqa: Grafik"
+     ],
+     "signs_right": [
+      "Ma'lumotni tozalayman",
+      "Pivot jadval tuzaman",
+      "Tushunarli grafik chizaman"
+     ],
+     "signs_wrong": [
+      "Asl ma'lumotni buzish",
+      "Ortiqcha bezakli grafik"
+     ],
+     "graduate_criteria": [
+      "Tozalash jarayoni",
+      "Pivot hisobot",
+      "3+ grafik"
+     ],
+     "challenges": [
+      "Tartib",
+      "Tanlov"
+     ],
+     "skills_gained": [
+      "Data cleaning",
+      "Pivot",
+      "Grafiklar"
+     ]
+    },
+    {
+     "n": 3,
+     "name": "AUTOMATION + DASHBOARD",
+     "name_uz": "Avtomatlashtirish va dashboard",
+     "weeks": 6,
+     "role": "Builder",
+     "daily_hours": "3 soat",
+     "graduate_by": "Avtomatik hisobot va dashboard",
+     "constraints": [
+      [
+       "Takroriy ish",
+       "Makros yoki Apps Script bilan oddiy avtomatlashtirish"
+      ],
+      [
+       "Real vazifa yo'q",
+       "Tanish biznesning hisobi"
+      ]
+     ],
+     "daily_focus": [
+      "30 daqiqa: Avtomatlashtirish",
+      "60 daqiqa: Dashboard",
+      "30 daqiqa: Hujjat"
+     ],
+     "signs_right": [
+      "Takroriy ishni avtomatlashtirdim",
+      "Dashboard qurdim",
+      "Real vazifani hal qildim"
+     ],
+     "signs_wrong": [
+      "Hujjatsiz murakkab jadval",
+      "Himoyasiz formulalar"
+     ],
+     "graduate_criteria": [
+      "Dashboard",
+      "Avtomatlashtirilgan hisobot",
+      "Real loyiha"
+     ],
+     "challenges": [
+      "Murakkablik",
+      "Hujjat"
+     ],
+     "skills_gained": [
+      "Dashboard",
+      "Makros/Apps Script asoslari"
+     ]
+    },
+    {
+     "n": 4,
+     "name": "JOB READY",
+     "name_uz": "Ishga tayyorlanish",
+     "weeks": 4,
+     "role": "Candidate",
+     "daily_hours": "3 soat",
+     "graduate_by": "Ariza va buyurtmalar",
+     "constraints": [
+      [
+       "Portfolio yo'q",
+       "Namuna jadvallar (shaxsiy ma'lumotsiz)"
+      ],
+      [
+       "Suhbatda test",
+       "Vaqtli amaliy topshiriq mashqi"
+      ]
+     ],
+     "daily_focus": [
+      "60 daqiqa: Portfolio",
+      "60 daqiqa: Ariza",
+      "60 daqiqa: Test mashqi"
+     ],
+     "signs_right": [
+      "Namuna jadvallar tayyor",
+      "Har hafta arizalar",
+      "Amaliy testni bajara olaman"
+     ],
+     "signs_wrong": [
+      "Haqiqiy mijoz ma'lumotini ko'rsatish",
+      "Rad javobidan keyin to'xtash"
+     ],
+     "graduate_criteria": [
+      "Rezyume",
+      "Namuna jadvallar",
+      "Muntazam arizalar"
+     ],
+     "challenges": [
+      "Raqobat",
+      "Test topshiriq"
+     ],
+     "skills_gained": [
+      "Suhbat",
+      "Portfolio"
+     ]
+    }
+   ],
+   "calendar_30d": [
+    {
+     "w": 1,
+     "theme": "Asoslar",
+     "days": [
+      "Du: Interfeys",
+      "Se: Ma'lumot kiritish",
+      "Ch: Formatlash",
+      "Pa: Saralash",
+      "Ju: Filtr",
+      "Sh: Birinchi jadval",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 2,
+     "theme": "Formulalar",
+     "days": [
+      "Du: SUM va AVERAGE",
+      "Se: IF",
+      "Ch: COUNTIF/SUMIF",
+      "Pa: Matn formulalari",
+      "Ju: Sana formulalari",
+      "Sh: Mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 3,
+     "theme": "Qidiruv",
+     "days": [
+      "Du: Nisbiy/mutlaq havola",
+      "Se: XLOOKUP/VLOOKUP",
+      "Ch: Ma'lumot tekshiruvi",
+      "Pa: Takrorlarni topish",
+      "Ju: Xato turlari",
+      "Sh: Mashq",
+      "Ya: Dam"
+     ]
+    },
+    {
+     "w": 4,
+     "theme": "Hisobot",
+     "days": [
+      "Du: Tozalash",
+      "Se: Pivot",
+      "Ch: Grafik",
+      "Pa: Shartli formatlash",
+      "Ju: Dashboard eskizi",
+      "Sh: Mini hisobot",
+      "Ya: Dam"
+     ]
+    }
+   ],
+   "first_3_actions": [
+    "Google Sheets'da bo'sh jadval ochish (bugun, 5 daqiqa)",
+    "Bir haftalik xarajatlaringizni kiritish (bugun, 20 daqiqa)",
+    "SUM va AVERAGE bilan jami va o'rtachani hisoblash (bugun, 20 daqiqa)"
+   ],
+   "mentor_path": [
+    "Sohadagi tajribali mutaxassisdan 20 daqiqalik suhbat so'rash",
+    "Mahalliy IT hamjamiyatlari va meetup'lar",
+    "Onlayn hamjamiyatlarda savol berish va boshqalarga yordam berish"
+   ],
+   "resources": [
+    {
+     "name": "Microsoft — Excel help & learning",
+     "url": "https://support.microsoft.com/en-us/excel",
+     "lang": "EN"
+    },
+    {
+     "name": "Google Sheets — Help",
+     "url": "https://support.google.com/docs",
+     "lang": "EN"
+    },
+    {
+     "name": "Exceljet",
+     "url": "https://exceljet.net/",
+     "lang": "EN"
+    }
+   ],
+   "milestones": [
+    {
+     "week": 1,
+     "milestone": "Birinchi jadval"
+    },
+    {
+     "week": 5,
+     "milestone": "10 ta formula"
+    },
+    {
+     "week": 10,
+     "milestone": "Pivot hisobot"
+    },
+    {
+     "week": 16,
+     "milestone": "Dashboard va avtomatlashtirish"
+    },
+    {
+     "week": 20,
+     "milestone": "Ariza va buyurtmalar"
+    }
+   ]
+  }
+ }
+}

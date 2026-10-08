@@ -305,3 +305,23 @@ class DeepDiagnosticSignal(Base):
     __table_args__ = (
         UniqueConstraint("session_id", "signal_key", name="uq_dd_session_signal"),
     )
+
+
+# ═══════════════════════════════════════════════════════════
+# DIAGNOSTIC V2 (9×25 catalog, draft) — one row per finished stage
+# ═══════════════════════════════════════════════════════════
+class DiagnosticV2Result(Base):
+    """stage: discovery | deep. answers/result are JSON; result keeps internal counts for analysis."""
+    __tablename__ = "diagnostic_v2_results"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, index=True)
+    stage: Mapped[str] = mapped_column(String(16))
+    data_version: Mapped[str] = mapped_column(String(32))
+    catalogs: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    answers: Mapped[dict] = mapped_column(JSON)
+    result: Mapped[dict] = mapped_column(JSON)
+    meta: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    created_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )

@@ -1,0 +1,5328 @@
+{
+ "version": "v2.0-draft",
+ "status": "draft — founder review; not linked from the main flow",
+ "sources": [
+  "claude-qadamio docs/specs/2026-10-05-discovery-v2-draft.md",
+  "claude-qadamio docs/specs/2026-10-05-deep-v2-draft.md",
+  "claude-qadamio docs/specs/2026-10-05-dasturlash-golden-sample.md",
+  "claude-qadamio docs/specs/2026-10-07-golden-samples-batch-1.md",
+  "claude-qadamio docs/specs/2026-10-07-golden-samples-batch-2.md"
+ ],
+ "none_label": "Bilmayman / bu yerda menga mosi yo‘q",
+ "discovery": {
+  "questions": [
+   {
+    "id": "D2_Q01",
+    "text": "Bo‘sh vaqtingizda qaysi biri sizga ko‘proq zavq beradi?",
+    "options": [
+     {
+      "id": "D2_Q01_A",
+      "label": "Xarajatlarimni yozib, pulimni rejalashtirish",
+      "catalog": "finance_office"
+     },
+     {
+      "id": "D2_Q01_B",
+      "label": "Video olib, uni chiroyli montaj qilish",
+      "catalog": "content_media"
+     },
+     {
+      "id": "D2_Q01_C",
+      "label": "Rasm chizish yoki biror narsani bezash",
+      "catalog": "design_creative"
+     },
+     {
+      "id": "D2_Q01_D",
+      "label": "Ijtimoiy tarmoqda sahifa yuritib, obunachi yig‘ish",
+      "catalog": "digital_marketing"
+     },
+     {
+      "id": "D2_Q01_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q02",
+    "text": "Qaysi ishni boshqalardan yaxshiroq bajarasiz?",
+    "options": [
+     {
+      "id": "D2_Q02_A",
+      "label": "Biror narsani odamlarga qiziqarli qilib e’lon qilish",
+      "catalog": "digital_marketing"
+     },
+     {
+      "id": "D2_Q02_B",
+      "label": "Odamni gapimga ishontirib, kelishib olish",
+      "catalog": "business_sales"
+     },
+     {
+      "id": "D2_Q02_C",
+      "label": "Qiziqarli hikoya yoki post yozish",
+      "catalog": "content_media"
+     },
+     {
+      "id": "D2_Q02_D",
+      "label": "Buzilgan kompyuter yoki internetni tuzatish",
+      "catalog": "infra_security"
+     },
+     {
+      "id": "D2_Q02_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q03",
+    "text": "Bolaligingizda nimani ko‘proq yoqtirib qilardingiz?",
+    "options": [
+     {
+      "id": "D2_Q03_A",
+      "label": "Pul yig‘ib, hisob-kitob qilish",
+      "catalog": "finance_office"
+     },
+     {
+      "id": "D2_Q03_B",
+      "label": "Texnikani ochib, ichi qanday ishlashini ko‘rish",
+      "catalog": "infra_security"
+     },
+     {
+      "id": "D2_Q03_C",
+      "label": "Rasm chizish, rang tanlash",
+      "catalog": "design_creative"
+     },
+     {
+      "id": "D2_Q03_D",
+      "label": "E’lon yoki plakat tayyorlab, hammani tadbirga chaqirish",
+      "catalog": "digital_marketing"
+     },
+     {
+      "id": "D2_Q03_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q04",
+    "text": "Qaysi topshiriqqa birinchi bo‘lib qo‘l urardingiz?",
+    "options": [
+     {
+      "id": "D2_Q04_A",
+      "label": "Kompyuterga buyruq yozib, uni xohlagan ishimni qildirish",
+      "catalog": "software"
+     },
+     {
+      "id": "D2_Q04_B",
+      "label": "Ko‘p raqamlar ichidan muhim xulosani topish",
+      "catalog": "data_ai"
+     },
+     {
+      "id": "D2_Q04_C",
+      "label": "Sayt yoki ilova ko‘rinishini chiroyli va qulay qilish",
+      "catalog": "design_creative"
+     },
+     {
+      "id": "D2_Q04_D",
+      "label": "Hujjat va hisob-kitoblarni tartibga keltirish",
+      "catalog": "finance_office"
+     },
+     {
+      "id": "D2_Q04_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q05",
+    "text": "Do‘stlaringiz sizdan ko‘pincha qanday yordam so‘raydi?",
+    "options": [
+     {
+      "id": "D2_Q05_A",
+      "label": "Tadbir yoki safarni rejalashtirib, hammani uyushtirishni",
+      "catalog": "product_project"
+     },
+     {
+      "id": "D2_Q05_B",
+      "label": "Narxlarni solishtirib, eng foydalisini topib berishni",
+      "catalog": "data_ai"
+     },
+     {
+      "id": "D2_Q05_C",
+      "label": "Rasm yoki videoni chiroyli qilib berishni",
+      "catalog": "content_media"
+     },
+     {
+      "id": "D2_Q05_D",
+      "label": "Telefon, kompyuter yoki Wi-Fi’ni sozlab berishni",
+      "catalog": "infra_security"
+     },
+     {
+      "id": "D2_Q05_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q06",
+    "text": "Sizni bir kunlik sinov ishiga chaqirishsa, qaysi birini tanlardingiz?",
+    "options": [
+     {
+      "id": "D2_Q06_A",
+      "label": "Jamoaga bosh bo‘lib, ishni taqsimlash",
+      "catalog": "product_project"
+     },
+     {
+      "id": "D2_Q06_B",
+      "label": "Xaridorlar bilan gaplashib, mahsulot sotish",
+      "catalog": "business_sales"
+     },
+     {
+      "id": "D2_Q06_C",
+      "label": "Jadvaldagi ma’lumotlarni o‘rganib, hisobot tayyorlash",
+      "catalog": "data_ai"
+     },
+     {
+      "id": "D2_Q06_D",
+      "label": "Yangi mahsulot uchun qadoq dizaynini chizish",
+      "catalog": "design_creative"
+     },
+     {
+      "id": "D2_Q06_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q07",
+    "text": "Qaysi natijadan ko‘proq faxrlanardingiz?",
+    "options": [
+     {
+      "id": "D2_Q07_A",
+      "label": "Men boshqargan loyiha vaqtida va yaxshi tugadi",
+      "catalog": "product_project"
+     },
+     {
+      "id": "D2_Q07_B",
+      "label": "Men topgan raqamlar tufayli to‘g‘ri qaror qabul qilindi",
+      "catalog": "data_ai"
+     },
+     {
+      "id": "D2_Q07_C",
+      "label": "Men yozgan dasturdan minglab odam foydalanyapti",
+      "catalog": "software"
+     },
+     {
+      "id": "D2_Q07_D",
+      "label": "Men qilgan reklama tufayli mijozlar ko‘paydi",
+      "catalog": "digital_marketing"
+     },
+     {
+      "id": "D2_Q07_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q08",
+    "text": "Maktabda qaysi mashg‘ulot sizga ko‘proq yoqardi?",
+    "options": [
+     {
+      "id": "D2_Q08_A",
+      "label": "Aniq hisob-kitob talab qiladigan matematika masalalari",
+      "catalog": "finance_office"
+     },
+     {
+      "id": "D2_Q08_B",
+      "label": "Informatika darsida kompyuterda masala yechish",
+      "catalog": "software"
+     },
+     {
+      "id": "D2_Q08_C",
+      "label": "Guruh loyihasida reja tuzib, hammani ishga solish",
+      "catalog": "product_project"
+     },
+     {
+      "id": "D2_Q08_D",
+      "label": "Sinf oldida chiqib, fikrimni tushuntirish va himoya qilish",
+      "catalog": "business_sales"
+     },
+     {
+      "id": "D2_Q08_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   },
+   {
+    "id": "D2_Q09",
+    "text": "Kelajakda kuningiz qaysi ish bilan o‘tishini xohlardingiz?",
+    "options": [
+     {
+      "id": "D2_Q09_A",
+      "label": "Kompaniya kompyuterlari to‘xtovsiz va xavfsiz ishlashini ta’minlash",
+      "catalog": "infra_security"
+     },
+     {
+      "id": "D2_Q09_B",
+      "label": "Har kuni yangi odamlar bilan uchrashib, kelishuvlar qilish",
+      "catalog": "business_sales"
+     },
+     {
+      "id": "D2_Q09_C",
+      "label": "Video, matn va suratlar bilan kontent yaratish",
+      "catalog": "content_media"
+     },
+     {
+      "id": "D2_Q09_D",
+      "label": "Kompyuterda yangi dasturlar yaratish",
+      "catalog": "software"
+     },
+     {
+      "id": "D2_Q09_E",
+      "label": "Bilmayman / bu yerda menga mosi yo‘q",
+      "catalog": null
+     }
+    ]
+   }
+  ]
+ },
+ "catalogs": [
+  {
+   "id": "software",
+   "uz": "Dasturlash",
+   "careers": [
+    {
+     "id": "frontend_development",
+     "uz": "Frontend dasturchi"
+    },
+    {
+     "id": "backend_development",
+     "uz": "Backend dasturchi"
+    },
+    {
+     "id": "mobile_development",
+     "uz": "Mobil dasturchi"
+    },
+    {
+     "id": "qa_automation",
+     "uz": "QA / test mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "software_A01",
+     "text": "Sayt yoki ilovaning qaysi qismi sizni ko‘proq qiziqtiradi?",
+     "options": [
+      {
+       "id": "software_A01_A",
+       "label": "Odam ko‘radigan qismi: tugmalar, sahifalar, harakatlar",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A01_B",
+       "label": "Ko‘rinmaydigan qismi: ma’lumot qayerda saqlanadi va qanday ishlanadi",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A01_C",
+       "label": "Telefondagi ilova: cho‘ntakda yuradigan, barmoq bilan bosiladigan",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A01_D",
+       "label": "Hammasi to‘g‘ri ishlayaptimi — xatolarni qidirish",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A02",
+     "text": "Ish kuningiz qaysi biri bilan o‘tsa, xursand bo‘lardingiz?",
+     "options": [
+      {
+       "id": "software_A02_A",
+       "label": "Sahifani chiroyli va qulay ko‘rinishga keltirish",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A02_B",
+       "label": "Minglab buyurtma bir vaqtda kelganda tizim qotib qolmasligini ta’minlash",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A02_C",
+       "label": "Telefon ilovasiga yangi imkoniyat qo‘shish",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A02_D",
+       "label": "Ilovani har xil usulda sinab, yashirin xatoni topish",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A03",
+     "text": "Qaysi maqtov sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "software_A03_A",
+       "label": "\"Saytingiz juda chiroyli va qulay ekan\"",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A03_B",
+       "label": "\"Tizimingiz hech qachon to‘xtamaydi\"",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A03_C",
+       "label": "\"Ilovangizni telefonimga o‘rnatdim, har kuni ishlataman\"",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A03_D",
+       "label": "\"Siz tufayli mijozlar birorta ham xatoga duch kelmadi\"",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A04",
+     "text": "Qaysi kamchilik sizni ko‘proq bezovta qiladi?",
+     "options": [
+      {
+       "id": "software_A04_A",
+       "label": "Tugmalar tartibsiz, matnni o‘qib bo‘lmaydi",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A04_B",
+       "label": "Sayt sekin ishlaydi, ma’lumotlar yo‘qolib qoladi",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A04_C",
+       "label": "Ilova telefonda qotib qoladi yoki zaryadni tez tugatadi",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A04_D",
+       "label": "Hech kim tekshirmagani uchun xato mijozga yetib boradi",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A05",
+     "text": "Qaysi vazifani o‘z zimmangizga olardingiz?",
+     "options": [
+      {
+       "id": "software_A05_A",
+       "label": "Do‘kon saytining bosh sahifasini yasash",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A05_B",
+       "label": "To‘lov va buyurtmalarni saqlaydigan tizimni qurish",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A05_C",
+       "label": "Taksi chaqirish ilovasini yasash",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A05_D",
+       "label": "Yangi ilovani chiqishidan oldin boshdan-oyoq tekshirish",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A06",
+     "text": "Qanday ishlash sizga yaqinroq?",
+     "options": [
+      {
+       "id": "software_A06_A",
+       "label": "O‘zgartirdim — natija darhol ko‘zim oldida",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A06_B",
+       "label": "Murakkab mantiq ustida uzoq va chuqur o‘ylash",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A06_C",
+       "label": "Qilganimni telefonda qo‘lda ushlab sinab ko‘rish",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A06_D",
+       "label": "Ro‘yxat bo‘yicha qadamma-qadam, sinchkovlik bilan tekshirish",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A07",
+     "text": "Qaysi birini o‘rganish sizga qiziqroq?",
+     "options": [
+      {
+       "id": "software_A07_A",
+       "label": "Ranglar, shriftlar va sahifa joylashuvi qanday ishlaydi",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A07_B",
+       "label": "Ma’lumotlar qanday saqlanadi va qanday tez topiladi",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A07_C",
+       "label": "Android va iPhone ilovalari qanday yasaladi",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A07_D",
+       "label": "Dasturda xato qanday paydo bo‘ladi va qanday topiladi",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A08",
+     "text": "Do‘stingiz ilova yaratmoqchi. Siz qaysi qismini olardingiz?",
+     "options": [
+      {
+       "id": "software_A08_A",
+       "label": "Ekranlari va ko‘rinishini",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A08_B",
+       "label": "Ichki mantiqi va ma’lumotlarini",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A08_C",
+       "label": "Telefonga moslashtirishni",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A08_D",
+       "label": "Ishga tushirishdan oldin tekshirishni",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A09",
+     "text": "Qaysi yangilik sizni ko‘proq sevintirardi?",
+     "options": [
+      {
+       "id": "software_A09_A",
+       "label": "Odamlar saytda adashmay, oson yo‘l topyapti",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A09_B",
+       "label": "Tizim bir kunda million odamni ko‘tara oldi",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A09_C",
+       "label": "Ilovangiz Play Market’da yuqori baho oldi",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A09_D",
+       "label": "Siz topgan xato katta zararning oldini oldi",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A10",
+     "text": "Qaysi birida sabringiz ko‘proq yetadi?",
+     "options": [
+      {
+       "id": "software_A10_A",
+       "label": "Bitta tugmani mukammal bo‘lguncha qayta-qayta o‘zgartirishda",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A10_B",
+       "label": "Murakkab muammoning ildizini topguncha izlashda",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A10_C",
+       "label": "Ilovani har xil telefonda bir xil ishlaydigan qilishda",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A10_D",
+       "label": "Bir amalni ko‘p marta takrorlab, xato qidirishda",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "software_A11",
+     "text": "Ijtimoiy tarmoqlarda qanday sahifa va bloglarni ko‘proq kuzatasiz?",
+     "options": [
+      {
+       "id": "software_A11_A",
+       "label": "Chiroyli sayt va ekran namunalarini ko‘rsatadigan sahifalar",
+       "career": "frontend_development"
+      },
+      {
+       "id": "software_A11_B",
+       "label": "Katta kompaniyalar tizimi ichidan qanday ishlashi haqidagi bloglar",
+       "career": "backend_development"
+      },
+      {
+       "id": "software_A11_C",
+       "label": "Yangi telefon va ilovalar sharhlari",
+       "career": "mobile_development"
+      },
+      {
+       "id": "software_A11_D",
+       "label": "\"Bu ilovada qanday xato topildi\" kabi qiziq hikoyalar",
+       "career": "qa_automation"
+      },
+      {
+       "id": "software_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "software_T1",
+     "title": "Shart bo‘yicha hisoblash",
+     "text": "Do‘konda qoida: xarid 100 000 so‘mdan oshsa, 10% chegirma beriladi. Xaridor 120 000 so‘mlik narsa oldi. U qancha to‘laydi?",
+     "options": [
+      {
+       "id": "software_T1_A",
+       "label": "108 000 so‘m"
+      },
+      {
+       "id": "software_T1_B",
+       "label": "110 000 so‘m"
+      },
+      {
+       "id": "software_T1_C",
+       "label": "12 000 so‘m"
+      },
+      {
+       "id": "software_T1_D",
+       "label": "120 000 so‘m"
+      },
+      {
+       "id": "software_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "software_T1_A"
+    },
+    {
+     "id": "software_T2",
+     "title": "Xatoni topish",
+     "text": "Ilovadagi savatcha: \"3 ta mahsulot: 20 000, 15 000 va 5 000 so‘m. Jami: 45 000 so‘m\". Bu yerda xato bormi?",
+     "options": [
+      {
+       "id": "software_T2_A",
+       "label": "Ha, jami 40 000 so‘m bo‘lishi kerak"
+      },
+      {
+       "id": "software_T2_B",
+       "label": "Ha, mahsulot 4 ta bo‘lishi kerak"
+      },
+      {
+       "id": "software_T2_C",
+       "label": "Ha, 5 000 so‘mlik mahsulot bo‘lishi mumkin emas"
+      },
+      {
+       "id": "software_T2_D",
+       "label": "Xato yo‘q"
+      },
+      {
+       "id": "software_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "software_T2_A"
+    },
+    {
+     "id": "software_T3",
+     "title": "Tizim qoidasini o‘ylash",
+     "text": "Ro‘yxatdan o‘tishda \"Tug‘ilgan yilingiz\" so‘raladi. Bugun 2026-yil. Qaysi qiymatni tizim **qabul qilmasligi** kerak?",
+     "options": [
+      {
+       "id": "software_T3_A",
+       "label": "1985"
+      },
+      {
+       "id": "software_T3_B",
+       "label": "1998"
+      },
+      {
+       "id": "software_T3_C",
+       "label": "2001"
+      },
+      {
+       "id": "software_T3_D",
+       "label": "2030"
+      },
+      {
+       "id": "software_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "software_T3_D"
+    },
+    {
+     "id": "software_T4",
+     "title": "Foydalanuvchi uchun tartib",
+     "text": "Ro‘yxatdan o‘tish sahifasi uchun qaysi tartib foydalanuvchiga eng qulay?",
+     "options": [
+      {
+       "id": "software_T4_A",
+       "label": "Ism → Telefon → Parol → \"Ro‘yxatdan o‘tish\" tugmasi"
+      },
+      {
+       "id": "software_T4_B",
+       "label": "Tugma → Parol → Ism → Telefon"
+      },
+      {
+       "id": "software_T4_C",
+       "label": "Parol → Tugma → Telefon → Ism"
+      },
+      {
+       "id": "software_T4_D",
+       "label": "Telefon → Tugma → Ism → Parol"
+      },
+      {
+       "id": "software_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "software_T4_A"
+    }
+   ],
+   "lesson": {
+    "text": "Robotga yangi buyruq o‘rgatamiz: **TAKRORLA**.\nMasalan: **TAKRORLA 3 marta: [1 qadam yur]** — robot 3 qadam yuradi.",
+    "questions": [
+     {
+      "id": "software_O1",
+      "text": "TAKRORLA 2 marta: [2 qadam oldinga, 1 qadam orqaga]. Robot boshlang‘ich joyidan necha qadam oldinda bo‘ladi?",
+      "options": [
+       {
+        "id": "software_O1_A",
+        "label": "2"
+       },
+       {
+        "id": "software_O1_B",
+        "label": "3"
+       },
+       {
+        "id": "software_O1_C",
+        "label": "4"
+       },
+       {
+        "id": "software_O1_D",
+        "label": "6"
+       },
+       {
+        "id": "software_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "software_O1_A"
+     },
+     {
+      "id": "software_O2",
+      "text": "TAKRORLA 3 marta: [ TAKRORLA 2 marta: [1 qadam yur] ]. Robot jami necha qadam yuradi?",
+      "options": [
+       {
+        "id": "software_O2_A",
+        "label": "3"
+       },
+       {
+        "id": "software_O2_B",
+        "label": "5"
+       },
+       {
+        "id": "software_O2_C",
+        "label": "6"
+       },
+       {
+        "id": "software_O2_D",
+        "label": "9"
+       },
+       {
+        "id": "software_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "software_O2_C"
+     }
+    ]
+   }
+  },
+  {
+   "id": "data_ai",
+   "uz": "Ma’lumotlar va sun’iy intellekt",
+   "careers": [
+    {
+     "id": "data_analytics",
+     "uz": "Data analitik"
+    },
+    {
+     "id": "data_science",
+     "uz": "AI va Data Science muhandisi"
+    },
+    {
+     "id": "database_specialist",
+     "uz": "Ma’lumotlar bazasi mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "data_ai_A01",
+     "text": "Qaysi savolga javob topish sizni ko‘proq qiziqtiradi?",
+     "options": [
+      {
+       "id": "data_ai_A01_A",
+       "label": "\"Nega bu oy savdo tushib ketdi?\"",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A01_B",
+       "label": "\"Kompyuter rasmga qarab, unda nima borligini qanday biladi?\"",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A01_C",
+       "label": "\"Millionlab ma’lumot ichidan keraklisi qanday qilib bir soniyada topiladi?\"",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A01_D",
+       "label": "\"Qaysi mahsulot qaysi shaharda ko‘proq sotiladi?\"",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A02",
+     "text": "ChatGPT kabi sun’iy intellekt haqida o‘ylasangiz, sizni nima ko‘proq qiziqtiradi?",
+     "options": [
+      {
+       "id": "data_ai_A02_A",
+       "label": "U qanday o‘rganadi va qanday \"o‘ylaydi\"",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A02_B",
+       "label": "Unga o‘xshash yordamchini o‘zim yaratish",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A02_C",
+       "label": "Uning yordamida raqamlardan tez xulosa chiqarish",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A02_D",
+       "label": "U javob olayotgan ma’lumotlar qayerda va qanday saqlanadi",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A03",
+     "text": "Rahbaringiz qaysi topshiriqni bersa, xursand bo‘lardingiz?",
+     "options": [
+      {
+       "id": "data_ai_A03_A",
+       "label": "Oylik hisobotni grafiklar bilan tushunarli qilib tayyorlash",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A03_B",
+       "label": "Mijoz keyin nima sotib olishini oldindan aytadigan dastur yaratish",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A03_C",
+       "label": "Tartibsiz yotgan ma’lumotlarni bitta tartibli bazaga yig‘ish",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A03_D",
+       "label": "Ma’lumotlar yo‘qolib qolmasligi uchun zaxira tizimini tuzish",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A04",
+     "text": "Qaysi xato sizni ko‘proq bezovta qiladi?",
+     "options": [
+      {
+       "id": "data_ai_A04_A",
+       "label": "Noto‘g‘ri hisoblangan raqam tufayli noto‘g‘ri qaror qabul qilinishi",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A04_B",
+       "label": "Sun’iy intellektning ishonch bilan noto‘g‘ri javob berishi",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A04_C",
+       "label": "Bir mijoz bazada ikki marta, har xil ma’lumot bilan yozilib qolishi",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A04_D",
+       "label": "Grafik chizilgan, lekin uni hech kim tushunmaydi",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A05",
+     "text": "Maktabdagi qaysi mavzu sizga eng yaqin edi?",
+     "options": [
+      {
+       "id": "data_ai_A05_A",
+       "label": "Statistika va foizlar",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A05_B",
+       "label": "Murakkab matematika masalalari",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A05_C",
+       "label": "Informatikada jadval va ro‘yxatlar bilan ishlash",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A05_D",
+       "label": "Fizikada qonuniyatlarni tajriba orqali topish",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A06",
+     "text": "Qaysi ish uslubi sizga yoqadi?",
+     "options": [
+      {
+       "id": "data_ai_A06_A",
+       "label": "Savolni olib, javobini raqamlardan izlab topish",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A06_B",
+       "label": "Uzoq tajriba qilib, natijani asta-sekin yaxshilash",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A06_C",
+       "label": "Tizimni bir marta to‘g‘ri qurib, uning muammosiz ishlashini kuzatish",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A06_D",
+       "label": "Topganimni boshqalarga sodda qilib tushuntirish",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A07",
+     "text": "Ijtimoiy tarmoqlarda qanday sahifalarni kuzatishni yoqtirasiz?",
+     "options": [
+      {
+       "id": "data_ai_A07_A",
+       "label": "Rasm va grafiklar bilan tushuntirilgan qiziq raqamlar",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A07_B",
+       "label": "Sun’iy intellekt yangiliklari va tajribalari",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A07_C",
+       "label": "Texnologiya ichidan qanday ishlashini ko‘rsatadigan bloglar",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A07_D",
+       "label": "Robotlar va aqlli qurilmalar haqidagi videolar",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A08",
+     "text": "Sizni qaysi so‘z ko‘proq tasvirlaydi?",
+     "options": [
+      {
+       "id": "data_ai_A08_A",
+       "label": "Sinchkov — raqamlar orasidagi xatoni darrov ko‘raman",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A08_B",
+       "label": "Ixtirochi — yangi narsani sinashni yaxshi ko‘raman",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A08_C",
+       "label": "Tartibli — har narsaning o‘z joyi bo‘lishi kerak",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A08_D",
+       "label": "Ishonchli — men saqlagan narsa hech qachon yo‘qolmaydi",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A09",
+     "text": "Kichik do‘konga yordam berishingiz kerak. Qaysi birini tanlaysiz?",
+     "options": [
+      {
+       "id": "data_ai_A09_A",
+       "label": "Qaysi kun va soatda xaridor ko‘pligini aniqlash",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A09_B",
+       "label": "Qaysi mahsulot qachon tugashini oldindan aytadigan tizim qilish",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A09_C",
+       "label": "Barcha mahsulot va xaridlarni bitta bazaga kiritib, tartibga solish",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A09_D",
+       "label": "Kassadagi ma’lumotlar hech qachon yo‘qolmasligini ta’minlash",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A10",
+     "text": "Qaysi yutuq sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "data_ai_A10_A",
+       "label": "Hisobotingiz tufayli kompaniya ko‘p pul tejadi",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A10_B",
+       "label": "Siz o‘rgatgan dastur shifokorga kasallikni erta topishga yordam berdi",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A10_C",
+       "label": "Bazangiz 10 yil davomida bir marta ham ishdan chiqmadi",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A10_D",
+       "label": "Dasturingiz ovozni matnga xatosiz aylantiradi",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "data_ai_A11",
+     "text": "Qaysi birida ko‘proq vaqt o‘tkaza olasiz?",
+     "options": [
+      {
+       "id": "data_ai_A11_A",
+       "label": "Jadvaldagi raqamlarni har tomondan aylantirib ko‘rishda",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A11_B",
+       "label": "Murakkab formulani tushunib olishda",
+       "career": "data_science"
+      },
+      {
+       "id": "data_ai_A11_C",
+       "label": "Minglab qatorli ro‘yxatni tozalab, tartibga keltirishda",
+       "career": "database_specialist"
+      },
+      {
+       "id": "data_ai_A11_D",
+       "label": "Grafikni eng tushunarli ko‘rinishga keltirishda",
+       "career": "data_analytics"
+      },
+      {
+       "id": "data_ai_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "data_ai_T1",
+     "title": "Foizni to‘g‘ri hisoblash",
+     "text": "Do‘kon yanvarda 200 ta, fevralda 250 ta mahsulot sotdi. Savdo necha foizga oshdi?",
+     "options": [
+      {
+       "id": "data_ai_T1_A",
+       "label": "25%"
+      },
+      {
+       "id": "data_ai_T1_B",
+       "label": "50%"
+      },
+      {
+       "id": "data_ai_T1_C",
+       "label": "20%"
+      },
+      {
+       "id": "data_ai_T1_D",
+       "label": "250%"
+      },
+      {
+       "id": "data_ai_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "data_ai_T1_A"
+    },
+    {
+     "id": "data_ai_T2",
+     "title": "Bog‘liqlik ≠ sabab",
+     "text": "Muzqaymoq ko‘p sotilgan kunlarda suvda cho‘kish holatlari ham ko‘p bo‘ladi. Qaysi xulosa to‘g‘riroq?",
+     "options": [
+      {
+       "id": "data_ai_T2_A",
+       "label": "Muzqaymoq cho‘kishga sabab bo‘ladi"
+      },
+      {
+       "id": "data_ai_T2_B",
+       "label": "Ikkalasiga ham issiq havo sabab bo‘lishi mumkin"
+      },
+      {
+       "id": "data_ai_T2_C",
+       "label": "Cho‘kish holatlari muzqaymoq savdosini oshiradi"
+      },
+      {
+       "id": "data_ai_T2_D",
+       "label": "Bu ikki narsa o‘rtasida hech qanday aloqa bo‘lishi mumkin emas"
+      },
+      {
+       "id": "data_ai_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "data_ai_T2_B"
+    },
+    {
+     "id": "data_ai_T3",
+     "title": "Qonuniyatni topish",
+     "text": "Bot har kuni oldingi kundan 2 baravar ko‘p xabar olyapti: 3, 6, 12, 24, … Keyingi kuni nechta xabar keladi?",
+     "options": [
+      {
+       "id": "data_ai_T3_A",
+       "label": "48"
+      },
+      {
+       "id": "data_ai_T3_B",
+       "label": "36"
+      },
+      {
+       "id": "data_ai_T3_C",
+       "label": "30"
+      },
+      {
+       "id": "data_ai_T3_D",
+       "label": "26"
+      },
+      {
+       "id": "data_ai_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "data_ai_T3_A"
+    },
+    {
+     "id": "data_ai_T4",
+     "title": "Takror yozuvni topish",
+     "text": "Mijozlar ro‘yxati:\n1) Ali Valiyev, +998 90 111 22 33\n2) Vali Aliyev, +998 91 222 33 44\n3) ALI VALIYEV, +998901112233\n4) Hasan Karimov, +998 93 333 44 55\nQaysi ikki qator bitta odam bo‘lishi ehtimoli bor?",
+     "options": [
+      {
+       "id": "data_ai_T4_A",
+       "label": "1 va 3"
+      },
+      {
+       "id": "data_ai_T4_B",
+       "label": "1 va 2"
+      },
+      {
+       "id": "data_ai_T4_C",
+       "label": "2 va 4"
+      },
+      {
+       "id": "data_ai_T4_D",
+       "label": "3 va 4"
+      },
+      {
+       "id": "data_ai_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "data_ai_T4_A"
+    }
+   ],
+   "lesson": {
+    "text": "**Mediana** — raqamlarni kichigidan kattasiga terib chiqqanda o‘rtada turgan son.\nMasalan: 9, 2, 5 → tartib bilan: 2, 5, 9 → mediana **5**.",
+    "questions": [
+     {
+      "id": "data_ai_O1",
+      "text": "7, 1, 4 sonlarining medianasi qancha?",
+      "options": [
+       {
+        "id": "data_ai_O1_A",
+        "label": "4"
+       },
+       {
+        "id": "data_ai_O1_B",
+        "label": "1"
+       },
+       {
+        "id": "data_ai_O1_C",
+        "label": "7"
+       },
+       {
+        "id": "data_ai_O1_D",
+        "label": "12"
+       },
+       {
+        "id": "data_ai_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "data_ai_O1_A"
+     },
+     {
+      "id": "data_ai_O2",
+      "text": "5 ta do‘konning bir kunlik savdosi (mln so‘m): 3, 4, 4, 5, 50. Odatdagi do‘konning savdosini qaysi raqam yaxshiroq ko‘rsatadi?",
+      "options": [
+       {
+        "id": "data_ai_O2_A",
+        "label": "Mediana — 4"
+       },
+       {
+        "id": "data_ai_O2_B",
+        "label": "O‘rtacha — 13.2"
+       },
+       {
+        "id": "data_ai_O2_C",
+        "label": "Eng katta — 50"
+       },
+       {
+        "id": "data_ai_O2_D",
+        "label": "Eng kichik — 3"
+       },
+       {
+        "id": "data_ai_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "data_ai_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "infra_security",
+   "uz": "Tizimlar, tarmoq va xavfsizlik",
+   "careers": [
+    {
+     "id": "system_network_admin",
+     "uz": "Tizim va tarmoq ma’muri"
+    },
+    {
+     "id": "devops_cloud",
+     "uz": "DevOps / Cloud muhandisi"
+    },
+    {
+     "id": "cybersecurity",
+     "uz": "Kiberxavfsizlik mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "infra_security_A01",
+     "text": "Qaysi vaziyatda o‘zingizni \"qahramon\"dek his qilardingiz?",
+     "options": [
+      {
+       "id": "infra_security_A01_A",
+       "label": "Butun ofisda internet o‘chganda, uni tez tiklab berish",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A01_B",
+       "label": "Saytga minglab odam kirganda ham uning qotmasdan ishlashini ta’minlash",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A01_C",
+       "label": "Xakerning hiylasini vaqtida payqab, hujumni to‘xtatish",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A01_D",
+       "label": "Firibgarlik xabarini aniqlab, hammani ogohlantirish",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A02",
+     "text": "Qaysi videoni oxirigacha qiziqib ko‘rardingiz?",
+     "options": [
+      {
+       "id": "infra_security_A02_A",
+       "label": "Katta ofis tarmog‘i qanday qurilgani haqida",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A02_B",
+       "label": "YouTube yoki Telegram millionlab odamga qanday qilib bir vaqtda chidashi haqida",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A02_C",
+       "label": "Mashhur xakerlik hujumlari qanday ochilgani haqida",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A02_D",
+       "label": "Katta kompaniyaning kompyuterlar xonasi ichidan ko‘rsatilgan video",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A03",
+     "text": "Qaysi topshiriqni o‘zingizga olardingiz?",
+     "options": [
+      {
+       "id": "infra_security_A03_A",
+       "label": "Yangi ofisdagi 30 ta kompyuter va printerni ulab, sozlash",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A03_B",
+       "label": "Dasturni bir tugma bilan avtomatik ishga tushadigan qilish",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A03_C",
+       "label": "Kompaniya parollari qanchalik kuchli ekanini tekshirish",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A03_D",
+       "label": "Kompaniya dasturlarini internetdagi ishonchli xizmatga ko‘chirish",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A04",
+     "text": "Qaysi xavotir sizga ko‘proq tanish?",
+     "options": [
+      {
+       "id": "infra_security_A04_A",
+       "label": "\"Wi-Fi nega sekin? Qayerda uzilish bor?\"",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A04_B",
+       "label": "\"Yangi versiya chiqqanda hammasi buzilib ketmasmikan?\"",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A04_C",
+       "label": "\"Bu havola yoki fayl xavfsizmi?\"",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A04_D",
+       "label": "\"Ma’lumotlarim kimning qo‘liga tushishi mumkin?\"",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A05",
+     "text": "Do‘stlaringiz sizdan qanday yordam so‘rashadi?",
+     "options": [
+      {
+       "id": "infra_security_A05_A",
+       "label": "Router yoki kompyuterni sozlab berishni",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A05_B",
+       "label": "Takroriy ishni o‘zi bajariladigan qilib berishni",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A05_C",
+       "label": "Buzib olingan akkauntini tiklab berishni",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A05_D",
+       "label": "Yangi kompyuterga kerakli hamma narsani o‘rnatib berishni",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A06",
+     "text": "Qaysi ish tartibi sizga mos?",
+     "options": [
+      {
+       "id": "infra_security_A06_A",
+       "label": "Har kuni tizimni tekshirib, kichik muammolarni o‘z vaqtida tuzatish",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A06_B",
+       "label": "Qo‘lda qilinadigan ishni kod bilan avtomatlashtirish",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A06_C",
+       "label": "Doim hushyor bo‘lib, shubhali narsani izlash",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A06_D",
+       "label": "Tizimni ko‘p odamga chidaydigan qilib kengaytirish",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A07",
+     "text": "Ijtimoiy tarmoqda qanday sahifalarni kuzatasiz?",
+     "options": [
+      {
+       "id": "infra_security_A07_A",
+       "label": "Kompyuter va internet bo‘yicha foydali maslahatlar",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A07_B",
+       "label": "Katta IT kompaniyalar texnologiyasi haqidagi bloglar",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A07_C",
+       "label": "Firibgarlik va xavfsizlik bo‘yicha ogohlantirishlar",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A07_D",
+       "label": "Xakerlar va kiberjinoyatlar haqidagi hikoyalar",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A08",
+     "text": "Qaysi ta’rif sizga ko‘proq mos?",
+     "options": [
+      {
+       "id": "infra_security_A08_A",
+       "label": "Ishonchli — \"nima bo‘lsa ham tuzatib beradi\"",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A08_B",
+       "label": "Tejamkor — \"bir ishni ikki marta qo‘lda qilmaydi\"",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A08_C",
+       "label": "Hushyor — \"hech narsa ko‘zidan qochmaydi\"",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A08_D",
+       "label": "Amaliy — \"qo‘li bilan ishlashni yaxshi ko‘radi\"",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A09",
+     "text": "Qaysi natija sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "infra_security_A09_A",
+       "label": "Bir yil davomida ofisda internet bir marta ham uzilmadi",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A09_B",
+       "label": "Yangilanish mijozlar sezmasdan, bir daqiqada chiqdi",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A09_C",
+       "label": "Kompaniyaga bir marta ham buzib kirilmadi",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A09_D",
+       "label": "Tizimni ishlatish xarajati ikki baravar kamaydi",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A10",
+     "text": "Qaysi birini o‘rganish sizga qiziqroq?",
+     "options": [
+      {
+       "id": "infra_security_A10_A",
+       "label": "Internet bir kompyuterdan boshqasiga qanday yetib boradi",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A10_B",
+       "label": "Bitta dastur qanday qilib minglab kompyuterda bir vaqtda ishlaydi",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A10_C",
+       "label": "Xakerlar qanday o‘ylaydi va ulardan qanday himoyalaniladi",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A10_D",
+       "label": "Kompyuter ichidagi qismlar qanday ishlaydi",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "infra_security_A11",
+     "text": "Tunda telefoningizga xabar keldi: \"Tizimda muammo\". Birinchi o‘yingiz?",
+     "options": [
+      {
+       "id": "infra_security_A11_A",
+       "label": "Qaysi qurilma yoki kabel ishdan chiqdi — tekshirish kerak",
+       "career": "system_network_admin"
+      },
+      {
+       "id": "infra_security_A11_B",
+       "label": "Avtomatik tiklanish nega ishlamadi — tuzatish kerak",
+       "career": "devops_cloud"
+      },
+      {
+       "id": "infra_security_A11_C",
+       "label": "Bu tasodifmi yoki kimdir ataylab qildimi?",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A11_D",
+       "label": "Qaysi ma’lumotlar xavf ostida qoldi?",
+       "career": "cybersecurity"
+      },
+      {
+       "id": "infra_security_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "infra_security_T1",
+     "title": "Muammoni qayerdan izlash",
+     "text": "Uyda noutbukda internet ishlamayapti, lekin telefon xuddi shu Wi-Fi’da bemalol ishlayapti. Muammo qayerda bo‘lishi ehtimoli ko‘proq?",
+     "options": [
+      {
+       "id": "infra_security_T1_A",
+       "label": "Noutbukning o‘zida"
+      },
+      {
+       "id": "infra_security_T1_B",
+       "label": "Internet provayderida"
+      },
+      {
+       "id": "infra_security_T1_C",
+       "label": "Routerda"
+      },
+      {
+       "id": "infra_security_T1_D",
+       "label": "Butun shahar internetida"
+      },
+      {
+       "id": "infra_security_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "infra_security_T1_A"
+    },
+    {
+     "id": "infra_security_T2",
+     "title": "Firibgarlik xabari",
+     "text": "SMS keldi: \"Kartangiz bloklandi! Tiklash uchun SMS-kodni shu havolaga kiriting: bank-tiklash-uz.top\". Eng to‘g‘ri harakat qaysi?",
+     "options": [
+      {
+       "id": "infra_security_T2_A",
+       "label": "Havolaga kirmasdan, bankning rasmiy raqamiga o‘zim qo‘ng‘iroq qilaman"
+      },
+      {
+       "id": "infra_security_T2_B",
+       "label": "Kartam ishlashi uchun kodni tezda kiritaman"
+      },
+      {
+       "id": "infra_security_T2_C",
+       "label": "Havolani do‘stlarimga yuborib, ular ham tekshirib ko‘rsin deyman"
+      },
+      {
+       "id": "infra_security_T2_D",
+       "label": "Kodni javob SMS’da yuboraman"
+      },
+      {
+       "id": "infra_security_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "infra_security_T2_A"
+    },
+    {
+     "id": "infra_security_T3",
+     "title": "Ishonchli parol",
+     "text": "Qaysi parol eng ishonchli?",
+     "options": [
+      {
+       "id": "infra_security_T3_A",
+       "label": "12345678"
+      },
+      {
+       "id": "infra_security_T3_B",
+       "label": "Ali1995"
+      },
+      {
+       "id": "infra_security_T3_C",
+       "label": "qovun-Tosh-7!yomg‘ir"
+      },
+      {
+       "id": "infra_security_T3_D",
+       "label": "password"
+      },
+      {
+       "id": "infra_security_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "infra_security_T3_C"
+    },
+    {
+     "id": "infra_security_T4",
+     "title": "Avtomatlashtirish o‘zini qachon oqlaydi",
+     "text": "Har kuni qo‘lda qilinadigan ish 10 daqiqa oladi. Uni avtomatlashtirish uchun bir marta 5 soat ishlash kerak. Taxminan necha kundan keyin avtomatlashtirish o‘zini oqlaydi?",
+     "options": [
+      {
+       "id": "infra_security_T4_A",
+       "label": "30 kun"
+      },
+      {
+       "id": "infra_security_T4_B",
+       "label": "5 kun"
+      },
+      {
+       "id": "infra_security_T4_C",
+       "label": "50 kun"
+      },
+      {
+       "id": "infra_security_T4_D",
+       "label": "300 kun"
+      },
+      {
+       "id": "infra_security_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "infra_security_T4_A"
+    }
+   ],
+   "lesson": {
+    "text": "Zaxira nusxaning **3-2-1 qoidasi**: muhim ma’lumotning **3** nusxasi bo‘lsin, ular **2** xil qurilmada (masalan, kompyuter va fleshka) tursin va **1** tasi boshqa joyda (boshqa binoda yoki internetdagi bulutda) saqlansin.",
+    "questions": [
+     {
+      "id": "infra_security_O1",
+      "text": "Rasmlaringiz faqat telefoningizda: asl papkada va shu telefondagi yana bir papkada. Bu 3-2-1 qoidasiga mosmi?",
+      "options": [
+       {
+        "id": "infra_security_O1_A",
+        "label": "Yo‘q — hammasi bitta qurilmada"
+       },
+       {
+        "id": "infra_security_O1_B",
+        "label": "Ha — 2 ta nusxa yetarli"
+       },
+       {
+        "id": "infra_security_O1_C",
+        "label": "Ha — papkalar har xil"
+       },
+       {
+        "id": "infra_security_O1_D",
+        "label": "Faqat rasmlar ko‘p bo‘lsa mos"
+       },
+       {
+        "id": "infra_security_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "infra_security_O1_A"
+     },
+     {
+      "id": "infra_security_O2",
+      "text": "Qaysi holat 3-2-1 qoidasiga to‘liq mos?",
+      "options": [
+       {
+        "id": "infra_security_O2_A",
+        "label": "Kompyuterda asl fayl + fleshkada nusxa + bulutda nusxa"
+       },
+       {
+        "id": "infra_security_O2_B",
+        "label": "Kompyuterda 3 xil papkada 3 nusxa"
+       },
+       {
+        "id": "infra_security_O2_C",
+        "label": "Kompyuterda asl fayl + fleshkada 2 nusxa"
+       },
+       {
+        "id": "infra_security_O2_D",
+        "label": "Bulutda 3 nusxa"
+       },
+       {
+        "id": "infra_security_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "infra_security_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "design_creative",
+   "uz": "Raqamli dizayn",
+   "careers": [
+    {
+     "id": "ui_ux_design",
+     "uz": "UI/UX dizayner"
+    },
+    {
+     "id": "graphic_design",
+     "uz": "Grafik dizayner"
+    }
+   ],
+   "questions": [
+    {
+     "id": "design_creative_A01",
+     "text": "Instagram yoki Pinterest’da nimani ko‘proq saqlab qo‘yasiz?",
+     "options": [
+      {
+       "id": "design_creative_A01_A",
+       "label": "Qulay va chiroyli ilova ekranlari namunalarini",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A01_B",
+       "label": "Ilova qanday soddalashtirilgani haqidagi \"oldin-keyin\" postlarni",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A01_C",
+       "label": "Logotip va brend dizaynlarini",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A01_D",
+       "label": "Plakat, afisha va rasmlarni",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A02",
+     "text": "Biror ilova jahlingizni chiqarsa, odatda nima haqida o‘ylaysiz?",
+     "options": [
+      {
+       "id": "design_creative_A02_A",
+       "label": "\"Bu tugmani nega bu yerga qo‘yishgan? Qulayroq qilsa bo‘lardi\"",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A02_B",
+       "label": "\"Oddiy ishni qilish uchun nega shuncha qadam kerak?\"",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A02_C",
+       "label": "\"Ranglari va shriftlari juda xunuk ekan\"",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A02_D",
+       "label": "\"Rasmlari umuman chiroyli emas\"",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A03",
+     "text": "Qaysi buyurtmani olardingiz?",
+     "options": [
+      {
+       "id": "design_creative_A03_A",
+       "label": "Onlayn do‘konni xaridor oson to‘lov qiladigan qilib qayta o‘ylab chiqish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A03_B",
+       "label": "Keksalar ham bemalol ishlata oladigan bank ilovasini loyihalash",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A03_C",
+       "label": "Yangi choyxona uchun logotip, menyu va peshlavha",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A03_D",
+       "label": "Kitob muqovasi uchun rasm",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A04",
+     "text": "Bolaligingizda qaysi birini ko‘proq qilardingiz?",
+     "options": [
+      {
+       "id": "design_creative_A04_A",
+       "label": "Narsalarni qulayroq bo‘lishi uchun xonamni qayta joylashtirish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A04_B",
+       "label": "O‘yin qoidalarini do‘stlarimga tushunarliroq qilib tuzib berish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A04_C",
+       "label": "Daftar chetiga rasm chizish",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A04_D",
+       "label": "Tabriknoma va bezaklarni o‘zim yasash",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A05",
+     "text": "Qaysi maqtov sizga yoqardi?",
+     "options": [
+      {
+       "id": "design_creative_A05_A",
+       "label": "\"Ilovangizni birinchi marta ochdim va hech kimdan so‘ramay tushundim\"",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A05_B",
+       "label": "\"Siz tufayli xaridlar soni oshdi\"",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A05_C",
+       "label": "\"Logotipingizni ko‘chada darrov tanidim\"",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A05_D",
+       "label": "\"Bu rasmni devorimga ilib qo‘ygim keldi\"",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A06",
+     "text": "Ishning qaysi bosqichi sizga ko‘proq yoqadi?",
+     "options": [
+      {
+       "id": "design_creative_A06_A",
+       "label": "Odamlar bilan suhbatlashib, ularga nima qiyinligini bilish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A06_B",
+       "label": "Ekranlarni avval oddiy chizib, mantiqini tuzish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A06_C",
+       "label": "Rang va shrift tanlash",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A06_D",
+       "label": "Tayyor rasmni mukammal darajaga yetkazish",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A07",
+     "text": "Sizni ko‘proq nima tasvirlaydi?",
+     "options": [
+      {
+       "id": "design_creative_A07_A",
+       "label": "Kuzatuvchi — odamlar qayerda qiynalishini ko‘raman",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A07_B",
+       "label": "Muammo yechuvchi — avval qulay bo‘lsin, keyin chiroyli",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A07_C",
+       "label": "Didli — chiroylilik men uchun juda muhim",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A07_D",
+       "label": "Rassom — fikrimni rasm bilan ifodalayman",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A08",
+     "text": "Qaysi natija sizni ko‘proq sevintirardi?",
+     "options": [
+      {
+       "id": "design_creative_A08_A",
+       "label": "Odamlar ilovada kamroq adashadigan bo‘ldi",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A08_B",
+       "label": "Mijozlardan shikoyatlar kamaydi",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A08_C",
+       "label": "Dizayningiz ko‘cha reklamasida turibdi",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A08_D",
+       "label": "Siz yaratgan brendni hamma taniydi",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A09",
+     "text": "Qaysi dasturni o‘rganishni xohlardingiz?",
+     "options": [
+      {
+       "id": "design_creative_A09_A",
+       "label": "Ilova ekranlarini loyihalash dasturi (masalan, Figma)",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A09_B",
+       "label": "Odamlar saytda qayerni bosayotganini ko‘rsatadigan dastur",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A09_C",
+       "label": "Rasm chizish va tahrirlash dasturi (masalan, Photoshop)",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A09_D",
+       "label": "Logotip chizish dasturi (masalan, Illustrator)",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A10",
+     "text": "Kichik biznes egasi yordam so‘radi. Nimani taklif qilasiz?",
+     "options": [
+      {
+       "id": "design_creative_A10_A",
+       "label": "Saytini mijozlar oson buyurtma beradigan qilish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A10_B",
+       "label": "Mijozlardan nima yoqmasligini so‘rab, o‘zgarishlar taklif qilish",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A10_C",
+       "label": "Yangi chiroyli logotip va rang uslubi",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A10_D",
+       "label": "Ijtimoiy tarmoq uchun bir xil uslubdagi post shablonlari",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "design_creative_A11",
+     "text": "Qaysi birida sabringiz ko‘proq yetadi?",
+     "options": [
+      {
+       "id": "design_creative_A11_A",
+       "label": "Bitta ekranni odamlarda 5 marta sinab, qayta-qayta tuzatishda",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A11_B",
+       "label": "Murakkab jarayonni oddiy qadamlarga bo‘lishda",
+       "career": "ui_ux_design"
+      },
+      {
+       "id": "design_creative_A11_C",
+       "label": "Bitta logotipning 20 xil variantini chizishda",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A11_D",
+       "label": "Rasmdagi har bir mayda detalni to‘g‘rilashda",
+       "career": "graphic_design"
+      },
+      {
+       "id": "design_creative_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "design_creative_T1",
+     "title": "Qadamlarni qisqartirish",
+     "text": "Ilovada kartaga pul o‘tkazish: 1) ilovani ochish → 2) \"To‘lovlar\" → 3) \"O‘tkazmalar\" → 4) \"Kartaga\" → 5) karta raqami → 6) summa → 7) tasdiqlash. Qaysi o‘zgarish foydalanuvchiga eng ko‘p yordam beradi?",
+     "options": [
+      {
+       "id": "design_creative_T1_A",
+       "label": "Bosh sahifaga \"Kartaga o‘tkazish\" tugmasini qo‘yish — 2–4-qadamlar bitta bosishga aylanadi"
+      },
+      {
+       "id": "design_creative_T1_B",
+       "label": "Tugmalar rangini yorqinroq qilish"
+      },
+      {
+       "id": "design_creative_T1_C",
+       "label": "Tasdiqlash qadamini olib tashlash"
+      },
+      {
+       "id": "design_creative_T1_D",
+       "label": "Har qadam oldiga raqam yozib qo‘yish"
+      },
+      {
+       "id": "design_creative_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "design_creative_T1_A"
+    },
+    {
+     "id": "design_creative_T2",
+     "title": "Xato xabari",
+     "text": "Foydalanuvchi parolni noto‘g‘ri kiritdi. Qaysi xabar eng yaxshi?",
+     "options": [
+      {
+       "id": "design_creative_T2_A",
+       "label": "\"Xato 401\""
+      },
+      {
+       "id": "design_creative_T2_B",
+       "label": "\"Parol noto‘g‘ri. Qayta urinib ko‘ring yoki \"Parolni unutdim\"ni bosing\""
+      },
+      {
+       "id": "design_creative_T2_C",
+       "label": "\"Siz xato qildingiz!\""
+      },
+      {
+       "id": "design_creative_T2_D",
+       "label": "Hech qanday xabar chiqmaydi, sahifa yangilanadi"
+      },
+      {
+       "id": "design_creative_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "design_creative_T2_B"
+    },
+    {
+     "id": "design_creative_T3",
+     "title": "O‘qilishi oson rang",
+     "text": "Qaysi juftlikda matn eng oson o‘qiladi?",
+     "options": [
+      {
+       "id": "design_creative_T3_A",
+       "label": "Oq fonda sariq matn"
+      },
+      {
+       "id": "design_creative_T3_B",
+       "label": "Oq fonda qora matn"
+      },
+      {
+       "id": "design_creative_T3_C",
+       "label": "Ko‘k fonda binafsha matn"
+      },
+      {
+       "id": "design_creative_T3_D",
+       "label": "Qizil fonda yashil matn"
+      },
+      {
+       "id": "design_creative_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "design_creative_T3_B"
+    },
+    {
+     "id": "design_creative_T4",
+     "title": "Eng muhimini ajratish",
+     "text": "Konsert afishasi tayyorlanyapti. Undagi qaysi ma’lumot eng katta va ko‘zga tashlanadigan bo‘lishi kerak?",
+     "options": [
+      {
+       "id": "design_creative_T4_A",
+       "label": "Konsert nomi yoki ijrochi"
+      },
+      {
+       "id": "design_creative_T4_B",
+       "label": "Bosmaxona manzili"
+      },
+      {
+       "id": "design_creative_T4_C",
+       "label": "Homiylar ro‘yxati"
+      },
+      {
+       "id": "design_creative_T4_D",
+       "label": "Zalda o‘zini tutish qoidalari"
+      },
+      {
+       "id": "design_creative_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "design_creative_T4_A"
+    }
+   ],
+   "lesson": {
+    "text": "**Yaqinlik qoidasi:** bir-biriga tegishli narsalar yonma-yon turadi, tegishli bo‘lmaganlar orasida bo‘sh joy qoldiriladi. Shunda ko‘z nimani nima bilan birga o‘qishni o‘zi tushunadi.",
+    "questions": [
+     {
+      "id": "design_creative_O1",
+      "text": "Formada \"Ism\" yozuvi qayerda turishi kerak?",
+      "options": [
+       {
+        "id": "design_creative_O1_A",
+        "label": "Ism yoziladigan maydonning yonida"
+       },
+       {
+        "id": "design_creative_O1_B",
+        "label": "Ikki maydon o‘rtasida, ikkalasidan teng masofada"
+       },
+       {
+        "id": "design_creative_O1_C",
+        "label": "Sahifaning eng tepasida, alohida"
+       },
+       {
+        "id": "design_creative_O1_D",
+        "label": "\"Yuborish\" tugmasining yonida"
+       },
+       {
+        "id": "design_creative_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "design_creative_O1_A"
+     },
+     {
+      "id": "design_creative_O2",
+      "text": "Onlayn do‘kon kartochkasida: rasm, nom, narx, \"Savatga\" tugmasi va \"Yetkazib berish shartlari\". Yaqinlik qoidasiga ko‘ra qaysi joylashuv to‘g‘ri?",
+      "options": [
+       {
+        "id": "design_creative_O2_A",
+        "label": "Nom va narx yonma-yon; \"Yetkazib berish shartlari\" bo‘sh joy bilan alohida ajratilgan"
+       },
+       {
+        "id": "design_creative_O2_B",
+        "label": "Hamma narsa orasida bir xil masofa"
+       },
+       {
+        "id": "design_creative_O2_C",
+        "label": "Narx kartochka eng pastida, shartlar yonida"
+       },
+       {
+        "id": "design_creative_O2_D",
+        "label": "Nom rasmdan uzoqda, tugma yonida"
+       },
+       {
+        "id": "design_creative_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "design_creative_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "digital_marketing",
+   "uz": "Raqamli marketing",
+   "careers": [
+    {
+     "id": "smm_manager",
+     "uz": "SMM menejer"
+    },
+    {
+     "id": "performance_marketing",
+     "uz": "Target (performance) marketolog"
+    },
+    {
+     "id": "seo",
+     "uz": "SEO mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "digital_marketing_A01",
+     "text": "Ijtimoiy tarmoqda qanday sahifalar sizni ko‘proq o‘ziga tortadi?",
+     "options": [
+      {
+       "id": "digital_marketing_A01_A",
+       "label": "Obunachilari bilan jonli muloqot qiladigan brendlar sahifalari",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A01_B",
+       "label": "Reklama qanday qilib sotuv olib kelishini ko‘rsatadigan bloglar",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A01_C",
+       "label": "Google’da qanday qilib birinchi chiqish haqidagi maslahatlar",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A01_D",
+       "label": "Ommalashib ketgan videolar va trendlar haqidagi sahifalar",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A02",
+     "text": "Telefonda reklama ko‘rganingizda birinchi nima haqida o‘ylaysiz?",
+     "options": [
+      {
+       "id": "digital_marketing_A02_A",
+       "label": "\"Bu post nega bunchalik ko‘p layk yig‘di?\"",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A02_B",
+       "label": "\"Bu reklama nega aynan menga chiqdi?\"",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A02_C",
+       "label": "\"Bu sayt qidiruvda qanday qilib birinchi chiqdi?\"",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A02_D",
+       "label": "\"Bu reklamaga qancha pul sarflashdi va qancha topishdi?\"",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A03",
+     "text": "Qaysi topshiriqni olardingiz?",
+     "options": [
+      {
+       "id": "digital_marketing_A03_A",
+       "label": "Do‘konning Instagram sahifasini bir oy yuritish",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A03_B",
+       "label": "Reklama uchun ajratilgan pulni eng foydali sarflash",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A03_C",
+       "label": "Do‘kon saytini Google’da yuqoriga chiqarish",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A03_D",
+       "label": "Odamlar internetda nimani ko‘p qidirayotganini aniqlash",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A04",
+     "text": "Qaysi ish sizga ko‘proq zavq beradi?",
+     "options": [
+      {
+       "id": "digital_marketing_A04_A",
+       "label": "Kulgili yoki foydali post g‘oyasini topish",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A04_B",
+       "label": "Ikki xil reklamani solishtirib, qaysi biri yaxshi ishlashini aniqlash",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A04_C",
+       "label": "Saytdagi matnlarni odamlar qidiradigan so‘zlar bilan yozish",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A04_D",
+       "label": "Izohlarga javob berib, obunachilar bilan gaplashish",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A05",
+     "text": "Qaysi ta’rif sizni yaxshi tasvirlaydi?",
+     "options": [
+      {
+       "id": "digital_marketing_A05_A",
+       "label": "Ijodkor va xushmuomala",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A05_B",
+       "label": "Hisob-kitobli — har so‘mning natijasini bilgim keladi",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A05_C",
+       "label": "Sabrli — natijani oylar davomida kutishga tayyorman",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A05_D",
+       "label": "Tajribachi — avval sinab ko‘raman, keyin xulosa qilaman",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A06",
+     "text": "Qaysi natija sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "digital_marketing_A06_A",
+       "label": "Postingiz minglab odamga tarqaldi",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A06_B",
+       "label": "Reklamaga sarflangan har 1 so‘m 3 so‘m olib keldi",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A06_C",
+       "label": "Sayt Google’da birinchi o‘ringa chiqdi",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A06_D",
+       "label": "Sahifa obunachilari ikki baravar ko‘paydi",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A07",
+     "text": "Qaysi holat sizni ko‘proq bezovta qiladi?",
+     "options": [
+      {
+       "id": "digital_marketing_A07_A",
+       "label": "Sahifa zerikarli, hech kim izoh yozmayapti",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A07_B",
+       "label": "Reklamaga pul ketyapti, lekin xaridor yo‘q",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A07_C",
+       "label": "Yaxshi sayt qidiruvda umuman topilmayapti",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A07_D",
+       "label": "Sayt sekin ochiladi va sahifalari chalkash",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A08",
+     "text": "Maktabda qaysi ish sizga yoqardi?",
+     "options": [
+      {
+       "id": "digital_marketing_A08_A",
+       "label": "Devoriy gazeta yoki tadbir e’lonini tayyorlash",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A08_B",
+       "label": "Masalaning eng foydali yechimini topish",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A08_C",
+       "label": "Insho yozib, eng to‘g‘ri so‘zlarni tanlash",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A08_D",
+       "label": "So‘rovnoma o‘tkazib, natijalarni sanash",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A09",
+     "text": "Do‘stingiz kichik biznes ochdi. Nimani taklif qilasiz?",
+     "options": [
+      {
+       "id": "digital_marketing_A09_A",
+       "label": "Ijtimoiy tarmoqda chiroyli sahifa ochib, muntazam post qilish",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A09_B",
+       "label": "Kichik pul bilan aynan kerakli odamlarga reklama berish",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A09_C",
+       "label": "Uni Google xaritasi va qidiruvida topiladigan qilish",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A09_D",
+       "label": "Odamlar uni qaysi so‘zlar bilan qidirishini aniqlash",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A10",
+     "text": "Qaysi birini o‘rganish sizga qiziqroq?",
+     "options": [
+      {
+       "id": "digital_marketing_A10_A",
+       "label": "Video va postlar qanday qilib trendga chiqadi",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A10_B",
+       "label": "Reklama tizimi odamlarni qanday tanlaydi",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A10_C",
+       "label": "Google saytlarni qaysi tartibda ko‘rsatadi",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A10_D",
+       "label": "Brend o‘z mijozlari bilan qanday do‘stlashadi",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "digital_marketing_A11",
+     "text": "Kuningiz qanday o‘tishini xohlardingiz?",
+     "options": [
+      {
+       "id": "digital_marketing_A11_A",
+       "label": "Post rejalashtirib, obunachilar bilan muloqot qilib",
+       "career": "smm_manager"
+      },
+      {
+       "id": "digital_marketing_A11_B",
+       "label": "Reklama natijalarini kuzatib, raqamlarga qarab sozlab",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A11_C",
+       "label": "Sayt ustida tinch, bosqichma-bosqich ishlab",
+       "career": "seo"
+      },
+      {
+       "id": "digital_marketing_A11_D",
+       "label": "Yangi reklama g‘oyalarini sinab ko‘rib",
+       "career": "performance_marketing"
+      },
+      {
+       "id": "digital_marketing_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "digital_marketing_T1",
+     "title": "Bitta xaridor narxi",
+     "text": "Reklamaga 1 000 000 so‘m sarflandi va u 40 ta xaridor olib keldi. Bitta xaridor taxminan necha so‘mga tushdi?",
+     "options": [
+      {
+       "id": "digital_marketing_T1_A",
+       "label": "25 000 so‘m"
+      },
+      {
+       "id": "digital_marketing_T1_B",
+       "label": "40 000 so‘m"
+      },
+      {
+       "id": "digital_marketing_T1_C",
+       "label": "4 000 so‘m"
+      },
+      {
+       "id": "digital_marketing_T1_D",
+       "label": "250 000 so‘m"
+      },
+      {
+       "id": "digital_marketing_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "digital_marketing_T1_A"
+    },
+    {
+     "id": "digital_marketing_T2",
+     "title": "Ikki reklamani solishtirish",
+     "text": "1-reklamani 1 000 kishi ko‘rdi, 20 kishi bosdi. 2-reklamani 500 kishi ko‘rdi, 15 kishi bosdi. Qaysi reklama ko‘rgan odamni bosishga yaxshiroq undaydi?",
+     "options": [
+      {
+       "id": "digital_marketing_T2_A",
+       "label": "1-reklama — bosishlar soni ko‘proq"
+      },
+      {
+       "id": "digital_marketing_T2_B",
+       "label": "2-reklama"
+      },
+      {
+       "id": "digital_marketing_T2_C",
+       "label": "Ikkalasi teng"
+      },
+      {
+       "id": "digital_marketing_T2_D",
+       "label": "Buni aniqlab bo‘lmaydi"
+      },
+      {
+       "id": "digital_marketing_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "digital_marketing_T2_B"
+    },
+    {
+     "id": "digital_marketing_T3",
+     "title": "Odamlar nima deb qidiradi",
+     "text": "Toshkentdagi gul do‘koni sayti uchun odamlar qidiruvda ko‘proq nima yozishi ehtimoli bor?",
+     "options": [
+      {
+       "id": "digital_marketing_T3_A",
+       "label": "\"Toshkentda gul yetkazib berish\""
+      },
+      {
+       "id": "digital_marketing_T3_B",
+       "label": "\"Eng zo‘r kompaniya\""
+      },
+      {
+       "id": "digital_marketing_T3_C",
+       "label": "\"Bizning missiyamiz\""
+      },
+      {
+       "id": "digital_marketing_T3_D",
+       "label": "\"Kompaniya tarixi\""
+      },
+      {
+       "id": "digital_marketing_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "digital_marketing_T3_A"
+    },
+    {
+     "id": "digital_marketing_T4",
+     "title": "Suhbat boshlaydigan post",
+     "text": "Kafe sahifasi uchun qaysi post izohlarda ko‘proq suhbat boshlashi ehtimoli bor?",
+     "options": [
+      {
+       "id": "digital_marketing_T4_A",
+       "label": "Bugungi menyu rasmi"
+      },
+      {
+       "id": "digital_marketing_T4_B",
+       "label": "\"Qaysi biri: palov yoki lag‘mon? Izohda yozing!\""
+      },
+      {
+       "id": "digital_marketing_T4_C",
+       "label": "Ish vaqti haqida e’lon"
+      },
+      {
+       "id": "digital_marketing_T4_D",
+       "label": "Kafe manzili"
+      },
+      {
+       "id": "digital_marketing_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "digital_marketing_T4_B"
+    }
+   ],
+   "lesson": {
+    "text": "**Voronka:** reklamani ko‘rdi → bosdi → sotib oldi. Har bosqichda odam kamayadi. Eng ko‘p odam yo‘qolayotgan bosqich — birinchi tuzatiladigan joy.",
+    "questions": [
+     {
+      "id": "digital_marketing_O1",
+      "text": "1 000 kishi ko‘rdi → 100 kishi bosdi → 50 kishi sotib oldi. Qayerda eng ko‘p odam yo‘qoldi?",
+      "options": [
+       {
+        "id": "digital_marketing_O1_A",
+        "label": "Ko‘rish va bosish orasida"
+       },
+       {
+        "id": "digital_marketing_O1_B",
+        "label": "Bosish va sotib olish orasida"
+       },
+       {
+        "id": "digital_marketing_O1_C",
+        "label": "Ikkalasida teng"
+       },
+       {
+        "id": "digital_marketing_O1_D",
+        "label": "Hech qayerda yo‘qolmadi"
+       },
+       {
+        "id": "digital_marketing_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "digital_marketing_O1_A"
+     },
+     {
+      "id": "digital_marketing_O2",
+      "text": "Do‘kon reklamasi: 1 000 kishi ko‘rdi → 600 kishi bosib saytga kirdi → 12 kishi sotib oldi. Birinchi navbatda nimani yaxshilash kerak?",
+      "options": [
+       {
+        "id": "digital_marketing_O2_A",
+        "label": "Saytdagi sotib olish jarayonini"
+       },
+       {
+        "id": "digital_marketing_O2_B",
+        "label": "Reklama rasmini"
+       },
+       {
+        "id": "digital_marketing_O2_C",
+        "label": "Reklamaga ko‘proq pul ajratishni"
+       },
+       {
+        "id": "digital_marketing_O2_D",
+        "label": "Hech narsani — hammasi yaxshi"
+       },
+       {
+        "id": "digital_marketing_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "digital_marketing_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "content_media",
+   "uz": "Kontent va media",
+   "careers": [
+    {
+     "id": "video_motion",
+     "uz": "Video va motion kontent mutaxassisi"
+    },
+    {
+     "id": "content_copywriting",
+     "uz": "Kontent va kopirayting mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "content_media_A01",
+     "text": "YouTube yoki Instagram’da nimani ko‘proq tomosha qilasiz?",
+     "options": [
+      {
+       "id": "content_media_A01_A",
+       "label": "Chiroyli montaj qilingan qisqa videolarni",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A01_B",
+       "label": "Animatsiya va effektlar qanday qilinishini ko‘rsatadigan videolarni",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A01_C",
+       "label": "Qiziqarli hikoya aytib beradigan blogerlarni",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A01_D",
+       "label": "Foydali va aniq yozilgan postlarni",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A02",
+     "text": "Bolaligingizda nimani yoqtirardingiz?",
+     "options": [
+      {
+       "id": "content_media_A02_A",
+       "label": "Telefonda video olib, o‘zimcha kino qilish",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A02_B",
+       "label": "Multfilm qahramonlarini chizib, ularni \"jonlantirish\"",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A02_C",
+       "label": "Hikoya, she’r yoki kundalik yozish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A02_D",
+       "label": "Eshitgan voqeamni do‘stlarimga qiziqarli qilib aytib berish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A03",
+     "text": "Qaysi topshiriqni olardingiz?",
+     "options": [
+      {
+       "id": "content_media_A03_A",
+       "label": "To‘y yoki tadbir videosini montaj qilish",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A03_B",
+       "label": "Kompaniya logotipini harakatlanadigan qilib jonlantirish",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A03_C",
+       "label": "Mahsulot uchun ishontiradigan reklama matni yozish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A03_D",
+       "label": "Video uchun ssenariy yozish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A04",
+     "text": "Sizni nima ko‘proq ilhomlantiradi?",
+     "options": [
+      {
+       "id": "content_media_A04_A",
+       "label": "Chiroyli kadr va yorug‘lik",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A04_B",
+       "label": "Musiqaga mos tushgan tez montaj",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A04_C",
+       "label": "Bitta jumla bilan odamni kuldirish yoki o‘ylantirish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A04_D",
+       "label": "Murakkab narsani sodda so‘z bilan tushuntirish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A05",
+     "text": "Qaysi maqtov sizga yoqardi?",
+     "options": [
+      {
+       "id": "content_media_A05_A",
+       "label": "\"Videongizni to‘xtatmasdan oxirigacha ko‘rdim\"",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A05_B",
+       "label": "\"Animatsiyangiz juda jonli chiqibdi\"",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A05_C",
+       "label": "\"Matningizni o‘qib, darhol sotib oldim\"",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A05_D",
+       "label": "\"Postingizni do‘stlarimga yubordim\"",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A06",
+     "text": "Qaysi ishda soatlab o‘tira olasiz?",
+     "options": [
+      {
+       "id": "content_media_A06_A",
+       "label": "Videoni kadrma-kadr tahrirlashda",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A06_B",
+       "label": "Effektlarni mukammal holatga keltirishda",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A06_C",
+       "label": "Matnni qayta-qayta o‘qib, eng yaxshi so‘zni topishda",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A06_D",
+       "label": "Ko‘p ma’lumot o‘qib, undan qisqa post yozishda",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A07",
+     "text": "Qaysi narsa sizni bezovta qiladi?",
+     "options": [
+      {
+       "id": "content_media_A07_A",
+       "label": "Ovozi yomon yoki titrab olingan video",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A07_B",
+       "label": "Musiqaga tushmagan montaj",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A07_C",
+       "label": "Imlo xatolari ko‘p matn",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A07_D",
+       "label": "Uzun va zerikarli yozilgan post",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A08",
+     "text": "Qaysi sohani o‘rganishni xohlardingiz?",
+     "options": [
+      {
+       "id": "content_media_A08_A",
+       "label": "Kamera, yorug‘lik va montaj",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A08_B",
+       "label": "Animatsiya va vizual effektlar",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A08_C",
+       "label": "Ishontiruvchi matn yozish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A08_D",
+       "label": "Ssenariy va hikoya qurish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A09",
+     "text": "Kichik biznesga qanday yordam bera olasiz?",
+     "options": [
+      {
+       "id": "content_media_A09_A",
+       "label": "Mahsulot haqida qisqa reklama videosi olib berish",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A09_B",
+       "label": "Mahsulotni animatsiya bilan tushuntiradigan video qilish",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A09_C",
+       "label": "Sayti va sahifasi uchun yaxshi matnlar yozish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A09_D",
+       "label": "Xaridorlarga yuboriladigan xabarlarni qiziqarli qilish",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A10",
+     "text": "Qaysi natija sizni quvontirardi?",
+     "options": [
+      {
+       "id": "content_media_A10_A",
+       "label": "Videongiz million ko‘rish yig‘di",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A10_B",
+       "label": "Animatsiyangiz katta reklamada ishlatildi",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A10_C",
+       "label": "Sarlavhangiz tufayli maqolani ko‘p odam o‘qidi",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A10_D",
+       "label": "Matningiz tufayli sotuv oshdi",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "content_media_A11",
+     "text": "Qaysi ta’rif sizga mos?",
+     "options": [
+      {
+       "id": "content_media_A11_A",
+       "label": "Ko‘ruvchi — dunyoni kadrlar bilan ko‘raman",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A11_B",
+       "label": "Harakatchan — ritm va harakatni his qilaman",
+       "career": "video_motion"
+      },
+      {
+       "id": "content_media_A11_C",
+       "label": "So‘zamol — so‘z bilan ishlashni yaxshi ko‘raman",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A11_D",
+       "label": "Hikoyachi — har narsadan qiziq voqea topaman",
+       "career": "content_copywriting"
+      },
+      {
+       "id": "content_media_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "content_media_T1",
+     "title": "Aniq sarlavha",
+     "text": "Qaysi sarlavha o‘quvchiga nima olishini eng aniq aytadi?",
+     "options": [
+      {
+       "id": "content_media_T1_A",
+       "label": "\"Bu haqida hamma gapiryapti!\""
+      },
+      {
+       "id": "content_media_T1_B",
+       "label": "\"Telefon batareyasini uzoqroq ishlatishning 5 usuli\""
+      },
+      {
+       "id": "content_media_T1_C",
+       "label": "\"Siz buni bilmagansiz\""
+      },
+      {
+       "id": "content_media_T1_D",
+       "label": "\"Yangi post\""
+      },
+      {
+       "id": "content_media_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "content_media_T1_B"
+    },
+    {
+     "id": "content_media_T2",
+     "title": "Ma’noni yo‘qotmay qisqartirish",
+     "text": "Asl matn: \"Biz sizga shuni ma’lum qilmoqchimizki, ertangi kundan boshlab do‘konimiz soat 9:00 da ochiladi.\" Qaysi variant eng qisqa va ma’nosi to‘liq saqlangan?",
+     "options": [
+      {
+       "id": "content_media_T2_A",
+       "label": "\"Ertadan do‘konimiz 9:00 da ochiladi.\""
+      },
+      {
+       "id": "content_media_T2_B",
+       "label": "\"Do‘kon.\""
+      },
+      {
+       "id": "content_media_T2_C",
+       "label": "\"Ertangi kundan boshlab sizga ma’lum qilamizki, do‘kon ochiladi.\""
+      },
+      {
+       "id": "content_media_T2_D",
+       "label": "\"Biz sizga ma’lum qilmoqchimizki, ertaga 9:00.\""
+      },
+      {
+       "id": "content_media_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "content_media_T2_A"
+    },
+    {
+     "id": "content_media_T3",
+     "title": "Montajda nimani qisqartirish",
+     "text": "60 soniyalik reklama videosini 30 soniyaga qisqartirish kerak. Birinchi navbatda qaysi qismni kesish to‘g‘ri?",
+     "options": [
+      {
+       "id": "content_media_T3_A",
+       "label": "Hech narsa bo‘lmayotgan, kutish joylarini"
+      },
+      {
+       "id": "content_media_T3_B",
+       "label": "Mahsulot ko‘rsatilgan joyni"
+      },
+      {
+       "id": "content_media_T3_C",
+       "label": "Oxiridagi logotip va manzilni"
+      },
+      {
+       "id": "content_media_T3_D",
+       "label": "Muammo ko‘rsatilgan boshlanishni"
+      },
+      {
+       "id": "content_media_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "content_media_T3_A"
+    },
+    {
+     "id": "content_media_T4",
+     "title": "Kadrlar soni",
+     "text": "Video har soniyada 25 ta kadrdan iborat. 4 soniyalik qismda nechta kadr bor?",
+     "options": [
+      {
+       "id": "content_media_T4_A",
+       "label": "100"
+      },
+      {
+       "id": "content_media_T4_B",
+       "label": "29"
+      },
+      {
+       "id": "content_media_T4_C",
+       "label": "25"
+      },
+      {
+       "id": "content_media_T4_D",
+       "label": "6"
+      },
+      {
+       "id": "content_media_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "content_media_T4_A"
+    }
+   ],
+   "lesson": {
+    "text": "Ko‘p reklama, post va videolar uch qismdan quriladi: **Muammo → Yechim → Natija**. Avval odamga tanish qiyinchilik ko‘rsatiladi, keyin yechim, oxirida — hayot qanday yaxshilangani.",
+    "questions": [
+     {
+      "id": "content_media_O1",
+      "text": "Post bo‘laklari aralashib ketdi:\n(a) \"Endi telefonim kun bo‘yi ishlaydi!\" (b) \"Har kuni tushlikka borib zaryadim tugardi.\" (c) \"Powerbank sotib oldim.\"\nTo‘g‘ri tartib qaysi?",
+      "options": [
+       {
+        "id": "content_media_O1_A",
+        "label": "b → c → a"
+       },
+       {
+        "id": "content_media_O1_B",
+        "label": "a → b → c"
+       },
+       {
+        "id": "content_media_O1_C",
+        "label": "c → a → b"
+       },
+       {
+        "id": "content_media_O1_D",
+        "label": "a → c → b"
+       },
+       {
+        "id": "content_media_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "content_media_O1_A"
+     },
+     {
+      "id": "content_media_O2",
+      "text": "Taksi ilovasi uchun 15 soniyalik video tayyorlanyapti. Qaysi kadr \"Muammo\" qismiga mos?",
+      "options": [
+       {
+        "id": "content_media_O2_A",
+        "label": "Odam soatiga qarab, kechikayotganidan asabiylashyapti"
+       },
+       {
+        "id": "content_media_O2_B",
+        "label": "Odam taksida jilmayib ketyapti"
+       },
+       {
+        "id": "content_media_O2_C",
+        "label": "Ekranda ilova logotipi"
+       },
+       {
+        "id": "content_media_O2_D",
+        "label": "Odam telefonda taksi chaqiryapti"
+       },
+       {
+        "id": "content_media_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "content_media_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "product_project",
+   "uz": "Mahsulot va loyiha boshqaruvi",
+   "careers": [
+    {
+     "id": "product_management",
+     "uz": "Product menejer"
+    },
+    {
+     "id": "project_management",
+     "uz": "Loyiha menejeri"
+    },
+    {
+     "id": "business_analysis",
+     "uz": "Biznes-analitik"
+    }
+   ],
+   "questions": [
+    {
+     "id": "product_project_A01",
+     "text": "Jamoaviy ishda qaysi rol sizga yaqin?",
+     "options": [
+      {
+       "id": "product_project_A01_A",
+       "label": "\"Nimani va nima uchun qilyapmiz?\" degan savolga javob beruvchi",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A01_B",
+       "label": "Muddat va vazifalarni nazorat qiluvchi",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A01_C",
+       "label": "Jarayonni chuqur o‘rganib, muammoni topuvchi",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A01_D",
+       "label": "Hammani birlashtirib, kelishmovchiliklarni hal qiluvchi",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A02",
+     "text": "Ijtimoiy tarmoqda qanday sahifalarni kuzatasiz?",
+     "options": [
+      {
+       "id": "product_project_A02_A",
+       "label": "Mashhur ilovalar qanday paydo bo‘lgani haqidagi hikoyalar",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A02_B",
+       "label": "Vaqtni boshqarish va reja tuzish bo‘yicha maslahatlar",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A02_C",
+       "label": "Kompaniyalar muammoni qanday hal qilgani haqidagi tahlillar",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A02_D",
+       "label": "Startaplar va yangi g‘oyalar haqidagi bloglar",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A03",
+     "text": "Katta tadbir tashkil qilinyapti. Siz nimani olasiz?",
+     "options": [
+      {
+       "id": "product_project_A03_A",
+       "label": "Mehmonlarga nima yoqishini o‘ylab, dasturni tuzish",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A03_B",
+       "label": "Kim nima qilishini taqsimlab, hammasi vaqtida bo‘lishini kuzatish",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A03_C",
+       "label": "Xarajatlarni tahlil qilib, qayerda tejash mumkinligini topish",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A03_D",
+       "label": "Oldingi tadbirlardagi xatolarni o‘rganib, takrorlanmasligini ta’minlash",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A04",
+     "text": "Qaysi savol sizni ko‘proq qiziqtiradi?",
+     "options": [
+      {
+       "id": "product_project_A04_A",
+       "label": "\"Odamlar bu ilovani nega ishlatadi yoki tashlab ketadi?\"",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A04_B",
+       "label": "\"Loyiha nega kechikyapti va uni qanday tezlashtirsa bo‘ladi?\"",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A04_C",
+       "label": "\"Bu ishda qayerda vaqt va pul behuda ketyapti?\"",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A04_D",
+       "label": "\"Kelgusi yili odamlarga qanday yangi narsa kerak bo‘ladi?\"",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A05",
+     "text": "Qaysi ta’rif sizni tasvirlaydi?",
+     "options": [
+      {
+       "id": "product_project_A05_A",
+       "label": "G‘oyachi — yangi narsa o‘ylab topaman",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A05_B",
+       "label": "Tashkilotchi — rejasiz ishlamayman",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A05_C",
+       "label": "Tahlilchi — har narsaning sababini bilishim kerak",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A05_D",
+       "label": "Yetakchi — odamlarni bir maqsadga yo‘naltiraman",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A06",
+     "text": "Qaysi natija sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "product_project_A06_A",
+       "label": "Siz o‘ylab topgan imkoniyatni minglab odam ishlatyapti",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A06_B",
+       "label": "Katta loyiha muddatidan oldin, rejadagi pul bilan tugadi",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A06_C",
+       "label": "Taklifingiz tufayli kompaniya ishi ancha tezlashdi",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A06_D",
+       "label": "Siz topgan muammo tufayli katta yo‘qotishning oldi olindi",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A07",
+     "text": "Maktabda qaysi ish sizga ko‘proq yoqardi?",
+     "options": [
+      {
+       "id": "product_project_A07_A",
+       "label": "Yangi to‘garak yoki tadbir g‘oyasini taklif qilish",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A07_B",
+       "label": "Sinf sardori bo‘lib, ishlarni tashkil qilish",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A07_C",
+       "label": "Muammo bo‘yicha referat yozib, sabab va yechim topish",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A07_D",
+       "label": "Sinfdoshlardan nima yoqishini so‘rab, o‘zgarish taklif qilish",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A08",
+     "text": "Qaysi narsa sizni ko‘proq bezovta qiladi?",
+     "options": [
+      {
+       "id": "product_project_A08_A",
+       "label": "Hech kimga kerak bo‘lmagan narsaga vaqt sarflash",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A08_B",
+       "label": "Muddatlarning buzilishi va tartibsizlik",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A08_C",
+       "label": "Sababini tekshirmasdan qaror qabul qilish",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A08_D",
+       "label": "Kim nima qilishini bilmaydigan jamoa",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A09",
+     "text": "Qaysi topshiriqni olardingiz?",
+     "options": [
+      {
+       "id": "product_project_A09_A",
+       "label": "Yangi ilovada qaysi imkoniyat birinchi kerakligini hal qilish",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A09_B",
+       "label": "10 kishilik jamoa uchun 3 oylik ish rejasini tuzish",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A09_C",
+       "label": "Do‘konda xaridor nega navbatda kutib qolayotganini o‘rganish",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A09_D",
+       "label": "Rahbar uchun \"nimani o‘zgartirish kerak\" degan xulosa yozish",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A10",
+     "text": "Qaysi birini o‘rganishni xohlardingiz?",
+     "options": [
+      {
+       "id": "product_project_A10_A",
+       "label": "Mijoz aslida nimani xohlashini qanday bilish",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A10_B",
+       "label": "Katta loyihani qanday rejalashtirish va boshqarish",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A10_C",
+       "label": "Ish jarayonlarini chizib, tahlil qilish",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A10_D",
+       "label": "Yangi mahsulotni bozorga qanday chiqarish",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "product_project_A11",
+     "text": "Kuningiz qanday o‘tishini xohlardingiz?",
+     "options": [
+      {
+       "id": "product_project_A11_A",
+       "label": "Mijozlar bilan gaplashib, keyin jamoa bilan yangi g‘oyani muhokama qilib",
+       "career": "product_management"
+      },
+      {
+       "id": "product_project_A11_B",
+       "label": "Yig‘ilishlar, rejalar va nazorat bilan",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A11_C",
+       "label": "Ma’lumot va hujjatlarni o‘rganib, xulosa yozib",
+       "career": "business_analysis"
+      },
+      {
+       "id": "product_project_A11_D",
+       "label": "Muammolarni tez hal qilib, hammani harakatga keltirib",
+       "career": "project_management"
+      },
+      {
+       "id": "product_project_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "product_project_T1",
+     "title": "Muddatni hisoblash",
+     "text": "Uchta vazifa: **A** — 2 kun. **B** — 3 kun, faqat A tugagach boshlanadi. **C** — 4 kun, A bilan bir vaqtda boshlash mumkin. Hamma vazifa eng kamida necha kunda tugaydi?",
+     "options": [
+      {
+       "id": "product_project_T1_A",
+       "label": "5 kun"
+      },
+      {
+       "id": "product_project_T1_B",
+       "label": "9 kun"
+      },
+      {
+       "id": "product_project_T1_C",
+       "label": "4 kun"
+      },
+      {
+       "id": "product_project_T1_D",
+       "label": "6 kun"
+      },
+      {
+       "id": "product_project_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "product_project_T1_A"
+    },
+    {
+     "id": "product_project_T2",
+     "title": "Nimani birinchi qilish",
+     "text": "Yangi ilova uchun to‘rtta g‘oya bor. Qaysi birini birinchi qilish to‘g‘ri?",
+     "options": [
+      {
+       "id": "product_project_T2_A",
+       "label": "Ko‘p foydalanuvchi so‘ragan, 2 kunda qilinadi"
+      },
+      {
+       "id": "product_project_T2_B",
+       "label": "Hech kim so‘ramagan, 2 kunda qilinadi"
+      },
+      {
+       "id": "product_project_T2_C",
+       "label": "Ko‘p foydalanuvchi so‘ragan, 3 oyda qilinadi"
+      },
+      {
+       "id": "product_project_T2_D",
+       "label": "Bitta foydalanuvchi so‘ragan, 1 oyda qilinadi"
+      },
+      {
+       "id": "product_project_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "product_project_T2_A"
+    },
+    {
+     "id": "product_project_T3",
+     "title": "Asosiy sababni topish",
+     "text": "Kafeda kechqurun \"buyurtma kech keladi\" degan shikoyatlar ko‘paydi. Tekshiruv: kechqurun ofitsiantlar yetarli, oshxonada esa 1 ta oshpaz qoladi (kunduzi — 3 ta). Asosiy sabab qaysi bo‘lishi ehtimoli ko‘proq?",
+     "options": [
+      {
+       "id": "product_project_T3_A",
+       "label": "Kechqurun oshxonada oshpaz kam"
+      },
+      {
+       "id": "product_project_T3_B",
+       "label": "Ofitsiantlar kam"
+      },
+      {
+       "id": "product_project_T3_C",
+       "label": "Mijozlar sabrsiz"
+      },
+      {
+       "id": "product_project_T3_D",
+       "label": "Menyu qimmat"
+      },
+      {
+       "id": "product_project_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "product_project_T3_A"
+    },
+    {
+     "id": "product_project_T4",
+     "title": "Foydali savol",
+     "text": "Mijozdan qaysi savol eng foydali ma’lumot beradi?",
+     "options": [
+      {
+       "id": "product_project_T4_A",
+       "label": "\"Ilovamiz sizga yoqadimi?\""
+      },
+      {
+       "id": "product_project_T4_B",
+       "label": "\"Bunday ilovaga pul to‘lardingizmi?\""
+      },
+      {
+       "id": "product_project_T4_C",
+       "label": "\"Oxirgi marta taksi chaqirganingizda nima qiyin bo‘ldi?\""
+      },
+      {
+       "id": "product_project_T4_D",
+       "label": "\"Ilovamizni do‘stlaringizga tavsiya qilasizmi?\""
+      },
+      {
+       "id": "product_project_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "product_project_T4_C"
+    }
+   ],
+   "lesson": {
+    "text": "Vazifalarni ikki savol bilan saralaymiz: **muhimmi?** va **shoshilinchmi?**\n1) Muhim va shoshilinch — darhol qilinadi. 2) Muhim, lekin shoshilinch emas — kalendarga rejalashtiriladi. 3) Shoshilinch, lekin muhim emas — boshqaga topshiriladi. 4) Na muhim, na shoshilinch — qoldiriladi.",
+    "questions": [
+     {
+      "id": "product_project_O1",
+      "text": "Ertaga mijozga topshiriladigan hisobotda xato topildi. Bu qaysi guruh?",
+      "options": [
+       {
+        "id": "product_project_O1_A",
+        "label": "Muhim va shoshilinch — darhol"
+       },
+       {
+        "id": "product_project_O1_B",
+        "label": "Muhim, shoshilinch emas — rejalashtiriladi"
+       },
+       {
+        "id": "product_project_O1_C",
+        "label": "Shoshilinch, muhim emas — topshiriladi"
+       },
+       {
+        "id": "product_project_O1_D",
+        "label": "Na muhim, na shoshilinch — qoldiriladi"
+       },
+       {
+        "id": "product_project_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "product_project_O1_A"
+     },
+     {
+      "id": "product_project_O2",
+      "text": "Uchta vazifa: (1) bugun 17:00 gacha topshirilishi shart bo‘lgan shartnoma; (2) kelasi oy uchun jamoani o‘qitish rejasi; (3) qiziq, lekin ishga aloqasi yo‘q vebinar. Qaysi tartib to‘g‘ri?",
+      "options": [
+       {
+        "id": "product_project_O2_A",
+        "label": "1 — hozir; 2 — kalendarga rejalashtiriladi; 3 — qoldiriladi"
+       },
+       {
+        "id": "product_project_O2_B",
+        "label": "3 — hozir; 2 — keyin; 1 — oxirida"
+       },
+       {
+        "id": "product_project_O2_C",
+        "label": "2 — hozir; 1 — ertaga; 3 — hozir"
+       },
+       {
+        "id": "product_project_O2_D",
+        "label": "Uchalasi bir vaqtda"
+       },
+       {
+        "id": "product_project_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "product_project_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "business_sales",
+   "uz": "Sotuv va mijozlar bilan ishlash",
+   "careers": [
+    {
+     "id": "sales_manager",
+     "uz": "Sotuv menejeri"
+    },
+    {
+     "id": "customer_success",
+     "uz": "Customer Success mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "business_sales_A01",
+     "text": "Qaysi vaziyatda o‘zingizni yaxshi his qilasiz?",
+     "options": [
+      {
+       "id": "business_sales_A01_A",
+       "label": "Notanish odam bilan gaplashib, uni biror narsaga ko‘ndirganda",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A01_B",
+       "label": "Raqobatda g‘olib chiqqanda",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A01_C",
+       "label": "Xafa odamni tinchlantirib, unga yordam berganda",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A01_D",
+       "label": "Birov mendan qayta-qayta maslahat so‘raganda",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A02",
+     "text": "Ijtimoiy tarmoqda qanday sahifalarni kuzatasiz?",
+     "options": [
+      {
+       "id": "business_sales_A02_A",
+       "label": "Muvaffaqiyatli sotuvchilar va tadbirkorlar bloglarini",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A02_B",
+       "label": "Muzokara va ishontirish sirlari haqidagi videolarni",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A02_C",
+       "label": "Mijozga yaxshi xizmat ko‘rsatish haqidagi hikoyalarni",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A02_D",
+       "label": "Odamlarni tushunish va psixologiya haqidagi sahifalarni",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A03",
+     "text": "Bolaligingizda qaysi biri sizga xos edi?",
+     "options": [
+      {
+       "id": "business_sales_A03_A",
+       "label": "Narsalarni almashtirishda doim yutardim",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A03_B",
+       "label": "Do‘stlarimni o‘z rejamga osongina ko‘ndirardim",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A03_C",
+       "label": "Janjallashgan do‘stlarimni yarashtirardim",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A03_D",
+       "label": "Yangi kelgan bolaga hamma narsani tushuntirib berardim",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A04",
+     "text": "Qaysi topshiriqni olardingiz?",
+     "options": [
+      {
+       "id": "business_sales_A04_A",
+       "label": "Bir haftada 20 ta yangi mijoz topish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A04_B",
+       "label": "Katta kompaniya bilan shartnoma bo‘yicha muzokara qilish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A04_C",
+       "label": "Norozi mijozlarning muammosini hal qilish",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A04_D",
+       "label": "Yangi mijozlarga mahsulotni ishlatishni o‘rgatish",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A05",
+     "text": "Qaysi natija sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "business_sales_A05_A",
+       "label": "Oyning eng ko‘p sotgan xodimi bo‘ldingiz",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A05_B",
+       "label": "Katta shartnoma imzolandi",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A05_C",
+       "label": "Ketmoqchi bo‘lgan mijoz qolib, rahmat aytdi",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A05_D",
+       "label": "Mijozlar sizni ismingiz bilan so‘rab kelishyapti",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A06",
+     "text": "Qaysi so‘z sizni tasvirlaydi?",
+     "options": [
+      {
+       "id": "business_sales_A06_A",
+       "label": "Ishontiruvchi",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A06_B",
+       "label": "G‘alabaga intiluvchi",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A06_C",
+       "label": "G‘amxo‘r",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A06_D",
+       "label": "Sabrli",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A07",
+     "text": "\"Yo‘q\" degan javob eshitsangiz, nima qilasiz?",
+     "options": [
+      {
+       "id": "business_sales_A07_A",
+       "label": "Boshqa yo‘l bilan yana urinib ko‘raman",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A07_B",
+       "label": "Darhol keyingi odamga o‘taman",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A07_C",
+       "label": "Nega rad etganini tushunishga harakat qilaman",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A07_D",
+       "label": "Baribir unga foydali maslahat berib qolaman",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A08",
+     "text": "Qaysi narsa sizni ko‘proq charchatadi?",
+     "options": [
+      {
+       "id": "business_sales_A08_A",
+       "label": "Kun bo‘yi bir joyda, odamlarsiz o‘tirish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A08_B",
+       "label": "Natijasi va mukofoti noaniq ish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A08_C",
+       "label": "Odamlarga qo‘pol muomala qilinishi",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A08_D",
+       "label": "Mijozning muammosini hal qilmasdan qoldirish",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A09",
+     "text": "Qaysi birini o‘rganishni xohlardingiz?",
+     "options": [
+      {
+       "id": "business_sales_A09_A",
+       "label": "Qanday qilib ko‘proq va tezroq sotish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A09_B",
+       "label": "Muzokarada qanday yutish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A09_C",
+       "label": "Norozi odam bilan qanday gaplashish",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A09_D",
+       "label": "Mijozni yillar davomida qanday saqlab qolish",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A10",
+     "text": "Kichik biznesga qanday yordam berasiz?",
+     "options": [
+      {
+       "id": "business_sales_A10_A",
+       "label": "Yangi xaridorlarni topib, ularga sotish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A10_B",
+       "label": "Ulgurji xaridorlar bilan kelishuv qilish",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A10_C",
+       "label": "Mijozlar shikoyatini tinglab, xizmatni yaxshilash",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A10_D",
+       "label": "Doimiy mijozlar uchun g‘amxo‘rlik tizimini tuzish",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "business_sales_A11",
+     "text": "Kuningiz qanday o‘tishini xohlardingiz?",
+     "options": [
+      {
+       "id": "business_sales_A11_A",
+       "label": "Qo‘ng‘iroqlar, uchrashuvlar va kelishuvlar bilan",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A11_B",
+       "label": "Har kuni yangi maqsad qo‘yib, uni bajarish bilan",
+       "career": "sales_manager"
+      },
+      {
+       "id": "business_sales_A11_C",
+       "label": "Mijozlar savollariga javob berib, ularga yordam berib",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A11_D",
+       "label": "Mijozlar nima istashini o‘rganib, jamoaga yetkazib",
+       "career": "customer_success"
+      },
+      {
+       "id": "business_sales_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "business_sales_T1",
+     "title": "Avval ehtiyojni bilish",
+     "text": "Mijoz do‘konga kirib: \"Menga noutbuk kerak\", dedi. Sotuvchining eng yaxshi birinchi gapi qaysi?",
+     "options": [
+      {
+       "id": "business_sales_T1_A",
+       "label": "\"Eng qimmatini olib ko‘ring!\""
+      },
+      {
+       "id": "business_sales_T1_B",
+       "label": "\"Noutbuk asosan nima uchun kerak — o‘qish, ish yoki o‘yin?\""
+      },
+      {
+       "id": "business_sales_T1_C",
+       "label": "\"Bugun chegirma yo‘q.\""
+      },
+      {
+       "id": "business_sales_T1_D",
+       "label": "\"Katalogni o‘zingiz ko‘rib chiqing.\""
+      },
+      {
+       "id": "business_sales_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "business_sales_T1_B"
+    },
+    {
+     "id": "business_sales_T2",
+     "title": "Bonusni hisoblash",
+     "text": "Sotuvchiga har bir sotuvdan 5% bonus beriladi. U bir oyda 4 000 000 so‘mlik sotuv qildi. Bonusi qancha?",
+     "options": [
+      {
+       "id": "business_sales_T2_A",
+       "label": "200 000 so‘m"
+      },
+      {
+       "id": "business_sales_T2_B",
+       "label": "20 000 so‘m"
+      },
+      {
+       "id": "business_sales_T2_C",
+       "label": "400 000 so‘m"
+      },
+      {
+       "id": "business_sales_T2_D",
+       "label": "2 000 000 so‘m"
+      },
+      {
+       "id": "business_sales_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "business_sales_T2_A"
+    },
+    {
+     "id": "business_sales_T3",
+     "title": "Jahli chiqqan mijoz",
+     "text": "Mijoz yozdi: \"Buyurtmam 3 kun kechikdi, juda jahlim chiqdi!\" Eng yaxshi javob qaysi?",
+     "options": [
+      {
+       "id": "business_sales_T3_A",
+       "label": "\"Bu bizning aybimiz emas.\""
+      },
+      {
+       "id": "business_sales_T3_B",
+       "label": "\"Noqulaylik uchun uzr. Buyurtmangizni hozir tekshiraman va 1 soat ichida aniq ma’lumot beraman.\""
+      },
+      {
+       "id": "business_sales_T3_C",
+       "label": "\"Kuting.\""
+      },
+      {
+       "id": "business_sales_T3_D",
+       "label": "Javob bermaslik"
+      },
+      {
+       "id": "business_sales_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "business_sales_T3_B"
+    },
+    {
+     "id": "business_sales_T4",
+     "title": "Ketib qolishi mumkin bo‘lgan mijoz",
+     "text": "Qaysi mijoz yaqinda ketib qolishi ehtimoli ko‘proq — birinchi unga e’tibor berish kerak?",
+     "options": [
+      {
+       "id": "business_sales_T4_A",
+       "label": "Har kuni ilovaga kiradi, yangi imkoniyatlar so‘raydi"
+      },
+      {
+       "id": "business_sales_T4_B",
+       "label": "Oldin har kuni kirardi, 3 haftadan beri umuman kirmayapti"
+      },
+      {
+       "id": "business_sales_T4_C",
+       "label": "Yangi ro‘yxatdan o‘tdi, savollar beryapti"
+      },
+      {
+       "id": "business_sales_T4_D",
+       "label": "2 yildan beri doimiy foydalanadi"
+      },
+      {
+       "id": "business_sales_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "business_sales_T4_B"
+    }
+   ],
+   "lesson": {
+    "text": "**Faol tinglash** — 3 qadam: (1) gapini bo‘lmasdan eshitasiz; (2) uning gapini o‘z so‘zingiz bilan qisqa takrorlaysiz; (3) aniqlashtiruvchi savol berasiz.",
+    "questions": [
+     {
+      "id": "business_sales_O1",
+      "text": "Mijoz: \"Ilovangiz juda sekin ishlayapti, ishlay olmayapman.\" Qaysi javob faol tinglashning **2-qadamiga** mos?",
+      "options": [
+       {
+        "id": "business_sales_O1_A",
+        "label": "\"Tushundim: ilova sekin ishlagani uchun ishingiz to‘xtab qolyapti, to‘g‘rimi?\""
+       },
+       {
+        "id": "business_sales_O1_B",
+        "label": "\"Hamma joyda shunday.\""
+       },
+       {
+        "id": "business_sales_O1_C",
+        "label": "\"Telefoningizni almashtiring.\""
+       },
+       {
+        "id": "business_sales_O1_D",
+        "label": "\"Boshqa savolingiz bormi?\""
+       },
+       {
+        "id": "business_sales_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "business_sales_O1_A"
+     },
+     {
+      "id": "business_sales_O2",
+      "text": "Endi **3-qadam**: qaysi savol eng foydali?",
+      "options": [
+       {
+        "id": "business_sales_O2_A",
+        "label": "\"Qachondan beri va aynan qaysi bo‘limda sekinlashyapti?\""
+       },
+       {
+        "id": "business_sales_O2_B",
+        "label": "\"Nega bizni tanlagansiz?\""
+       },
+       {
+        "id": "business_sales_O2_C",
+        "label": "\"Ilovamiz sizga yoqadimi?\""
+       },
+       {
+        "id": "business_sales_O2_D",
+        "label": "\"Bunga ishonchingiz komilmi?\""
+       },
+       {
+        "id": "business_sales_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "business_sales_O2_A"
+     }
+    ]
+   }
+  },
+  {
+   "id": "finance_office",
+   "uz": "Moliya va raqamli ofis",
+   "careers": [
+    {
+     "id": "accountant",
+     "uz": "Buxgalter"
+    },
+    {
+     "id": "fintech_specialist",
+     "uz": "Fintech mutaxassisi"
+    },
+    {
+     "id": "spreadsheet_specialist",
+     "uz": "Excel va Google Sheets mutaxassisi"
+    }
+   ],
+   "questions": [
+    {
+     "id": "finance_office_A01",
+     "text": "Pul bilan bog‘liq qaysi narsa sizni ko‘proq qiziqtiradi?",
+     "options": [
+      {
+       "id": "finance_office_A01_A",
+       "label": "Kompaniyada har bir so‘m qayerga ketganini aniq bilish",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A01_B",
+       "label": "Telefon orqali to‘lov qanday qilib bir soniyada o‘tishi",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A01_C",
+       "label": "Raqamlarni o‘zi hisoblaydigan jadval tuzish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A01_D",
+       "label": "Soliqlarni to‘g‘ri hisoblash",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A01_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A02",
+     "text": "Ijtimoiy tarmoqda qanday sahifalarni kuzatasiz?",
+     "options": [
+      {
+       "id": "finance_office_A02_A",
+       "label": "Buxgalteriya va soliq yangiliklari",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A02_B",
+       "label": "Bank ilovalari, kartalar va onlayn to‘lovlar yangiliklari",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A02_C",
+       "label": "Excel va Google Sheets bo‘yicha foydali usullar",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A02_D",
+       "label": "Raqamli pul va investitsiya haqidagi bloglar",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A02_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A03",
+     "text": "Qaysi topshiriqni olardingiz?",
+     "options": [
+      {
+       "id": "finance_office_A03_A",
+       "label": "Kompaniyaning oylik hisobotini xatosiz tayyorlash",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A03_B",
+       "label": "Bank ilovasiga yangi to‘lov usulini qo‘shishda yordam berish",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A03_C",
+       "label": "Qo‘lda bir kun ketadigan hisobni 1 daqiqaga tushiradigan jadval qilish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A03_D",
+       "label": "Tartibsiz ro‘yxatlarni bitta tushunarli jadvalga yig‘ish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A03_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A04",
+     "text": "Qaysi ta’rif sizni tasvirlaydi?",
+     "options": [
+      {
+       "id": "finance_office_A04_A",
+       "label": "Aniq — bir tiyin ham xato bo‘lmasin",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A04_B",
+       "label": "Zamonaviy — pulning kelajagi meni qiziqtiradi",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A04_C",
+       "label": "Tejamkor — vaqtni behuda sarflamayman",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A04_D",
+       "label": "Mas’uliyatli — menga ishonib topshirishadi",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A04_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A05",
+     "text": "Qaysi natija sizni ko‘proq quvontirardi?",
+     "options": [
+      {
+       "id": "finance_office_A05_A",
+       "label": "Tekshiruv kompaniya hujjatlarida birorta ham xato topmadi",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A05_B",
+       "label": "Siz ishlagan ilova orqali millionlab to‘lov o‘tyapti",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A05_C",
+       "label": "Siz yasagan jadvaldan butun ofis foydalanyapti",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A05_D",
+       "label": "Odamlar endi bankka bormasdan hamma ishni telefonda qilyapti",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A05_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A06",
+     "text": "Maktabda qaysi mashg‘ulot sizga yoqardi?",
+     "options": [
+      {
+       "id": "finance_office_A06_A",
+       "label": "Aniq hisob-kitobli matematika masalalari",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A06_B",
+       "label": "Iqtisod va pul haqidagi mavzular",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A06_C",
+       "label": "Informatikada jadval bilan ishlash",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A06_D",
+       "label": "Ma’lumotlarni tartiblab, ro‘yxat tuzish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A06_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A07",
+     "text": "Qaysi narsa sizni ko‘proq bezovta qiladi?",
+     "options": [
+      {
+       "id": "finance_office_A07_A",
+       "label": "Hujjatlar tartibsiz, cheklar yo‘qolgan",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A07_B",
+       "label": "Pul o‘tkazish uchun navbatda turish va qog‘ozbozlik",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A07_C",
+       "label": "Bir xil hisobni har kuni qo‘lda qayta qilish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A07_D",
+       "label": "Hisobdagi xato tufayli jarima to‘lash",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A07_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A08",
+     "text": "Do‘stingizning kichik biznesiga qanday yordam berasiz?",
+     "options": [
+      {
+       "id": "finance_office_A08_A",
+       "label": "Kirim-chiqim va soliqlarini tartibga solib berish",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A08_B",
+       "label": "Karta va onlayn to‘lov qabul qilishni yo‘lga qo‘yish",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A08_C",
+       "label": "Ombor va savdoni hisoblaydigan qulay jadval qilib berish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A08_D",
+       "label": "Telefon orqali savdo qilishni o‘rgatish",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A08_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A09",
+     "text": "Qaysi birini o‘rganishni xohlardingiz?",
+     "options": [
+      {
+       "id": "finance_office_A09_A",
+       "label": "Buxgalteriya hisobi va soliq qoidalari",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A09_B",
+       "label": "Banklar va to‘lov tizimlari qanday ishlaydi",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A09_C",
+       "label": "Excel’da murakkab formulalar va avtomatlashtirish",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A09_D",
+       "label": "Jadvaldan o‘zi chiqadigan hisobot va grafiklar",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A09_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A10",
+     "text": "Qaysi ishda soatlab o‘tira olasiz?",
+     "options": [
+      {
+       "id": "finance_office_A10_A",
+       "label": "Hujjatlarni tekshirib, raqamlar mos kelishini ta’minlashda",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A10_B",
+       "label": "Yangi to‘lov ilovalarini sinab, solishtirishda",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A10_C",
+       "label": "Jadvalni mukammal ishlaydigan qilib sozlashda",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A10_D",
+       "label": "Har bir xarajat hujjatini to‘g‘ri rasmiylashtirishda",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A10_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    },
+    {
+     "id": "finance_office_A11",
+     "text": "Kuningiz qanday o‘tishini xohlardingiz?",
+     "options": [
+      {
+       "id": "finance_office_A11_A",
+       "label": "Tinch ofisda, hujjatlar va hisob bilan",
+       "career": "accountant"
+      },
+      {
+       "id": "finance_office_A11_B",
+       "label": "Zamonaviy kompaniyada, yangi moliyaviy xizmatlar ustida",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A11_C",
+       "label": "Boshqa bo‘limlarning hisob-kitobini osonlashtirib",
+       "career": "spreadsheet_specialist"
+      },
+      {
+       "id": "finance_office_A11_D",
+       "label": "Raqamli pul va kelajak texnologiyalari bilan",
+       "career": "fintech_specialist"
+      },
+      {
+       "id": "finance_office_A11_E",
+       "label": "Bilmayman / bu yerda menga mosi yo‘q",
+       "career": null
+      }
+     ]
+    }
+   ],
+   "tasks": [
+    {
+     "id": "finance_office_T1",
+     "title": "Kassa qoldig‘i",
+     "text": "Oy boshida kassada 500 000 so‘m bor edi. Oy davomida 1 200 000 so‘m kirim va 900 000 so‘m chiqim bo‘ldi. Oy oxirida kassada qancha bo‘lishi kerak?",
+     "options": [
+      {
+       "id": "finance_office_T1_A",
+       "label": "800 000 so‘m"
+      },
+      {
+       "id": "finance_office_T1_B",
+       "label": "1 700 000 so‘m"
+      },
+      {
+       "id": "finance_office_T1_C",
+       "label": "300 000 so‘m"
+      },
+      {
+       "id": "finance_office_T1_D",
+       "label": "2 600 000 so‘m"
+      },
+      {
+       "id": "finance_office_T1_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "finance_office_T1_A"
+    },
+    {
+     "id": "finance_office_T2",
+     "title": "Hujjatdagi xato",
+     "text": "Chekda yozilgan: \"3 ta daftar × 5 000 so‘m = 20 000 so‘m\". Nima qilish to‘g‘ri?",
+     "options": [
+      {
+       "id": "finance_office_T2_A",
+       "label": "Xato bor: 15 000 so‘m bo‘lishi kerak — sababini aniqlash"
+      },
+      {
+       "id": "finance_office_T2_B",
+       "label": "Hammasi to‘g‘ri"
+      },
+      {
+       "id": "finance_office_T2_C",
+       "label": "Hisob to‘g‘ri chiqishi uchun daftar sonini 4 ga o‘zgartirib qo‘yish"
+      },
+      {
+       "id": "finance_office_T2_D",
+       "label": "Chekni tashlab yuborish"
+      },
+      {
+       "id": "finance_office_T2_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "finance_office_T2_A"
+    },
+    {
+     "id": "finance_office_T3",
+     "title": "Kerakli qatorlarni tez topish",
+     "text": "100 qatorli mijozlar jadvalidan faqat Toshkentdagilarni ko‘rish kerak. Eng tez yo‘l qaysi?",
+     "options": [
+      {
+       "id": "finance_office_T3_A",
+       "label": "\"Shahar\" ustuniga filtr qo‘yib, \"Toshkent\"ni tanlash"
+      },
+      {
+       "id": "finance_office_T3_B",
+       "label": "Har qatorni ko‘zdan kechirib, qo‘lda ko‘chirish"
+      },
+      {
+       "id": "finance_office_T3_C",
+       "label": "Jadvalni o‘chirib, qaytadan yozish"
+      },
+      {
+       "id": "finance_office_T3_D",
+       "label": "Shriftni kattalashtirish"
+      },
+      {
+       "id": "finance_office_T3_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "finance_office_T3_A"
+    },
+    {
+     "id": "finance_office_T4",
+     "title": "To‘lov komissiyasi",
+     "text": "Ilova orqali pul o‘tkazishda 1% komissiya olinadi. 300 000 so‘m o‘tkazsangiz, komissiya qancha bo‘ladi?",
+     "options": [
+      {
+       "id": "finance_office_T4_A",
+       "label": "3 000 so‘m"
+      },
+      {
+       "id": "finance_office_T4_B",
+       "label": "30 000 so‘m"
+      },
+      {
+       "id": "finance_office_T4_C",
+       "label": "300 so‘m"
+      },
+      {
+       "id": "finance_office_T4_D",
+       "label": "1 000 so‘m"
+      },
+      {
+       "id": "finance_office_T4_E",
+       "label": "Bilmayman"
+      }
+     ],
+     "correct": "finance_office_T4_A"
+    }
+   ],
+   "lesson": {
+    "text": "Jadvalda formula **=** belgisi bilan boshlanadi. Katakcha nomi — ustun harfi va qator raqami (masalan, **B3**).\n**=B3*C3** — B3 va C3 dagi sonlarni ko‘paytiradi. **=SUM(D2:D5)** — D2 dan D5 gacha bo‘lgan barcha sonlarni qo‘shadi.",
+    "questions": [
+     {
+      "id": "finance_office_O1",
+      "text": "A2 katakchada 4 (soni), B2 da 2 500 (narxi). **=A2*B2** natijasi qancha?",
+      "options": [
+       {
+        "id": "finance_office_O1_A",
+        "label": "10 000"
+       },
+       {
+        "id": "finance_office_O1_B",
+        "label": "2 504"
+       },
+       {
+        "id": "finance_office_O1_C",
+        "label": "42 500"
+       },
+       {
+        "id": "finance_office_O1_D",
+        "label": "25 000"
+       },
+       {
+        "id": "finance_office_O1_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "finance_office_O1_A"
+     },
+     {
+      "id": "finance_office_O2",
+      "text": "D2 = 10 000, D3 = 5 000, D4 = 2 000, D5 = 3 000. **=SUM(D2:D4)** natijasi qancha?",
+      "options": [
+       {
+        "id": "finance_office_O2_A",
+        "label": "17 000"
+       },
+       {
+        "id": "finance_office_O2_B",
+        "label": "20 000"
+       },
+       {
+        "id": "finance_office_O2_C",
+        "label": "15 000"
+       },
+       {
+        "id": "finance_office_O2_D",
+        "label": "10 000"
+       },
+       {
+        "id": "finance_office_O2_E",
+        "label": "Bilmayman"
+       }
+      ],
+      "correct": "finance_office_O2_A"
+     }
+    ]
+   }
+  }
+ ],
+ "style": [
+  {
+   "id": "DV2_B12",
+   "text": "Qanday muhitda o‘zingizni yaxshi his qilasiz?",
+   "options": [
+    {
+     "id": "DV2_B12_A",
+     "label": "Doim odamlar bilan muloqotda"
+    },
+    {
+     "id": "DV2_B12_B",
+     "label": "Tinch joyda, o‘zim yolg‘iz"
+    },
+    {
+     "id": "DV2_B12_C",
+     "label": "Jamoada, lekin o‘z vazifam bilan"
+    },
+    {
+     "id": "DV2_B12_D",
+     "label": "Har kuni yangi joy, yangi vaziyat"
+    },
+    {
+     "id": "DV2_B12_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  },
+  {
+   "id": "DV2_B13",
+   "text": "Ishda siz uchun eng muhimi nima?",
+   "options": [
+    {
+     "id": "DV2_B13_A",
+     "label": "Aniq tartib va qoidalar"
+    },
+    {
+     "id": "DV2_B13_B",
+     "label": "Ijod qilish erkinligi"
+    },
+    {
+     "id": "DV2_B13_C",
+     "label": "Natijani tez ko‘rish"
+    },
+    {
+     "id": "DV2_B13_D",
+     "label": "Odamlarga foyda keltirish"
+    },
+    {
+     "id": "DV2_B13_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  },
+  {
+   "id": "DV2_B14",
+   "text": "Muammo chiqsa, odatda nima qilasiz?",
+   "options": [
+    {
+     "id": "DV2_B14_A",
+     "label": "Darhol kimgadir maslahat solaman"
+    },
+    {
+     "id": "DV2_B14_B",
+     "label": "O‘zim o‘tirib, oxirigacha o‘ylayman"
+    },
+    {
+     "id": "DV2_B14_C",
+     "label": "Shunga o‘xshash yechimni qidiraman"
+    },
+    {
+     "id": "DV2_B14_D",
+     "label": "Har xil yo‘lni sinab ko‘raman"
+    },
+    {
+     "id": "DV2_B14_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  },
+  {
+   "id": "DV2_B15",
+   "text": "Qaysi kun sizga ko‘proq yoqadi?",
+   "options": [
+    {
+     "id": "DV2_B15_A",
+     "label": "Rejadagi ishlar birma-bir bajarilgan kun"
+    },
+    {
+     "id": "DV2_B15_B",
+     "label": "Kutilmagan, qiziq vazifalar ko‘p bo‘lgan kun"
+    },
+    {
+     "id": "DV2_B15_C",
+     "label": "Ko‘p odam bilan uchrashgan kun"
+    },
+    {
+     "id": "DV2_B15_D",
+     "label": "Bitta katta ishga to‘liq sho‘ng‘igan kun"
+    },
+    {
+     "id": "DV2_B15_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  },
+  {
+   "id": "DV2_B16",
+   "text": "Ishingiz natijasini kim ko‘rishini xohlaysiz?",
+   "options": [
+    {
+     "id": "DV2_B16_A",
+     "label": "Minglab oddiy odamlar"
+    },
+    {
+     "id": "DV2_B16_B",
+     "label": "Kompaniya rahbarlari"
+    },
+    {
+     "id": "DV2_B16_C",
+     "label": "Ko‘pchilik bilmasa ham, hamma narsa men tufayli ishlaydi"
+    },
+    {
+     "id": "DV2_B16_D",
+     "label": "Mijozlar — yuzma-yuz"
+    },
+    {
+     "id": "DV2_B16_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  }
+ ],
+ "readiness": [
+  {
+   "id": "DV2_C17",
+   "text": "Birinchi ishga qachongacha kirishingiz kerak?",
+   "options": [
+    {
+     "id": "DV2_C17_A",
+     "label": "3 oy ichida"
+    },
+    {
+     "id": "DV2_C17_B",
+     "label": "6 oy ichida"
+    },
+    {
+     "id": "DV2_C17_C",
+     "label": "1 yil ichida"
+    },
+    {
+     "id": "DV2_C17_D",
+     "label": "Shoshilmayman"
+    },
+    {
+     "id": "DV2_C17_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  },
+  {
+   "id": "DV2_C18",
+   "text": "O‘qishga qanday imkoniyatingiz bor?",
+   "options": [
+    {
+     "id": "DV2_C18_A",
+     "label": "Faqat bepul manbalar"
+    },
+    {
+     "id": "DV2_C18_B",
+     "label": "Oz miqdorda pul sarflay olaman"
+    },
+    {
+     "id": "DV2_C18_C",
+     "label": "Pullik kursga bora olaman"
+    },
+    {
+     "id": "DV2_C18_D",
+     "label": "Mablag‘ muammo emas"
+    },
+    {
+     "id": "DV2_C18_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  },
+  {
+   "id": "DV2_C19",
+   "text": "Yangi kasbni o‘rganishga qancha vaqt ajrata olasiz?",
+   "options": [
+    {
+     "id": "DV2_C19_A",
+     "label": "3 oygacha"
+    },
+    {
+     "id": "DV2_C19_B",
+     "label": "6 oygacha"
+    },
+    {
+     "id": "DV2_C19_C",
+     "label": "1 yilgacha"
+    },
+    {
+     "id": "DV2_C19_D",
+     "label": "1 yildan ko‘proq ham bo‘laveradi"
+    },
+    {
+     "id": "DV2_C19_E",
+     "label": "Bilmayman / bu yerda menga mosi yo‘q"
+    }
+   ]
+  }
+ ],
+ "ease": {
+  "text": "Bu siz uchun qanday bo‘ldi?",
+  "options": [
+   {
+    "id": "easy_interesting",
+    "label": "Oson va qiziq"
+   },
+   {
+    "id": "easy_boring",
+    "label": "Oson, lekin zerikarli"
+   },
+   {
+    "id": "hard_interesting",
+    "label": "Qiyin, lekin qiziq"
+   },
+   {
+    "id": "hard_boring",
+    "label": "Qiyin va zerikarli"
+   }
+  ]
+ }
+}
